@@ -1,8 +1,8 @@
 import React from "react";
 import SearchResults from "./SearchResults";
 
-const cardName = "Chandra, Fire of Kaladesh";
-const url = `https://api.scryfall.com/cards/search?order=released&q=%21%22${cardName.replaceAll(
+const cardName = "Bolt";
+const url = `https://api.scryfall.com/cards/search?order=released&q=%22${cardName.replaceAll(
     " ",
     "+"
 )}%22+include%3Aextras&unique=prints`;
@@ -94,9 +94,11 @@ export default class SearchPage extends React.Component {
                 usd: card.prices.usd,
                 usdfoil: card.prices.usd_foil
             },
-            img: card.hasOwnProperty("image_uris")
+            img: card.hasOwnProperty("image_uris") // check if image is available
                 ? card.image_uris.normal
-                : card.card_faces[0].image_uris.normal
+                : card.card_faces[0].hasOwnProperty("image_uris")// check for double faced card
+                    ? card.card_faces[0].image_uris.normal
+                    : "https://c2.scryfall.com/file/scryfall-errors/soon.jpg"
         }));
         this.setState(() => ({
             cardList: cleanedCardData
