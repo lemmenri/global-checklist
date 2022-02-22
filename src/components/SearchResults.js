@@ -13,13 +13,16 @@ export default class SearchResults extends React.Component {
     render() {
         return (
             <div>
-                <label htmlFor="toggle-list-view">List view</label>
-                <Toggle
-                    name="toggle-list-view"
-                    onToggle={() => {
-                        this.setState({ listView: !this.state.listView });
-                    }}
-                />
+                {this.props.cardList.length > 0 &&
+                    <>
+                        <label htmlFor="toggle-list-view">List view</label>
+                        <Toggle
+                            name="toggle-list-view"
+                            onToggle={() => {
+                                this.setState({ listView: !this.state.listView });
+                            }}
+                        />
+                    </>}
 
                 <div
                     className={

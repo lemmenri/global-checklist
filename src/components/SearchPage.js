@@ -1,7 +1,7 @@
 import React from "react";
 import SearchResults from "./SearchResults";
 
-const cardName = "Bolt";
+const cardName = "Snap";
 const url = `https://api.scryfall.com/cards/search?order=released&q=%22${cardName.replaceAll(
     " ",
     "+"
