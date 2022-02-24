@@ -1,10 +1,10 @@
 import './App.css';
-import SearchPage from './components/SearchPage'
+import AppRouter from './routers/AppRouter';
 
 function App() {
   return (
     <div className="App">
-      <SearchPage />
+      <AppRouter />
     </div>
   );
 }

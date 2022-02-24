@@ -1,5 +1,5 @@
 import React from "react";
-import SearchResults from "./SearchResults";
+import SearchResults from "../SearchResults";
 
 const cardName = "Snap";
 const url = `https://api.scryfall.com/cards/search?order=released&q=%22${cardName.replaceAll(
