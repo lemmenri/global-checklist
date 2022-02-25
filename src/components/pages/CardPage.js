@@ -1,6 +1,6 @@
-//import { useParams } from ' react-router'
+// import { useParams } from ' react-router-dom'
 
-const CardPage = (props) => {
+const CardPage = () => {
     // console.log(useParams())
     return (
         <div>

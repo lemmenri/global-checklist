@@ -107,7 +107,7 @@ export default class SearchPage extends React.Component {
 
     render() {
         return (
-            <div className="App p-1 sm:p-8 bg-gray-400">
+            <div className="p-1 sm:p-8 bg-gray-400">
                 {this.state.dataIsLoaded ? (
                     <div>
                         <p>

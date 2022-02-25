@@ -1,10 +1,10 @@
 import { NavLink } from 'react-router-dom'
 
 const Header = () => (
-    <header>
-        <h1>MTG Library</h1>
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/search">Search</NavLink>
+    <header className='p-4 text-white bg-gray-700'>
+        <h1 className='text-3xl m-4'>MTG Library</h1>
+        <NavLink className={"bg-green-300 text-black m-4 px-4 rounded-xl hover:bg-green-500"} to="/">Home</NavLink>
+        <NavLink className={"bg-green-300 text-black m-4 px-4 rounded-xl hover:bg-green-500"} to="/search">Search</NavLink>
     </header>
 )
 
