@@ -1,11 +1,11 @@
 import React from "react";
 import SearchResults from "../SearchResults";
 
-const cardName = "Snap";
-const url = `https://api.scryfall.com/cards/search?order=released&q=%22${cardName.replaceAll(
-    " ",
-    "+"
-)}%22+include%3Aextras&unique=prints`;
+// const cardName = "Snap";
+// const url = `https://api.scryfall.com/cards/search?order=released&q=%22${cardName.replaceAll(
+//     " ",
+//     "+"
+// )}%22+include%3Aextras&unique=prints`;
 
 export default class SearchPage extends React.Component {
     constructor(props) {
@@ -55,6 +55,12 @@ export default class SearchPage extends React.Component {
                 .then(() => this.addRawDataToCardlist());
         })
     }
+
+    // TODO: clean up this file
+    // TODO: handle if no cards are found on second search
+    // TODO: move cardSearch to separate component
+    // TODO: get card languages for found cards
+    // TODO: add collection state
 
     addRawDataToCardlist() {
         let cleanedCardData = this.state.rawCardData.map((card) => ({
