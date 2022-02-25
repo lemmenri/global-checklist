@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function SearchResultImageItem(props) {
     const card = props.card;
     const countCards = (isFoil) => {
@@ -15,8 +17,12 @@ export default function SearchResultImageItem(props) {
     const regular = countCards(false);
     const foil = countCards(true);
     return (
-        <div className="p-1">
-            <div className="relative">
+        <div className="p-1 relative">
+            <Link
+                id={`card ${card.id}`}
+                className=""
+                to={`/card/${card.id}`}
+            >
                 <img
                     className="rounded-xl"
                     src={card.img}
@@ -40,7 +46,7 @@ export default function SearchResultImageItem(props) {
                         <p>✶ {foil}</p>
                     </div>
                 </div>
-            </div>
+            </Link>
         </div>
     );
 }

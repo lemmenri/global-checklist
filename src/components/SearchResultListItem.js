@@ -1,10 +1,13 @@
+import { Link } from 'react-router-dom'
+
 export default function SearchResultListItem(props) {
     const card = props.card;
     return (
         <div id="search-result-list-item" className="p-1">
-            <div
-                id="card"
+            <Link
+                id={`card ${card.id}`}
                 className="flex flex-row bg-gradient-to-r from-cyan-100 to-indigo-100 p-2 max-w-max rounded-xl"
+                to={`/card/${card.id}`}
             >
                 <div id="card-details" className="mx-1">
                     <p id="card-name" className="text-3xl font-medium">
@@ -86,7 +89,7 @@ export default function SearchResultListItem(props) {
                         </div>
                     </div>
                 </div>
-            </div>
+            </Link>
         </div>
     );
 }
