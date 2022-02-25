@@ -1,7 +1,7 @@
 import { useParams, useLocation } from 'react-router-dom'
 
 const CardPage = (props) => {
-    const cardId = useParams() // todo: fetch data from scryfall based on cardId if location prop is not provided
+    const cardId = useParams() // todo: fetch data from scryfall based on cardId if location prop is not provided. Maybe replace for Redux alternative?
     const card = useLocation().state;
 
     return (

@@ -11,7 +11,9 @@ export default class SearchPage extends React.Component {
     constructor(props) {
         super(props);
         this.addRawDataToCardlist = this.addRawDataToCardlist.bind(this);
+        this.handleSearchSubmit = this.handleSearchSubmit.bind(this)
         this.state = {
+            search: "",
             cardList: [],
             rawCardData: [],
             hasMore: undefined,
@@ -20,18 +22,38 @@ export default class SearchPage extends React.Component {
         };
     }
 
-    componentDidMount() {
-        fetch(url)
-            .then((res) => res.json())
-            .then((json) => {
-                this.setState(() => ({
-                    rawCardData: json.data,
-                    hasMore: json.has_more,
-                    totalCards: json.total_cards,
-                    dataIsLoaded: true
-                }));
-            })
-            .then(() => this.addRawDataToCardlist());
+    // componentDidMount() {
+    // fetch(url)
+    //     .then((res) => res.json())
+    //     .then((json) => {
+    //         this.setState(() => ({
+    //             rawCardData: json.data,
+    //             hasMore: json.has_more,
+    //             totalCards: json.total_cards,
+    //             dataIsLoaded: true
+    //         }));
+    //     })
+    //     .then(() => this.addRawDataToCardlist());
+    // }
+
+    handleSearchSubmit(event) {
+        event.preventDefault()
+        this.setState({ search: event.target.q.value }, () => {
+            fetch(`https://api.scryfall.com/cards/search?order=released&q=%22${this.state.search.replaceAll(
+                " ",
+                "+"
+            )}%22+include%3Aextras&unique=prints`)
+                .then((res) => res.json())
+                .then((json) => {
+                    this.setState(() => ({
+                        rawCardData: json.data,
+                        hasMore: json.has_more,
+                        totalCards: json.total_cards,
+                        dataIsLoaded: true
+                    }));
+                })
+                .then(() => this.addRawDataToCardlist());
+        })
     }
 
     addRawDataToCardlist() {
@@ -108,10 +130,24 @@ export default class SearchPage extends React.Component {
     render() {
         return (
             <div className="p-1 sm:p-8 bg-gray-400">
+                <div id="cardSearchContainer" className="my-2 ">
+                    <form role="search" onSubmit={this.handleSearchSubmit}>
+                        <div>
+                            <input
+                                className="p-1"
+                                type="search"
+                                id="cardSearch"
+                                name="q"
+                                placeholder="Search cards..."
+                                aria-label="Search for Magic cards" />
+                            <button className="bg-green-300 text-black m-4 px-4 rounded-xl hover:bg-green-500">Search</button>
+                        </div>
+                    </form>
+                </div>
                 {this.state.dataIsLoaded ? (
                     <div>
                         <p>
-                            {cardName} - found {this.state.cardList.length} cards.{" "}
+                            "{this.state.search}" - found {this.state.cardList.length} cards.{" "}
                             {this.state.hasMore
                                 ? `More cards are available (${this.state.totalCards}). Limit your search.`
                                 : ""}
