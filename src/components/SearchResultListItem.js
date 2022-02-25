@@ -8,6 +8,7 @@ export default function SearchResultListItem(props) {
                 id={`card ${card.id}`}
                 className="flex flex-row bg-gradient-to-r from-cyan-100 to-indigo-100 p-2 max-w-max rounded-xl"
                 to={`/card/${card.id}`}
+                state={card}
             >
                 <div id="card-details" className="mx-1">
                     <p id="card-name" className="text-3xl font-medium">

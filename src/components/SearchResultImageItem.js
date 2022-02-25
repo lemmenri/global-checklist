@@ -22,6 +22,7 @@ export default function SearchResultImageItem(props) {
                 id={`card ${card.id}`}
                 className=""
                 to={`/card/${card.id}`}
+                state={card}
             >
                 <img
                     className="rounded-xl"

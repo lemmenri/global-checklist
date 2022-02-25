@@ -2,8 +2,8 @@ import React from "react";
 
 const HomePage = () => (
     <div className="p-2 sm:p-8 bg-gray-400">
-        <h1 className="text-xl my-4">Welcome to MTG Library</h1>
-        <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+        <h1 className="text-xl my-4">Welcome to MTG Library!</h1>
+        <p>Keeping track of <span className="font-bold">all</span> your Magic: The Gathering cards has never been easier</p>
     </div>
 )
 
