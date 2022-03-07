@@ -11,7 +11,8 @@ export default class SearchPage extends React.Component {
     constructor(props) {
         super(props);
         this.addRawDataToCardlist = this.addRawDataToCardlist.bind(this);
-        this.handleSearchSubmit = this.handleSearchSubmit.bind(this)
+        this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
+        this.processRawCardData = this.processRawCardData.bind(this)
         this.state = {
             search: "",
             cardList: [],
@@ -42,17 +43,19 @@ export default class SearchPage extends React.Component {
             fetch(`https://api.scryfall.com/cards/search?order=released&q=%22${this.state.search.replaceAll(
                 " ",
                 "+"
-            )}%22+include%3Aextras&unique=prints`)
+            )}%22+include%3Aextras+lang%3Aany&unique=prints`)
                 .then((res) => res.json())
                 .then((json) => {
                     this.setState(() => ({
                         rawCardData: json.data,
                         hasMore: json.has_more,
-                        totalCards: json.total_cards,
-                        dataIsLoaded: true
+                        totalCards: json.total_cards
                     }));
                 })
-                .then(() => this.addRawDataToCardlist());
+                .then(() => this.processRawCardData())
+                .then(() => this.setState(() => ({
+                    dataIsLoaded: true
+                })))
         })
     }
 
@@ -61,6 +64,77 @@ export default class SearchPage extends React.Component {
     // TODO: move cardSearch to separate component
     // TODO: get card languages for found cards
     // TODO: add collection state
+    // TODO: remove initial loading state
+    // TODO: add autocomplete / suggestions to card search
+    // TODO: update foil / non-foil to include etched foil and new setup of scryfall api. Use finishes field
+
+    processRawCardData() {
+        let cleanedCardData = []
+        this.state.rawCardData.forEach((rawCard) => {
+            if (cleanedCardData.some((cleanedCard) => (cleanedCard.oracle_id === rawCard.oracle_id)) !== undefined) { // TODO: fix this. Now it doesn't filter anything
+                //card already exists
+                //console.log(rawCard.lang + rawCard.set_name)
+                cleanedCardData.push({
+                    name: rawCard.name,
+                    id: rawCard.id,
+                    oracle_id: rawCard.oracle_id,
+                    set: rawCard.set,
+                    set_name: rawCard.set_name,
+                    nr: rawCard.collector_number,
+                    rarity: rawCard.rarity,
+                    collected: {
+                        [rawCard.lang]: {
+                            regular: rawCard.nonfoil ? 0 : "",
+                            foil: rawCard.foil ? 0 : ""
+                        }
+                    },
+                    prices: {
+                        eur: rawCard.prices.eur,
+                        eurfoil: rawCard.prices.eur_foil,
+                        usd: rawCard.prices.usd,
+                        usdfoil: rawCard.prices.usd_foil
+                    },
+                    img: rawCard.hasOwnProperty("image_uris") // check if image is available
+                        ? rawCard.image_uris.normal
+                        : rawCard.card_faces[0].hasOwnProperty("image_uris")// check for double faced card
+                            ? rawCard.card_faces[0].image_uris.normal
+                            : "https://c2.scryfall.com/file/scryfall-errors/soon.jpg"
+                })
+            }
+            else {
+                //card new to list
+                cleanedCardData.push({
+                    name: rawCard.name,
+                    id: rawCard.id,
+                    oracle_id: rawCard.oracle_id,
+                    set: rawCard.set,
+                    set_name: rawCard.set_name,
+                    nr: rawCard.collector_number,
+                    rarity: rawCard.rarity,
+                    collected: {
+                        en: {
+                            regular: rawCard.nonfoil ? 0 : "",
+                            foil: rawCard.foil ? 0 : ""
+                        }
+                    },
+                    prices: {
+                        eur: rawCard.prices.eur,
+                        eurfoil: rawCard.prices.eur_foil,
+                        usd: rawCard.prices.usd,
+                        usdfoil: rawCard.prices.usd_foil
+                    },
+                    img: rawCard.hasOwnProperty("image_uris") // check if image is available
+                        ? rawCard.image_uris.normal
+                        : rawCard.card_faces[0].hasOwnProperty("image_uris")// check for double faced card
+                            ? rawCard.card_faces[0].image_uris.normal
+                            : "https://c2.scryfall.com/file/scryfall-errors/soon.jpg"
+                })
+            }
+        })
+        this.setState(() => ({
+            cardList: cleanedCardData
+        }));
+    }
 
     addRawDataToCardlist() {
         let cleanedCardData = this.state.rawCardData.map((card) => ({
@@ -153,7 +227,7 @@ export default class SearchPage extends React.Component {
                 {this.state.dataIsLoaded ? (
                     <div>
                         <p>
-                            "{this.state.search}" - found {this.state.cardList.length} cards.{" "}
+                            "{this.state.search}" - found {this.state.cardList?.length} cards.{" "}
                             {this.state.hasMore
                                 ? `More cards are available (${this.state.totalCards}). Limit your search.`
                                 : ""}

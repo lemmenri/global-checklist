@@ -11,6 +11,8 @@ export default class SearchResults extends React.Component {
         };
     }
     render() {
+        if (!this.props.cardList) return <p>Loading...</p>
+        console.log(this.props)
         return (
             <div>
                 {this.props.cardList.length > 0 &&
