@@ -12,15 +12,15 @@ export default function SearchResultListItem(props) {
             >
                 <div id="card-details" className="mx-1">
                     <p id="card-name" className="text-3xl font-medium">
-                        {card.name}
-                    </p>
-                    <p id="card-collector-details" className="text-lg">
                         <i
                             id="card-set-icon"
                             title={card.set_name}
                             className={"text-4xl ss ss-" + card.set}
                         ></i>
-                        {`\xa0- ${card.set.toUpperCase()} - #${card.nr} - ${card.rarity}`}
+                        {` ${card.name}`}
+                    </p>
+                    <p id="card-collector-details" className="text-lg">
+                        {`${card.set_name} - #${card.nr} - ${card.rarity}`}
                     </p>
                 </div>
                 <div id="collection-details" className="flex text-center text-sm">
@@ -43,19 +43,19 @@ export default function SearchResultListItem(props) {
                                     {language.toUpperCase()}
                                 </p>
                                 <p
-                                    id="regular-collected"
+                                    id="nonfoil-collected"
                                     className={
-                                        card.collected[language].regular > 0
+                                        card.collected[language].nonfoil > 0
                                             ? "bg-green-500 rounded"
                                             : ""
                                     }
                                 >
-                                    {typeof card.collected[language].regular === "number"
-                                        ? card.collected[language].regular
+                                    {typeof card.collected[language].nonfoil === "number"
+                                        ? card.collected[language].nonfoil
                                         : "\xa0"}
                                 </p>
                                 <p
-                                    id="regular-collected"
+                                    id="foil-collected"
                                     className={
                                         card.collected[language].foil > 0
                                             ? "bg-green-500 rounded"

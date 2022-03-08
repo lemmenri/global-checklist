@@ -12,7 +12,6 @@ export default class SearchResults extends React.Component {
     }
     render() {
         if (!this.props.cardList) return <p>Loading...</p>
-        console.log(this.props)
         return (
             <div>
                 {this.props.cardList.length > 0 &&
@@ -20,7 +19,7 @@ export default class SearchResults extends React.Component {
                         <label htmlFor="toggle-list-view">List view</label>
                         <Toggle
                             name="toggle-list-view"
-                            onToggle={() => {
+                        onToggle={() => {
                                 this.setState({ listView: !this.state.listView });
                             }}
                         />

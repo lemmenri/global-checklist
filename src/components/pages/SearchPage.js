@@ -62,11 +62,14 @@ export default class SearchPage extends React.Component {
     // TODO: clean up this file
     // TODO: handle if no cards are found on second search
     // TODO: move cardSearch to separate component
-    // TODO: get card languages for found cards
+    // DONE: get card languages for found cards
     // TODO: add collection state
-    // TODO: remove initial loading state
+    // TODO: remove initial loading state (use React Query?)
     // TODO: add autocomplete / suggestions to card search (using headlessUI combobox?)
-    // TODO: update foil / non-foil to include etched foil and new setup of scryfall api. Use finishes field
+    // TODO: update foil / non-foil to include etched foil and glossy and new setup of scryfall api. Use finishes field
+    // TODO: handle multiple pages in search results
+    // TODO: handle going back from card details to search results
+    // TODO: handle opening card details page in new window
 
     processRawCardData() {
         let cleanedCardData = []
@@ -80,21 +83,19 @@ export default class SearchPage extends React.Component {
 
             if (index !== -1) {
                 //card already exists
-                console.log("not a new card!")
                 cleanedCardData[index] = {
                     ...cleanedCardData[index],
                     collected: {
                         ...cleanedCardData[index].collected,
                         [rawCard.lang]: {
-                            regular: rawCard.nonfoil ? 0 : "",
-                            foil: rawCard.foil ? 0 : ""
+                            nonfoil: rawCard.finishes.includes("nonfoil") ? 0 : "",
+                            foil: rawCard.finishes.includes("foil") ? 0 : ""
                         }
                     }
                 }
             }
-                    else {
-                        //card new to list
-                        console.log("new card! " + rawCard.name + " - " + rawCard.set_name + " - " + rawCard.collector_number)
+            else {
+                //card new to list
                 cleanedCardData.push({
                     name: rawCard.name,
                     id: rawCard.id,
@@ -103,9 +104,9 @@ export default class SearchPage extends React.Component {
                     nr: rawCard.collector_number,
                     rarity: rawCard.rarity,
                     collected: {
-                        en: {
-                            regular: rawCard.nonfoil ? 0 : "",
-                            foil: rawCard.foil ? 0 : ""
+                        [rawCard.lang]: {
+                            nonfoil: rawCard.finishes.includes("nonfoil") ? 0 : "",
+                            foil: rawCard.finishes.includes("foil") ? 0 : ""
                         }
                     },
                     prices: {
@@ -137,48 +138,48 @@ export default class SearchPage extends React.Component {
             rarity: card.rarity,
             collected: {
                 en: {
-                    regular: card.nonfoil ? 0 : "",
-                    foil: card.foil ? 0 : ""
+                    nonfoil: card.finishes.includes("nonfoil") ? 0 : "",
+                    foil: card.finishes.includes("foil") ? 0 : ""
                 },
                 de: {
-                    regular: card.nonfoil ? 0 : "",
-                    foil: card.foil ? 0 : ""
+                    nonfoil: card.finishes.includes("nonfoil") ? 0 : "",
+                    foil: card.finishes.includes("foil") ? 0 : ""
                 },
                 fr: {
-                    regular: card.nonfoil ? 0 : "",
-                    foil: card.foil ? 0 : ""
+                    nonfoil: card.finishes.includes("nonfoil") ? 0 : "",
+                    foil: card.finishes.includes("foil") ? 0 : ""
                 },
                 it: {
-                    regular: card.nonfoil ? 0 : "",
-                    foil: card.foil ? 0 : ""
+                    nonfoil: card.finishes.includes("nonfoil") ? 0 : "",
+                    foil: card.finishes.includes("foil") ? 0 : ""
                 },
                 sp: {
-                    regular: card.nonfoil ? 0 : "",
-                    foil: card.foil ? 0 : ""
+                    nonfoil: card.finishes.includes("nonfoil") ? 0 : "",
+                    foil: card.finishes.includes("foil") ? 0 : ""
                 },
                 pt: {
-                    regular: card.nonfoil ? 0 : "",
-                    foil: card.foil ? 0 : ""
+                    nonfoil: card.finishes.includes("nonfoil") ? 0 : "",
+                    foil: card.finishes.includes("foil") ? 0 : ""
                 },
                 jp: {
-                    regular: card.nonfoil ? 0 : "",
-                    foil: card.foil ? 0 : ""
+                    nonfoil: card.finishes.includes("nonfoil") ? 0 : "",
+                    foil: card.finishes.includes("foil") ? 0 : ""
                 },
                 cs: {
-                    regular: card.nonfoil ? 0 : "",
-                    foil: card.foil ? 0 : ""
+                    nonfoil: card.finishes.includes("nonfoil") ? 0 : "",
+                    foil: card.finishes.includes("foil") ? 0 : ""
                 },
                 ct: {
-                    regular: card.nonfoil ? 0 : "",
-                    foil: card.foil ? 0 : ""
+                    nonfoil: card.finishes.includes("nonfoil") ? 0 : "",
+                    foil: card.finishes.includes("foil") ? 0 : ""
                 },
                 ru: {
-                    regular: card.nonfoil ? 0 : "",
-                    foil: card.foil ? 0 : ""
+                    nonfoil: card.finishes.includes("nonfoil") ? 0 : "",
+                    foil: card.finishes.includes("foil") ? 0 : ""
                 },
                 ko: {
-                    regular: card.nonfoil ? 0 : "",
-                    foil: card.foil ? 0 : ""
+                    nonfoil: card.finishes.includes("nonfoil") ? 0 : "",
+                    foil: card.finishes.includes("foil") ? 0 : ""
                 }
             },
             prices: {
@@ -218,12 +219,12 @@ export default class SearchPage extends React.Component {
                 {this.state.dataIsLoaded ? (
                     <div>
                         <p>
-                            "{this.state.search}" - found {this.state.cardList?.length} cards.{" "}
+                            "{this.state.search}" - found {this.state.rawCardData?.length} cards.{" "}
                             {this.state.hasMore
                                 ? `More cards are available (${this.state.totalCards}). Limit your search.`
                                 : ""}
                         </p>
-                        <SearchResults cardList={this.state.cardList} />
+                        <SearchResults cardList={this.state.cardList}/>
                     </div>
                 ) : (
                     <p>Loading data...</p>

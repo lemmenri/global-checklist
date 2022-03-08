@@ -4,7 +4,7 @@ export default function SearchResultImageItem(props) {
     const card = props.card;
     const countCards = (isFoil) => {
         let count = 0;
-        const cardType = isFoil ? "foil" : "regular";
+        const cardType = isFoil ? "foil" : "nonfoil";
         Object.keys(card.collected).map(
             (language) =>
             (count +=
@@ -14,7 +14,7 @@ export default function SearchResultImageItem(props) {
         );
         return count;
     };
-    const regular = countCards(false);
+    const nonfoil = countCards(false);
     const foil = countCards(true);
     return (
         <div className="p-1 relative">
@@ -31,14 +31,14 @@ export default function SearchResultImageItem(props) {
                 />
                 <div className="flex h-auto absolute inset-x-0 bottom-1 justify-around text-center">
                     
-                    {card.collected[Object.keys(card.collected)[0]].regular !== "" 
+                    {card.collected[Object.keys(card.collected)[0]].nonfoil !== "" 
                         ? <div
-                            className={`${regular > 0
+                            className={`${nonfoil > 0
                                 ? "bg-green-500 border-green-100"
                                 : "bg-gray-300 border-gray-100"
                                 } bg-opacity-40 backdrop-blur-sm m-4 rounded w-1/2 shadow-gray-700 shadow-md border border-opacity-30`}
                         >
-                            <p>• {regular}</p>
+                            <p>• {nonfoil}</p>
                         </div>
                         : <div className="w-1/2"></div>
                         }
