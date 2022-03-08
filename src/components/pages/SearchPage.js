@@ -65,48 +65,39 @@ export default class SearchPage extends React.Component {
     // TODO: get card languages for found cards
     // TODO: add collection state
     // TODO: remove initial loading state
-    // TODO: add autocomplete / suggestions to card search
+    // TODO: add autocomplete / suggestions to card search (using headlessUI combobox?)
     // TODO: update foil / non-foil to include etched foil and new setup of scryfall api. Use finishes field
 
     processRawCardData() {
         let cleanedCardData = []
         this.state.rawCardData.forEach((rawCard) => {
-            if (cleanedCardData.some((cleanedCard) => (cleanedCard.oracle_id === rawCard.oracle_id)) !== undefined) { // TODO: fix this. Now it doesn't filter anything
+
+            const index = cleanedCardData.findIndex((cleanedCard) => (
+                cleanedCard.name === rawCard.name &&
+                cleanedCard.set_name === rawCard.set_name &&
+                cleanedCard.nr === rawCard.collector_number
+                ))
+
+            if (index !== -1) {
                 //card already exists
-                //console.log(rawCard.lang + rawCard.set_name)
-                cleanedCardData.push({
-                    name: rawCard.name,
-                    id: rawCard.id,
-                    oracle_id: rawCard.oracle_id,
-                    set: rawCard.set,
-                    set_name: rawCard.set_name,
-                    nr: rawCard.collector_number,
-                    rarity: rawCard.rarity,
+                console.log("not a new card!")
+                cleanedCardData[index] = {
+                    ...cleanedCardData[index],
                     collected: {
+                        ...cleanedCardData[index].collected,
                         [rawCard.lang]: {
                             regular: rawCard.nonfoil ? 0 : "",
                             foil: rawCard.foil ? 0 : ""
                         }
-                    },
-                    prices: {
-                        eur: rawCard.prices.eur,
-                        eurfoil: rawCard.prices.eur_foil,
-                        usd: rawCard.prices.usd,
-                        usdfoil: rawCard.prices.usd_foil
-                    },
-                    img: rawCard.hasOwnProperty("image_uris") // check if image is available
-                        ? rawCard.image_uris.normal
-                        : rawCard.card_faces[0].hasOwnProperty("image_uris")// check for double faced card
-                            ? rawCard.card_faces[0].image_uris.normal
-                            : "https://c2.scryfall.com/file/scryfall-errors/soon.jpg"
-                })
+                    }
+                }
             }
-            else {
-                //card new to list
+                    else {
+                        //card new to list
+                        console.log("new card! " + rawCard.name + " - " + rawCard.set_name + " - " + rawCard.collector_number)
                 cleanedCardData.push({
                     name: rawCard.name,
                     id: rawCard.id,
-                    oracle_id: rawCard.oracle_id,
                     set: rawCard.set,
                     set_name: rawCard.set_name,
                     nr: rawCard.collector_number,
