@@ -43,7 +43,7 @@ export default class SearchPage extends React.Component {
             fetch(`https://api.scryfall.com/cards/search?order=released&q=%22${this.state.search.replaceAll(
                 " ",
                 "+"
-            )}%22+include%3Aextras+lang%3Aany&unique=prints`)
+            )}%22+include%3Aextras+-is%3Adigital+lang%3Aany&unique=prints`)
                 .then((res) => res.json())
                 .then((json) => {
                     this.setState(() => ({

@@ -30,22 +30,29 @@ export default function SearchResultImageItem(props) {
                     alt={`${card.name}-${card.set}`}
                 />
                 <div className="flex h-auto absolute inset-x-0 bottom-1 justify-around text-center">
-                    <div
-                        className={`${regular > 0
-                            ? "bg-green-500 border-green-100"
-                            : "bg-gray-300 border-gray-100"
-                            } bg-opacity-40 backdrop-blur-sm m-4 rounded w-1/2 shadow-gray-700 shadow-md border border-opacity-30`}
-                    >
-                        <p>• {regular}</p>
-                    </div>
-                    <div
-                        className={`${foil > 0
-                            ? "bg-green-500 border-green-100"
-                            : "bg-gray-300 border-gray-100"
-                            } bg-opacity-40 backdrop-blur-sm m-4 rounded w-1/2 shadow-gray-700 shadow-md border border-opacity-30`}
-                    >
-                        <p>✶ {foil}</p>
-                    </div>
+                    
+                    {card.collected[Object.keys(card.collected)[0]].regular !== "" 
+                        ? <div
+                            className={`${regular > 0
+                                ? "bg-green-500 border-green-100"
+                                : "bg-gray-300 border-gray-100"
+                                } bg-opacity-40 backdrop-blur-sm m-4 rounded w-1/2 shadow-gray-700 shadow-md border border-opacity-30`}
+                        >
+                            <p>• {regular}</p>
+                        </div>
+                        : <div className="w-1/2"></div>
+                        }
+                    {card.collected[Object.keys(card.collected)[0]].foil !== "" 
+                        ? <div
+                            className={`${foil > 0
+                                ? "bg-green-500 border-green-100"
+                                : "bg-gray-300 border-gray-100"
+                                } bg-opacity-40 backdrop-blur-sm m-4 rounded w-1/2 shadow-gray-700 shadow-md border border-opacity-30`}
+                        >
+                            <p>✶ {foil}</p>
+                        </div>
+                        : <div className="w-1/2"></div>
+                    }
                 </div>
             </Link>
         </div>
