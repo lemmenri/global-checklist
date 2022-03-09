@@ -1,5 +1,6 @@
 import React from "react";
 import SearchResults from "../SearchResults";
+import { Loading } from "../Loading";
 
 // const cardName = "Snap";
 // const url = `https://api.scryfall.com/cards/search?order=released&q=%22${cardName.replaceAll(
@@ -19,7 +20,7 @@ export default class SearchPage extends React.Component {
             rawCardData: [],
             hasMore: undefined,
             totalCards: undefined,
-            dataIsLoaded: false
+            dataIsLoaded: undefined
         };
     }
 
@@ -39,6 +40,9 @@ export default class SearchPage extends React.Component {
 
     handleSearchSubmit(event) {
         event.preventDefault()
+        this.setState(() => ({
+            dataIsLoaded: false
+        }))
         this.setState({ search: event.target.q.value }, () => {
             fetch(`https://api.scryfall.com/cards/search?order=released&q=%22${this.state.search.replaceAll(
                 " ",
@@ -79,7 +83,7 @@ export default class SearchPage extends React.Component {
                 cleanedCard.name === rawCard.name &&
                 cleanedCard.set_name === rawCard.set_name &&
                 cleanedCard.nr === rawCard.collector_number
-                ))
+            ))
 
             if (index !== -1) {
                 //card already exists
@@ -216,7 +220,7 @@ export default class SearchPage extends React.Component {
                         </div>
                     </form>
                 </div>
-                {this.state.dataIsLoaded ? (
+                {this.state.dataIsLoaded && (
                     <div>
                         <p>
                             "{this.state.search}" - found {this.state.rawCardData?.length} cards.{" "}
@@ -224,10 +228,11 @@ export default class SearchPage extends React.Component {
                                 ? `More cards are available (${this.state.totalCards}). Limit your search.`
                                 : ""}
                         </p>
-                        <SearchResults cardList={this.state.cardList}/>
+                        <SearchResults cardList={this.state.cardList} />
                     </div>
-                ) : (
-                    <p>Loading data...</p>
+                )}
+                {this.state.dataIsLoaded === false && (
+                    <Loading />
                 )}
             </div>
         );
