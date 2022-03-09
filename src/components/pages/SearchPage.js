@@ -102,8 +102,10 @@ export default class SearchPage extends React.Component {
                     collected: {
                         ...cleanedCardData[index].collected,
                         [rawCard.lang]: {
-                            nonfoil: rawCard.finishes.includes("nonfoil") ? 0 : "",
-                            foil: rawCard.finishes.includes("foil") ? 0 : ""
+                            ...(rawCard.finishes.includes("nonfoil")) && { nonfoil: 0 },
+                            ...(rawCard.finishes.includes("foil")) && { foil: 0 },
+                            ...(rawCard.finishes.includes("etched")) && { etched: 0 },
+                            ...(rawCard.finishes.includes("glossy")) && { glossy: 0 },
                         }
                     }
                 }
@@ -119,15 +121,18 @@ export default class SearchPage extends React.Component {
                     rarity: rawCard.rarity,
                     collected: {
                         [rawCard.lang]: {
-                            nonfoil: rawCard.finishes.includes("nonfoil") ? 0 : "",
-                            foil: rawCard.finishes.includes("foil") ? 0 : ""
+                            ...(rawCard.finishes.includes("nonfoil")) && { nonfoil: 0 },
+                            ...(rawCard.finishes.includes("foil")) && { foil: 0 },
+                            ...(rawCard.finishes.includes("etched")) && { etched: 0 },
+                            ...(rawCard.finishes.includes("glossy")) && { glossy: 0 },
                         }
                     },
                     prices: {
                         eur: rawCard.prices.eur,
-                        eurfoil: rawCard.prices.eur_foil,
+                        eur_foil: rawCard.prices.eur_foil,
                         usd: rawCard.prices.usd,
-                        usdfoil: rawCard.prices.usd_foil
+                        usd_foil: rawCard.prices.usd_foil,
+                        usd_etched: rawCard.prices.usd_etched
                     },
                     img: rawCard.hasOwnProperty("image_uris") // check if image is available
                         ? rawCard.image_uris.normal

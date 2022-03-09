@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 
 export default function SearchResultListItem(props) {
     const card = props.card;
+
     return (
         <div id="search-result-list-item" className="p-1 w-full">
             <Link
@@ -42,30 +43,10 @@ export default function SearchResultListItem(props) {
                                 >
                                     {language.toUpperCase()}
                                 </p>
-                                <p
-                                    id="nonfoil-collected"
-                                    className={
-                                        card.collected[language].nonfoil > 0
-                                            ? "bg-green-500 rounded"
-                                            : ""
-                                    }
-                                >
-                                    {typeof card.collected[language].nonfoil === "number"
-                                        ? card.collected[language].nonfoil
-                                        : "\xa0"}
-                                </p>
-                                <p
-                                    id="foil-collected"
-                                    className={
-                                        card.collected[language].foil > 0
-                                            ? "bg-green-500 rounded"
-                                            : ""
-                                    }
-                                >
-                                    {typeof card.collected[language].foil === "number"
-                                        ? card.collected[language].foil
-                                        : "\xa0"}
-                                </p>
+                                {nrCollected(language, "nonfoil")}
+                                {nrCollected(language, "foil")}
+                                {nrCollected(language, "etched")}
+                                {nrCollected(language, "glossy")}
                             </div>
                         ))}
                     </div>
@@ -77,7 +58,7 @@ export default function SearchResultListItem(props) {
                             <p id="price-eur">
                                 {card.prices.eur !== null ? card.prices.eur : "\xa0"}
                             </p>
-                            <p id="price-eur-foil">{card.prices.eurfoil}</p>
+                            <p id="price-eur-foil">{card.prices.eur_foil}</p>
                         </div>
                         <div id="usd" className="p-1 flex flex-col space-y-0.5 mx-1">
                             <p id="usd-label" className="font-medium px-1 my-0.5">
@@ -86,11 +67,27 @@ export default function SearchResultListItem(props) {
                             <p id="price-eur">
                                 {card.prices.usd !== null ? card.prices.usd : "\xa0"}
                             </p>
-                            <p id="price-usd-foil">{card.prices.usdfoil}</p>
+                            <p id="price-usd-foil">
+                                {card.prices.usd_foil !== null ? card.prices.usd_foil : "\xa0"}
+                            </p>
+                            <p id="price-usd-etched">{card.prices.usd_etched}</p>
                         </div>
                     </div>
                 </div>
             </Link>
         </div>
     );
+
+    function nrCollected(language, finish) {
+        return <p
+            id={`${finish}-collected`}
+            className={card.collected[language][finish] > 0
+                ? "bg-green-500 rounded"
+                : ""}
+        >
+            {typeof card.collected[language][finish] === "number"
+                ? card.collected[language][finish]
+                : "\xa0"}
+        </p>;
+    }
 }
