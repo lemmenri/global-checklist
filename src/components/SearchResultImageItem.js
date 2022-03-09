@@ -25,7 +25,7 @@ export default function SearchResultImageItem(props) {
                 state={card}
             >
                 <img
-                    className="rounded-xl"
+                    className="rounded-xl shadow-gray-700 shadow-md"
                     src={card.img}
                     alt={`${card.name}-${card.set}`}
                 />
@@ -36,7 +36,7 @@ export default function SearchResultImageItem(props) {
                             className={`${nonfoil > 0
                                 ? "bg-green-500 border-green-100"
                                 : "bg-gray-300 border-gray-100"
-                                } bg-opacity-40 backdrop-blur-sm m-4 rounded w-1/2 shadow-gray-700 shadow-md border border-opacity-30`}
+                                } bg-opacity-40 backdrop-blur-sm ml-4 mr-2 my-8 rounded w-1/2 shadow-gray-700 shadow-md border border-opacity-30`}
                         >
                             <p>• {nonfoil}</p>
                         </div>
@@ -47,7 +47,7 @@ export default function SearchResultImageItem(props) {
                             className={`${foil > 0
                                 ? "bg-green-500 border-green-100"
                                 : "bg-gray-300 border-gray-100"
-                                } bg-opacity-40 backdrop-blur-sm m-4 rounded w-1/2 shadow-gray-700 shadow-md border border-opacity-30`}
+                                } bg-opacity-40 backdrop-blur-sm ml-2 mr-4 my-8 rounded w-1/2 shadow-gray-700 shadow-md border border-opacity-30`}
                         >
                             <p>✶ {foil}</p>
                         </div>
