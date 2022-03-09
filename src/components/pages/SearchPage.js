@@ -50,6 +50,16 @@ export default class SearchPage extends React.Component {
             )}%22+include%3Aextras+-is%3Adigital+lang%3Aany&unique=prints`)
                 .then((res) => res.json())
                 .then((json) => {
+                    if (json.object === "error") {
+                        this.setState(() => ({
+                            cardList: [],
+                            rawCardData: [],
+                            hasMore: undefined,
+                            totalCards: undefined,
+                            dataIsLoaded: true
+                        }))
+                        return
+                    }
                     this.setState(() => ({
                         rawCardData: json.data,
                         hasMore: json.has_more,
@@ -64,11 +74,11 @@ export default class SearchPage extends React.Component {
     }
 
     // TODO: clean up this file
-    // TODO: handle if no cards are found on second search
+    // DONE: handle if no cards are found on second search
     // TODO: move cardSearch to separate component
     // DONE: get card languages for found cards
     // TODO: add collection state
-    // TODO: remove initial loading state (use React Query?)
+    // DONE: remove initial loading state (use React Query?)
     // TODO: add autocomplete / suggestions to card search (using headlessUI combobox?)
     // TODO: update foil / non-foil to include etched foil and glossy and new setup of scryfall api. Use finishes field
     // TODO: handle multiple pages in search results
