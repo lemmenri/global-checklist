@@ -3,6 +3,23 @@ import { Link } from 'react-router-dom'
 export default function SearchResultListItem(props) {
     const card = props.card;
 
+    const hasFinish = (finish) => {
+        let hasFinish = false
+        Object.keys(card.collected).map(
+            (language) => {
+                if (card.collected[language].hasOwnProperty(finish)) {
+                    hasFinish = true
+                }
+            }
+        )
+        return hasFinish
+    }
+
+    const hasNonfoil = hasFinish("nonfoil");
+    const hasFoil = hasFinish("foil");
+    const hasEtched = hasFinish("etched");
+    const hasGlossy = hasFinish("glossy");
+
     return (
         <div id="search-result-list-item" className="p-1 w-full">
             <Link
@@ -27,10 +44,10 @@ export default function SearchResultListItem(props) {
                 <div id="collection-details" className="flex text-center text-sm grow">
                     <div className="flex-col max-w-max p-2 font-bold space-y-0.5">
                         <p>&nbsp;</p>
-                        <p>•</p>
-                        <p>✶</p>
-                        <p>E</p>
-                        <p>G</p>
+                        {hasNonfoil && <p>•</p>}
+                        {hasFoil && <p>✶</p>}
+                        {hasEtched && <p>E</p>}
+                        {hasGlossy && <p>G</p>}
                     </div>
                     <div id="printings" className="flex">
                         {Object.keys(card.collected).map((language) => (
@@ -45,10 +62,10 @@ export default function SearchResultListItem(props) {
                                 >
                                     {language.toUpperCase()}
                                 </p>
-                                {nrCollected(language, "nonfoil")}
-                                {nrCollected(language, "foil")}
-                                {nrCollected(language, "etched")}
-                                {nrCollected(language, "glossy")}
+                                {hasNonfoil && nrCollected(language, "nonfoil")}
+                                {hasFoil && nrCollected(language, "foil")}
+                                {hasEtched && nrCollected(language, "etched")}
+                                {hasGlossy && nrCollected(language, "glossy")}
                             </div>
                         ))}
                     </div>
@@ -57,22 +74,22 @@ export default function SearchResultListItem(props) {
                             <p id="eur-label" className="font-medium px-1 my-0.5">
                                 €
                             </p>
-                            <p id="price-eur">
+                            {hasNonfoil && <p id="price-eur">
                                 {card.prices.eur !== null ? card.prices.eur : "\xa0"}
-                            </p>
-                            <p id="price-eur-foil">{card.prices.eur_foil}</p>
+                            </p>}
+                            {hasFoil && <p id="price-eur-foil">{card.prices.eur_foil}</p>}
                         </div>
                         <div id="usd" className="p-1 flex flex-col space-y-0.5 mx-1 w-20">
                             <p id="usd-label" className="font-medium px-1 my-0.5">
                                 $
                             </p>
-                            <p id="price-eur">
+                            {hasNonfoil && <p id="price-usd">
                                 {card.prices.usd !== null ? card.prices.usd : "\xa0"}
-                            </p>
-                            <p id="price-usd-foil">
+                            </p>}
+                            {hasFoil && <p id="price-usd-foil">
                                 {card.prices.usd_foil !== null ? card.prices.usd_foil : "\xa0"}
-                            </p>
-                            <p id="price-usd-etched">{card.prices.usd_etched}</p>
+                            </p>}
+                            {hasEtched && <p id="price-usd-etched">{card.prices.usd_etched}</p>}
                         </div>
                     </div>
                 </div>
