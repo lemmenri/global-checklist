@@ -1,5 +1,5 @@
 import React from "react";
-export function Loading({ }) {
+export function Loading() {
     return <div className="flex flex-col items-center w-full m-4">
         <svg className="motion-safe:animate-spin" width="36" height="36" xmlns="http://www.w3.org/2000/svg">
             <g>

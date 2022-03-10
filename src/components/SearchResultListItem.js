@@ -29,6 +29,8 @@ export default function SearchResultListItem(props) {
                         <p>&nbsp;</p>
                         <p>•</p>
                         <p>✶</p>
+                        <p>e</p>
+                        <p>g</p>
                     </div>
                     <div id="printings" className="flex">
                         {Object.keys(card.collected).map((language) => (
@@ -51,7 +53,7 @@ export default function SearchResultListItem(props) {
                         ))}
                     </div>
                     <div id="prices" className="flex ml-4 grow justify-end">
-                        <div id="eur" className="p-1 flex flex-col space-y-0.5 mx-1">
+                        <div id="eur" className="p-1 flex flex-col space-y-0.5 mx-1 w-20">
                             <p id="eur-label" className="font-medium px-1 my-0.5">
                                 €
                             </p>
@@ -60,7 +62,7 @@ export default function SearchResultListItem(props) {
                             </p>
                             <p id="price-eur-foil">{card.prices.eur_foil}</p>
                         </div>
-                        <div id="usd" className="p-1 flex flex-col space-y-0.5 mx-1">
+                        <div id="usd" className="p-1 flex flex-col space-y-0.5 mx-1 w-20">
                             <p id="usd-label" className="font-medium px-1 my-0.5">
                                 $
                             </p>
