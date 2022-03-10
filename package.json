@@ -12,6 +12,7 @@
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.0",
     "react-toggle-component": "^3.0.8",
+    "react-tooltip": "^4.2.21",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

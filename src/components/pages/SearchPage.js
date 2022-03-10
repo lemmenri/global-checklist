@@ -80,7 +80,7 @@ export default class SearchPage extends React.Component {
     // TODO: add collection state
     // DONE: remove initial loading state (use React Query?)
     // TODO: add autocomplete / suggestions to card search (using headlessUI combobox?)
-    // TODO: update foil / non-foil to include etched foil and glossy and new setup of scryfall api. Use finishes field
+    // DONE: update foil / non-foil to include etched foil and glossy and new setup of scryfall api. Use finishes field
     // TODO: handle multiple pages in search results
     // TODO: handle going back from card details to search results
     // TODO: handle opening card details page in new window
@@ -224,6 +224,7 @@ export default class SearchPage extends React.Component {
                 <div id="cardSearchContainer" className="my-2 ">
                     <form role="search" onSubmit={this.handleSearchSubmit}>
                         <div>
+                            <label htmlFor="cardSearch">Search by card name:</label><br />
                             <input
                                 className="p-1"
                                 type="search"

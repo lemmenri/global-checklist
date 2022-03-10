@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import ReactTooltip from 'react-tooltip';
 
 export default function SearchResultListItem(props) {
     const card = props.card;
@@ -28,12 +29,12 @@ export default function SearchResultListItem(props) {
                 to={`/card/${card.id}`}
                 state={card}
             >
-                <div id="card-details" className="mx-1 w-1/3">
+                <div data-tip data-for={card.id} id="card-details" className="mx-1 w-1/3">
                     <p id="card-name" className="text-xl font-medium">
                         <i
                             id="card-set-icon"
                             title={card.set_name}
-                            className={"text-2xl ss ss-" + card.set}
+                            className={"text-xl ss ss-" + card.set}
                         ></i>
                         {` ${card.name}`}
                     </p>
@@ -41,13 +42,22 @@ export default function SearchResultListItem(props) {
                         {`${card.set_name} - #${card.nr} - ${card.rarity}`}
                     </p>
                 </div>
+                {/* TODO: fix the image. Now all images are displayed the same. Seems like the links are set correct   */}
+                <ReactTooltip id={card.id} place="right" effect="solid" backgroundColor="transparent">
+                    <img
+                        className="rounded-2xl w-52"
+                        src={card.img}
+                        alt={`${card.name}-${card.set}`}
+                    />
+                </ReactTooltip>
+
                 <div id="collection-details" className="flex text-center text-sm grow">
-                    <div className="flex-col max-w-max p-2 font-bold space-y-0.5">
+                    <div className="flex-col w-8 p-2 font-bold space-y-0.5">
                         <p>&nbsp;</p>
-                        {hasNonfoil && <p>•</p>}
-                        {hasFoil && <p>✶</p>}
-                        {hasEtched && <p>E</p>}
-                        {hasGlossy && <p>G</p>}
+                        {hasNonfoil && <p title="nonfoil">•</p>}
+                        {hasFoil && <p title="foil">✶</p>}
+                        {hasEtched && <p title="etched">E</p>}
+                        {hasGlossy && <p title="glossy">G</p>}
                     </div>
                     <div id="printings" className="flex">
                         {Object.keys(card.collected).map((language) => (

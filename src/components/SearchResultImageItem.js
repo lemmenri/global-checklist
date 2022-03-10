@@ -64,6 +64,7 @@ export default function SearchResultImageItem(props) {
     function showCount(finish, hasFinish, finishCount, label) {
         return hasFinish
             ? <div
+                title={finish}
                 className={`${finishCount > 0
                     ? "bg-green-500 border-green-100"
                     : "bg-gray-300 border-gray-100"} bg-opacity-40 backdrop-blur-sm mx-2 my-8 rounded w-1/2 shadow-gray-700 shadow-md border border-opacity-30`}
