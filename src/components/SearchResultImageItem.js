@@ -2,20 +2,41 @@ import { Link } from "react-router-dom";
 
 export default function SearchResultImageItem(props) {
     const card = props.card;
-    const countCards = (isFoil) => {
-        let count = 0;
-        const cardType = isFoil ? "foil" : "nonfoil";
+
+    const hasFinish = (finish) => {
+        let hasFinish = false
         Object.keys(card.collected).map(
-            (language) =>
-            (count +=
-                typeof card.collected[language][cardType] === "number"
-                    ? card.collected[language][cardType]
-                    : 0)
+            (language) => {
+                if (card.collected[language].hasOwnProperty(finish)) {
+                    hasFinish = true
+                }
+            }
+        )
+        return hasFinish
+    }
+
+    const countCards = (finish) => {
+        let count = 0;
+        Object.keys(card.collected).map(
+            (language) => (
+                count +=
+                typeof card.collected[language][finish] === "number"
+                    ? card.collected[language][finish]
+                    : 0
+            )
         );
         return count;
     };
-    const nonfoil = countCards(false);
-    const foil = countCards(true);
+    const hasNonfoil = hasFinish("nonfoil");
+    const hasFoil = hasFinish("foil");
+    const hasEtched = hasFinish("etched");
+    const hasGlossy = hasFinish("glossy");
+
+    const nonfoilCount = countCards("nonfoil");
+    const foilCount = countCards("foil");
+    const etchedCount = countCards("etched");
+    const glossyCount = countCards("glossy");
+
     return (
         <div className="p-1 relative">
             <Link
@@ -30,31 +51,25 @@ export default function SearchResultImageItem(props) {
                     alt={`${card.name}-${card.set}`}
                 />
                 <div className="flex h-auto absolute inset-x-0 bottom-1 justify-around text-center">
-                    
-                    {card.collected[Object.keys(card.collected)[0]].nonfoil !== "" 
-                        ? <div
-                            className={`${nonfoil > 0
-                                ? "bg-green-500 border-green-100"
-                                : "bg-gray-300 border-gray-100"
-                                } bg-opacity-40 backdrop-blur-sm ml-4 mr-2 my-8 rounded w-1/2 shadow-gray-700 shadow-md border border-opacity-30`}
-                        >
-                            <p>• {nonfoil}</p>
-                        </div>
-                        : <div className="w-1/2"></div>
-                        }
-                    {card.collected[Object.keys(card.collected)[0]].foil !== "" 
-                        ? <div
-                            className={`${foil > 0
-                                ? "bg-green-500 border-green-100"
-                                : "bg-gray-300 border-gray-100"
-                                } bg-opacity-40 backdrop-blur-sm ml-2 mr-4 my-8 rounded w-1/2 shadow-gray-700 shadow-md border border-opacity-30`}
-                        >
-                            <p>✶ {foil}</p>
-                        </div>
-                        : <div className="w-1/2"></div>
-                    }
+
+                    {showCount("nonfoil", hasNonfoil, nonfoilCount, "•")}
+                    {showCount("foil", hasFoil, foilCount, "✶")}
+                    {showCount("etched", hasEtched, etchedCount, "E")}
+                    {showCount("glossy", hasGlossy, glossyCount, "G")}
                 </div>
             </Link>
         </div>
     );
+
+    function showCount(finish, hasFinish, finishCount, label) {
+        return hasFinish
+            ? <div
+                className={`${finishCount > 0
+                    ? "bg-green-500 border-green-100"
+                    : "bg-gray-300 border-gray-100"} bg-opacity-40 backdrop-blur-sm mx-2 my-8 rounded w-1/2 shadow-gray-700 shadow-md border border-opacity-30`}
+            >
+                <p>{label} {finishCount}</p>
+            </div>
+            : (finish === "nonfoil" || finish === "foil") && <div className="w-1/2"></div>
+    }
 }

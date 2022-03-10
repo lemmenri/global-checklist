@@ -29,8 +29,8 @@ export default function SearchResultListItem(props) {
                         <p>&nbsp;</p>
                         <p>•</p>
                         <p>✶</p>
-                        <p>e</p>
-                        <p>g</p>
+                        <p>E</p>
+                        <p>G</p>
                     </div>
                     <div id="printings" className="flex">
                         {Object.keys(card.collected).map((language) => (
