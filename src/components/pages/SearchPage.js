@@ -73,17 +73,19 @@ export default class SearchPage extends React.Component {
         })
     }
 
-    // TODO: clean up this file
     // DONE: handle if no cards are found on second search
-    // TODO: move cardSearch to separate component
     // DONE: get card languages for found cards
-    // TODO: add collection state
     // DONE: remove initial loading state (use React Query?)
-    // TODO: add autocomplete / suggestions to card search (using headlessUI combobox?)
     // DONE: update foil / non-foil to include etched foil and glossy and new setup of scryfall api. Use finishes field
+    // DONE: handle opening card details page in new window
+    
+    // TODO: clean up this file
+    // TODO: move cardSearch to separate component
+    // TODO: add collection state
+    // TODO: add autocomplete / suggestions to card search (using headlessUI combobox?)
     // TODO: handle multiple pages in search results
     // TODO: handle going back from card details to search results
-    // TODO: handle opening card details page in new window
+    // TODO: move api calls and procces function to seperate file
 
     processRawCardData() {
         let cleanedCardData = []
