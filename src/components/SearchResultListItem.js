@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import ReactTooltip from 'react-tooltip';
+import CardImage from './CardImage';
 
 export default function SearchResultListItem(props) {
     const card = props.card;
@@ -42,9 +43,8 @@ export default function SearchResultListItem(props) {
                         {`${card.set_name} - #${card.nr} - ${card.rarity}`}
                     </p>
                 </div>
-                {/* TODO: fix the image. Now all images are displayed the same. Seems like the links are set correct   */}
                 <ReactTooltip id={card.id} place="right" effect="solid" backgroundColor="transparent">
-                    <img
+                    <CardImage
                         className="rounded-2xl w-52"
                         src={card.img}
                         alt={`${card.name}-${card.set}`}

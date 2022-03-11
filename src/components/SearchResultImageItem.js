@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import CardImage from "./CardImage";
 
 export default function SearchResultImageItem(props) {
     const card = props.card;
@@ -38,14 +39,14 @@ export default function SearchResultImageItem(props) {
     const glossyCount = countCards("glossy");
 
     return (
-        <div className="p-1 relative">
+        <div title={card.set_name} className="p-1 relative">
             <Link
                 id={`card ${card.id}`}
                 className=""
                 to={`/card/${card.id}`}
                 state={card}
             >
-                <img
+                <CardImage
                     className="rounded-xl shadow-gray-700 shadow-md"
                     src={card.img}
                     alt={`${card.name}-${card.set}`}
