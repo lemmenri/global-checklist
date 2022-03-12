@@ -20,7 +20,8 @@ export default class SearchPage extends React.Component {
             rawCardData: [],
             hasMore: undefined,
             totalCards: undefined,
-            dataIsLoaded: undefined
+            dataIsLoaded: undefined,
+            cardNames: undefined
         };
     }
 
@@ -37,7 +38,15 @@ export default class SearchPage extends React.Component {
     //     })
     //     .then(() => this.addRawDataToCardlist());
     // }
-
+    
+    componentDidMount() {
+        fetch("https://api.scryfall.com/catalog/card-names")
+        .then((res) => res.json())
+        .then((json) => this.setState(() => ({
+            cardNames: json.data
+        })))
+    } //TODO: do something with cardnames
+    
     handleSearchSubmit(event) {
         event.preventDefault()
         this.setState(() => ({
@@ -78,7 +87,7 @@ export default class SearchPage extends React.Component {
     // DONE: remove initial loading state (use React Query?)
     // DONE: update foil / non-foil to include etched foil and glossy and new setup of scryfall api. Use finishes field
     // DONE: handle opening card details page in new window
-    
+
     // TODO: clean up this file
     // TODO: move cardSearch to separate component
     // TODO: add collection state
@@ -252,6 +261,7 @@ export default class SearchPage extends React.Component {
                 {this.state.dataIsLoaded === false && (
                     <Loading />
                 )}
+                {this.state.cardNames !== undefined && <p>{this.state.cardNames}</p>}
             </div>
         );
     }
