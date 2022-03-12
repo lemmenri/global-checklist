@@ -1,17 +1,11 @@
 import React from "react";
 import SearchResults from "../SearchResults";
 import { Loading } from "../Loading";
-
-// const cardName = "Snap";
-// const url = `https://api.scryfall.com/cards/search?order=released&q=%22${cardName.replaceAll(
-//     " ",
-//     "+"
-// )}%22+include%3Aextras&unique=prints`;
+import CardnameSearch from "../CardnameSearch";
 
 export default class SearchPage extends React.Component {
     constructor(props) {
         super(props);
-        this.addRawDataToCardlist = this.addRawDataToCardlist.bind(this);
         this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
         this.processRawCardData = this.processRawCardData.bind(this)
         this.state = {
@@ -20,32 +14,9 @@ export default class SearchPage extends React.Component {
             rawCardData: [],
             hasMore: undefined,
             totalCards: undefined,
-            dataIsLoaded: undefined,
-            cardNames: undefined
+            dataIsLoaded: undefined
         };
     }
-
-    // componentDidMount() {
-    // fetch(url)
-    //     .then((res) => res.json())
-    //     .then((json) => {
-    //         this.setState(() => ({
-    //             rawCardData: json.data,
-    //             hasMore: json.has_more,
-    //             totalCards: json.total_cards,
-    //             dataIsLoaded: true
-    //         }));
-    //     })
-    //     .then(() => this.addRawDataToCardlist());
-    // }
-    
-    componentDidMount() {
-        fetch("https://api.scryfall.com/catalog/card-names")
-        .then((res) => res.json())
-        .then((json) => this.setState(() => ({
-            cardNames: json.data
-        })))
-    } //TODO: do something with cardnames
     
     handleSearchSubmit(event) {
         event.preventDefault()
@@ -87,14 +58,16 @@ export default class SearchPage extends React.Component {
     // DONE: remove initial loading state (use React Query?)
     // DONE: update foil / non-foil to include etched foil and glossy and new setup of scryfall api. Use finishes field
     // DONE: handle opening card details page in new window
+    // DONE: clean up this file
 
-    // TODO: clean up this file
     // TODO: move cardSearch to separate component
     // TODO: add collection state
     // TODO: add autocomplete / suggestions to card search (using headlessUI combobox?)
     // TODO: handle multiple pages in search results
     // TODO: handle going back from card details to search results
     // TODO: move api calls and procces function to seperate file
+    // TODO: add language support to opening cards in new tab
+    // TODO: fix transparency issue in tooltip
 
     processRawCardData() {
         let cleanedCardData = []
@@ -158,77 +131,6 @@ export default class SearchPage extends React.Component {
         }));
     }
 
-    addRawDataToCardlist() {
-        let cleanedCardData = this.state.rawCardData.map((card) => ({
-            name: card.name,
-            id: card.id,
-            set: card.set,
-            set_name: card.set_name,
-            nr: card.collector_number,
-            rarity: card.rarity,
-            collected: {
-                en: {
-                    nonfoil: card.finishes.includes("nonfoil") ? 0 : "",
-                    foil: card.finishes.includes("foil") ? 0 : ""
-                },
-                de: {
-                    nonfoil: card.finishes.includes("nonfoil") ? 0 : "",
-                    foil: card.finishes.includes("foil") ? 0 : ""
-                },
-                fr: {
-                    nonfoil: card.finishes.includes("nonfoil") ? 0 : "",
-                    foil: card.finishes.includes("foil") ? 0 : ""
-                },
-                it: {
-                    nonfoil: card.finishes.includes("nonfoil") ? 0 : "",
-                    foil: card.finishes.includes("foil") ? 0 : ""
-                },
-                sp: {
-                    nonfoil: card.finishes.includes("nonfoil") ? 0 : "",
-                    foil: card.finishes.includes("foil") ? 0 : ""
-                },
-                pt: {
-                    nonfoil: card.finishes.includes("nonfoil") ? 0 : "",
-                    foil: card.finishes.includes("foil") ? 0 : ""
-                },
-                jp: {
-                    nonfoil: card.finishes.includes("nonfoil") ? 0 : "",
-                    foil: card.finishes.includes("foil") ? 0 : ""
-                },
-                cs: {
-                    nonfoil: card.finishes.includes("nonfoil") ? 0 : "",
-                    foil: card.finishes.includes("foil") ? 0 : ""
-                },
-                ct: {
-                    nonfoil: card.finishes.includes("nonfoil") ? 0 : "",
-                    foil: card.finishes.includes("foil") ? 0 : ""
-                },
-                ru: {
-                    nonfoil: card.finishes.includes("nonfoil") ? 0 : "",
-                    foil: card.finishes.includes("foil") ? 0 : ""
-                },
-                ko: {
-                    nonfoil: card.finishes.includes("nonfoil") ? 0 : "",
-                    foil: card.finishes.includes("foil") ? 0 : ""
-                }
-            },
-            prices: {
-                eur: card.prices.eur,
-                eurfoil: card.prices.eur_foil,
-                usd: card.prices.usd,
-                usdfoil: card.prices.usd_foil
-            },
-            img: card.hasOwnProperty("image_uris") // check if image is available
-                ? card.image_uris.normal
-                : card.card_faces[0].hasOwnProperty("image_uris")// check for double faced card
-                    ? card.card_faces[0].image_uris.normal
-                    : "https://c2.scryfall.com/file/scryfall-errors/soon.jpg"
-        }));
-        this.setState(() => ({
-            cardList: cleanedCardData
-        }));
-    }
-
     render() {
         return (
             <div className="p-1 sm:p-8 bg-gray-400">
@@ -261,7 +163,7 @@ export default class SearchPage extends React.Component {
                 {this.state.dataIsLoaded === false && (
                     <Loading />
                 )}
-                {this.state.cardNames !== undefined && <p>{this.state.cardNames}</p>}
+                <CardnameSearch />
             </div>
         );
     }
