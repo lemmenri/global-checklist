@@ -6,7 +6,7 @@ export default function SearchResultImageItem(props) {
 
     const hasFinish = (finish) => {
         let hasFinish = false
-        Object.keys(card.collected).map(
+        Object.keys(card.collected).forEach(
             (language) => {
                 if (card.collected[language].hasOwnProperty(finish)) {
                     hasFinish = true
@@ -18,7 +18,7 @@ export default function SearchResultImageItem(props) {
 
     const countCards = (finish) => {
         let count = 0;
-        Object.keys(card.collected).map(
+        Object.keys(card.collected).forEach(
             (language) => (
                 count +=
                 typeof card.collected[language][finish] === "number"

@@ -7,7 +7,7 @@ export default function SearchResultListItem(props) {
 
     const hasFinish = (finish) => {
         let hasFinish = false
-        Object.keys(card.collected).map(
+        Object.keys(card.collected).forEach(
             (language) => {
                 if (card.collected[language].hasOwnProperty(finish)) {
                     hasFinish = true
