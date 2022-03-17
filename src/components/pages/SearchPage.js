@@ -59,6 +59,7 @@ export default class SearchPage extends React.Component {
     // DONE: update foil / non-foil to include etched foil and glossy and new setup of scryfall api. Use finishes field
     // DONE: handle opening card details page in new window
     // DONE: clean up this file
+    // DONE: fix transparency issue in tooltip
 
     // TODO: move cardSearch to separate component
     // TODO: add collection state
@@ -67,7 +68,6 @@ export default class SearchPage extends React.Component {
     // TODO: handle going back from card details to search results
     // TODO: move api calls and procces function to seperate file
     // TODO: add language support to opening cards in new tab
-    // TODO: fix transparency issue in tooltip
 
     processRawCardData() {
         let cleanedCardData = []
