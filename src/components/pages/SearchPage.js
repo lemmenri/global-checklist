@@ -66,6 +66,7 @@ export default class SearchPage extends React.Component {
     // TODO: add autocomplete / suggestions to card search (using headlessUI combobox?)
     // TODO: handle multiple pages in search results
     // TODO: handle going back from card details to search results
+    // TODO: handle empty search query
     // TODO: move api calls and procces function to seperate file
     // TODO: add language support to opening cards in new tab
 
@@ -133,7 +134,7 @@ export default class SearchPage extends React.Component {
 
     render() {
         return (
-            <div className="p-1 sm:p-8 bg-gray-400">
+            <div className="p-1 sm:p-8 bg-gray-400 flex-grow">
                 <div id="cardSearchContainer" className="my-2 ">
                     <form role="search" onSubmit={this.handleSearchSubmit}>
                         <div>

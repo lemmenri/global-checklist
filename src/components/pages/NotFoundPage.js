@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from 'react-router-dom';
 
 const NotFoundPage = () => (
-    <div className="p-2 sm:p-8 bg-gray-400">
+    <div className="p-2 sm:p-8 bg-gray-400 flex-grow">
         <h1 className="text-xl my-4">404</h1>
         <p className="pb-4">
             Couldn't find the page you're looking for...

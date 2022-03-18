@@ -50,7 +50,7 @@ const CardPage = () => {
     if(card === null) {fetchCardDataById(cardId.id)}
 
     return (
-        <div className="p-2 sm:p-8 bg-gray-400"> 
+        <div className="p-2 sm:p-8 bg-gray-400 flex-grow"> 
             {isDataLoaded
                 ? <>
                     <h1 className="text-xl my-4">{card.name}</h1>
