@@ -1,20 +1,22 @@
 import { NavLink } from 'react-router-dom'
 
 const Header = () => (
-    <header className='p-4 text-white bg-gray-700'>
+    <header className='p-4 text-light bg-primary flex flex-wrap justify-between items-center'>
         <h1 className='text-3xl m-4'>MTG Library</h1>
-        <NavLink
-            className={"bg-green-300 text-black m-4 px-4 rounded-xl hover:bg-green-500"}
-            to="/"
-        >
-            Home
-        </NavLink>
-        <NavLink
-            className={"bg-green-300 text-black m-4 px-4 rounded-xl hover:bg-green-500"}
-            to="/search"
-        >
-            Search
-        </NavLink>
+        <div className='space-x-4 m-4'>
+            <NavLink
+                className={"text-light hover:underline"}
+                to="/"
+                >
+                Home
+            </NavLink>
+            <NavLink
+                className={"text-light hover:underline"}
+                to="/search"
+                >
+                Search
+            </NavLink>
+        </div>
     </header>
 )
 

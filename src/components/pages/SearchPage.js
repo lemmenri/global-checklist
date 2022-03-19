@@ -117,7 +117,7 @@ export default class SearchPage extends React.Component {
 
     render() {
         return (
-            <div className="p-1 sm:p-8 bg-gray-400 flex-grow">
+            <div className="p-1 sm:p-8 bg-light flex-grow">
                 <div id="cardSearchContainer" className="my-2 ">
                     <form role="search" onSubmit={this.handleSearchSubmit}>
                         <div>
@@ -130,7 +130,7 @@ export default class SearchPage extends React.Component {
                                 name="q"
                                 placeholder="Search cards..."
                                 aria-label="Search for Magic cards" /> */}
-                            <button className="bg-green-300 text-black m-4 px-4 rounded-xl hover:bg-green-500">Search</button>
+                            <button className="bg-primary text-light text-xl m-4 px-8 rounded-xl hover:underline">Search</button>
                         </div>
                     </form>
                 </div>
