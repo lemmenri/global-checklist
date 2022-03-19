@@ -53,23 +53,6 @@ export default class SearchPage extends React.Component {
         })
     }
 
-    // DONE: handle if no cards are found on second search
-    // DONE: get card languages for found cards
-    // DONE: remove initial loading state (use React Query?)
-    // DONE: update foil / non-foil to include etched foil and glossy and new setup of scryfall api. Use finishes field
-    // DONE: handle opening card details page in new window
-    // DONE: clean up this file
-    // DONE: fix transparency issue in tooltip
-
-    // TODO: move cardSearch to separate component
-    // TODO: add collection state
-    // TODO: add autocomplete / suggestions to card search (using headlessUI combobox?)
-    // TODO: handle multiple pages in search results
-    // TODO: handle going back from card details to search results
-    // TODO: handle empty search query
-    // TODO: move api calls and procces function to seperate file
-    // TODO: add language support to opening cards in new tab
-
     processRawCardData() {
         let cleanedCardData = []
         this.state.rawCardData.forEach((rawCard) => {
@@ -139,13 +122,14 @@ export default class SearchPage extends React.Component {
                     <form role="search" onSubmit={this.handleSearchSubmit}>
                         <div>
                             <label htmlFor="cardSearch">Search by card name:</label><br />
-                            <input
+                            <CardnameSearch />
+                            {/* <input
                                 className="p-1"
                                 type="search"
                                 id="cardSearch"
                                 name="q"
                                 placeholder="Search cards..."
-                                aria-label="Search for Magic cards" />
+                                aria-label="Search for Magic cards" /> */}
                             <button className="bg-green-300 text-black m-4 px-4 rounded-xl hover:bg-green-500">Search</button>
                         </div>
                     </form>
@@ -164,7 +148,6 @@ export default class SearchPage extends React.Component {
                 {this.state.dataIsLoaded === false && (
                     <Loading />
                 )}
-                <CardnameSearch />
             </div>
         );
     }

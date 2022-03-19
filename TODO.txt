@@ -1,0 +1,17 @@
+DONE: handle if no cards are found on second search
+DONE: get card languages for found cards
+DONE: remove initial loading state (use React Query?)
+DONE: update foil / non-foil to include etched foil and glossy and new setup of scryfall api. Use finishes field
+DONE: handle opening card details page in new window
+DONE: clean up this file
+DONE: fix transparency issue in tooltip
+DONE: move cardSearch to separate component
+DONE: add autocomplete / suggestions to card search (using headlessUI combobox?)
+
+TODO: add collection state
+TODO: handle multiple pages in search results
+TODO: handle going back from card details to search results
+TODO: handle empty search query
+TODO: fix cardNameSearch bugs (clear input field, hide options when not active)
+TODO: move api calls and procces function to seperate file
+TODO: add language support to opening cards in new tab

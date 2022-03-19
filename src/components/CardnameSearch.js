@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { Combobox } from '@headlessui/react'
 import { SearchIcon, XIcon } from '@heroicons/react/outline'
 
-
-
 const testDataCardNames = 
     [
         "Zuberi, Golden Feather",
@@ -24,21 +22,21 @@ export default function CardnameSearch() {
     const [query, setQuery] = useState("")
 
     useEffect(() => {
-        //fetch("https://api.scryfall.com/catalog/card-names")
-        //    .then((res) => res.json())
-        //    .then((json) => setCardNames(json.data))
-        setCardNames(testDataCardNames)
+        fetch("https://api.scryfall.com/catalog/card-names")
+           .then((res) => res.json())
+           .then((json) => setCardNames(json.data))
+        //setCardNames(testDataCardNames)
     }, []) //TODO: do something with cardnames
 
     const filteredCardNames = query ?
         cardNames.filter((cardName) => cardName.toLowerCase().includes(query.toLowerCase()))
         : []
-
+ 
     const handleClear = () => {
         setQuery("")
         setSelected(void 0)
     }
-    
+
     return (
         <Combobox
             value={selected}
@@ -54,6 +52,9 @@ export default function CardnameSearch() {
                     }}
                     className="rounded-xl border-0 text-sm w-full"
                     placeholder="Search cards..."
+                    id="cardSearch"
+                    name="q"
+                    autoComplete="off"
                 />
                 <button
                     className='m-2 rounded hover:cursor-pointer hover:bg-gray-200 active:bg-gray-200'
@@ -65,10 +66,10 @@ export default function CardnameSearch() {
             </div>
             {filteredCardNames.length > 0 && 
                 <Combobox.Options static className="py-4 text-sm max-h-72 overflow-y-auto">
-                    {Object.values(filteredCardNames).map((cardName, index) => (
+                    {Object.values(filteredCardNames.slice(0, maxDisplayedResults)).map((cardName, index) => (
                         <Combobox.Option key={index} value={cardName}>
                             {({ active }) => (
-                                <div className={`px-4 py-2 ${active ? 'bg-gray-800 text-white' : ''}`}>{cardName}</div>
+                                <div className={`px-4 py-2 ${active ? 'bg-gray-800 text-white' : ''} hover:cursor-pointer`}>{cardName}</div>
                             )}
                         </Combobox.Option>
                     ))}
@@ -77,7 +78,6 @@ export default function CardnameSearch() {
             {query && filteredCardNames.length === 0 && 
                 <p className='text-sm px-4 py-2'>No results found.</p>
             }
-            <p>Currently selected: {selected}</p>
         </Combobox>
     )
 }
