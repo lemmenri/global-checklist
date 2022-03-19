@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom'
 
 const Header = () => (
-    <header className='p-4 text-light bg-primary flex flex-wrap justify-between items-center'>
+    <header className='px-4 text-light bg-primary flex flex-wrap justify-between items-center'>
         <h1 className='text-3xl m-4'>MTG Library</h1>
         <div className='space-x-4 m-4'>
             <NavLink

@@ -42,34 +42,29 @@ export default function CardnameSearch() {
             value={selected}
             onChange={setSelected}
             as="div"
-            className="bg-white rounded-xl shadow-2xl overflow-hidden"
+            className="rounded-lg overflow-hidden border border-dark"
         >
             <div className='flex items-center'>
-                <SearchIcon className='h-6 w-6 m-2' />
                 <Combobox.Input
                     onChange={(event) => {
                         setQuery(event.target.value)
                     }}
-                    className="rounded-xl border-0 text-sm w-full"
+                    className=" text-sm w-full bg-light border-0"
                     placeholder="Search cards..."
                     id="cardSearch"
                     name="q"
                     autoComplete="off"
                 />
-                <button
-                    className='m-2 rounded hover:cursor-pointer hover:bg-gray-200 active:bg-gray-200'
-                    id='clear-combobox-button'
-                    onClick={handleClear}
-                >
-                    <XIcon className='h-6 w-6' />
-                </button>
+                <div className='text-light bg-dark p-2'>
+                    <SearchIcon className='h-6 w-6' />
+                </div>
             </div>
             {filteredCardNames.length > 0 && 
-                <Combobox.Options static className="py-4 text-sm max-h-72 overflow-y-auto">
+                <Combobox.Options static className=" text-sm max-h-72 overflow-y-auto">
                     {Object.values(filteredCardNames.slice(0, maxDisplayedResults)).map((cardName, index) => (
                         <Combobox.Option key={index} value={cardName}>
                             {({ active }) => (
-                                <div className={`px-4 py-2 ${active ? 'bg-gray-800 text-white' : ''} hover:cursor-pointer`}>{cardName}</div>
+                                <div className={`px-4 py-2 ${active ? 'bg-dark text-light' : ''} hover:cursor-pointer`}>{cardName}</div>
                             )}
                         </Combobox.Option>
                     ))}

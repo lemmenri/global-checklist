@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function DesignSystemPage() {
     return (
-        <div className="p-2 sm:p-8 bg-light flex-grow">
+        <div className="p-4 sm:p-8 flex-grow">
             <h1 className="text-3xl my-4">Design System</h1>
             <h2 className="text-2xl my-4">Atoms</h2>
             <h3 className="text-xl my-4">Colors</h3>

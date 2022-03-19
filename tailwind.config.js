@@ -3,7 +3,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'primary': '#078D82',
+        // Use Light colored text on Primary colored background only. 
+        // Dark text on Primary colored background doens't have enough contrast. 
+        'primary': '#06746B',
         'light': '#E7EAEE',
         'dark': '#042A33',
         'MT': '#17A2B8',

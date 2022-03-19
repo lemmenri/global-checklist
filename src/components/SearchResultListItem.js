@@ -26,7 +26,7 @@ export default function SearchResultListItem(props) {
         <div id="search-result-list-item" className="p-1 w-full">
             <Link
                 id={`card ${card.id}`}
-                className="flex flex-row bg-gradient-to-r from-cyan-100 to-indigo-100 p-2 w-full rounded-xl"
+                className="flex flex-row border border-dark p-2 w-full rounded-lg"
                 to={`/card/${card.id}`}
                 state={card}
             >
@@ -68,7 +68,7 @@ export default function SearchResultListItem(props) {
                             >
                                 <p
                                     id="language-label"
-                                    className="bg-black font-medium text-white px-1 my-0.5 rounded"
+                                    className="bg-dark font-medium text-light px-1 my-0.5 rounded"
                                 >
                                     {language.toUpperCase()}
                                 </p>
