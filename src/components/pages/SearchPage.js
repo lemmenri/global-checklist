@@ -123,14 +123,7 @@ export default class SearchPage extends React.Component {
                         <div>
                             <label htmlFor="cardSearch">Search by card name:</label><br />
                             <CardnameSearch />
-                            {/* <input
-                                className="p-1"
-                                type="search"
-                                id="cardSearch"
-                                name="q"
-                                placeholder="Search cards..."
-                                aria-label="Search for Magic cards" /> */}
-                            <button className="bg-primary text-light text-xl m-4 px-8 rounded-lg hover:underline">Search</button>
+                            <button className="bg-primary text-light my-4 px-8 rounded-lg hover:underline">Search</button>
                         </div>
                     </form>
                 </div>

@@ -27,7 +27,7 @@ export default class SearchResults extends React.Component {
                             borderColor="#042A33"
                             knobWidth="12px"
                             knobHeight="12px"
-                            knobGap="17px"
+                            knobGap="18px"
                             leftKnobColor="#E7EAEE"
                             rightKnobColor="#042A33"
                             onToggle={() => {

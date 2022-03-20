@@ -1,18 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Combobox } from '@headlessui/react'
-import { SearchIcon, XIcon } from '@heroicons/react/outline'
-
-const testDataCardNames = 
-    [
-        "Zuberi, Golden Feather",
-        "Zulaport Chainmage",
-        "Zulaport Cutthroat",
-        "Zulaport Duelist",
-        "Zulaport Enforcer",
-        "Zuo Ci, the Mocking Sage",
-        "Zur the Enchanter",
-        "Zur's Weirding"
-    ]
+import { SearchIcon } from '@heroicons/react/outline'
 
 const maxDisplayedResults = 5
 
@@ -25,17 +13,11 @@ export default function CardnameSearch() {
         fetch("https://api.scryfall.com/catalog/card-names")
            .then((res) => res.json())
            .then((json) => setCardNames(json.data))
-        //setCardNames(testDataCardNames)
-    }, []) //TODO: do something with cardnames
+    }, [])
 
     const filteredCardNames = query ?
         cardNames.filter((cardName) => cardName.toLowerCase().includes(query.toLowerCase()))
         : []
- 
-    const handleClear = () => {
-        setQuery("")
-        setSelected(void 0)
-    }
 
     return (
         <Combobox
@@ -49,7 +31,7 @@ export default function CardnameSearch() {
                     onChange={(event) => {
                         setQuery(event.target.value)
                     }}
-                    className=" text-sm w-full bg-light border-0"
+                    className=" text-sm w-full bg-light border-0 active:outline-none active:border-0"
                     placeholder="Search cards..."
                     id="cardSearch"
                     name="q"
