@@ -6,7 +6,7 @@ const maxDisplayedResults = 5
 
 export default function CardnameSearch() {
     const [cardNames, setCardNames] = useState("")
-    const [selected, setSelected] = useState(void 0);
+    const [selectedCardname, setSelectedCardname] = useState(void 0);
     const [query, setQuery] = useState("")
 
     useEffect(() => {
@@ -21,17 +21,17 @@ export default function CardnameSearch() {
 
     return (
         <Combobox
-            value={selected}
-            onChange={setSelected}
+            value={selectedCardname}
+            onChange={setSelectedCardname}
             as="div"
-            className="rounded-lg overflow-hidden border border-dark"
+            className="rounded-lg overflow-hidden outline outline-dark outline-1"
         >
             <div className='flex items-center'>
                 <Combobox.Input
                     onChange={(event) => {
                         setQuery(event.target.value)
                     }}
-                    className=" text-sm w-full bg-light border-0 active:outline-none active:border-0"
+                    className=" text-sm w-full bg-light border-0 focus:ring-2 focus:ring-dark ml-0.5 rounded-l-md"
                     placeholder="Search cards..."
                     id="cardSearch"
                     name="q"

@@ -50,7 +50,7 @@ const CardPage = () => {
     if(card === null) {fetchCardDataById(cardId.id)}
 
     return (
-        <div className="p-4 sm:p-8 flex-grow"> 
+        <div className="p-4 sm:p-8 flex-grow bg-light"> 
             {isDataLoaded
                 ? <>
                     <h1 className="text-xl my-4">{card.name}</h1>
@@ -67,6 +67,11 @@ const CardPage = () => {
                         src={card.img}
                         alt={`${card.name}-${card.set}`}
                     />
+                    <div id='external links' className='w-96 p-2'>
+                        <a href='#' target='_blank' className='border border-dark rounded-lg px-4 hover:underline hover:cursor-pointer'>
+                            Open on Scryfall
+                        </a>
+                    </div>
                 </>
                 :
                     <Loading />
