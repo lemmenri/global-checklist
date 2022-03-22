@@ -2,7 +2,7 @@ import React from "react";
 import SearchResults from "../SearchResults";
 import { Loading } from "../Loading";
 import CardnameSearch from "../CardnameSearch";
-import { getAmountOfCard } from "../../scripts/Collection";
+import { addCardToCollection, getAmountOfCard } from "../../scripts/Collection";
 
 export default class SearchPage extends React.Component {
     constructor(props) {
@@ -17,6 +17,16 @@ export default class SearchPage extends React.Component {
             totalCards: undefined,
             dataIsLoaded: undefined
         };
+
+        addCardToCollection("fe3a415f-5649-4d74-9ef7-803ac11169d4", "foil", "EX", 3)
+        addCardToCollection("fe3a415f-5649-4d74-9ef7-803ac11169d4", "nonfoil", "MT", 2)
+        addCardToCollection("64a6c831-18a5-44d1-aac4-afb018bc93c7", "foil", "NM", 1)
+        addCardToCollection("64a6c831-18a5-44d1-aac4-afb018bc93c7", "foil", "PO", 1)
+        addCardToCollection("64a6c831-18a5-44d1-aac4-afb018bc93c7", "foil", "PO", 2)
+        // const card = getCardFromCollection("54ced5cf-b51a-4dab-97f7-50fb18e5c463")
+        // console.log(card)
+        // const amount = getAmountOfCard("54ced5cf-b51a-4dab-97f7-50fb18e5c463", "nonfoil")
+        // console.log(`Amount: ${amount}`)
     }
     
     handleSearchSubmit(event) {

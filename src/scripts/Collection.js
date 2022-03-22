@@ -1,5 +1,5 @@
 
-export const addCardToCollection = (id, finish, amount, condition) => {
+export const addCardToCollection = (id, finish, condition, amount) => {
     const newCard = {
         id,
         "cards": [
@@ -12,15 +12,47 @@ export const addCardToCollection = (id, finish, amount, condition) => {
         ]
     }
 
-    //check if collection exists
-    if (getCollection()) {
-        //collection exists
-    } else {
-        //no collection yet
-        localStorage.setItem('collection', JSON.stringify([newCard]))
-    }
-    //check if card is in collection
+    let collection = getCollection()
 
+    // check if collection exists
+    if (!collection) {
+        localStorage.setItem('collection', JSON.stringify([newCard]))
+        return
+    }
+
+    // check if card is in collection
+    if (!getCardFromCollection(id)) {
+        collection.push(newCard)
+        localStorage.setItem('collection', JSON.stringify(collection))
+        return
+    }
+
+    // check if finish is in collection
+    if (!getAmountOfCard(id, finish) > 0) {
+        collection.find(card => card.id === id).cards.push(newCard.cards[0])
+        localStorage.setItem('collection', JSON.stringify(collection))
+        return
+    }
+
+    // check if condition is in collection
+    if (collection.find(card => card.id === id).cards
+        .find(card => card.finish === finish).conditions
+        .find(card => card.condition === condition)
+    ) {
+        // add amount to existing condition
+        collection.find(card => card.id === id).cards
+            .find(card => card.finish === finish).conditions
+            .find(card => card.condition === condition)
+            .amount += amount
+        localStorage.setItem('collection', JSON.stringify(collection))
+        return
+    } 
+
+    // add condition to card
+    collection.find(card => card.id === id).cards
+        .find(card => card.finish === finish).conditions
+        .push(newCard.cards[0].conditions[0])
+    localStorage.setItem('collection', JSON.stringify(collection))
 }
 
 export const getCardFromCollection = (id) => {
