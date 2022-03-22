@@ -30,8 +30,13 @@ const processRawCardData = (rawCard) => {
             ? rawCard.image_uris.normal
             : rawCard.card_faces[0].hasOwnProperty("image_uris")// check for double faced card
                 ? rawCard.card_faces[0].image_uris.normal
-                : "https://c2.scryfall.com/file/scryfall-errors/soon.jpg"
-
+                : "https://c2.scryfall.com/file/scryfall-errors/soon.jpg",
+        external_links: {
+            scryfall: rawCard.scryfall_uri,
+            cardmarket: rawCard.purchase_uris.cardmarket,
+            tcgplayer: rawCard.purchase_uris.tcgplayer,
+            gatherer: rawCard.related_uris.gatherer
+        }
     }
 }
 
@@ -47,7 +52,8 @@ const CardPage = () => {
         .then(() => setIsDataLoaded(true))
     }
     
-    if(card === null) {fetchCardDataById(cardId.id)}
+    if (card === null) { fetchCardDataById(cardId.id) }
+    console.log(card)
 
     return (
         <div className="p-4 sm:p-8 flex-grow bg-light"> 
@@ -67,10 +73,55 @@ const CardPage = () => {
                         src={card.img}
                         alt={`${card.name}-${card.set}`}
                     />
-                    <div id='external links' className='w-96 p-2'>
-                        <a href='#' target='_blank' className='border border-dark rounded-lg px-4 hover:underline hover:cursor-pointer'>
-                            Open on Scryfall
-                        </a>
+                    <div id='external links' className='w-96 p-2 flex flex-col space-y-1'>
+                        {card.external_links.scryfall && 
+                        <a 
+                            href={card.external_links.scryfall} 
+                            target='_blank'
+                            rel="noopener noreferrer" 
+                            className='flex border border-dark rounded-xl px-4 py-1 hover:underline hover:cursor-pointer'>
+                                <img 
+                                    scr="https://assets.scryfall.com/favicon.ico"
+                                    alt='scryfall icon' 
+                                />
+                                Open on Scryfall
+                        </a>}
+                        {card.external_links.cardmarket && 
+                        <a 
+                            href={card.external_links.cardmarket} 
+                            target='_blank'
+                            rel="noopener noreferrer" 
+                            className='flex border border-dark rounded-xl px-4 py-1 hover:underline hover:cursor-pointer'>
+                                <img 
+                                    scr="https://static.cardmarket.com/img/526dbb9ae52c5e62404fe903e9769807/static/misc/favicon-96x96.png"
+                                    alt='cardmarket icon' 
+                                />
+                                Open on Cardmarket
+                        </a>}
+                        {card.external_links.tcgplayer && 
+                        <a 
+                            href={card.external_links.tcgplayer} 
+                            target='_blank'
+                            rel="noopener noreferrer" 
+                            className='flex border border-dark rounded-xl px-4 py-1 hover:underline hover:cursor-pointer'>
+                                <img 
+                                    scr="https://www.tcgplayer.com/favicon.ico"
+                                    alt='TCGPlayer icon' 
+                                />
+                                Open on TCGPlayer
+                        </a>}
+                        {card.external_links.gatherer && 
+                        <a 
+                            href={card.external_links.gatherer} 
+                            target='_blank'
+                            rel="noopener noreferrer" 
+                            className='flex border border-dark rounded-xl px-4 py-1 hover:underline hover:cursor-pointer'>
+                                <img 
+                                    scr="https://gatherer.wizards.com/Images/favicon.ico"
+                                    alt='gatherer icon' 
+                                />
+                                Open on Gatherer
+                            </a>}
                     </div>
                 </>
                 :

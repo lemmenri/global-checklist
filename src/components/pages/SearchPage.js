@@ -106,7 +106,13 @@ export default class SearchPage extends React.Component {
                         ? rawCard.image_uris.normal
                         : rawCard.card_faces[0].hasOwnProperty("image_uris")// check for double faced card
                             ? rawCard.card_faces[0].image_uris.normal
-                            : "https://c2.scryfall.com/file/scryfall-errors/soon.jpg"
+                            : "https://c2.scryfall.com/file/scryfall-errors/soon.jpg",
+                    external_links: {
+                        scryfall: rawCard.scryfall_uri,
+                        cardmarket: rawCard.purchase_uris.cardmarket,
+                        tcgplayer: rawCard.purchase_uris.tcgplayer,
+                        gatherer: rawCard.related_uris.gatherer
+                    }
                 })
             }
         })

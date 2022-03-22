@@ -16,7 +16,7 @@ export default class SearchResults extends React.Component {
             <div>
                 {this.props.cardList.length > 0 &&
                     <>
-                        <label htmlFor="toggle-list-view">List view</label>
+                        <label htmlFor="toggle-list-view">Image view</label>
                         <Toggle
                             name="toggle-list-view"
                             width="32px"
@@ -30,6 +30,7 @@ export default class SearchResults extends React.Component {
                             knobGap="18px"
                             leftKnobColor="#E7EAEE"
                             rightKnobColor="#042A33"
+                            checked={true}
                             onToggle={() => {
                                 this.setState({ listView: !this.state.listView });
                             }}
