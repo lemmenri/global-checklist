@@ -2,6 +2,7 @@ import { useParams, useLocation } from 'react-router-dom'
 import { useState } from 'react'
 import CardImage from '../CardImage'
 import { Loading } from '../Loading'
+import { getAmountOfCard } from "../../scripts/Collection";
 
 const processRawCardData = (rawCard) => {
     return {
@@ -13,10 +14,10 @@ const processRawCardData = (rawCard) => {
         rarity: rawCard.rarity,
         collected: {
             [rawCard.lang]: {
-                ...(rawCard.finishes.includes("nonfoil")) && { nonfoil: 0 },
-                ...(rawCard.finishes.includes("foil")) && { foil: 0 },
-                ...(rawCard.finishes.includes("etched")) && { etched: 0 },
-                ...(rawCard.finishes.includes("glossy")) && { glossy: 0 },
+                ...(rawCard.finishes.includes("nonfoil")) && { nonfoil: getAmountOfCard(rawCard.id, "nonfoil") },
+                ...(rawCard.finishes.includes("foil")) && { foil: getAmountOfCard(rawCard.id, "foil") },
+                ...(rawCard.finishes.includes("etched")) && { etched: getAmountOfCard(rawCard.id, "etched") },
+                ...(rawCard.finishes.includes("glossy")) && { glossy: getAmountOfCard(rawCard.id, "glossy") },
             }
         },
         prices: {

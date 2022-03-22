@@ -2,6 +2,7 @@ import React from "react";
 import SearchResults from "../SearchResults";
 import { Loading } from "../Loading";
 import CardnameSearch from "../CardnameSearch";
+import { getAmountOfCard } from "../../scripts/Collection";
 
 export default class SearchPage extends React.Component {
     constructor(props) {
@@ -70,10 +71,10 @@ export default class SearchPage extends React.Component {
                     collected: {
                         ...cleanedCardData[index].collected,
                         [rawCard.lang]: {
-                            ...(rawCard.finishes.includes("nonfoil")) && { nonfoil: 0 },
-                            ...(rawCard.finishes.includes("foil")) && { foil: 0 },
-                            ...(rawCard.finishes.includes("etched")) && { etched: 0 },
-                            ...(rawCard.finishes.includes("glossy")) && { glossy: 0 },
+                            ...(rawCard.finishes.includes("nonfoil")) && { nonfoil: getAmountOfCard(rawCard.id, "nonfoil") },
+                            ...(rawCard.finishes.includes("foil")) && { foil: getAmountOfCard(rawCard.id, "foil") },
+                            ...(rawCard.finishes.includes("etched")) && { etched: getAmountOfCard(rawCard.id, "etched") },
+                            ...(rawCard.finishes.includes("glossy")) && { glossy: getAmountOfCard(rawCard.id, "glossy") },
                         }
                     }
                 }
@@ -89,10 +90,10 @@ export default class SearchPage extends React.Component {
                     rarity: rawCard.rarity,
                     collected: {
                         [rawCard.lang]: {
-                            ...(rawCard.finishes.includes("nonfoil")) && { nonfoil: 0 },
-                            ...(rawCard.finishes.includes("foil")) && { foil: 0 },
-                            ...(rawCard.finishes.includes("etched")) && { etched: 0 },
-                            ...(rawCard.finishes.includes("glossy")) && { glossy: 0 },
+                            ...(rawCard.finishes.includes("nonfoil")) && { nonfoil: getAmountOfCard(rawCard.id, "nonfoil") },
+                            ...(rawCard.finishes.includes("foil")) && { foil: getAmountOfCard(rawCard.id, "foil") },
+                            ...(rawCard.finishes.includes("etched")) && { etched: getAmountOfCard(rawCard.id, "etched") },
+                            ...(rawCard.finishes.includes("glossy")) && { glossy: getAmountOfCard(rawCard.id, "glossy") },
                         }
                     },
                     prices: {
