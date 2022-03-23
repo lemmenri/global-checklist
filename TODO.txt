@@ -7,8 +7,10 @@ DONE: clean up this file
 DONE: fix transparency issue in tooltip
 DONE: move cardSearch to separate component
 DONE: add autocomplete / suggestions to card search (using headlessUI combobox?)
+DONE: add counting of total versions in search results
 
-TODO: add collection state
+IN PROGRESS: add collection state
+
 TODO: handle multiple pages in search results
 TODO: handle going back from card details to search results
 TODO: handle empty search query

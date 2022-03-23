@@ -9,12 +9,14 @@ export default class SearchPage extends React.Component {
         super(props);
         this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
         this.processRawCardData = this.processRawCardData.bind(this)
+        this.countVersions = this.countVersions.bind(this)
         this.state = {
             search: "",
             cardList: [],
             rawCardData: [],
             hasMore: undefined,
             totalCards: undefined,
+            versionCount: 0,
             dataIsLoaded: undefined
         };
 
@@ -23,6 +25,8 @@ export default class SearchPage extends React.Component {
         addCardToCollection("64a6c831-18a5-44d1-aac4-afb018bc93c7", "foil", "NM", 1)
         addCardToCollection("64a6c831-18a5-44d1-aac4-afb018bc93c7", "foil", "PO", 1)
         addCardToCollection("64a6c831-18a5-44d1-aac4-afb018bc93c7", "foil", "PO", 2)
+        // TODO: fix mysterious double entries 
+        
         // const card = getCardFromCollection("54ced5cf-b51a-4dab-97f7-50fb18e5c463")
         // console.log(card)
         // const amount = getAmountOfCard("54ced5cf-b51a-4dab-97f7-50fb18e5c463", "nonfoil")
@@ -58,6 +62,9 @@ export default class SearchPage extends React.Component {
                     }));
                 })
                 .then(() => this.processRawCardData())
+                .then(() => this.setState(() => ({
+                    versionCount: this.countVersions()
+                })))
                 .then(() => this.setState(() => ({
                     dataIsLoaded: true
                 })))
@@ -132,6 +139,16 @@ export default class SearchPage extends React.Component {
         }));
     }
 
+    countVersions() {
+        let count = 0
+        this.state.cardList.forEach(card => {
+            Object.entries(card.collected).forEach(language => {
+                count += Object.entries(language[1]).length
+            })
+        })
+        return count
+    }
+
     render() {
         return (
             <div className="p-4 sm:p-8 flex-grow bg-light">
@@ -147,10 +164,8 @@ export default class SearchPage extends React.Component {
                 {this.state.dataIsLoaded && (
                     <div>
                         <p>
-                            "{this.state.search}" - found {this.state.rawCardData?.length} cards.{" "}
-                            {this.state.hasMore
-                                ? `More cards are available (${this.state.totalCards}). Limit your search.`
-                                : ""}
+                            {`Showing results for "${this.state.search}". Found ${this.state.cardList?.length} different card(s), ${this.state.rawCardData?.length} printing(s) and ${this.state.versionCount} total version(s).`}
+                            {this.state.hasMore && ` More printings are available (${this.state.totalCards}). Limit your search.`}
                         </p>
                         <SearchResults cardList={this.state.cardList} />
                     </div>
