@@ -1,5 +1,6 @@
 
 export const addCardToCollection = (id, finish, condition, amount) => {
+    console.log("hoi")
     const newCard = {
         id,
         "cards": [
@@ -12,61 +13,35 @@ export const addCardToCollection = (id, finish, condition, amount) => {
         ]
     }
 
-    let collection = getCollection()
+    let collection = getCollectionFromStorage()
 
     // check if collection exists
     if (!collection) {
-        localStorage.setItem('collection', JSON.stringify([newCard]))
-        return
+        collection = [newCard]
     }
-
     // check if card is in collection
-    if (!getCardFromCollection(id)) {
+    else if (!getCardById(id)) {
         collection.push(newCard)
-        localStorage.setItem('collection', JSON.stringify(collection))
-        return
     }
-
-    // check if finish is in collection
-    if (!getAmountOfCard(id, finish) > 0) {
-        collection.find(card => card.id === id).cards.push(newCard.cards[0])
-        localStorage.setItem('collection', JSON.stringify(collection))
-        return
+    // check if finish is on card
+    else if (!getAmountOfCard(id, finish) > 0) {
+        getCardById(id).cards.push(newCard.cards[0])
     }
-
-    // check if condition is in collection
-    if (collection.find(card => card.id === id).cards
-        .find(card => card.finish === finish).conditions
-        .find(card => card.condition === condition)
-    ) {
-        // add amount to existing condition
-        collection.find(card => card.id === id).cards
-            .find(card => card.finish === finish).conditions
-            .find(card => card.condition === condition)
-            .amount += amount
-        localStorage.setItem('collection', JSON.stringify(collection))
-        return
-    } 
-
-    // add condition to card
-    collection.find(card => card.id === id).cards
-        .find(card => card.finish === finish).conditions
-        .push(newCard.cards[0].conditions[0])
-    localStorage.setItem('collection', JSON.stringify(collection))
-}
-
-export const getCardFromCollection = (id) => {
-    const collection = getCollection()
-    if (collection) {
-        return collection.find(card => card.id === id)
+    // check if condition is on finish
+    else if (!doesCardHaveCondition(id, finish, condition)) {
+        // add condition to finish
+        getCardByFinish(id, finish).conditions.push(newCard.cards[0].conditions[0])
     }
+    // add amount to existing condition
     else {
-        return undefined
+        getCardByFinish(id, finish).conditions.find(card => card.condition === condition).amount += amount
     }
+        
+    saveCollectionToStorage(collection)
 }
 
 export const getAmountOfCard = (id, finish) => {
-    const card = getCardFromCollection(id)
+    const card = getCardById(id)
     if (!card) {return 0}
     let amount = 0
     card.cards.forEach(card => {
@@ -79,8 +54,18 @@ export const getAmountOfCard = (id, finish) => {
     return amount
 }
 
-const getCollection = () => {
-    return JSON.parse(localStorage.getItem('collection'))
+export const getCardById = (id) => getCollectionFromStorage().find(card => card.id === id)
+
+const getCardByFinish = (id, finish) => 
+    getCardById(id).cards.find(card => card.finish === finish)
+
+const doesCardHaveCondition = (id, finish, condition) => 
+    getCardByFinish(id, finish).conditions.find(card => card.condition === condition)
+
+const getCollectionFromStorage = () => JSON.parse(localStorage.getItem('collection'))
+
+const saveCollectionToStorage = (collection) => {
+    localStorage.setItem('collection', JSON.stringify(collection))
 }
 
 // TODO: update
