@@ -1,6 +1,5 @@
 
 export const addCardToCollection = (id, finish, condition, amount) => {
-    console.log("hoi")
     const newCard = {
         id,
         "cards": [
@@ -16,24 +15,33 @@ export const addCardToCollection = (id, finish, condition, amount) => {
     let collection = getCollectionFromStorage()
 
     // check if collection exists
-    if (!collection) {
+    if (!getCollectionFromStorage()) {
+        console.log("scenario 1")
         collection = [newCard]
     }
     // check if card is in collection
     else if (!getCardById(id)) {
+        console.log("scenario 2")
+
         collection.push(newCard)
     }
     // check if finish is on card
     else if (!getAmountOfCard(id, finish) > 0) {
+        console.log("scenario 3")
+
         getCardById(id).cards.push(newCard.cards[0])
     }
     // check if condition is on finish
     else if (!doesCardHaveCondition(id, finish, condition)) {
+        console.log("scenario 4")
+
         // add condition to finish
         getCardByFinish(id, finish).conditions.push(newCard.cards[0].conditions[0])
     }
     // add amount to existing condition
     else {
+        console.log("scenario 5")
+
         getCardByFinish(id, finish).conditions.find(card => card.condition === condition).amount += amount
     }
         
