@@ -3,6 +3,7 @@ import SearchResults from "../SearchResults";
 import { Loading } from "../Loading";
 import CardnameSearch from "../CardnameSearch";
 import { addCardToCollection, getAmountOfCard } from "../../scripts/Collection";
+import { mapDataToCardObject } from '../../scripts/MapDataToCardObject'
 
 export default class SearchPage extends React.Component {
     constructor(props) {
@@ -27,13 +28,13 @@ export default class SearchPage extends React.Component {
         addCardToCollection("64a6c831-18a5-44d1-aac4-afb018bc93c7", "foil", "PO", 2)
         addCardToCollection("716c415e-5eb8-4644-ac64-5ba7c3f0ea65", "etched", "NM", 1)
         // TODO: fix mysterious double entries 
-        
+
         // const card = getCardFromCollection("54ced5cf-b51a-4dab-97f7-50fb18e5c463")
         // console.log(card)
         // const amount = getAmountOfCard("54ced5cf-b51a-4dab-97f7-50fb18e5c463", "nonfoil")
         // console.log(`Amount: ${amount}`)
     }
-    
+
     handleSearchSubmit(event) {
         event.preventDefault()
         this.setState(() => ({
@@ -99,40 +100,9 @@ export default class SearchPage extends React.Component {
             }
             else {
                 //card new to list
-                cleanedCardData.push({
-                    name: rawCard.name,
-                    id: rawCard.id,
-                    set: rawCard.set,
-                    set_name: rawCard.set_name,
-                    nr: rawCard.collector_number,
-                    rarity: rawCard.rarity,
-                    collected: {
-                        [rawCard.lang]: {
-                            ...(rawCard.finishes.includes("nonfoil")) && { nonfoil: getAmountOfCard(rawCard.id, "nonfoil") },
-                            ...(rawCard.finishes.includes("foil")) && { foil: getAmountOfCard(rawCard.id, "foil") },
-                            ...(rawCard.finishes.includes("etched")) && { etched: getAmountOfCard(rawCard.id, "etched") },
-                            ...(rawCard.finishes.includes("glossy")) && { glossy: getAmountOfCard(rawCard.id, "glossy") },
-                        }
-                    },
-                    prices: {
-                        eur: rawCard.prices.eur,
-                        eur_foil: rawCard.prices.eur_foil,
-                        usd: rawCard.prices.usd,
-                        usd_foil: rawCard.prices.usd_foil,
-                        usd_etched: rawCard.prices.usd_etched
-                    },
-                    img: rawCard.hasOwnProperty("image_uris") // check if image is available
-                        ? rawCard.image_uris.normal
-                        : rawCard.card_faces[0].hasOwnProperty("image_uris")// check for double faced card
-                            ? rawCard.card_faces[0].image_uris.normal
-                            : "https://c2.scryfall.com/file/scryfall-errors/soon.jpg",
-                    external_links: {
-                        scryfall: rawCard.scryfall_uri,
-                        cardmarket: rawCard.purchase_uris.cardmarket,
-                        tcgplayer: rawCard.purchase_uris.tcgplayer,
-                        gatherer: rawCard.related_uris.gatherer
-                    }
-                })
+                cleanedCardData.push(
+                    mapDataToCardObject(rawCard)
+                )
             }
         })
         this.setState(() => ({
