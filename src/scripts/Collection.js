@@ -16,33 +16,30 @@ export const addCardToCollection = (id, finish, condition, amount) => {
 
     // check if collection exists
     if (!getCollectionFromStorage()) {
-        console.log("scenario 1")
         collection = [newCard]
     }
     // check if card is in collection
     else if (!getCardById(id)) {
-        console.log("scenario 2")
-
         collection.push(newCard)
     }
-    // check if finish is on card
-    else if (!getAmountOfCard(id, finish) > 0) {
-        console.log("scenario 3")
-
-        getCardById(id).cards.push(newCard.cards[0])
+    // check if card has finish
+    else if (!(getAmountOfCard(id, finish) > 0)) {
+        const cardIndex = collection.findIndex(card => card.id === id)
+        collection[cardIndex].cards.push(newCard.cards[0])
     }
-    // check if condition is on finish
+    // check if finish has condition
     else if (!doesCardHaveCondition(id, finish, condition)) {
-        console.log("scenario 4")
-
         // add condition to finish
-        getCardByFinish(id, finish).conditions.push(newCard.cards[0].conditions[0])
+        const cardIndex = collection.findIndex(card => card.id === id)
+        const finishIndex = collection[cardIndex].cards.findIndex(card => card.finish === finish)
+        collection[cardIndex].cards[finishIndex].conditions.push(newCard.cards[0].conditions[0])
     }
     // add amount to existing condition
     else {
-        console.log("scenario 5")
-
-        getCardByFinish(id, finish).conditions.find(card => card.condition === condition).amount += amount
+        const cardIndex = collection.findIndex(card => card.id === id)
+        const finishIndex = collection[cardIndex].cards.findIndex(card => card.finish === finish)
+        const conditionIndex = collection[cardIndex].cards[finishIndex].conditions.findIndex(card => card.condition === condition)
+        collection[cardIndex].cards[finishIndex].conditions[conditionIndex].amount = amount
     }
         
     saveCollectionToStorage(collection)

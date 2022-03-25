@@ -25,6 +25,7 @@ export default class SearchPage extends React.Component {
         addCardToCollection("64a6c831-18a5-44d1-aac4-afb018bc93c7", "foil", "NM", 1)
         addCardToCollection("64a6c831-18a5-44d1-aac4-afb018bc93c7", "foil", "PO", 1)
         addCardToCollection("64a6c831-18a5-44d1-aac4-afb018bc93c7", "foil", "PO", 2)
+        addCardToCollection("716c415e-5eb8-4644-ac64-5ba7c3f0ea65", "etched", "NM", 1)
         // TODO: fix mysterious double entries 
         
         // const card = getCardFromCollection("54ced5cf-b51a-4dab-97f7-50fb18e5c463")

@@ -8,8 +8,11 @@ DONE: fix transparency issue in tooltip
 DONE: move cardSearch to separate component
 DONE: add autocomplete / suggestions to card search (using headlessUI combobox?)
 DONE: add counting of total versions in search results
+DONE: implement datamodel
+DONE: add card to datamodel
 
 IN PROGRESS: add collection state
+IN PROGRESS: remove card from datamodel
 
 TODO: handle multiple pages in search results
 TODO: handle going back from card details to search results
