@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import ReactTooltip from 'react-tooltip';
 import CardImage from './CardImage';
+import Language from './Language';
 
 export default function SearchResultListItem(props) {
     const card = props.card;
@@ -66,12 +67,7 @@ export default function SearchResultListItem(props) {
                                 key={language}
                                 className="p-1 flex flex-col space-y-0.5"
                             >
-                                <p
-                                    id="language-label"
-                                    className="bg-dark font-medium text-light px-1 my-0.5 rounded"
-                                >
-                                    {language.toUpperCase()}
-                                </p>
+                                <Language language={language} />
                                 {hasNonfoil && nrCollected(language, "nonfoil")}
                                 {hasFoil && nrCollected(language, "foil")}
                                 {hasEtched && nrCollected(language, "etched")}
