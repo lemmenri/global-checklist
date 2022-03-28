@@ -4,7 +4,7 @@ export default function Condition({ condition }) {
     return (
         <p
             id={`language-label ${condition}`}
-            className={`bg-${condition.toUpperCase()} font-medium text-light px-1 my-0.5 rounded`}
+            className={`bg-${condition.toUpperCase()} font-medium text-light text-center px-1 my-0.5 rounded`}
         >
             {condition.toUpperCase()}
         </p>

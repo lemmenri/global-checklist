@@ -5,6 +5,7 @@ import { Loading } from '../Loading'
 import { ExternalLink } from '../ExternalLink'
 import { mapDataToCardObject } from '../../scripts/MapDataToCardObject'
 import CollectedList from '../CollectedList'
+import AddToCollection from '../AddToCollection'
 
 const CardPage = () => {
     const cardId = useParams()
@@ -40,6 +41,7 @@ const CardPage = () => {
                         alt={`${card.name}-${card.set}`}
                     />
                     <CollectedList collected={card.collected} />
+                    <AddToCollection />
                     <div id='external links' className='w-96 p-2 flex flex-col space-y-1'>
                         {card.external_links.scryfall &&
                             <ExternalLink href={card.external_links.scryfall} externalParty="Scryfall" imageLocation={"https://assets.scryfall.com/favicon.ico"} />}
