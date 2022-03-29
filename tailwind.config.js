@@ -15,6 +15,7 @@ module.exports = {
         'LP': '#FD8B2B',
         'PL': '#E56874',
         'PO': '#DC3545',
+        'collected': '#3DB057',
       },
     },
   },

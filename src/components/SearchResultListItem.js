@@ -107,7 +107,7 @@ export default function SearchResultListItem(props) {
         return <p
             id={`${finish}-collected`}
             className={card.collected[language][finish] > 0
-                ? "bg-green-500 rounded"
+                ? "bg-collected rounded"
                 : ""}
         >
             {typeof card.collected[language][finish] === "number"

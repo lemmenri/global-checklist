@@ -1,12 +1,16 @@
 import React from 'react'
+import Condition from '../Condition'
+import Language from '../Language'
 
 export default function DesignSystemPage() {
     return (
-        <div className="p-4 sm:p-8 flex-grow">
+        <div className="p-4 sm:p-8 flex-grow bg-light">
             <h1 className="text-3xl my-4">Design System</h1>
             <h2 className="text-2xl my-4">Atoms</h2>
+            <h3 className="text-xl my-4">Text</h3>
+            <p>Todo</p>
             <h3 className="text-xl my-4">Colors</h3>
-            <p>Light Colors</p>
+            <p>Interface Colors</p>
             <div className='flex flex-wrap'>
                 <div className='m-2'>
                     <p className='text-sm'>Primary:</p>
@@ -52,6 +56,30 @@ export default function DesignSystemPage() {
                     <p className='text-sm'>Poor:</p>
                     <div className='h-6 w-24 bg-PO outline outline-dark'></div>
                 </div>
+            </div>
+
+            <p>Collection Colors</p>
+            <div className='flex flex-wrap'>
+                <div className='m-2'>
+                    <p className='text-sm'>Collected:</p>
+                    <div className='h-6 w-24 bg-collected outline outline-dark'></div>
+                </div>
+            </div>
+
+            <h3 className="text-xl my-4">Labels</h3>
+            <p>Language</p>
+            <div className='w-8'>
+                <Language language={"en"} />
+            </div>
+            <p>Condition</p>
+            <div className='flex flex-wrap space-x-2'>
+                <Condition condition={"MT"} />
+                <Condition condition={"NM"} />
+                <Condition condition={"EX"} />
+                <Condition condition={"GD"} />
+                <Condition condition={"LP"} />
+                <Condition condition={"PL"} />
+                <Condition condition={"PO"} />
             </div>
 
         </div>
