@@ -39,7 +39,7 @@ export const addCardToCollection = (id, finish, condition, amount) => {
         const cardIndex = collection.findIndex(card => card.id === id)
         const finishIndex = collection[cardIndex].cards.findIndex(card => card.finish === finish)
         const conditionIndex = collection[cardIndex].cards[finishIndex].conditions.findIndex(card => card.condition === condition)
-        collection[cardIndex].cards[finishIndex].conditions[conditionIndex].amount = amount
+        collection[cardIndex].cards[finishIndex].conditions[conditionIndex].amount += amount
     }
         
     saveCollectionToStorage(collection)

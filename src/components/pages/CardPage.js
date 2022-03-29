@@ -41,7 +41,7 @@ const CardPage = () => {
                         alt={`${card.name}-${card.set}`}
                     />
                     <CollectedList collected={card.collected} />
-                    <AddToCollection />
+                    <AddToCollection id={cardId.id} />
                     <div id='external links' className='w-96 p-2 flex flex-col space-y-1'>
                         {card.external_links.scryfall &&
                             <ExternalLink href={card.external_links.scryfall} externalParty="Scryfall" imageLocation={"https://assets.scryfall.com/favicon.ico"} />}
