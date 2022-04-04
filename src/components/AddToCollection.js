@@ -24,7 +24,7 @@ export default function AddToCollection({ id }) {
       >
         Add to collection
       </div>
-      <div className="flex flex-wrap py-1 px-4 border border-primary justify-between items-center">
+      <div className="flex flex-wrap py-2 px-2 border border-primary justify-between items-center">
         <div className="flex flex-wrap space-x-4 items-center">
           <MyListbox values={finishes} label="Finish" />
 
@@ -44,10 +44,10 @@ export default function AddToCollection({ id }) {
             <Language language={"EN"} />
           </div>
         </div>
-        <div id="edit" className="w-10 text-center">
+        <div id="add" className="text-center">
           <button
             onClick={handleAddToCollection}
-            className="px-2 rounded-lg bg-primary text-light hover:underline"
+            className="px-2 rounded bg-primary text-light hover:underline"
           >
             Add
           </button>
