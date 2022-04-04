@@ -47,7 +47,7 @@ export default function SearchResultImageItem(props) {
                 state={card}
             >
                 <CardImage
-                    className="rounded-xl shadow-gray-700 shadow-md"
+                    className="rounded-xl shadow-dark shadow-md"
                     src={card.img}
                     alt={`${card.name}-${card.set}`}
                 />

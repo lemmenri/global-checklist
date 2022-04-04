@@ -21,3 +21,56 @@ TODO: fix cardNameSearch bugs (clear input field, hide options when not active)
 TODO: move api calls and procces function to seperate file
 TODO: add language support to opening cards in new tab
 TOOD: move toggle styling to central location
+
+
+
+
+
+
+Notes on Redux: 
+
+// Define an initial state value for the app
+const initialState = {
+  value: 0
+}
+
+// Create a reducer function that determins what the new state should be when something happens in the app
+function counterReducer(state = initialState, action) {
+  switch (action.type) {
+    case 'counter/incremented':
+      return { ...state, value: state.value + 1 }
+    case 'counter/decremented':
+      return { ...state, value: state.value - 1 }
+    default:
+      return state
+  }
+}
+
+// Create a new Redux store with the 'createStore' function, and use the 'counterReducer' for the update logic
+const store = Redux.createStore(counterReducer)
+
+// Using the store in the UI
+function render() {
+  const state  store.getState()
+  // do something with the state
+}
+render()
+store.subscribe(render)
+
+// Dispatch actions
+store.dispatch({ type: 'counter/incremented' })
+
+
+
+Add the @reduxjs/toolkit and react-redux packages
+Create a Redux store using RTK's configureStore API, and pass in at least one reducer function
+Import the Redux store into your application's entry point file (such as src/index.js)
+Wrap your root React component with the <Provider> component from React-Redux, like:
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+)
+

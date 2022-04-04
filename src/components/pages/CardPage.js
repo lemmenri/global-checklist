@@ -6,21 +6,28 @@ import { ExternalLink } from '../ExternalLink'
 import { mapDataToCardObject } from '../../scripts/MapDataToCardObject'
 import CollectedList from '../CollectedList'
 import AddToCollection from '../AddToCollection'
+import { getCardById } from '../../scripts/Collection'
 
 const CardPage = () => {
     const cardId = useParams()
     const [card, setCard] = useState(useLocation().state)
     const [isDataLoaded, setIsDataLoaded] = useState(card === null ? false : true)
+    const [collected, setCollected] = useState({})
 
     const fetchCardDataById = (id) => {
         fetch(`https://api.scryfall.com/cards/${id}`)
             .then((res) => res.json())
             .then((json) => setCard(mapDataToCardObject(json)))
             .then(() => setIsDataLoaded(true))
+            .then(() => setCollected(getCardById("64a6c831-18a5-44d1-aac4-afb018bc93c7")))
+            .then(() => console.log(collected))
+            .then(() => console.log(card))
     }
 
-    if (card === null) { fetchCardDataById(cardId.id) }
-    console.log(card)
+    if (card === null) {
+        setCard({})
+        fetchCardDataById(cardId.id)
+    }
 
     return (
         <div className="p-4 sm:p-8 flex-grow bg-light">
@@ -36,7 +43,7 @@ const CardPage = () => {
                         {`\xa0${card.set_name} - #${card.nr} - ${card.rarity}`}
                     </p>
                     <CardImage
-                        className="rounded-2xl w-96"
+                        className="rounded-2xl w-96 shadow-dark shadow-md my-2"
                         src={card.img}
                         alt={`${card.name}-${card.set}`}
                     />

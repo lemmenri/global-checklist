@@ -8,6 +8,7 @@ export default function CardnameSearch() {
     const [cardNames, setCardNames] = useState("")
     const [selectedCardname, setSelectedCardname] = useState(void 0);
     const [query, setQuery] = useState("")
+    const [showResults, setShowResults] = useState(true)
 
     useEffect(() => {
         fetch("https://api.scryfall.com/catalog/card-names")
@@ -22,14 +23,20 @@ export default function CardnameSearch() {
     return (
         <Combobox
             value={selectedCardname}
-            onChange={setSelectedCardname}
+            onChange={(value) => {
+                setSelectedCardname(value)
+                setQuery(value)
+                setShowResults(false)
+            }}
             as="div"
             className="rounded-lg overflow-hidden outline outline-dark outline-1"
         >
             <div className='flex items-center'>
                 <Combobox.Input
                     onChange={(event) => {
+                        setSelectedCardname(undefined)
                         setQuery(event.target.value)
+                        setShowResults(true)
                     }}
                     className=" text-sm w-full bg-light border-0 focus:ring-2 focus:ring-dark ml-0.5 rounded-l-md"
                     placeholder="Search cards..."
@@ -41,7 +48,7 @@ export default function CardnameSearch() {
                     <SearchIcon className='h-6 w-6' />
                 </div>
             </div>
-            {filteredCardNames.length > 0 && 
+            {filteredCardNames.length > 0 && showResults &&
                 <Combobox.Options static className=" text-sm max-h-72 overflow-y-auto">
                     {Object.values(filteredCardNames.slice(0, maxDisplayedResults)).map((cardName, index) => (
                         <Combobox.Option key={index} value={cardName}>
