@@ -33,7 +33,7 @@ const languages = [
   { id: 11, name: "ZHT", value: "ZHT", type: "language" },
 ];
 
-export default function AddToCollection({ id }) {
+export default function AddToCollection({ id, onChange }) {
   const [finish, setFinish] = useState(finishes[0]);
   const [quantity, setQuantity] = useState(1);
   const [condition, setCondition] = useState(conditions[1]);
@@ -43,6 +43,7 @@ export default function AddToCollection({ id }) {
     console.log(
       `Added ${quantity} ${condition.value} ${finish.value} copies of card ${id}`
     );
+    onChange();
   };
 
   return (

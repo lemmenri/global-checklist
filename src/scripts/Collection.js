@@ -46,7 +46,7 @@ export const addCardToCollection = (id, finish, condition, amount) => {
     ].conditions.findIndex((card) => card.condition === condition);
     collection[cardIndex].cards[finishIndex].conditions[
       conditionIndex
-    ].amount += amount;
+    ].amount += parseInt(amount);
   }
 
   saveCollectionToStorage(collection);
