@@ -10,19 +10,44 @@ DONE: add autocomplete / suggestions to card search (using headlessUI combobox?)
 DONE: add counting of total versions in search results
 DONE: implement datamodel
 DONE: add card to datamodel
+DONE: fix cardNameSearch bugs (clear input field, hide options when not active)
 
 IN PROGRESS: add collection state
-IN PROGRESS: remove card from datamodel
+IN PROGRESS: remove card from collection
 
+TODO: handle different conditions when listing collected copies on card page
+TODO: move finishes, conditions and languages to enum
 TODO: handle multiple pages in search results
 TODO: handle going back from card details to search results
 TODO: handle empty search query
-TODO: fix cardNameSearch bugs (clear input field, hide options when not active)
 TODO: move api calls and procces function to seperate file
 TODO: add language support to opening cards in new tab
-TOOD: move toggle styling to central location
+TOOD: move toggle to seperate component (consider using headlessUI toggle component)
 
 
+
+
+Data model collection:
+
+"collection": {
+  "user": ""
+  "cards": [
+    {
+      "id": "abcd",
+      "name": "",
+      "set": "",
+      "nr": "",
+      "language": "",
+      "collected": [
+        {
+          "finish": "",
+          "quantity": "",
+          "condition": "",
+        }
+      ]
+    },
+  ]
+}
 
 
 

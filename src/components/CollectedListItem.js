@@ -45,8 +45,8 @@ export default function CollectedListItem({
           <Language language={language} />
         </div>
       </div>
-      <div id="edit" className="text-center">
-        <button className="p-1 rounded hover:text-light hover:bg-dark">
+      <div id="edit">
+        <button className="p-1 rounded hover:outline hover:outline-dark hover:outline-2">
           <PencilAltIcon className="h-6 w-6" />
         </button>
       </div>
