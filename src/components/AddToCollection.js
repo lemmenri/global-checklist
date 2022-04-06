@@ -37,8 +37,10 @@ export default function AddToCollection({ id, onChange }) {
   const [finish, setFinish] = useState(finishes[0]);
   const [quantity, setQuantity] = useState(1);
   const [condition, setCondition] = useState(conditions[1]);
+  const [language, setLanguage] = useState(languages[0]);
 
-  const handleAddToCollection = () => {
+  const handleAddToCollection = (e) => {
+    e.preventDefault();
     addCardToCollection(id, finish.value, condition.value, quantity);
     console.log(
       `Added ${quantity} ${condition.value} ${finish.value} copies of card ${id}`
@@ -90,12 +92,17 @@ export default function AddToCollection({ id, onChange }) {
           />
         </div>
         <div className="flex items-center">
-          <TextListBox id="language" values={languages} label="Language" />
+          <TextListBox
+            id="language"
+            values={languages}
+            label="Language"
+            onChange={setLanguage}
+          />
         </div>
         <div id="add" className="text-center">
           <button
             onClick={handleAddToCollection}
-            className="px-6 py-0.5 rounded bg-primary text-light hover:underline"
+            className="bg-primary text-light my-2 px-8 rounded-lg hover:underline"
           >
             Add
           </button>

@@ -31,6 +31,14 @@ const CardPage = () => {
     fetchCardDataById(cardId.id);
   }
 
+  const handleAddToCollection = () => {
+    setIsDataLoaded(false);
+    setCard(null);
+    //setCollected(getCardById(cardId.id));
+    console.log(collected);
+    console.log(card.collected);
+  };
+
   return (
     <div className="p-4 sm:p-8 flex-grow bg-light">
       {isDataLoaded ? (
@@ -50,13 +58,7 @@ const CardPage = () => {
             alt={`${card.name}-${card.set}`}
           />
           <CollectedList collected={card.collected} />
-          <AddToCollection
-            id={cardId.id}
-            onChange={() => {
-              setIsDataLoaded(false);
-              setCard(null);
-            }}
-          />
+          <AddToCollection id={cardId.id} onChange={handleAddToCollection} />
           <div id="external links" className="w-96 p-2 flex flex-col space-y-1">
             {card.external_links.scryfall && (
               <ExternalLink

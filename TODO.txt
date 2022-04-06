@@ -27,30 +27,6 @@ TOOD: move toggle to seperate component (consider using headlessUI toggle compon
 
 
 
-Data model collection:
-
-"collection": {
-  "user": ""
-  "cards": [
-    {
-      "id": "abcd",
-      "name": "",
-      "set": "",
-      "nr": "",
-      "language": "",
-      "collected": [
-        {
-          "finish": "",
-          "quantity": "",
-          "condition": "",
-        }
-      ]
-    },
-  ]
-}
-
-
-
 
 Notes on Redux: 
 
