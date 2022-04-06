@@ -20,23 +20,100 @@ collection: {
   ]
 }
 
-createCollection() => true/false
-hasCollection() => true/false
-addCard(cardObject) => true/false
-getCard(id) => cardObject/null
-getCard(set, nr, language) => cardObject/null
-updateCard(cardObject) => true/false
-removeCard(id) => true/false
-removeCard(set, nr, language) => true/false
-removeCard(id, finish, condition) => true/false
-removeCard(set, nr, language, finish, condition) => true/false
-getCollectionCount() => int
-getCardCount(id) => int
-getCardCount(set, nr, language) => int
-getScryfallCard(id) => scryfallCardObject
+Functions:
 
-// List of id's of other languages of provided card
-getOtherLanguages(id) => {
+// Returns all cards in getCollection
+// Returns null if no cards in collection
+export const getCollection = () => JSON.parse(localStorage.getItem("collection")).cards
+
+// Update collection or create one of none exist already
+export const updateCollection = (collection) => localStorage.setItem("collection", JSON.stringify(collection))
+
+// Returns an Card object for the provided id
+// Returns null if card is not found in collection
+export const getCard = (id) => {
+    collection = getCollection()
+    if (collection === null) return null
+    return collection.cards.filter(card => card.id === id)
+}
+
+// Returns an Card object for the provided set, nr, language combination
+// Returns null if card is not found in collection
+export const getCard = (set, nr, language) => {
+    collection = getCollection()
+    if (collection === null) return null
+    return collection.cards.filter(card => {
+        card.set === set &&
+        card.nr === nr &&
+        card.language === language
+    })
+}
+
+// Adds card to collection
+// Card objects requires an id, name, set, nr, language and a collected array
+export const addCard = (card) => {}
+
+
+// Replaces existing card data with new card data
+export const updateCard = (card) => {}
+
+
+// Removes all versions of provided card from collection
+export const removeCard = (id) => {}
+
+
+// Removes specific version of a card from collection
+export const removeCardVersion = (id, finish, condition) => {}
+
+
+// Returns the total number of collected cards
+// Returns 0 if no cards in collection
+export const getCollectionCount = () => {
+    const cards = getCollection()
+    if (cards === null) return 0
+    count = 0
+    cards.forEach(card => {
+        card.collected.forEach(collectedCard => {
+            count += collectedCard.quantity
+        })
+    })
+    return count
+}
+
+// Returns an int with the sum of all collected copies of this card
+// Returns 0 if card is not in collection
+export const getCardCount = (id) => {
+    const cards = getCard(id)
+    if (card === null) return 0
+    count = 0
+    cards.collected.forEach(card => {
+        count += card.quantity
+    })
+    return count
+}
+
+// Returns an int with the sum of all collected copies of this card with a particular finish
+// Returns 0 if card is not in collection
+export const getCardCountFinish = (id, finish) => {
+    const cards = getCard(id)
+    if (card === null) return 0
+    count = 0
+    cards.collected.filter(card => {
+        card.finish === finish
+    }).forEach(card => {
+        count += card.quantity
+    })
+    return count
+}
+
+// Returns the raw scryfall data for the provided card id
+export const getScryfallCard = (id) => {
+    return fetch(`https://api.scryfall.com/cards/${id}`)
+      .then((res) => res.json())
+}
+
+// Returns a list of id's of other languages of provided card
+export const getOtherLanguages = (id) => {
     const cardList = []
     const scryfallCardData = getScryfallCard(id)
     const scryfallUrl = `https://api.scryfall.com/cards/search?q=set%3A${scryfallCardData.set}+cn%3A${scryfallCardData.collector_number}&unique=prints&include_multilingual=true`
@@ -54,7 +131,7 @@ getOtherLanguages(id) => {
 }
 
 // List of all collected finishes / languages / conditions of provided card
-getCollectedList(id) => {
+export const getCollectedList = (id) => {
     const collected = []
     const otherLanguages = getOtherLanguages(id)
     otherLanguages.forEach(card => {
@@ -73,6 +150,8 @@ getCollectedList(id) => {
     })
     return collected
 }
+
+
 
 
 Data model card data:
