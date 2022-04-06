@@ -1,0 +1,106 @@
+Data model collection:
+
+collection: {
+  user: "name"
+  cards: [
+    {
+      id: "bd43d44b-de27-4139-9cb8-b1f4c04fb87e",
+      name: "Blightbeetle",
+      set: "M20",
+      nr: "87",
+      language: "EN",
+      collected: [
+        {
+          finish: "nonfoil",
+          quantity: "1",
+          condition: "NM",
+        },
+      ]
+    },
+  ]
+}
+
+createCollection() => true/false
+hasCollection() => true/false
+addCard(cardObject) => true/false
+getCard(id) => cardObject/null
+getCard(set, nr, language) => cardObject/null
+updateCard(cardObject) => true/false
+removeCard(id) => true/false
+removeCard(set, nr, language) => true/false
+removeCard(id, finish, condition) => true/false
+removeCard(set, nr, language, finish, condition) => true/false
+getCollectionCount() => int
+getCardCount(id) => int
+getCardCount(set, nr, language) => int
+getScryfallCard(id) => scryfallCardObject
+
+// List of id's of other languages of provided card
+getOtherLanguages(id) => {
+    const cardList = []
+    const scryfallCardData = getScryfallCard(id)
+    const scryfallUrl = `https://api.scryfall.com/cards/search?q=set%3A${scryfallCardData.set}+cn%3A${scryfallCardData.collector_number}&unique=prints&include_multilingual=true`
+    fetch(scryfallUrl)
+    .then((res) => res.json())
+    .then((json) => {
+        json.data.forEach(card => {
+            cardList.push({
+                language: card.lang,
+                id: card.id
+            })
+        })
+    })
+    return cardList
+}
+
+// List of all collected finishes / languages / conditions of provided card
+getCollectedList(id) => {
+    const collected = []
+    const otherLanguages = getOtherLanguages(id)
+    otherLanguages.forEach(card => {
+        const cardObject = getCard(card.id)
+        // Check if card is in collection
+        if (cardObject) { 
+            cardObject.collected.forEach(collectedCard => {
+                collected.push({
+                    finish: collectedCard.finish,
+                    quantity: collectedCard.quantity,
+                    condition: collectedCard.condition,
+                    language: cardObject.language
+                })
+            })
+        }
+    })
+    return collected
+}
+
+
+Data model card data:
+// Is dit uberhaubt nodig of kunnen we af met de raw_data?
+card: {
+    name: "",
+    id: "",
+    set: "",
+    set_name: "",
+    collector_number: "",
+    rarity: "",
+    prices: {
+        eur: "",
+        eur_foil: "",
+        usd: "",
+        usd_foil: "",
+        usd_etched: "",
+    }
+    img: "",
+    external_links: {
+        scryfall: "",
+        cardmarket: "",
+        tcgplayer: "",
+        gatherer: "",
+    }
+
+    // other_languages onderbrengen in losse functie?
+    other_languages: {
+        [language]: "id",
+    }
+}
