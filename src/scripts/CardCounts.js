@@ -2,14 +2,14 @@ import { getCardById } from "./CollectedCards";
 import { getCollection } from "./Collection";
 
 // Returns the total number of collected cards
-// Returns 0 if no cards in collection
+// Returns 0 if no cards in collection or no collection is found
 export const getCollectionCount = () => {
-  const cards = getCollection().cards;
-  if (cards === null) return 0;
+  const collection = getCollection();
+  if (!collection || collection.cards.length === 0) return 0;
   let count = 0;
-  cards.forEach((card) => {
+  collection.cards.forEach((card) => {
     card.collected.forEach((collectedCard) => {
-      count += collectedCard.quantity;
+      count += parseInt(collectedCard.quantity);
     });
   });
   return count;
@@ -19,10 +19,10 @@ export const getCollectionCount = () => {
 // Returns 0 if card is not in collection
 export const getCardCount = (id) => {
   const cards = getCardById(id);
-  if (cards === null) return 0;
+  if (!cards) return 0;
   let count = 0;
   cards.collected.forEach((card) => {
-    count += card.quantity;
+    count += parseInt(card.quantity);
   });
   return count;
 };
@@ -31,12 +31,12 @@ export const getCardCount = (id) => {
 // Returns 0 if card is not in collection
 export const getCardCountFinish = (id, finish) => {
   const cards = getCardById(id);
-  if (cards === null) return 0;
+  if (!cards) return 0;
   let count = 0;
   cards.collected
     .filter((card) => card.finish === finish)
     .forEach((card) => {
-      count += card.quantity;
+      count += parseInt(card.quantity);
     });
   return count;
 };

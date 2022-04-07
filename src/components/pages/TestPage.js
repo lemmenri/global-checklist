@@ -29,8 +29,40 @@ export default function TestPage() {
   const handleCreateCollection = () => createCollection();
   const handleGetCollection = () => console.log(getCollection());
   const handleUpdateCollection = () => {
-    updateCollection(getCollection());
-    console.log("TODO: handle update collection with new data");
+    const newCollection = {
+      user: "name",
+      cards: [
+        {
+          id: "bd43d44b-de27-4139-9cb8-b1f4c04fb87e",
+          name: "Blightbeetle",
+          set: "M20",
+          nr: "87",
+          language: "EN",
+          collected: [
+            {
+              finish: "nonfoil",
+              quantity: "1",
+              condition: "NM",
+            },
+          ]
+        },
+        {
+          id: "feefe9f0-24a6-461c-9ef1-86c5a6f33b83",
+          name: "Birds of Paradise",
+          set: "cn2",
+          nr: "176",
+          language: "EN",
+          collected: [
+            {
+              finish: "foil",
+              quantity: "1",
+              condition: "EX",
+            },
+          ]
+        },
+      ]
+    }
+    updateCollection(newCollection);
   };
   const handleDeleteCollection = () => deleteCollection();
 

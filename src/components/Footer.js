@@ -11,6 +11,8 @@ export default function Footer() {
                 <br />
                 Icons by Heroicons
                 <br />
+                Prices by Cardmarket and TCGPlayer
+                <br />
                 <br />
                 All other content © {new Date().getFullYear()} MTG-Library.
             </p>

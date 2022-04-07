@@ -8,23 +8,25 @@ export const addCard = (card) => {
 };
 
 // Returns an Card object for the provided id
-// Returns null if card is not found in collection
+// Returns undefined if no collection or no cards incollection
+// Returns undefined if card is not found in collection
 export const getCardById = (id) => {
-  const collection = getCollection().cards;
-  if (collection.length === 0) return null;
-  return collection.cards.filter((card) => card.id === id);
+  const collection = getCollection();
+  if (!collection || collection.cards.length === 0) return undefined;
+  return collection.cards.find((card) => card.id === id);
 };
 
 // Returns an Card object for the provided set, nr, language combination
-// Returns null if card is not found in collection
+// Returns undefined if no collection or no cards incollection
+// Returns undefined if card is not found in collection
 export const getCardBySetNrLanguage = (set, nr, language) => {
-  const collection = getCollection().cards;
-  if (collection.length === 0) return null;
-  return collection.cards.filter(
+  const collection = getCollection();
+  if (!collection || collection.cards.length === 0) return undefined;
+  return collection.cards.find(
     (card) =>
       card.set === set &&
       card.nr === nr &&
-      card.language.toLowCase() === language.toLowCase()
+      card.language.toLowerCase() === language.toLowerCase()
   );
 };
 
@@ -57,12 +59,10 @@ export const updateCard = (card) => {
 
 // Removes all versions of provided card from collection
 export const removeCard = (id) => {
-  const collection = getCollection();
-  const index = collection.cards.indexOf(getCardById(id));
-  if (index > -1) {
-    collection.cards.splice(index, 1);
-    updateCollection(collection);
-  }
+  const collection = getCollection()
+  if (!collection) return
+  collection.cards = collection.cards.filter(card => card.id !== id)
+  updateCollection(collection)
 };
 
 // Removes specific version of a card from collection
