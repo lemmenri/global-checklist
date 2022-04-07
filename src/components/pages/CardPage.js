@@ -6,7 +6,7 @@ import { ExternalLink } from "../ExternalLink";
 import { mapDataToCardObject } from "../../scripts/MapDataToCardObject";
 import CollectedList from "../CollectedList";
 import AddToCollection from "../AddToCollection";
-import { getCardById } from "../../scripts/Collection";
+import { getCardById } from "../../scripts/CollectionOld";
 
 const CardPage = () => {
   const cardId = useParams();

@@ -2,7 +2,10 @@ import React from "react";
 import SearchResults from "../SearchResults";
 import { Loading } from "../Loading";
 import CardnameSearch from "../CardnameSearch";
-import { addCardToCollection, getAmountOfCard } from "../../scripts/Collection";
+import {
+  addCardToCollection,
+  getAmountOfCard,
+} from "../../scripts/CollectionOld";
 import { mapDataToCardObject } from "../../scripts/MapDataToCardObject";
 
 export default class SearchPage extends React.Component {

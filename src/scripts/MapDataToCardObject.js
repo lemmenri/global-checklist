@@ -1,4 +1,4 @@
-import { getAmountOfCard } from "./Collection";
+import { getAmountOfCard } from "./CollectionOld";
 
 export const mapDataToCardObject = (card) => {
   return {

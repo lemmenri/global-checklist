@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { addCardToCollection } from "../scripts/Collection";
+import { addCardToCollection } from "../scripts/CollectionOld";
 import TextListBox from "./ListBox";
 
 const finishes = [
