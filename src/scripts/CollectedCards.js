@@ -115,8 +115,12 @@ export const getCollectedCardList = async (id) => {
 };
 
 // Replaces existing card data with new card data
+// Adds new card if existing card doesn't exist
+// Merges with other already existing versions
+// Note not usable to change language of a card
 export const updateCard = (card, newCard) => {
-  // TODO
+  removeCardVersion(card.id, card.finish, card.condition);
+  addCard(newCard);
 };
 
 // Removes all versions of provided card from collection

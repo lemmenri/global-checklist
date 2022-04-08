@@ -12,6 +12,7 @@ import {
   hasVersion,
   removeCard,
   removeCardVersion,
+  updateCard,
 } from "../../scripts/CollectedCards";
 import {
   createCollection,
@@ -123,7 +124,22 @@ export default function TestPage() {
     );
   };
   const handleUpdateCard = () => {
-    console.log("TODO: handleUpdateCard");
+    const card = {
+      id: "feefe9f0-24a6-461c-9ef1-86c5a6f33b83",
+      finish: "nonfoil",
+      condition: "MT",
+    };
+    const newCard = {
+      id: "feefe9f0-24a6-461c-9ef1-86c5a6f33b83",
+      name: "Birds of Paradise",
+      set: "cn2",
+      nr: "176",
+      language: "EN",
+      finish: "foil",
+      quantity: 5,
+      condition: "PO",
+    };
+    updateCard(card, newCard);
   };
   const handleRemoveCard = () => {
     removeCard("feefe9f0-24a6-461c-9ef1-86c5a6f33b83");
