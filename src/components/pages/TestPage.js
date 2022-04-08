@@ -58,6 +58,30 @@ export default function TestPage() {
               quantity: "1",
               condition: "EX",
             },
+            {
+              finish: "foil",
+              quantity: "1",
+              condition: "NM",
+            },
+            {
+              finish: "nonfoil",
+              quantity: "1",
+              condition: "EX",
+            },
+          ],
+        },
+        {
+          id: "dbc88984-0fb8-42ee-8ecb-5b8d67465b43",
+          name: "Birds of Paradise",
+          set: "cn2",
+          nr: "176",
+          language: "JA",
+          collected: [
+            {
+              finish: "nonfoil",
+              quantity: "1",
+              condition: "MT",
+            },
           ],
         },
       ],
@@ -77,10 +101,9 @@ export default function TestPage() {
     console.log(getCardBySetNrLanguage("cn2", "176", "EN"));
   };
   const handleGetCollectedCardList = () => {
-    console.log(
-      "TODO: fix getOtherLanguages and rewrite to support async request"
+    getCollectedCardList("feefe9f0-24a6-461c-9ef1-86c5a6f33b83").then((res) =>
+      console.log(res)
     );
-    console.log(getCollectedCardList("feefe9f0-24a6-461c-9ef1-86c5a6f33b83"));
   };
   const handleUpdateCard = () => {
     console.log("TODO: handleUpdateCard");

@@ -32,23 +32,25 @@ export const getCardBySetNrLanguage = (set, nr, language) => {
 
 // List of all collected finishes / languages / conditions of provided card
 // Returns empty array if card is not in collection
-export const getCollectedCardList = (id) => {
+export const getCollectedCardList = async (id) => {
   const collected = [];
-  const otherLanguages = getOtherLanguages(id);
-  otherLanguages.forEach((card) => {
-    const cardObject = getCardById(card.id);
-    // Check if card is in collection
-    if (cardObject) {
-      cardObject.collected.forEach((collectedCard) => {
-        collected.push({
-          finish: collectedCard.finish,
-          quantity: collectedCard.quantity,
-          condition: collectedCard.condition,
-          language: cardObject.language,
+
+  await getOtherLanguages(id).then((languages) =>
+    languages.forEach((card) => {
+      const cardObject = getCardById(card.id);
+      // Check if card is in collection
+      if (cardObject) {
+        cardObject.collected.forEach((collectedCard) => {
+          collected.push({
+            finish: collectedCard.finish,
+            quantity: collectedCard.quantity,
+            condition: collectedCard.condition,
+            language: cardObject.language,
+          });
         });
-      });
-    }
-  });
+      }
+    })
+  );
   return collected;
 };
 
@@ -59,10 +61,10 @@ export const updateCard = (card) => {
 
 // Removes all versions of provided card from collection
 export const removeCard = (id) => {
-  const collection = getCollection()
-  if (!collection) return
-  collection.cards = collection.cards.filter(card => card.id !== id)
-  updateCollection(collection)
+  const collection = getCollection();
+  if (!collection) return;
+  collection.cards = collection.cards.filter((card) => card.id !== id);
+  updateCollection(collection);
 };
 
 // Removes specific version of a card from collection
