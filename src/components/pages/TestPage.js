@@ -9,6 +9,7 @@ import {
   getCardBySetNrLanguage,
   getCollectedCardList,
   removeCard,
+  removeCardVersion,
 } from "../../scripts/CollectedCards";
 import {
   createCollection,
@@ -112,7 +113,7 @@ export default function TestPage() {
     removeCard("feefe9f0-24a6-461c-9ef1-86c5a6f33b83");
   };
   const handleRemoveCardVersion = () => {
-    console.log("TODO: handleRemoveCardVersion");
+    removeCardVersion("feefe9f0-24a6-461c-9ef1-86c5a6f33b83", "foil", "EX");
   };
 
   // CardCounts

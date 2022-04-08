@@ -69,5 +69,19 @@ export const removeCard = (id) => {
 
 // Removes specific version of a card from collection
 export const removeCardVersion = (id, finish, condition) => {
-  // TODO
+  const collection = getCollection();
+  if (
+    !collection ||
+    collection.cards.findIndex((card) => card.id === id) === -1
+  )
+    return;
+  collection.cards[
+    collection.cards.findIndex((card) => card.id === id)
+  ].collected = collection.cards
+    .find((card) => card.id === id)
+    .collected.filter(
+      (version) =>
+        !(version.finish === finish && version.condition === condition)
+    );
+  updateCollection(collection);
 };
