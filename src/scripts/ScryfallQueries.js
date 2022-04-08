@@ -6,19 +6,28 @@ export const getScryfallCard = (id) => {
 };
 
 // Returns a list of id's of other languages of provided card
-export const getOtherLanguages = (id) => {
+export const getOtherLanguages = async (id) => {
   const cardList = [];
-  const scryfallCardData = getScryfallCard(id);
-  const scryfallUrl = `https://api.scryfall.com/cards/search?q=set%3A${scryfallCardData.set}+cn%3A${scryfallCardData.collector_number}&unique=prints&include_multilingual=true`;
-  fetch(scryfallUrl)
-    .then((res) => res.json())
-    .then((json) => {
-      json.data.forEach((card) => {
-        cardList.push({
-          language: card.lang,
-          id: card.id,
-        });
-      });
-    });
+  let scryfallCardData = {};
+  let scryfallUrl = "";
+
+  await getScryfallCard(id)
+    .then((res) => (scryfallCardData = res))
+    .then(
+      () =>
+        (scryfallUrl = `https://api.scryfall.com/cards/search?q=set%3A${scryfallCardData.set}+cn%3A${scryfallCardData.collector_number}&unique=prints&include_multilingual=true`)
+    )
+    .then(() =>
+      fetch(scryfallUrl)
+        .then((res) => res.json())
+        .then((json) => {
+          json.data.forEach((card) => {
+            cardList.push({
+              language: card.lang,
+              id: card.id,
+            });
+          });
+        })
+    );
   return cardList;
 };

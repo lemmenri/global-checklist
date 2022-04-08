@@ -44,7 +44,7 @@ export default function TestPage() {
               quantity: "1",
               condition: "NM",
             },
-          ]
+          ],
         },
         {
           id: "feefe9f0-24a6-461c-9ef1-86c5a6f33b83",
@@ -58,10 +58,10 @@ export default function TestPage() {
               quantity: "1",
               condition: "EX",
             },
-          ]
+          ],
         },
-      ]
-    }
+      ],
+    };
     updateCollection(newCollection);
   };
   const handleDeleteCollection = () => deleteCollection();
@@ -107,7 +107,6 @@ export default function TestPage() {
       console.log(res)
     );
   const handleGetOtherLanguages = () => {
-    console.log("TODO: fix function to support async requests");
     getOtherLanguages("feefe9f0-24a6-461c-9ef1-86c5a6f33b83").then((res) =>
       console.log(res)
     );

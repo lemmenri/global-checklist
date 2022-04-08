@@ -36,7 +36,7 @@ export default function CardnameSearch() {
         }
       }}
       as="div"
-      className="rounded-lg overflow-hidden outline outline-dark outline-1"
+      className="rounded-lg overflow-hidden outline outline-dark outline-1 max-w-xs"
     >
       <div className="flex items-center">
         <Combobox.Input
@@ -45,7 +45,7 @@ export default function CardnameSearch() {
             setQuery(event.target.value);
             setShowResults(true);
           }}
-          className=" text-sm w-full bg-light border-0 focus:ring-2 focus:ring-dark ml-0.5 rounded-l-md"
+          className="text-sm w-full bg-light border-0 focus:ring-2 focus:ring-dark ml-0.5 rounded-l-md"
           placeholder="Search cards..."
           id="cardSearch"
           name="q"
