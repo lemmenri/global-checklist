@@ -5,9 +5,11 @@ import {
   getCollectionCount,
 } from "../../scripts/CardCounts";
 import {
+  addCard,
   getCardById,
   getCardBySetNrLanguage,
   getCollectedCardList,
+  hasVersion,
   removeCard,
   removeCardVersion,
 } from "../../scripts/CollectedCards";
@@ -42,7 +44,7 @@ export default function TestPage() {
           collected: [
             {
               finish: "nonfoil",
-              quantity: "1",
+              quantity: 1,
               condition: "NM",
             },
           ],
@@ -56,17 +58,17 @@ export default function TestPage() {
           collected: [
             {
               finish: "foil",
-              quantity: "1",
+              quantity: 1,
               condition: "EX",
             },
             {
               finish: "foil",
-              quantity: "1",
+              quantity: 1,
               condition: "NM",
             },
             {
               finish: "nonfoil",
-              quantity: "1",
+              quantity: 1,
               condition: "EX",
             },
           ],
@@ -80,7 +82,7 @@ export default function TestPage() {
           collected: [
             {
               finish: "nonfoil",
-              quantity: "1",
+              quantity: 1,
               condition: "MT",
             },
           ],
@@ -93,10 +95,24 @@ export default function TestPage() {
 
   // CollectedCards
   const handleAddCard = () => {
-    console.log("TODO: handleAddCard");
+    addCard({
+      id: "feefe9f0-24a6-461c-9ef1-86c5a6f33b83",
+      name: "Birds of Paradise",
+      set: "cn2",
+      nr: "176",
+      language: "EN",
+      finish: "nonfoil",
+      quantity: 1,
+      condition: "MT",
+    });
   };
   const handleGetCardById = () => {
     console.log(getCardById("feefe9f0-24a6-461c-9ef1-86c5a6f33b83"));
+  };
+  const handleHasVersion = () => {
+    console.log(
+      hasVersion("feefe9f0-24a6-461c-9ef1-86c5a6f33b83", "foil", "EX")
+    );
   };
   const handleGetCardBySetNrLanguage = () => {
     console.log(getCardBySetNrLanguage("cn2", "176", "EN"));
@@ -161,6 +177,9 @@ export default function TestPage() {
         </button>
         <button className={buttonStyling} onClick={handleGetCardById}>
           Get Card By Id
+        </button>
+        <button className={buttonStyling} onClick={handleHasVersion}>
+          Has Version
         </button>
         <button
           className={buttonStyling}
