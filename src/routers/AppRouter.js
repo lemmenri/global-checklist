@@ -28,8 +28,3 @@ const AppRouter = () => (
 );
 
 export default AppRouter;
-
-// create Header component
-// create HomePage
-// create CardPage
-// wire everything up

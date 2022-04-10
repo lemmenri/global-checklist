@@ -5,7 +5,8 @@ import Condition from "./Condition";
 import Language from "./Language";
 
 export default function TextListBox({ values, label, id, onChange }) {
-  const [selected, setSelected] = useState(values[0]);
+  const defaultValue = values[0].type === "condition" ? 1 : 0;
+  const [selected, setSelected] = useState(values[defaultValue]);
 
   return (
     <Listbox
