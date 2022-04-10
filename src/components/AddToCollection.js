@@ -19,21 +19,7 @@ const conditions = [
   { id: 7, name: "PO", value: "PO", type: "condition" },
 ];
 
-const languages = [
-  { id: 1, name: "EN", value: "EN", type: "language" },
-  { id: 2, name: "DE", value: "DE", type: "language" },
-  { id: 3, name: "ES", value: "ES", type: "language" },
-  { id: 4, name: "FR", value: "FR", type: "language" },
-  { id: 5, name: "IT", value: "IT", type: "language" },
-  { id: 6, name: "JA", value: "JA", type: "language" },
-  { id: 7, name: "KO", value: "KO", type: "language" },
-  { id: 8, name: "PT", value: "PT", type: "language" },
-  { id: 9, name: "RU", value: "RU", type: "language" },
-  { id: 10, name: "ZHS", value: "ZHS", type: "language" },
-  { id: 11, name: "ZHT", value: "ZHT", type: "language" },
-];
-
-export default function AddToCollection({ card }) {
+export default function AddToCollection({ card, languages }) {
   const [finish, setFinish] = useState(finishes[0]);
   const [quantity, setQuantity] = useState(1);
   const [condition, setCondition] = useState(conditions[1]);
@@ -45,7 +31,7 @@ export default function AddToCollection({ card }) {
       name: card.name,
       set: card.set,
       nr: card.collector_number,
-      language: card.lang,
+      language: language.value,
       finish: finish.value,
       quantity: parseInt(quantity),
       condition: condition.value,

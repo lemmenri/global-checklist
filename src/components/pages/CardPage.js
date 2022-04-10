@@ -7,7 +7,24 @@ import CollectedList from "../CollectedList";
 import AddToCollection from "../AddToCollection";
 import { getCardImage } from "../../scripts/CardImage";
 import { getCollectedCardList } from "../../scripts/CollectedCards";
-import { getScryfallCard } from "../../scripts/ScryfallQueries";
+import {
+  getOtherLanguages,
+  getScryfallCard,
+} from "../../scripts/ScryfallQueries";
+import Language from "../Language";
+
+const convertLanguageData = (languages) => {
+  const newList = [];
+  languages.forEach((language) =>
+    newList.push({
+      id: language.id,
+      name: language.language,
+      value: language.language,
+      type: "language",
+    })
+  );
+  return newList;
+};
 
 const CardPage = () => {
   const cardId = useParams();
@@ -17,6 +34,8 @@ const CardPage = () => {
   );
   const [collected, setCollected] = useState({});
   const [isCollectedLoaded, setIsCollectedLoaded] = useState(null);
+  const [otherLanguages, setOtherLanguages] = useState({});
+  const [isOtherLanguagesLoaded, setIsOtherLanguagesLoaded] = useState(null);
 
   if (isCollectedLoaded === null) {
     setIsCollectedLoaded(false);
@@ -29,6 +48,13 @@ const CardPage = () => {
     getScryfallCard(cardId.id)
       .then((res) => setCard(res))
       .then(() => setIsDataLoaded(true));
+  }
+
+  if (isOtherLanguagesLoaded === null) {
+    setIsOtherLanguagesLoaded(false);
+    getOtherLanguages(cardId.id)
+      .then((res) => setOtherLanguages(convertLanguageData(res)))
+      .then(() => setIsOtherLanguagesLoaded(true));
   }
 
   return (
@@ -44,6 +70,15 @@ const CardPage = () => {
             ></i>
             {`\xa0${card.set_name} - #${card.collector_number} - ${card.rarity}`}
           </p>
+          {isOtherLanguagesLoaded && (
+            <div id="languages" className="flex space-x-2">
+              {console.log(otherLanguages)}
+              {console.log(isOtherLanguagesLoaded)}
+              {otherLanguages.map((language) => (
+                <Language key={language.id} language={language.name} />
+              ))}
+            </div>
+          )}
           <CardImage
             className="rounded-2xl w-96 shadow-dark shadow-md my-2"
             src={getCardImage(card)}
@@ -56,7 +91,10 @@ const CardPage = () => {
             <Loading />
           )}
 
-          <AddToCollection card={card} />
+          {isOtherLanguagesLoaded && (
+            <AddToCollection card={card} languages={otherLanguages} />
+          )}
+
           <div id="external links" className="w-96 p-2 flex flex-col space-y-1">
             {card.scryfall_uri && (
               <ExternalLink
