@@ -5,7 +5,7 @@ import Language from "./Language";
 
 export default function CollectedListItem({
   finish,
-  amount,
+  quantity,
   condition,
   language,
 }) {
@@ -35,8 +35,11 @@ export default function CollectedListItem({
         >
           {finishSign}
         </div>
-        <div id="amount" className="w-10 text-center outline outline-1 rounded">
-          {amount}x
+        <div
+          id="quantity"
+          className="w-10 text-center outline outline-1 rounded"
+        >
+          {quantity}x
         </div>
         <div id="condition" className="w-10">
           <Condition condition={condition} />

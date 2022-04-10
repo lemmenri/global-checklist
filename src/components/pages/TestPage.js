@@ -21,8 +21,10 @@ import {
   updateCollection,
 } from "../../scripts/Collection";
 import {
+  getCardnameList,
   getOtherLanguages,
   getScryfallCard,
+  searchByCardname,
 } from "../../scripts/ScryfallQueries";
 
 export default function TestPage() {
@@ -167,6 +169,12 @@ export default function TestPage() {
       console.log(res)
     );
   };
+  const handleSearchByCardname = () => {
+    searchByCardname("Birds of Paradise").then((res) => console.log(res));
+  };
+  const handleGetCardnameList = () => {
+    getCardnameList().then((res) => console.log(res));
+  };
 
   return (
     <div className="p-4 sm:p-8 flex-grow bg-light">
@@ -235,6 +243,12 @@ export default function TestPage() {
         </button>
         <button className={buttonStyling} onClick={handleGetOtherLanguages}>
           Get other languages
+        </button>
+        <button className={buttonStyling} onClick={handleSearchByCardname}>
+          Search by cardname
+        </button>
+        <button className={buttonStyling} onClick={handleGetCardnameList}>
+          Get all cardnames
         </button>
       </div>
     </div>

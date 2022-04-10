@@ -1,8 +1,7 @@
 // Returns the raw scryfall data for the provided card id
-export const getScryfallCard = (id) => {
-  return fetch(`https://api.scryfall.com/cards/${id}`).then((res) =>
-    res.json()
-  );
+export const getScryfallCard = async (id) => {
+  const res = await fetch(`https://api.scryfall.com/cards/${id}`);
+  return await res.json();
 };
 
 // Returns a list of id's of other languages of provided card
@@ -30,4 +29,20 @@ export const getOtherLanguages = async (id) => {
         })
     );
   return cardList;
+};
+
+// Returns a list of scryfall card objects matching the search string
+export const searchByCardname = async (searchString) => {
+  const res = await fetch(
+    `https://api.scryfall.com/cards/search?order=released&q=%22${searchString.replaceAll(
+      " ",
+      "+"
+    )}%22+include%3Aextras+-is%3Adigital+lang%3Aany&unique=prints`
+  );
+  return await res.json();
+};
+
+export const getCardnameList = async () => {
+  const res = await fetch("https://api.scryfall.com/catalog/card-names");
+  return await res.json();
 };

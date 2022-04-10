@@ -3,10 +3,11 @@ import { useState } from "react";
 import CardImage from "../CardImage";
 import { Loading } from "../Loading";
 import { ExternalLink } from "../ExternalLink";
-import { mapDataToCardObject } from "../../scripts/MapDataToCardObject";
 import CollectedList from "../CollectedList";
 import AddToCollection from "../AddToCollection";
-import { getCardById } from "../../scripts/CollectionOld";
+import { getCardImage } from "../../scripts/CardImage";
+import { getCollectedCardList } from "../../scripts/CollectedCards";
+import { getScryfallCard } from "../../scripts/ScryfallQueries";
 
 const CardPage = () => {
   const cardId = useParams();
@@ -15,29 +16,20 @@ const CardPage = () => {
     card === null ? false : true
   );
   const [collected, setCollected] = useState({});
+  const [isCollectedLoaded, setIsCollectedLoaded] = useState(null);
 
-  const fetchCardDataById = (id) => {
-    fetch(`https://api.scryfall.com/cards/${id}`)
-      .then((res) => res.json())
-      .then((json) => setCard(mapDataToCardObject(json)))
-      .then(() => setIsDataLoaded(true))
-      .then(() => setCollected(getCardById(id)))
-      .then(() => console.log(collected))
-      .then(() => console.log(card));
-  };
-
-  if (card === null) {
-    setCard({});
-    fetchCardDataById(cardId.id);
+  if (isCollectedLoaded === null) {
+    setIsCollectedLoaded(false);
+    getCollectedCardList(cardId.id)
+      .then((res) => setCollected(res))
+      .then(() => setIsCollectedLoaded(true));
   }
 
-  const handleAddToCollection = () => {
-    setIsDataLoaded(false);
-    setCard(null);
-    //setCollected(getCardById(cardId.id));
-    console.log(collected);
-    console.log(card.collected);
-  };
+  if (card === null) {
+    getScryfallCard(cardId.id)
+      .then((res) => setCard(res))
+      .then(() => setIsDataLoaded(true));
+  }
 
   return (
     <div className="p-4 sm:p-8 flex-grow bg-light">
@@ -50,42 +42,48 @@ const CardPage = () => {
               title={card.set_name}
               className={"text-4xl ss ss-" + card.set}
             ></i>
-            {`\xa0${card.set_name} - #${card.nr} - ${card.rarity}`}
+            {`\xa0${card.set_name} - #${card.collector_number} - ${card.rarity}`}
           </p>
           <CardImage
             className="rounded-2xl w-96 shadow-dark shadow-md my-2"
-            src={card.img}
+            src={getCardImage(card)}
             alt={`${card.name}-${card.set}`}
           />
-          <CollectedList collected={card.collected} />
-          <AddToCollection id={cardId.id} onChange={handleAddToCollection} />
+
+          {isCollectedLoaded ? (
+            <CollectedList collected={collected} />
+          ) : (
+            <Loading />
+          )}
+
+          <AddToCollection card={card} />
           <div id="external links" className="w-96 p-2 flex flex-col space-y-1">
-            {card.external_links.scryfall && (
+            {card.scryfall_uri && (
               <ExternalLink
-                href={card.external_links.scryfall}
+                href={card.scryfall_uri}
                 externalParty="Scryfall"
                 imageLocation={"https://assets.scryfall.com/favicon.ico"}
               />
             )}
-            {card.external_links.cardmarket && (
+            {card.purchase_uris.cardmarket && (
               <ExternalLink
-                href={card.external_links.cardmarket}
+                href={card.purchase_uris.cardmarket}
                 externalParty="Cardmarket"
                 imageLocation={
                   "https://static.cardmarket.com/img/526dbb9ae52c5e62404fe903e9769807/static/misc/favicon-96x96.png"
                 }
               />
             )}
-            {card.external_links.tcgplayer && (
+            {card.purchase_uris.tcgplayer && (
               <ExternalLink
-                href={card.external_links.tcgplayer}
+                href={card.purchase_uris.tcgplayer}
                 externalParty="TCGPlayer"
                 imageLocation={"https://www.tcgplayer.com/favicon.ico"}
               />
             )}
-            {card.external_links.gatherer && (
+            {card.related_uris.gatherer && (
               <ExternalLink
-                href={card.external_links.gatherer}
+                href={card.related_uris.gatherer}
                 externalParty="Gatherer"
                 imageLocation={
                   "https://gatherer.wizards.com/Images/favicon.ico"

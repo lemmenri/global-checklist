@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Combobox } from "@headlessui/react";
 import { SearchIcon } from "@heroicons/react/outline";
+import { getCardnameList } from "../scripts/ScryfallQueries";
 
 const maxDisplayedResults = 5;
 
@@ -11,9 +12,7 @@ export default function CardnameSearch() {
   const [showResults, setShowResults] = useState(true);
 
   useEffect(() => {
-    fetch("https://api.scryfall.com/catalog/card-names")
-      .then((res) => res.json())
-      .then((json) => setCardNames(json.data));
+    getCardnameList().then((json) => setCardNames(json.data));
   }, []);
 
   const filteredCardNames = query

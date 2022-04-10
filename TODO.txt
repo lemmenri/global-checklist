@@ -11,16 +11,21 @@ DONE: add counting of total versions in search results
 DONE: implement datamodel
 DONE: add card to datamodel
 DONE: fix cardNameSearch bugs (clear input field, hide options when not active)
+DONE: add collection state
+DONE: handle different conditions when listing collected copies on card page
+DONE: move api calls and procces function to seperate file
 
-IN PROGRESS: add collection state
 IN PROGRESS: remove card from collection
+IN PROGRESS: remove old CollectionOld.js code and related code
 
-TODO: handle different conditions when listing collected copies on card page
+TODO: combine different languages of the same card in de search results page
+TOOD: auto update collected list on cardpage when adding new card to collection
+TODO: handle different languages when adding card to collection
+TODO: change default displayed value of condition in addToCollection from MT to NM
 TODO: move finishes, conditions and languages to enum
 TODO: handle multiple pages in search results
 TODO: handle going back from card details to search results
 TODO: handle empty search query
-TODO: move api calls and procces function to seperate file
 TODO: add language support to opening cards in new tab
 TOOD: move toggle to seperate component (consider using headlessUI toggle component)
 

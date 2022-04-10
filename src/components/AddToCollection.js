@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { addCardToCollection } from "../scripts/CollectionOld";
+import { addCard } from "../scripts/CollectedCards";
 import TextListBox from "./ListBox";
 
 const finishes = [
@@ -33,19 +33,23 @@ const languages = [
   { id: 11, name: "ZHT", value: "ZHT", type: "language" },
 ];
 
-export default function AddToCollection({ id, onChange }) {
+export default function AddToCollection({ card }) {
   const [finish, setFinish] = useState(finishes[0]);
   const [quantity, setQuantity] = useState(1);
   const [condition, setCondition] = useState(conditions[1]);
   const [language, setLanguage] = useState(languages[0]);
 
   const handleAddToCollection = (e) => {
-    e.preventDefault();
-    addCardToCollection(id, finish.value, condition.value, quantity);
-    console.log(
-      `Added ${quantity} ${condition.value} ${finish.value} copies of card ${id}`
-    );
-    onChange();
+    addCard({
+      id: card.id,
+      name: card.name,
+      set: card.set,
+      nr: card.collector_number,
+      language: card.lang,
+      finish: finish.value,
+      quantity: parseInt(quantity),
+      condition: condition.value,
+    });
   };
 
   return (
