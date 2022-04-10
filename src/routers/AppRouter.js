@@ -7,9 +7,11 @@ import TestPage from "../components/pages/TestPage";
 import NotFoundPage from "../components/pages/NotFoundPage";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import ScrollToTop from "../components/ScrollToTop";
 
 const AppRouter = () => (
   <BrowserRouter>
+    <ScrollToTop />
     <div className="flex flex-col h-screen justify-between">
       <Header />
       <Routes>
