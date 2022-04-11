@@ -20,9 +20,11 @@ DONE: add scroll to top when selecting a card from a long list of cards
 DONE: change default displayed value of condition in addToCollection from MT to NM
 DONE: move toggle to seperate component (consider using headlessUI toggle component)
 DONE: combine different languages of the same card in de search results page
+DONE: fix card count in search results. (doesn't include different finishes)
 
 IN PROGRESS: remove old CollectionOld.js code and related code
 
+TODO: fix adding the correct language when adding a card
 TODO: add unit tests
 TODO: remove card from collection
 TOOD: auto update collected list on cardpage when adding new card to collection
@@ -30,7 +32,6 @@ TODO: filter available finished when adding new card. Now all finishes are avail
 TODO: move finishes, conditions and languages to enum
 TODO: handle multiple pages in search results
 TODO: handle going back from card details to search results
-TODO: handle empty search query
 TODO: correctly implement button component
 TODO: fix icons for external links (and imported images in general)
 

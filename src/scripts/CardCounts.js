@@ -40,3 +40,12 @@ export const getCardCountFinish = (id, finish) => {
     });
   return count;
 };
+
+// Returns a count of the number of different versions a list of cards has including different finishes
+export const getNumberOfDifferentVersions = (cards) => {
+  let count = 0;
+  cards.forEach((card) => {
+    count += card.finishes.length;
+  });
+  return count;
+};

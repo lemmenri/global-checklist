@@ -4,6 +4,7 @@ import { Loading } from "../Loading";
 import CardnameSearch from "../CardnameSearch";
 import { searchByCardname } from "../../scripts/ScryfallQueries";
 import { groupCardsByLanguage } from "../../scripts/GroupCards";
+import { getNumberOfDifferentVersions } from "../../scripts/CardCounts";
 
 export default class SearchPage extends React.Component {
   constructor(props) {
@@ -58,7 +59,13 @@ export default class SearchPage extends React.Component {
         {this.state.dataIsLoaded && (
           <div>
             <p>
-              {`Showing results for "${this.state.search}". Found ${this.state.groupedCards?.length} different card(s) with ${this.state.searchResults?.data?.length} different version(s).`}
+              {`Showing results for "${this.state.search}". Found ${
+                this.state.groupedCards?.length
+              } different card(s) with ${
+                this.state.searchResults?.data?.length
+              } different print(s) and ${getNumberOfDifferentVersions(
+                this.state.searchResults?.data
+              )} different version(s).`}
               {this.state.searchResults.has_more &&
                 ` More printings are available (${this.state.searchResults.total_cards}). Limit your search.`}
             </p>

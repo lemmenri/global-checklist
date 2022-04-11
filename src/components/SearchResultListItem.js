@@ -8,10 +8,10 @@ import Language from "./Language";
 export default function SearchResultListItem(props) {
   const group = props.group;
 
-  const hasNonfoil = hasFinish(group, "nonfoil");
-  const hasFoil = hasFinish(group, "foil");
-  const hasEtched = hasFinish(group, "etched");
-  const hasGlossy = hasFinish(group, "glossy");
+  const hasNonfoil = group.find((card) => card.finishes.includes("nonfoil"));
+  const hasFoil = group.find((card) => card.finishes.includes("foil"));
+  const hasEtched = group.find((card) => card.finishes.includes("etched"));
+  const hasGlossy = group.find((card) => card.finishes.includes("glossy"));
 
   return (
     <div id="search-result-list-item" className="p-1 w-full">
@@ -137,9 +137,5 @@ export default function SearchResultListItem(props) {
 
   function printPrice(price, id) {
     return <p id={id}>{price !== null ? price : "\xa0"}</p>;
-  }
-
-  function hasFinish(group, finish) {
-    return group.find((card) => card.finishes.includes(finish));
   }
 }

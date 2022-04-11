@@ -3,6 +3,7 @@ import {
   getCardCount,
   getCardCountFinish,
   getCollectionCount,
+  getNumberOfDifferentVersions,
 } from "../../scripts/CardCounts";
 import {
   addCard,
@@ -159,6 +160,11 @@ export default function TestPage() {
     console.log(
       getCardCountFinish("feefe9f0-24a6-461c-9ef1-86c5a6f33b83", "foil")
     );
+  const handleGetNumberOfDifferentVersions = () => {
+    searchByCardname("Birds of Paradise").then((res) =>
+      console.log(getNumberOfDifferentVersions(res.data))
+    );
+  };
 
   // ScryfallQueries
   const handleGetScryfallCard = () =>
@@ -242,6 +248,12 @@ export default function TestPage() {
         </button>
         <button className={buttonStyling} onClick={handleGetCardCountFinish}>
           Get Card Count for Finish
+        </button>
+        <button
+          className={buttonStyling}
+          onClick={handleGetNumberOfDifferentVersions}
+        >
+          Get Number of Different Versions
         </button>
       </div>
       <p>Scryfall queries:</p>
