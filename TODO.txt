@@ -18,19 +18,19 @@ DONE: add language support to opening cards in new tab
 DONE: handle different languages when adding card to collection
 DONE: add scroll to top when selecting a card from a long list of cards
 DONE: change default displayed value of condition in addToCollection from MT to NM
+DONE: move toggle to seperate component (consider using headlessUI toggle component)
 
-IN PROGRESS: remove card from collection
 IN PROGRESS: remove old CollectionOld.js code and related code
+IN PROGRESS: combine different languages of the same card in de search results page
 
-TODO: combine different languages of the same card in de search results page
+TODO: remove card from collection
 TOOD: auto update collected list on cardpage when adding new card to collection
 TODO: filter available finished when adding new card. Now all finishes are availble even if the card doesn't have that finish
 TODO: move finishes, conditions and languages to enum
 TODO: handle multiple pages in search results
 TODO: handle going back from card details to search results
 TODO: handle empty search query
-TOOD: move toggle to seperate component (consider using headlessUI toggle component)
-
+TODO: correctly implement button component
 
 
 

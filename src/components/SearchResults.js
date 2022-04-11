@@ -1,7 +1,7 @@
 import React from "react";
 import SearchResultListItem from "./SearchResultListItem";
 import SearchResultImageItem from "./SearchResultImageItem";
-import { Toggle } from "react-toggle-component";
+import SimpleToggle from "./Toggle";
 
 export default class SearchResults extends React.Component {
   constructor(props) {
@@ -16,27 +16,12 @@ export default class SearchResults extends React.Component {
     return (
       <div>
         {this.props.searchResults.length > 0 && (
-          <>
-            <label htmlFor="toggle-list-view">Image view</label>
-            <Toggle
-              name="toggle-list-view"
-              width="32px"
-              height="16px"
-              leftBackgroundColor="#06746B"
-              rightBackgroundColor="#E7EAEE"
-              borderWidth="1px"
-              borderColor="#042A33"
-              knobWidth="12px"
-              knobHeight="12px"
-              knobGap="18px"
-              leftKnobColor="#E7EAEE"
-              rightKnobColor="#042A33"
-              checked={true}
-              onToggle={() => {
-                this.setState({ listView: !this.state.listView });
-              }}
-            />
-          </>
+          <SimpleToggle
+            label="Image view"
+            onToggle={() => {
+              this.setState({ listView: !this.state.listView });
+            }}
+          />
         )}
 
         <div
