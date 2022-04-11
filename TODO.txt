@@ -21,7 +21,12 @@ DONE: change default displayed value of condition in addToCollection from MT to 
 DONE: move toggle to seperate component (consider using headlessUI toggle component)
 DONE: combine different languages of the same card in de search results page
 DONE: fix card count in search results. (doesn't include different finishes)
+TODO: add search by set
+TODO: search by artist
+TODO: search by creature type
 
+IN PROGRESS: add search by card type
+IN PROGRESS: wire up multiple search parameters
 IN PROGRESS: remove old CollectionOld.js code and related code
 
 TODO: fix adding the correct language when adding a card

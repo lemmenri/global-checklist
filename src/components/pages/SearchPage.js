@@ -1,10 +1,13 @@
 import React from "react";
 import SearchResults from "../SearchResults";
 import { Loading } from "../Loading";
-import CardnameSearch from "../CardnameSearch";
 import { searchByCardname } from "../../scripts/ScryfallQueries";
 import { groupCardsByLanguage } from "../../scripts/GroupCards";
 import { getNumberOfDifferentVersions } from "../../scripts/CardCounts";
+import CardnameSearch from "../CardnameSearch";
+import ArtistSearch from "../ArtistSearch";
+import CreatureTypeSearch from "../CreatureTypeSearch";
+import SetSearch from "../SetSearch";
 
 export default class SearchPage extends React.Component {
   constructor(props) {
@@ -20,10 +23,14 @@ export default class SearchPage extends React.Component {
 
   handleSearchSubmit(e) {
     e.preventDefault();
+    console.log(e.target.artistSearch.value);
+    console.log(e.target.cardnameSearch.value);
+    console.log(e.target.creatureTypeSearch.value);
+    console.log(e.target.setSearch.value);
     this.setState(() => ({
       dataIsLoaded: false,
     }));
-    this.setState({ search: e.target.q.value }, () => {
+    this.setState({ search: e.target.cardnameSearch.value }, () => {
       searchByCardname(this.state.search).then((json) => {
         if (json.object === "error") {
           this.setState(() => ({
@@ -47,9 +54,10 @@ export default class SearchPage extends React.Component {
         <div id="cardSearchContainer" className="my-2 ">
           <form role="search" onSubmit={this.handleSearchSubmit}>
             <div>
-              <label htmlFor="cardSearch">Search by card name:</label>
-              <br />
               <CardnameSearch />
+              <ArtistSearch />
+              <CreatureTypeSearch />
+              <SetSearch />
               <button className="bg-primary text-light my-4 px-8 rounded-lg hover:underline">
                 Search
               </button>

@@ -23,9 +23,12 @@ import {
 } from "../../scripts/Collection";
 import { groupCardsByLanguage } from "../../scripts/GroupCards";
 import {
+  getArtistList,
   getCardnameList,
+  getCreatureTypeList,
   getOtherLanguages,
   getScryfallCard,
+  getSetList,
   searchByCardname,
 } from "../../scripts/ScryfallQueries";
 
@@ -182,6 +185,15 @@ export default function TestPage() {
   const handleGetCardnameList = () => {
     getCardnameList().then((res) => console.log(res));
   };
+  const handleGetArtistList = () => {
+    getArtistList().then((res) => console.log(res));
+  };
+  const handleGetCreatureTypeList = () => {
+    getCreatureTypeList().then((res) => console.log(res));
+  };
+  const handleGetSetList = () => {
+    getSetList().then((res) => console.log(res.data));
+  };
 
   // Group Cards
   const handleGroupCards = () => {
@@ -269,6 +281,15 @@ export default function TestPage() {
         </button>
         <button className={buttonStyling} onClick={handleGetCardnameList}>
           Get all cardnames
+        </button>
+        <button className={buttonStyling} onClick={handleGetArtistList}>
+          Get all artists
+        </button>
+        <button className={buttonStyling} onClick={handleGetCreatureTypeList}>
+          Get all creature types
+        </button>
+        <button className={buttonStyling} onClick={handleGetSetList}>
+          Get all sets
         </button>
       </div>
       <p>Group cards:</p>

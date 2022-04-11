@@ -46,3 +46,18 @@ export const getCardnameList = async () => {
   const res = await fetch("https://api.scryfall.com/catalog/card-names");
   return await res.json();
 };
+
+export const getArtistList = async () => {
+  const res = await fetch("https://api.scryfall.com/catalog/artist-names");
+  return await res.json();
+};
+
+export const getCreatureTypeList = async () => {
+  const res = await fetch("https://api.scryfall.com/catalog/creature-types");
+  return await res.json();
+};
+
+export const getSetList = async () => {
+  const res = await fetch("https://api.scryfall.com/sets");
+  return await res.json();
+};
