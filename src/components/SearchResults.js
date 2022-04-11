@@ -9,7 +9,6 @@ export default class SearchResults extends React.Component {
     this.state = {
       listView: true,
     };
-    console.log(this.props.searchResults);
   }
   render() {
     if (!this.props.searchResults) return <p>Loading...</p>;
@@ -32,8 +31,8 @@ export default class SearchResults extends React.Component {
           }
         >
           {this.state.listView
-            ? this.props.searchResults.map((card) => (
-                <SearchResultListItem key={card.id} card={card} />
+            ? this.props.groupedCards.map((group) => (
+                <SearchResultListItem key={group[0].id} group={group} />
               ))
             : this.props.searchResults.map((card) => (
                 <SearchResultImageItem key={card.id} card={card} />

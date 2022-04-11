@@ -1,63 +1,54 @@
 import { Link } from "react-router-dom";
 import ReactTooltip from "react-tooltip";
 import { getCardImage } from "../scripts/CardImage";
+import { getCardCountFinish } from "../scripts/CardCounts";
 import CardImage from "./CardImage";
 import Language from "./Language";
 
 export default function SearchResultListItem(props) {
-  const card = props.card;
+  const group = props.group;
 
-  //   const hasFinish = (finish) => {
-  //     let hasFinish = false;
-  //     Object.keys(card.collected).forEach((language) => {
-  //       if (card.collected[language].hasOwnProperty(finish)) {
-  //         hasFinish = true;
-  //       }
-  //     });
-  //     return hasFinish;
-  //   };
-
-  const hasNonfoil = card.finishes.includes("nonfoil"); //hasFinish("nonfoil");
-  const hasFoil = card.finishes.includes("foil"); //hasFinish("foil");
-  const hasEtched = card.finishes.includes("etched"); //hasFinish("etched");
-  const hasGlossy = card.finishes.includes("glossy"); //hasFinish("glossy");
+  const hasNonfoil = hasFinish(group, "nonfoil");
+  const hasFoil = hasFinish(group, "foil");
+  const hasEtched = hasFinish(group, "etched");
+  const hasGlossy = hasFinish(group, "glossy");
 
   return (
     <div id="search-result-list-item" className="p-1 w-full">
       <Link
-        id={`card ${card.id}`}
+        id={`card ${group[0].id}`}
         className="flex flex-row border border-dark p-2 w-full rounded-lg"
-        to={`/card/${card.id}`}
-        state={card}
+        to={`/card/${group[0].id}`}
+        state={group[0]}
       >
         <div
           data-tip
-          data-for={card.id}
+          data-for={group[0].id}
           id="card-details"
           className="mx-1 w-1/3"
         >
           <p id="card-name" className="text-xl font-medium">
             <i
               id="card-set-icon"
-              title={card.set_name}
-              className={"text-xl ss ss-" + card.set}
+              title={group[0].set_name}
+              className={"text-xl ss ss-" + group[0].set}
             ></i>
-            {` ${card.name}`}
+            {` ${group[0].name}`}
           </p>
           <p id="card-collector-details" className="text-sm">
-            {`${card.set_name} - #${card.collector_number} - ${card.rarity}`}
+            {`${group[0].set_name} - #${group[0].collector_number} - ${group[0].rarity}`}
           </p>
         </div>
         <ReactTooltip
-          id={card.id}
+          id={group[0].id}
           place="right"
           effect="solid"
           backgroundColor="transparent"
         >
           <CardImage
             className="rounded-2xl w-52"
-            src={getCardImage(card)}
-            alt={`${card.name}-${card.set}`}
+            src={getCardImage(group[0])}
+            alt={`${group[0].name}-${group[0].set}`}
           />
         </ReactTooltip>
 
@@ -69,52 +60,63 @@ export default function SearchResultListItem(props) {
             {hasEtched && <p title="etched">E</p>}
             {hasGlossy && <p title="glossy">G</p>}
           </div>
-          {/* <div id="printings" className="flex">
-            {Object.keys(card.collected).map((language) => (
-              <div
-                id="language"
-                key={language}
-                className="p-1 flex flex-col space-y-0.5"
-              >
-                <Language language={language} />
-                {hasNonfoil && nrCollected(language, "nonfoil")}
-                {hasFoil && nrCollected(language, "foil")}
-                {hasEtched && nrCollected(language, "etched")}
-                {hasGlossy && nrCollected(language, "glossy")}
+
+          <div id="printings" className="flex">
+            {group.map((language) => (
+              <div id="languages" key={language.lang} className="flex">
+                <div
+                  id={`language-${language.lang}`}
+                  key={language.lang}
+                  className="p-1 flex flex-col space-y-0.5"
+                >
+                  <Language language={language.lang} />
+                  {language.finishes.includes("nonfoil") &&
+                    printQuantityCollected(
+                      language.lang,
+                      "nonfoil",
+                      getCardCountFinish(language.id, "nonfoil")
+                    )}
+                  {language.finishes.includes("foil") &&
+                    printQuantityCollected(
+                      language.lang,
+                      "foil",
+                      getCardCountFinish(language.id, "foil")
+                    )}
+                  {language.finishes.includes("etched") &&
+                    printQuantityCollected(
+                      language.lang,
+                      "etched",
+                      getCardCountFinish(language.id, "etched")
+                    )}
+                  {language.finishes.includes("glossy") &&
+                    printQuantityCollected(
+                      language.lang,
+                      "glossy",
+                      getCardCountFinish(language.id, "glossy")
+                    )}
+                </div>
               </div>
             ))}
-          </div> */}
+          </div>
+
           <div id="prices" className="flex ml-4 grow justify-end">
             <div id="eur" className="p-1 flex flex-col space-y-0.5 mx-1 w-20">
               <p id="eur-label" className="font-medium px-1 my-0.5">
                 €
               </p>
-              {hasNonfoil && (
-                <p id="price-eur">
-                  {card.prices.eur !== null ? card.prices.eur : "\xa0"}
-                </p>
-              )}
-              {hasFoil && <p id="price-eur-foil">{card.prices.eur_foil}</p>}
+              {hasNonfoil && printPrice(group[0].prices.eur, "price-eur")}
+              {hasFoil &&
+                printPrice(group[0].prices.eur_foil, "price-eur-foil")}
             </div>
             <div id="usd" className="p-1 flex flex-col space-y-0.5 mx-1 w-20">
               <p id="usd-label" className="font-medium px-1 my-0.5">
                 $
               </p>
-              {hasNonfoil && (
-                <p id="price-usd">
-                  {card.prices.usd !== null ? card.prices.usd : "\xa0"}
-                </p>
-              )}
-              {hasFoil && (
-                <p id="price-usd-foil">
-                  {card.prices.usd_foil !== null
-                    ? card.prices.usd_foil
-                    : "\xa0"}
-                </p>
-              )}
-              {hasEtched && (
-                <p id="price-usd-etched">{card.prices.usd_etched}</p>
-              )}
+              {hasNonfoil && printPrice(group[0].prices.usd, "price-usd")}
+              {hasFoil &&
+                printPrice(group[0].prices.usd_foil, "price-usd-foil")}
+              {hasEtched &&
+                printPrice(group[0].prices.usd_etched, "price-usd-etched")}
             </div>
           </div>
         </div>
@@ -122,18 +124,22 @@ export default function SearchResultListItem(props) {
     </div>
   );
 
-  //   function nrCollected(language, finish) {
-  //     return (
-  //       <p
-  //         id={`${finish}-collected`}
-  //         className={
-  //           card.collected[language][finish] > 0 ? "bg-collected rounded" : ""
-  //         }
-  //       >
-  //         {typeof card.collected[language][finish] === "number"
-  //           ? card.collected[language][finish]
-  //           : "\xa0"}
-  //       </p>
-  //     );
-  //   }
+  function printQuantityCollected(language, finish, count) {
+    return (
+      <p
+        id={`${language}-${finish}-collected`}
+        className={count > 0 ? "bg-collected rounded" : ""}
+      >
+        {count}
+      </p>
+    );
+  }
+
+  function printPrice(price, id) {
+    return <p id={id}>{price !== null ? price : "\xa0"}</p>;
+  }
+
+  function hasFinish(group, finish) {
+    return group.find((card) => card.finishes.includes(finish));
+  }
 }

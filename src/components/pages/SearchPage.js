@@ -3,6 +3,7 @@ import SearchResults from "../SearchResults";
 import { Loading } from "../Loading";
 import CardnameSearch from "../CardnameSearch";
 import { searchByCardname } from "../../scripts/ScryfallQueries";
+import { groupCardsByLanguage } from "../../scripts/GroupCards";
 
 export default class SearchPage extends React.Component {
   constructor(props) {
@@ -12,6 +13,7 @@ export default class SearchPage extends React.Component {
       search: "",
       searchResults: undefined,
       dataIsLoaded: undefined,
+      groupedCards: undefined,
     };
   }
 
@@ -31,6 +33,7 @@ export default class SearchPage extends React.Component {
         }
         this.setState(() => ({
           searchResults: json,
+          groupedCards: groupCardsByLanguage(json.data),
           dataIsLoaded: true,
         }));
       });
@@ -55,11 +58,14 @@ export default class SearchPage extends React.Component {
         {this.state.dataIsLoaded && (
           <div>
             <p>
-              {`Showing results for "${this.state.search}". Found ${this.state.searchResults?.data?.length} different card(s).`}
+              {`Showing results for "${this.state.search}". Found ${this.state.groupedCards?.length} different card(s) with ${this.state.searchResults?.data?.length} different version(s).`}
               {this.state.searchResults.has_more &&
                 ` More printings are available (${this.state.searchResults.total_cards}). Limit your search.`}
             </p>
-            <SearchResults searchResults={this.state.searchResults.data} />
+            <SearchResults
+              searchResults={this.state.searchResults.data}
+              groupedCards={this.state.groupedCards}
+            />
           </div>
         )}
         {this.state.dataIsLoaded === false && <Loading />}

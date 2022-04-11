@@ -20,6 +20,7 @@ import {
   getCollection,
   updateCollection,
 } from "../../scripts/Collection";
+import { groupCardsByLanguage } from "../../scripts/GroupCards";
 import {
   getCardnameList,
   getOtherLanguages,
@@ -176,6 +177,13 @@ export default function TestPage() {
     getCardnameList().then((res) => console.log(res));
   };
 
+  // Group Cards
+  const handleGroupCards = () => {
+    searchByCardname("Birds of Paradise")
+      .then((res) => groupCardsByLanguage(res.data))
+      .then((res) => console.log(res));
+  };
+
   return (
     <div className="p-4 sm:p-8 flex-grow bg-light">
       <h1 className="text-3xl my-4">Test Page</h1>
@@ -249,6 +257,12 @@ export default function TestPage() {
         </button>
         <button className={buttonStyling} onClick={handleGetCardnameList}>
           Get all cardnames
+        </button>
+      </div>
+      <p>Group cards:</p>
+      <div className="flex flex-col max-w-xs">
+        <button className={buttonStyling} onClick={handleGroupCards}>
+          Group Cards
         </button>
       </div>
     </div>
