@@ -5,8 +5,9 @@ import { SearchIcon } from "@heroicons/react/outline";
 const maxDisplayedResults = 5;
 const noResultsMessage = "No results found.";
 
-export default function SearchCombobox({ itemList, id, placeholder }) {
-  const [selectedItem, setSelectedItem] = useState(void 0);
+export default function SearchCombobox({ itemList, id, placeholder, codeMap }) {
+  const [selectedItem, setSelectedItem] = useState("");
+  const [code, setCode] = useState(undefined);
   const [query, setQuery] = useState("");
   const [showResults, setShowResults] = useState(true);
 
@@ -22,6 +23,9 @@ export default function SearchCombobox({ itemList, id, placeholder }) {
       onChange={(value) => {
         setSelectedItem(value);
         setQuery(value);
+        setCode(
+          codeMap ? codeMap.find((item) => item.name === value).code : undefined
+        );
         setShowResults(false);
       }}
       onBlur={(e) => {
@@ -43,6 +47,7 @@ export default function SearchCombobox({ itemList, id, placeholder }) {
           placeholder={placeholder}
           id={id}
           name={id}
+          data-code={code}
           autoComplete="off"
         />
         <div className="text-light bg-dark p-2">

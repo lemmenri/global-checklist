@@ -8,12 +8,21 @@ const labelText = "Search by set:";
 
 export default function SetSearch() {
   const [setNames, setSetNames] = useState("");
+  const [setCodeMap, setSetCodeMap] = useState("");
 
   useEffect(() => {
     getSetList().then((json) => {
       const names = [];
-      json.data.forEach((set) => names.push(set.name));
+      const codeMap = [];
+      json.data.forEach((set) => {
+        names.push(set.name);
+        codeMap.push({
+          name: set.name,
+          code: set.code,
+        });
+      });
       setSetNames(names);
+      setSetCodeMap(codeMap);
     });
   }, []);
 
@@ -25,6 +34,7 @@ export default function SetSearch() {
         itemList={setNames}
         id={idText}
         placeholder={placeholderText}
+        codeMap={setCodeMap}
       />
     </>
   );

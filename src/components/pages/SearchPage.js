@@ -1,7 +1,7 @@
 import React from "react";
 import SearchResults from "../SearchResults";
 import { Loading } from "../Loading";
-import { searchByCardname } from "../../scripts/ScryfallQueries";
+import { advancedSearch } from "../../scripts/ScryfallQueries";
 import { groupCardsByLanguage } from "../../scripts/GroupCards";
 import { getNumberOfDifferentVersions } from "../../scripts/CardCounts";
 import CardnameSearch from "../CardnameSearch";
@@ -26,12 +26,18 @@ export default class SearchPage extends React.Component {
     console.log(e.target.artistSearch.value);
     console.log(e.target.cardnameSearch.value);
     console.log(e.target.creatureTypeSearch.value);
-    console.log(e.target.setSearch.value);
+    console.log(e.target.setSearch.dataset.code);
+    const searchParameters = {
+      name: e.target.cardnameSearch.value,
+      artist: e.target.artistSearch.value,
+      creatureType: e.target.creatureTypeSearch.value,
+      setCode: e.target.setSearch.dataset.code,
+    };
     this.setState(() => ({
       dataIsLoaded: false,
     }));
     this.setState({ search: e.target.cardnameSearch.value }, () => {
-      searchByCardname(this.state.search).then((json) => {
+      advancedSearch(searchParameters).then((json) => {
         if (json.object === "error") {
           this.setState(() => ({
             searchResults: undefined,
@@ -64,7 +70,7 @@ export default class SearchPage extends React.Component {
             </div>
           </form>
         </div>
-        {this.state.dataIsLoaded && (
+        {this.state.dataIsLoaded && this.state.searchResults && (
           <div>
             <p>
               {`Showing results for "${this.state.search}". Found ${
@@ -82,6 +88,9 @@ export default class SearchPage extends React.Component {
               groupedCards={this.state.groupedCards}
             />
           </div>
+        )}
+        {this.state.dataIsLoaded && !this.state.searchResults && (
+          <p>Your query didn't match any cards. Adjust your search terms.</p>
         )}
         {this.state.dataIsLoaded === false && <Loading />}
       </div>

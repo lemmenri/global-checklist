@@ -23,6 +23,7 @@ import {
 } from "../../scripts/Collection";
 import { groupCardsByLanguage } from "../../scripts/GroupCards";
 import {
+  advancedSearch,
   getArtistList,
   getCardnameList,
   getCreatureTypeList,
@@ -174,6 +175,34 @@ export default function TestPage() {
     getScryfallCard("feefe9f0-24a6-461c-9ef1-86c5a6f33b83").then((res) =>
       console.log(res)
     );
+  const handleAdvancedSearch = () => {
+    advancedSearch({
+      name: "Birds of Paradise",
+      artist: "Mark Poole",
+      creatureType: "bird",
+      setCode: "sld",
+    }).then((res) => console.log(res));
+  };
+  const handleAdvancedSearchName = () => {
+    advancedSearch({
+      name: "Birds of Paradise",
+    }).then((res) => console.log(res));
+  };
+  const handleAdvancedSearchArtist = () => {
+    advancedSearch({
+      artist: "Mark Poole",
+    }).then((res) => console.log(res));
+  };
+  const handleAdvancedSearchCreatureType = () => {
+    advancedSearch({
+      creatureType: "bird",
+    }).then((res) => console.log(res));
+  };
+  const handleAdvancedSearchSetCode = () => {
+    advancedSearch({
+      setCode: "sld",
+    }).then((res) => console.log(res));
+  };
   const handleGetOtherLanguages = () => {
     getOtherLanguages("feefe9f0-24a6-461c-9ef1-86c5a6f33b83").then((res) =>
       console.log(res)
@@ -272,6 +301,24 @@ export default function TestPage() {
       <div className="flex flex-col max-w-xs">
         <button className={buttonStyling} onClick={handleGetScryfallCard}>
           Get Scryfall Card
+        </button>
+        <button className={buttonStyling} onClick={handleAdvancedSearch}>
+          Scryfall Advanced Search
+        </button>
+        <button className={buttonStyling} onClick={handleAdvancedSearchName}>
+          Scryfall Advanced Search By Name
+        </button>
+        <button className={buttonStyling} onClick={handleAdvancedSearchArtist}>
+          Scryfall Advanced Search By Artist
+        </button>
+        <button
+          className={buttonStyling}
+          onClick={handleAdvancedSearchCreatureType}
+        >
+          Scryfall Advanced Search By Creature Type
+        </button>
+        <button className={buttonStyling} onClick={handleAdvancedSearchSetCode}>
+          Scryfall Advanced Search By Set Code
         </button>
         <button className={buttonStyling} onClick={handleGetOtherLanguages}>
           Get other languages
