@@ -13,20 +13,18 @@ export default class SearchPage extends React.Component {
   constructor(props) {
     super(props);
     this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
+    this.handleLoadNextPage = this.handleLoadNextPage.bind(this);
     this.state = {
       search: "",
       searchResults: undefined,
       dataIsLoaded: undefined,
       groupedCards: undefined,
+      nextPage: undefined,
     };
   }
 
   handleSearchSubmit(e) {
     e.preventDefault();
-    console.log(e.target.artistSearch.value);
-    console.log(e.target.cardnameSearch.value);
-    console.log(e.target.creatureTypeSearch.value);
-    console.log(e.target.setSearch.dataset.code);
     const searchParameters = {
       name: e.target.cardnameSearch.value,
       artist: e.target.artistSearch.value,
@@ -50,8 +48,18 @@ export default class SearchPage extends React.Component {
           groupedCards: groupCardsByLanguage(json.data),
           dataIsLoaded: true,
         }));
+        if (json.has_more) {
+          this.setState(() => ({
+            nextPage: json.next_page,
+          }));
+        }
       });
     });
+  }
+
+  handleLoadNextPage() {
+    console.log(this.state.nextPage);
+    // TODO: add fetch + process received data
   }
 
   render() {
@@ -87,6 +95,15 @@ export default class SearchPage extends React.Component {
               searchResults={this.state.searchResults.data}
               groupedCards={this.state.groupedCards}
             />
+            {this.state.searchResults.has_more && (
+              <button
+                id="loadMore"
+                onClick={this.handleLoadNextPage}
+                className="bg-primary text-light my-2 px-8 rounded-lg hover:underline"
+              >
+                Load more...
+              </button>
+            )}
           </div>
         )}
         {this.state.dataIsLoaded && !this.state.searchResults && (
