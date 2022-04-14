@@ -72,8 +72,6 @@ const CardPage = () => {
           </p>
           {isOtherLanguagesLoaded && (
             <div id="languages" className="flex space-x-2">
-              {console.log(otherLanguages)}
-              {console.log(isOtherLanguagesLoaded)}
               {otherLanguages.map((language) => (
                 <Language key={language.id} language={language.name} />
               ))}

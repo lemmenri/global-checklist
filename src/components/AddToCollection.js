@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { addCard } from "../scripts/CollectedCards";
+import { getOtherLanguages } from "../scripts/ScryfallQueries";
 import TextListBox from "./ListBox";
 
 const finishes = [
@@ -23,19 +24,23 @@ export default function AddToCollection({ card, languages }) {
   const [finish, setFinish] = useState(finishes[0]);
   const [quantity, setQuantity] = useState(1);
   const [condition, setCondition] = useState(conditions[1]);
-  const [language, setLanguage] = useState(languages[0]);
+  const [language, setLanguage] = useState(
+    languages.find((language) => card.lang === language.value)
+  );
 
   const handleAddToCollection = (e) => {
-    addCard({
-      id: card.id,
-      name: card.name,
-      set: card.set,
-      nr: card.collector_number,
-      language: language.value,
-      finish: finish.value,
-      quantity: parseInt(quantity),
-      condition: condition.value,
-    });
+    getOtherLanguages(card.id).then((res) =>
+      addCard({
+        id: res.find((card) => card.language === language.value).id,
+        name: card.name,
+        set: card.set,
+        nr: card.collector_number,
+        language: language.value,
+        finish: finish.value,
+        quantity: parseInt(quantity),
+        condition: condition.value,
+      })
+    );
   };
 
   return (
@@ -79,6 +84,7 @@ export default function AddToCollection({ card, languages }) {
             values={conditions}
             label="Condition"
             onChange={setCondition}
+            defaultValue={1}
           />
         </div>
         <div className="flex items-center">
@@ -87,6 +93,9 @@ export default function AddToCollection({ card, languages }) {
             values={languages}
             label="Language"
             onChange={setLanguage}
+            defaultValue={languages.findIndex(
+              (language) => card.lang === language.value
+            )}
           />
         </div>
         <div id="add" className="text-center">

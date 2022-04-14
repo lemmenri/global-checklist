@@ -30,13 +30,13 @@ DONE: fix search by set so it uses setCode
 DONE: handle multiple pages in search results
 DONE: hide header, footer and search options on print
 DONE: add print styling to search page
+DONE: fix adding the correct language when adding a card
 
 IN PROGRESS: add search by card type
 IN PROGRESS: remove old CollectionOld.js code and related code
 
 TODO: add unit tests (cypress?)
 TODO: handle searching when lists aren't loaded yet
-TODO: fix adding the correct language when adding a card
 TODO: fix text "Showing results for..." when searching for other parameters than cardname
 TODO: add cardimage hover on different languages in the search results
 TODO: remove card from collection

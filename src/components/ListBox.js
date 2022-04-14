@@ -4,9 +4,16 @@ import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
 import Condition from "./Condition";
 import Language from "./Language";
 
-export default function TextListBox({ values, label, id, onChange }) {
-  const defaultValue = values[0].type === "condition" ? 1 : 0;
-  const [selected, setSelected] = useState(values[defaultValue]);
+export default function TextListBox({
+  values,
+  label,
+  id,
+  onChange,
+  defaultValue,
+}) {
+  const [selected, setSelected] = useState(
+    values[defaultValue ? defaultValue : 0]
+  );
 
   return (
     <Listbox
