@@ -14,7 +14,7 @@ export default function SearchResultListItem(props) {
   const hasGlossy = group.find((card) => card.finishes.includes("glossy"));
 
   return (
-    <div id="search-result-list-item" className="p-1 w-full">
+    <div id="search-result-list-item" className="p-1 w-full break-inside-avoid">
       <Link
         id={`card ${group[0].id}`}
         className="flex flex-row border border-dark p-2 w-full rounded-lg"
@@ -52,7 +52,10 @@ export default function SearchResultListItem(props) {
           />
         </ReactTooltip>
 
-        <div id="collection-details" className="flex text-center text-sm grow">
+        <div
+          id="collection-details"
+          className="flex text-center text-sm grow print:text-xs"
+        >
           <div className="flex-col w-8 p-2 font-bold space-y-0.5">
             <p>&nbsp;</p>
             {hasNonfoil && <p title="nonfoil">•</p>}
@@ -100,7 +103,10 @@ export default function SearchResultListItem(props) {
           </div>
 
           <div id="prices" className="flex ml-4 grow justify-end">
-            <div id="eur" className="p-1 flex flex-col space-y-0.5 mx-1 w-20">
+            <div
+              id="eur"
+              className="p-1 flex flex-col space-y-0.5 mx-1 w-20 print:w-12"
+            >
               <p id="eur-label" className="font-medium px-1 my-0.5">
                 €
               </p>
@@ -108,7 +114,10 @@ export default function SearchResultListItem(props) {
               {hasFoil &&
                 printPrice(group[0].prices.eur_foil, "price-eur-foil")}
             </div>
-            <div id="usd" className="p-1 flex flex-col space-y-0.5 mx-1 w-20">
+            <div
+              id="usd"
+              className="p-1 flex flex-col space-y-0.5 mx-1 w-20 print:w-12"
+            >
               <p id="usd-label" className="font-medium px-1 my-0.5">
                 $
               </p>

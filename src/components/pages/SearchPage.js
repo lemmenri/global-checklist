@@ -58,14 +58,25 @@ export default class SearchPage extends React.Component {
   }
 
   handleLoadNextPage() {
-    console.log(this.state.nextPage);
-    // TODO: add fetch + process received data
+    fetch(this.state.nextPage)
+      .then((res) => res.json())
+      .then((json) => {
+        let newSearchResults = this.state.searchResults;
+        newSearchResults.data = this.state.searchResults.data.concat(json.data);
+        const newGroupedCards = groupCardsByLanguage(newSearchResults.data);
+        const nextPage = json.has_more ? json.next_page : undefined;
+        this.setState(() => ({
+          searchResults: newSearchResults,
+          groupedCards: newGroupedCards,
+          nextPage: nextPage,
+        }));
+      });
   }
 
   render() {
     return (
       <div className="p-4 sm:p-8 flex-grow bg-light">
-        <div id="cardSearchContainer" className="my-2 ">
+        <div id="cardSearchContainer" className="my-2 print:hidden">
           <form role="search" onSubmit={this.handleSearchSubmit}>
             <div>
               <CardnameSearch />
@@ -88,24 +99,26 @@ export default class SearchPage extends React.Component {
               } different print(s) and ${getNumberOfDifferentVersions(
                 this.state.searchResults?.data
               )} different version(s).`}
-              {this.state.searchResults.has_more &&
+              {this.state.nextPage &&
                 ` More printings are available (${this.state.searchResults.total_cards}). Limit your search.`}
             </p>
             <SearchResults
               searchResults={this.state.searchResults.data}
               groupedCards={this.state.groupedCards}
             />
-            {this.state.searchResults.has_more && (
-              <button
-                id="loadMore"
-                onClick={this.handleLoadNextPage}
-                className="bg-primary text-light my-2 px-8 rounded-lg hover:underline"
-              >
-                Load more...
-              </button>
-            )}
           </div>
         )}
+        {this.state.dataIsLoaded &&
+          this.state.searchResults &&
+          this.state.nextPage && (
+            <button
+              id="loadMore"
+              onClick={this.handleLoadNextPage}
+              className="bg-primary text-light my-2 px-8 rounded-lg hover:underline"
+            >
+              Load more...
+            </button>
+          )}
         {this.state.dataIsLoaded && !this.state.searchResults && (
           <p>Your query didn't match any cards. Adjust your search terms.</p>
         )}

@@ -27,16 +27,18 @@ DONE: search by artist
 DONE: search by creature type
 DONE: wire up multiple search parameters
 DONE: fix search by set so it uses setCode
+DONE: handle multiple pages in search results
+DONE: hide header, footer and search options on print
+DONE: add print styling to search page
 
 IN PROGRESS: add search by card type
 IN PROGRESS: remove old CollectionOld.js code and related code
-IN PROGRESS: handle multiple pages in search results
 
+TODO: add unit tests (cypress?)
 TODO: handle searching when lists aren't loaded yet
 TODO: fix adding the correct language when adding a card
 TODO: fix text "Showing results for..." when searching for other parameters than cardname
 TODO: add cardimage hover on different languages in the search results
-TODO: add unit tests (cypress?)
 TODO: remove card from collection
 TOOD: auto update collected list on cardpage when adding new card to collection
 TODO: filter available finished when adding new card. Now all finishes are available even if the card doesn't have that finish
@@ -48,6 +50,8 @@ TODO: add toggle to only display cards in collection
 TODO: add sort options
 TODO: add toggles for scryfall include_extras and include_variations
 TODO: fix SearchCombobox when No results found message is shown and component loses focus the message should go away
+TODO: add search by art (https://scryfall.com/docs/tagger-tags)
+TODO: fix bug when printing search results images from page 3 onwards they layout shifts
 
 
 
