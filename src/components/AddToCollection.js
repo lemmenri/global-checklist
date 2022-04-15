@@ -75,7 +75,7 @@ export default function AddToCollection({ card, languages }) {
               setQuantity(e.target.value);
             }}
             aria-labelledby="quantity-label"
-            className="w-14 text-center outline outline-1 rounded bg-transparent border-none py-0.5 px-0 focus:outline-dark focus:outline-2 focus:ring-0 focus:outline-offset-0 hover:outline-2"
+            className="w-14 text-center border border-dark rounded bg-transparent py-0.5 px-0 focus:border-2 focus:ring-0 focus:border-dark"
           />
         </div>
         <div className="flex items-center">
@@ -101,7 +101,7 @@ export default function AddToCollection({ card, languages }) {
         <div id="add" className="text-center">
           <button
             onClick={handleAddToCollection}
-            className="bg-primary text-light my-2 px-8 rounded-lg hover:underline"
+            className="bg-primary text-light my-2 px-8 rounded-lg border border-1 border-primary hover:underline"
           >
             Add
           </button>

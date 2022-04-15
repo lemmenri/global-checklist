@@ -26,7 +26,7 @@ export default function TextListBox({
       <Listbox.Label className="w-1/2">{`${label}:`}</Listbox.Label>
       <div
         id={`${id}-listbox`}
-        className="rounded outline outline-1 focus-within:outline-2 hover:outline-2"
+        className="rounded border-dark border border-1 focus-within:border-2"
       >
         <Listbox.Button className="relative w-auto text-center pl-2 pr-6  cursor-default">
           <span className="block truncate">
@@ -52,7 +52,7 @@ export default function TextListBox({
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <Listbox.Options className="absolute w-auto mt-1 overflow-auto text-base bg-light rounded-md max-h-60 outline outline-dark outline-1 z-50">
+          <Listbox.Options className="absolute w-auto mt-1 overflow-auto text-base bg-light rounded-md max-h-60 border border-dark border-1 z-50">
             {values.map((value) => (
               <Listbox.Option
                 key={value.id}

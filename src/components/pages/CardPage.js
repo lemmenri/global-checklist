@@ -78,7 +78,7 @@ const CardPage = () => {
             </div>
           )}
           <CardImage
-            className="rounded-2xl w-96 shadow-dark shadow-md my-2"
+            className="rounded-[18px] w-96 shadow-dark shadow-md my-2"
             src={getCardImage(card)}
             alt={`${card.name}-${card.set}`}
           />
@@ -93,7 +93,10 @@ const CardPage = () => {
             <AddToCollection card={card} languages={otherLanguages} />
           )}
 
-          <div id="external links" className="w-96 p-2 flex flex-col space-y-1">
+          <div
+            id="external links"
+            className="w-full md:w-96 p-2 flex flex-col space-y-1"
+          >
             {card.scryfall_uri && (
               <ExternalLink
                 href={card.scryfall_uri}

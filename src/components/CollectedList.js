@@ -13,6 +13,7 @@ export default function CollectedList({ collected }) {
       {collected.map((card) => (
         <CollectedListItem
           key={`${card.language}${card.finish}${card.condition}`}
+          id={card.id}
           finish={card.finish}
           quantity={card.quantity}
           condition={card.condition}

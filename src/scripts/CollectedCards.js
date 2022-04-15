@@ -19,7 +19,7 @@ export const addCard = (newCard) => {
   if (!getCardById(newCard.id)) {
     collection.cards.push({
       id: newCard.id,
-      name: newCard.id,
+      name: newCard.name,
       set: newCard.set,
       nr: newCard.nr,
       language: newCard.language,
@@ -95,13 +95,14 @@ export const getCardBySetNrLanguage = (set, nr, language) => {
 export const getCollectedCardList = async (id) => {
   const collected = [];
 
-  await getOtherLanguages(id).then((languages) =>
+  await getOtherLanguages(id).then((languages) => {
     languages.forEach((card) => {
       const cardObject = getCardById(card.id);
       // Check if card is in collection
       if (cardObject) {
         cardObject.collected.forEach((collectedCard) => {
           collected.push({
+            id: card.id,
             finish: collectedCard.finish,
             quantity: collectedCard.quantity,
             condition: collectedCard.condition,
@@ -109,8 +110,8 @@ export const getCollectedCardList = async (id) => {
           });
         });
       }
-    })
-  );
+    });
+  });
   return collected;
 };
 
@@ -129,6 +130,7 @@ export const removeCard = (id) => {
   if (!collection) return;
   collection.cards = collection.cards.filter((card) => card.id !== id);
   updateCollection(collection);
+  return true;
 };
 
 // Removes specific version of a card from collection

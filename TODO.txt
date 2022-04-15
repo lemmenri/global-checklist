@@ -31,15 +31,19 @@ DONE: handle multiple pages in search results
 DONE: hide header, footer and search options on print
 DONE: add print styling to search page
 DONE: fix adding the correct language when adding a card
+DONE: fix outline bug on IOS by replacing it with border
+DONE: fix bug when adding new card to collection it's id is stored as it's name
+DONE: remove card from collection
 
+IN PROGRESS: edit card
 IN PROGRESS: add search by card type
 IN PROGRESS: remove old CollectionOld.js code and related code
 
+TODO: restructure components in atoms, molecules and organisms
 TODO: add unit tests (cypress?)
 TODO: handle searching when lists aren't loaded yet
 TODO: fix text "Showing results for..." when searching for other parameters than cardname
 TODO: add cardimage hover on different languages in the search results
-TODO: remove card from collection
 TOOD: auto update collected list on cardpage when adding new card to collection
 TODO: filter available finished when adding new card. Now all finishes are available even if the card doesn't have that finish
 TODO: move finishes, conditions and languages to enum

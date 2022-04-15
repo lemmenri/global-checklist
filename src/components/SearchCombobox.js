@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Combobox } from "@headlessui/react";
-import { SearchIcon } from "@heroicons/react/outline";
 
 const maxDisplayedResults = 5;
 const noResultsMessage = "No results found.";
@@ -34,7 +33,7 @@ export default function SearchCombobox({ itemList, id, placeholder, codeMap }) {
         }
       }}
       as="div"
-      className="rounded-lg overflow-hidden outline outline-dark outline-1 max-w-xs"
+      className="rounded-lg overflow-hidden border border-dark border-1 max-w-xs"
     >
       <div className="flex items-center">
         <Combobox.Input
@@ -43,19 +42,16 @@ export default function SearchCombobox({ itemList, id, placeholder, codeMap }) {
             setQuery(event.target.value);
             setShowResults(true);
           }}
-          className="text-sm w-full bg-light border-0 focus:ring-2 focus:ring-dark ml-0.5 rounded-l-md"
+          className="text-sm w-full bg-light border-0 ml-0.5 rounded-l-md focus:ring-0"
           placeholder={placeholder}
           id={id}
           name={id}
           data-code={code}
           autoComplete="off"
         />
-        <div className="text-light bg-dark p-2">
-          <SearchIcon className="h-6 w-6" />
-        </div>
       </div>
       {filteredItems.length > 0 && showResults && (
-        <Combobox.Options static className=" text-sm max-h-72 overflow-y-auto">
+        <Combobox.Options static className="text-sm max-h-72 overflow-y-auto">
           {Object.values(filteredItems.slice(0, maxDisplayedResults)).map(
             (cardName, index) => (
               <Combobox.Option key={index} value={cardName}>
