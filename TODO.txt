@@ -34,14 +34,15 @@ DONE: fix adding the correct language when adding a card
 DONE: fix outline bug on IOS by replacing it with border
 DONE: fix bug when adding new card to collection it's id is stored as it's name
 DONE: remove card from collection
+DONE: fix SearchCombobox when No results found message is shown and component loses focus the message should go away
+DONE: handle searching when lists aren't loaded yet
+DONE: install cypress
 
 IN PROGRESS: edit card
-IN PROGRESS: add search by card type
 IN PROGRESS: remove old CollectionOld.js code and related code
+IN PROGRESS: add unit tests (cypress?)
 
 TODO: restructure components in atoms, molecules and organisms
-TODO: add unit tests (cypress?)
-TODO: handle searching when lists aren't loaded yet
 TODO: fix text "Showing results for..." when searching for other parameters than cardname
 TODO: add cardimage hover on different languages in the search results
 TOOD: auto update collected list on cardpage when adding new card to collection
@@ -53,7 +54,7 @@ TODO: fix icons for external links (and imported images in general)
 TODO: add toggle to only display cards in collection
 TODO: add sort options
 TODO: add toggles for scryfall include_extras and include_variations
-TODO: fix SearchCombobox when No results found message is shown and component loses focus the message should go away
+TODO: add search by card type
 TODO: add search by art (https://scryfall.com/docs/tagger-tags)
 TODO: fix bug when printing search results images from page 3 onwards they layout shifts
 

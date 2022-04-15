@@ -7,8 +7,8 @@ const idText = "setSearch";
 const labelText = "Search by set:";
 
 export default function SetSearch() {
-  const [setNames, setSetNames] = useState("");
-  const [setCodeMap, setSetCodeMap] = useState("");
+  const [setNames, setSetNames] = useState(undefined);
+  const [setCodeMap, setSetCodeMap] = useState(undefined);
 
   useEffect(() => {
     getSetList().then((json) => {

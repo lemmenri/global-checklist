@@ -7,7 +7,7 @@ const idText = "creatureTypeSearch";
 const labelText = "Search by creature type:";
 
 export default function CreatureTypeSearch() {
-  const [creatureTypes, setCreatureTypes] = useState("");
+  const [creatureTypes, setCreatureTypes] = useState(undefined);
 
   useEffect(() => {
     getCreatureTypeList().then((json) => setCreatureTypes(json.data));

@@ -7,7 +7,7 @@ const idText = "cardnameSearch";
 const labelText = "Search by card name:";
 
 export default function CardnameSearch() {
-  const [cardNames, setCardNames] = useState("");
+  const [cardNames, setCardNames] = useState(undefined);
 
   useEffect(() => {
     getCardnameList().then((json) => setCardNames(json.data));

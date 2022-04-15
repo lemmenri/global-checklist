@@ -10,11 +10,12 @@ export default function SearchCombobox({ itemList, id, placeholder, codeMap }) {
   const [query, setQuery] = useState("");
   const [showResults, setShowResults] = useState(true);
 
-  const filteredItems = query
-    ? itemList.filter((item) =>
-        item.toLowerCase().includes(query.toLowerCase())
-      )
-    : [];
+  const filteredItems =
+    query && itemList
+      ? itemList.filter((item) =>
+          item.toLowerCase().includes(query.toLowerCase())
+        )
+      : [];
 
   return (
     <Combobox
@@ -54,7 +55,7 @@ export default function SearchCombobox({ itemList, id, placeholder, codeMap }) {
         <Combobox.Options static className="text-sm max-h-72 overflow-y-auto">
           {Object.values(filteredItems.slice(0, maxDisplayedResults)).map(
             (cardName, index) => (
-              <Combobox.Option key={index} value={cardName}>
+              <Combobox.Option key={index} value={cardName} name={cardName}>
                 {({ active }) => (
                   <div
                     className={`px-4 py-2 ${
@@ -69,9 +70,10 @@ export default function SearchCombobox({ itemList, id, placeholder, codeMap }) {
           )}
         </Combobox.Options>
       )}
-      {query && filteredItems.length === 0 && (
+      {query && itemList && filteredItems.length === 0 && showResults && (
         <p className="text-sm px-4 py-2">{noResultsMessage}</p>
       )}
+      {query && !itemList && <p className="text-sm px-4 py-2">Loading...</p>}
     </Combobox>
   );
 }

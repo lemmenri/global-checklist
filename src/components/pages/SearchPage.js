@@ -83,15 +83,18 @@ export default class SearchPage extends React.Component {
               <ArtistSearch />
               <CreatureTypeSearch />
               <SetSearch />
-              <button className="bg-primary text-light my-4 px-8 rounded-lg hover:underline">
+              <button
+                id="searchButton"
+                className="bg-primary text-light my-4 px-8 rounded-lg hover:underline"
+              >
                 Search
               </button>
             </div>
           </form>
         </div>
         {this.state.dataIsLoaded && this.state.searchResults && (
-          <div>
-            <p>
+          <>
+            <p id="seachResultsDescription">
               {`Showing results for "${this.state.search}". Found ${
                 this.state.groupedCards?.length
               } different card(s) with ${
@@ -100,13 +103,13 @@ export default class SearchPage extends React.Component {
                 this.state.searchResults?.data
               )} different version(s).`}
               {this.state.nextPage &&
-                ` More printings are available (${this.state.searchResults.total_cards}). Limit your search.`}
+                ` More printings are available (${this.state.searchResults.total_cards}).`}
             </p>
             <SearchResults
               searchResults={this.state.searchResults.data}
               groupedCards={this.state.groupedCards}
             />
-          </div>
+          </>
         )}
         {this.state.dataIsLoaded &&
           this.state.searchResults &&

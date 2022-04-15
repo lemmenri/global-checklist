@@ -4,10 +4,10 @@ import SearchCombobox from "./SearchCombobox";
 
 const placeholderText = "Search artists...";
 const idText = "artistSearch";
-const labelText = "Search by artist name:";
+const labelText = "Search by artist:";
 
 export default function ArtistSearch() {
-  const [artistNames, setArtistNames] = useState("");
+  const [artistNames, setArtistNames] = useState(undefined);
 
   useEffect(() => {
     getArtistList().then((json) => setArtistNames(json.data));
