@@ -14,15 +14,15 @@ export default function SearchResultImageItem(props) {
   function showCount(finish, hasFinish, finishCount, label) {
     return hasFinish ? (
       <div
-        title={finish}
+        id={finish}
         className={`${
           finishCount > 0
             ? "bg-collected border-collected/25"
             : "bg-light border-light/25"
         } bg-opacity-40 backdrop-blur-sm mx-2 my-8 rounded w-1/2 shadow-dark shadow-md border border-opacity-30 print:shadow-none`}
       >
-        <p>
-          {label} {finishCount}
+        <p id={`${card.lang}-${finish}-collected`}>
+          {`${label} ${finishCount}`}
         </p>
       </div>
     ) : (
@@ -33,7 +33,10 @@ export default function SearchResultImageItem(props) {
   }
 
   return (
-    <div title={card.set_name} className="p-1 relative break-inside-avoid">
+    <div
+      id="search-result-image-item"
+      className="p-1 relative break-inside-avoid"
+    >
       <Link
         id={`card ${card.id}`}
         className=""

@@ -1,5 +1,7 @@
 /// <reference types="cypress" />
 
+import { addCard, removeCard } from "../../src/scripts/CollectedCards";
+
 describe("Searching cards", () => {
   beforeEach(() => {
     cy.visit("http://localhost:3000/search");
@@ -76,11 +78,14 @@ describe("Searching cards", () => {
   it("Toggle image view", () => {
     cy.searchCard("Zodiac Dragon", "Zodiac Dragon", "cardnameSearch");
     cy.get("#searchButton").click();
-    cy.get("#toggle-list-view").click();
+    cy.get("#toggle-list-view").click({ force: true });
     cy.get("#search-result-list-item").should("not.exist");
+    cy.get("[id='search-result-image-item']").should("have.lengthOf", 4);
+    cy.get("#toggle-list-view").click({ force: true });
+    cy.get("#search-result-image-item").should("not.exist");
+    cy.get("[id='search-result-list-item']").should("have.lengthOf", 1);
   });
 
-  // no search results message
   it("No search results message", () => {
     cy.get(`[name='cardnameSearch']`).type("hgfd");
     cy.get('[name="noSearchResults"]').should("be.visible");
@@ -94,13 +99,50 @@ describe("Searching cards", () => {
     cy.get("#search-result-list-item").should("not.exist");
   });
 
-  // image on hover
   it("Show cardimage on hover", () => {
     cy.searchCard("Zodiac Dragon", "Zodiac Dragon", "cardnameSearch");
     cy.get("#searchButton").click();
     cy.get("#card-details").trigger("mouseenter");
-    cy.get('[name="cardImage"]').should("be.visible");
+    cy.get('[name="cardImage"]').should("exist");
   });
 
-  // the collored fields when a card is in collection (2x)
+  it("Show collected card in list view", () => {
+    removeCard("46652ae3-6572-4296-939b-0789923180d5");
+    addCard({
+      id: "46652ae3-6572-4296-939b-0789923180d5",
+      name: "Zodiac Dragon",
+      set: "ptk",
+      nr: "131",
+      language: "EN",
+      finish: "nonfoil",
+      quantity: 1,
+      condition: "MT",
+    });
+    cy.searchCard("Zodiac Dragon", "Zodiac Dragon", "cardnameSearch");
+    cy.get("#searchButton").click();
+    cy.get('[id="en-nonfoil-collected"]')
+      .should("have.text", "1")
+      .and("have.class", "bg-collected");
+  });
+
+  it("Show collected card in list view", () => {
+    removeCard("46652ae3-6572-4296-939b-0789923180d5");
+    addCard({
+      id: "46652ae3-6572-4296-939b-0789923180d5",
+      name: "Zodiac Dragon",
+      set: "ptk",
+      nr: "131",
+      language: "EN",
+      finish: "nonfoil",
+      quantity: 1,
+      condition: "MT",
+    });
+    cy.searchCard("Zodiac Dragon", "Zodiac Dragon", "cardnameSearch");
+    cy.get("#searchButton").click();
+    cy.get("#toggle-list-view").click({ force: true });
+    cy.get('[id="en-nonfoil-collected"]')
+      .should("have.text", "• 1")
+      .parent()
+      .should("have.class", "bg-collected");
+  });
 });
