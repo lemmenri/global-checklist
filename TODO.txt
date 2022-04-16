@@ -37,11 +37,13 @@ DONE: remove card from collection
 DONE: fix SearchCombobox when No results found message is shown and component loses focus the message should go away
 DONE: handle searching when lists aren't loaded yet
 DONE: install cypress
+DONE: fix don't display show more butten after a second search where it's not needed
 
 IN PROGRESS: edit card
 IN PROGRESS: remove old CollectionOld.js code and related code
 IN PROGRESS: add unit tests (cypress?)
 
+TODO: add screenshots and description to README file
 TODO: restructure components in atoms, molecules and organisms
 TODO: fix text "Showing results for..." when searching for other parameters than cardname
 TODO: add cardimage hover on different languages in the search results

@@ -47,6 +47,7 @@ export default function SearchResultListItem(props) {
         >
           <CardImage
             className="rounded-2xl w-52"
+            name="cardImage"
             src={getCardImage(group[0])}
             alt={`${group[0].name}-${group[0].set}`}
           />

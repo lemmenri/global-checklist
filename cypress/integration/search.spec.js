@@ -8,8 +8,8 @@ describe("Searching cards", () => {
   it("Navigate to search page", () => {
     cy.visit("http://localhost:3000");
     cy.get("h1").should("contain.text", "Welcome to MTG Library!");
-    cy.get("[id='header']").within(() => {
-      cy.get("[id='search']").click();
+    cy.get("#header").within(() => {
+      cy.get("#search").click();
     });
     cy.location().should((location) => {
       expect(location.pathname).to.eq("/search");
@@ -17,87 +17,90 @@ describe("Searching cards", () => {
   });
 
   it("Search card by cardname", () => {
-    cy.get("[name='cardnameSearch']").type("Bird");
-    cy.get("[name='Birds of Paradise']").click();
-    cy.get("[name='cardnameSearch']").should("have.value", "Birds of Paradise");
-    cy.get("[id='searchButton']").click();
-    cy.get("[id='seachResultsDescription']").should(
+    cy.searchCard("bird", "Birds of Paradise", "cardnameSearch");
+    cy.get("#searchButton").click();
+    cy.get("#seachResultsDescription").should(
       "contain.text",
       'Showing results for "Birds of Paradise".'
     );
   });
 
   it("Search card by artist", () => {
-    cy.get("[name='artistSearch']").type("john");
-    cy.get("[name='John Avon']").click();
-    cy.get("[name='artistSearch']").should("have.value", "John Avon");
-    cy.get("[id='searchButton']").click();
-    cy.get("[id='seachResultsDescription']").should(
+    cy.searchCard("john", "John Avon", "artistSearch");
+    cy.get("#searchButton").click();
+    cy.get("#seachResultsDescription").should(
       "contain.text",
       'Showing results for "".'
     );
   });
 
   it("Search card by creature type", () => {
-    cy.get("[name='creatureTypeSearch']").type("Sliv");
-    cy.get("[name='Sliver']").click();
-    cy.get("[name='creatureTypeSearch']").should("have.value", "Sliver");
-    cy.get("[id='searchButton']").click();
-    cy.get("[id='seachResultsDescription']").should(
+    cy.searchCard("Sliv", "Sliver", "creatureTypeSearch");
+    cy.get("#searchButton").click();
+    cy.get("#seachResultsDescription").should(
       "contain.text",
       'Showing results for "".'
     );
   });
 
   it("Search card by set", () => {
-    cy.get("[name='setSearch']").type("legions");
-    cy.get("[name='Legions']").click();
-    cy.get("[name='setSearch']").should("have.value", "Legions");
-    cy.get("[id='searchButton']").click();
-    cy.get("[id='seachResultsDescription']").should(
+    cy.searchCard("legions", "Legions", "setSearch");
+    cy.get("#searchButton").click();
+    cy.get("#seachResultsDescription").should(
       "contain.text",
       'Showing results for "".'
     );
   });
 
-  //TODO
-  // it("Search card by all search parameters", () => {
-  //   cy.get("[name='setSearch']").type("legions");
-  //   cy.get("[name='Legions']").click();
-  //   cy.get("[name='setSearch']").should("have.value", "Legions");
-  //   cy.get("[id='searchButton']").click();
-  //   cy.get("[id='seachResultsDescription']").should(
-  //     "contain.text",
-  //     'Showing results for "".'
-  //   );
-  // });
+  it("Search card by all search parameters", () => {
+    cy.searchCard("Spell Queller", "Spell Queller", "cardnameSearch");
+    cy.searchCard("adam", "Adam Paquette", "artistSearch");
+    cy.searchCard("Spirit", "Spirit", "creatureTypeSearch");
+    cy.searchCard("pioneer", "Pioneer Challenger Decks 2021", "setSearch");
+
+    cy.get("#searchButton").click();
+    cy.get("#seachResultsDescription").should(
+      "contain.text",
+      'Showing results for "Spell Queller".'
+    );
+    cy.get("[id='search-result-list-item']").should("have.lengthOf", 1);
+  });
 
   it("Load more search results", () => {
-    cy.get("[name='cardnameSearch']").type("Evolving Wilds");
-    cy.get("[id='searchButton']").click();
-    cy.get("[id='seachResultsDescription']").should(
-      "contain.text",
-      'Showing results for "Evolving Wilds".'
-    );
-    cy.get("[id='loadMore']").click().should("not.exist");
+    cy.searchCard("Evolving Wilds", "Evolving Wilds", "cardnameSearch");
+    cy.get("#searchButton").click();
+    cy.get("#loadMore").click().should("not.exist");
     cy.get("[id='search-result-list-item']").should("have.lengthOf", 42);
   });
 
-  // TODO
-  // it("Toggle image view", () => {
-  //   cy.get("[name='cardnameSearch']").type("Evolving Wilds");
-  //   cy.get("[id='searchButton']").click();
-  //   cy.get("[id='seachResultsDescription']").should(
-  //     "contain.text",
-  //     'Showing results for "Evolving Wilds".'
-  //   );
-  //   cy.get("[id='loadMore']").click().should("not.exist");
-  //   cy.get("[id='search-result-list-item']").should("have.lengthOf", 42);
-  // });
+  it("Toggle image view", () => {
+    cy.searchCard("Zodiac Dragon", "Zodiac Dragon", "cardnameSearch");
+    cy.get("#searchButton").click();
+    cy.get("#toggle-list-view").click();
+    cy.get("#search-result-list-item").should("not.exist");
+  });
 
   // no search results message
+  it("No search results message", () => {
+    cy.get(`[name='cardnameSearch']`).type("hgfd");
+    cy.get('[name="noSearchResults"]').should("be.visible");
+  });
+
+  it("No cards found for query", () => {
+    cy.searchCard("Zodiac Dragon", "Zodiac Dragon", "cardnameSearch");
+    cy.searchCard("adam", "Adam Paquette", "artistSearch");
+    cy.get("#searchButton").click();
+    cy.get('[name="noCardsFound"]').should("be.visible");
+    cy.get("#search-result-list-item").should("not.exist");
+  });
 
   // image on hover
+  it("Show cardimage on hover", () => {
+    cy.searchCard("Zodiac Dragon", "Zodiac Dragon", "cardnameSearch");
+    cy.get("#searchButton").click();
+    cy.get("#card-details").trigger("mouseenter");
+    cy.get('[name="cardImage"]').should("be.visible");
+  });
 
   // the collored fields when a card is in collection (2x)
 });

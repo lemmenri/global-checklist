@@ -33,6 +33,7 @@ export default class SearchPage extends React.Component {
     };
     this.setState(() => ({
       dataIsLoaded: false,
+      nextPage: undefined,
     }));
     this.setState({ search: e.target.cardnameSearch.value }, () => {
       advancedSearch(searchParameters).then((json) => {
@@ -123,7 +124,9 @@ export default class SearchPage extends React.Component {
             </button>
           )}
         {this.state.dataIsLoaded && !this.state.searchResults && (
-          <p>Your query didn't match any cards. Adjust your search terms.</p>
+          <p name="noCardsFound">
+            Your query didn't match any cards. Adjust your search terms.
+          </p>
         )}
         {this.state.dataIsLoaded === false && <Loading />}
       </div>

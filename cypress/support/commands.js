@@ -23,3 +23,9 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add("searchCard", (query, expectedCardName, byParameter) => {
+  cy.get(`[name='${byParameter}']`).type(query);
+  cy.get(`[name='${expectedCardName}']`).click();
+  cy.get(`[name='${byParameter}']`).should("have.value", expectedCardName);
+});

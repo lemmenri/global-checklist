@@ -71,7 +71,9 @@ export default function SearchCombobox({ itemList, id, placeholder, codeMap }) {
         </Combobox.Options>
       )}
       {query && itemList && filteredItems.length === 0 && showResults && (
-        <p className="text-sm px-4 py-2">{noResultsMessage}</p>
+        <p className="text-sm px-4 py-2" name="noSearchResults">
+          {noResultsMessage}
+        </p>
       )}
       {query && !itemList && <p className="text-sm px-4 py-2">Loading...</p>}
     </Combobox>
