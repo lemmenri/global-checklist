@@ -1,112 +1,85 @@
-DONE: handle if no cards are found on second search
-DONE: get card languages for found cards
-DONE: remove initial loading state (use React Query?)
-DONE: update foil / non-foil to include etched foil and glossy and new setup of scryfall api. Use finishes field
-DONE: handle opening card details page in new window
-DONE: clean up this file
-DONE: fix transparency issue in tooltip
-DONE: move cardSearch to separate component
-DONE: add autocomplete / suggestions to card search (using headlessUI combobox?)
-DONE: add counting of total versions in search results
-DONE: implement datamodel
-DONE: add card to datamodel
-DONE: fix cardNameSearch bugs (clear input field, hide options when not active)
-DONE: add collection state
-DONE: handle different conditions when listing collected copies on card page
-DONE: move api calls and procces function to seperate file
-DONE: add language support to opening cards in new tab
-DONE: handle different languages when adding card to collection
-DONE: add scroll to top when selecting a card from a long list of cards
-DONE: change default displayed value of condition in addToCollection from MT to NM
-DONE: move toggle to seperate component (consider using headlessUI toggle component)
-DONE: combine different languages of the same card in de search results page
-DONE: fix card count in search results. (doesn't include different finishes)
-DONE: move Combobox to separate component
-DONE: add search by set
-DONE: search by artist
-DONE: search by creature type
-DONE: wire up multiple search parameters
-DONE: fix search by set so it uses setCode
-DONE: handle multiple pages in search results
-DONE: hide header, footer and search options on print
-DONE: add print styling to search page
-DONE: fix adding the correct language when adding a card
-DONE: fix outline bug on IOS by replacing it with border
-DONE: fix bug when adding new card to collection it's id is stored as it's name
-DONE: remove card from collection
-DONE: fix SearchCombobox when No results found message is shown and component loses focus the message should go away
-DONE: handle searching when lists aren't loaded yet
-DONE: install cypress
-DONE: fix don't display show more butten after a second search where it's not needed
-
-IN PROGRESS: edit card
-IN PROGRESS: remove old CollectionOld.js code and related code
-IN PROGRESS: add unit tests (cypress?)
-
-TODO: add screenshots and description to README file
-TODO: restructure components in atoms, molecules and organisms
-TODO: fix text "Showing results for..." when searching for other parameters than cardname
-TODO: add cardimage hover on different languages in the search results
-TOOD: auto update collected list on cardpage when adding new card to collection
-TODO: filter available finished when adding new card. Now all finishes are available even if the card doesn't have that finish
-TODO: move finishes, conditions and languages to enum
-TODO: handle going back from card details to search results
-TODO: correctly implement button component
-TODO: fix icons for external links (and imported images in general)
-TODO: add toggle to only display cards in collection
-TODO: add sort options
-TODO: add toggles for scryfall include_extras and include_variations
-TODO: add search by card type
-TODO: add search by art (https://scryfall.com/docs/tagger-tags)
-TODO: fix bug when printing search results images from page 3 onwards they layout shifts
+// DONE
+handle if no cards are found on second search
+get card languages for found cards
+remove initial loading state (use React Query?)
+update foil / non-foil to include etched foil and glossy and new setup of scryfall api. Use finishes field
+handle opening card details page in new window
+clean up this file
+fix transparency issue in tooltip
+move cardSearch to separate component
+add autocomplete / suggestions to card search (using headlessUI combobox?)
+add counting of total versions in search results
+implement datamodel
+add card to datamodel
+fix cardNameSearch bugs (clear input field, hide options when not active)
+add collection state
+handle different conditions when listing collected copies on card page
+move api calls and procces function to seperate file
+add language support to opening cards in new tab
+handle different languages when adding card to collection
+add scroll to top when selecting a card from a long list of cards
+change default displayed value of condition in addToCollection from MT to NM
+move toggle to seperate component (consider using headlessUI toggle component)
+combine different languages of the same card in de search results page
+fix card count in search results. (doesn't include different finishes)
+move Combobox to separate component
+add search by set
+search by artist
+search by creature type
+wire up multiple search parameters
+fix search by set so it uses setCode
+handle multiple pages in search results
+hide header, footer and search options on print
+add print styling to search page
+fix adding the correct language when adding a card
+fix outline bug on IOS by replacing it with border
+fix bug when adding new card to collection it's id is stored as it's name
+remove card from collection
+fix SearchCombobox when No results found message is shown and component loses focus the message should go away
+handle searching when lists aren't loaded yet
+install cypress
+fix don't display show more butten after a second search where it's not needed
+add e2e tests for search page
+add e2e tests for home page
+create tailwind class for button styling
+add e2e tests for not found page
 
 
+// IN PROGRESS
+edit card
+remove old CollectionOld.js code and related code
+setup cypress component tests
 
 
-Notes on Redux: 
+// TODO
+// Features
+add cardimage hover on different languages in the search results
+handle going back from card details to search results
+add toggle to only display cards in collection
+add sort options
+add toggles for scryfall include_extras and include_variations
+add search by card type
+add search by art (https://scryfall.com/docs/tagger-tags)
+implement generic font styling
+add page titles
 
-// Define an initial state value for the app
-const initialState = {
-  value: 0
-}
+// Bugs
+fix text "Showing results for..." when searching for other parameters than cardname
+filter available finished when adding new card. Now all finishes are available even if the card doesn't have that finish
+auto update collected list on cardpage when adding new card to collection
+fix icons for external links (and imported images in general)
+fix bug when printing search results images from page 3 onwards they layout shifts
 
-// Create a reducer function that determins what the new state should be when something happens in the app
-function counterReducer(state = initialState, action) {
-  switch (action.type) {
-    case 'counter/incremented':
-      return { ...state, value: state.value + 1 }
-    case 'counter/decremented':
-      return { ...state, value: state.value - 1 }
-    default:
-      return state
-  }
-}
+// Refactoring
+move finishes, conditions and languages to enum
+restructure components in atoms, molecules and organisms
+correctly implement button component
+store data in redux
 
-// Create a new Redux store with the 'createStore' function, and use the 'counterReducer' for the update logic
-const store = Redux.createStore(counterReducer)
+// Tests
+add e2e tests for card page
 
-// Using the store in the UI
-function render() {
-  const state  store.getState()
-  // do something with the state
-}
-render()
-store.subscribe(render)
+// Other
+add screenshots and description to README file
 
-// Dispatch actions
-store.dispatch({ type: 'counter/incremented' })
-
-
-
-Add the @reduxjs/toolkit and react-redux packages
-Create a Redux store using RTK's configureStore API, and pass in at least one reducer function
-Import the Redux store into your application's entry point file (such as src/index.js)
-Wrap your root React component with the <Provider> component from React-Redux, like:
-
-ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById('root')
-)
 

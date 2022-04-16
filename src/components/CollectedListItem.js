@@ -91,7 +91,7 @@ export default function CollectedListItem({
           <div id="add" className="text-center px-2">
             <button
               onClick={handleRemoveFromCollection}
-              className="bg-light text-dark my-2 px-8 rounded-lg border border-1 border-dark hover:underline"
+              className="btn bg-light text-dark border border-1 border-dark"
             >
               Delete
             </button>
@@ -99,7 +99,7 @@ export default function CollectedListItem({
           <div id="add" className="text-center px-2">
             <button
               onClick={handleEditCard}
-              className="bg-primary text-light my-2 px-8 rounded-lg border border-1 border-primary hover:underline"
+              className="btn border border-1 border-primary"
             >
               Save
             </button>

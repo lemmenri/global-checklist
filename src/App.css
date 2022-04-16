@@ -9,3 +9,10 @@
 .__react_component_tooltip.show {
   opacity: 1 !important;
 }
+
+
+@layer components {
+  .btn {
+    @apply bg-primary text-light my-2 px-8 rounded-lg hover:underline
+  }
+}

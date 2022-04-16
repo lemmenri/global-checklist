@@ -84,10 +84,7 @@ export default class SearchPage extends React.Component {
               <ArtistSearch />
               <CreatureTypeSearch />
               <SetSearch />
-              <button
-                id="searchButton"
-                className="bg-primary text-light my-4 px-8 rounded-lg hover:underline"
-              >
+              <button id="searchButton" className="btn">
                 Search
               </button>
             </div>
@@ -118,7 +115,7 @@ export default class SearchPage extends React.Component {
             <button
               id="loadMore"
               onClick={this.handleLoadNextPage}
-              className="bg-primary text-light my-2 px-8 rounded-lg hover:underline"
+              className="btn"
             >
               Load more...
             </button>

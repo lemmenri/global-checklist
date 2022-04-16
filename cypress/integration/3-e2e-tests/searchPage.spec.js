@@ -1,8 +1,8 @@
 /// <reference types="cypress" />
 
-import { addCard, removeCard } from "../../src/scripts/CollectedCards";
+import { addCard, removeCard } from "../../../src/scripts/CollectedCards";
 
-describe("Searching cards", () => {
+describe("Search page", () => {
   beforeEach(() => {
     cy.visit("http://localhost:3000/search");
   });

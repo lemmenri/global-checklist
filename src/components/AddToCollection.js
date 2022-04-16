@@ -99,10 +99,7 @@ export default function AddToCollection({ card, languages }) {
           />
         </div>
         <div id="add" className="text-center">
-          <button
-            onClick={handleAddToCollection}
-            className="bg-primary text-light my-2 px-8 rounded-lg border border-1 border-primary hover:underline"
-          >
+          <button onClick={handleAddToCollection} className="btn">
             Add
           </button>
         </div>

@@ -34,9 +34,6 @@ import {
 } from "../../scripts/ScryfallQueries";
 
 export default function TestPage() {
-  const buttonStyling =
-    "bg-primary text-light my-2 px-8 rounded-lg hover:underline";
-
   // Collection
   const handleCreateCollection = () => createCollection();
   const handleGetCollection = () => console.log(getCollection());
@@ -236,112 +233,103 @@ export default function TestPage() {
       <h1 className="text-3xl my-4">Test Page</h1>
       <p>Collection:</p>
       <div className="flex flex-col max-w-xs">
-        <button className={buttonStyling} onClick={handleCreateCollection}>
+        <button className="btn" onClick={handleCreateCollection}>
           Create Collection
         </button>
-        <button className={buttonStyling} onClick={handleGetCollection}>
+        <button className="btn" onClick={handleGetCollection}>
           Get Collection
         </button>
-        <button className={buttonStyling} onClick={handleUpdateCollection}>
+        <button className="btn" onClick={handleUpdateCollection}>
           Update Collection
         </button>
-        <button className={buttonStyling} onClick={handleDeleteCollection}>
+        <button className="btn" onClick={handleDeleteCollection}>
           Delete Collection
         </button>
       </div>
       <p>Cards:</p>
       <div className="flex flex-col max-w-xs">
-        <button className={buttonStyling} onClick={handleAddCard}>
+        <button className="btn" onClick={handleAddCard}>
           Add Card
         </button>
-        <button className={buttonStyling} onClick={handleGetCardById}>
+        <button className="btn" onClick={handleGetCardById}>
           Get Card By Id
         </button>
-        <button className={buttonStyling} onClick={handleHasVersion}>
+        <button className="btn" onClick={handleHasVersion}>
           Has Version
         </button>
-        <button
-          className={buttonStyling}
-          onClick={handleGetCardBySetNrLanguage}
-        >
+        <button className="btn" onClick={handleGetCardBySetNrLanguage}>
           Get Card By Set, Nr and Language
         </button>
-        <button className={buttonStyling} onClick={handleGetCollectedCardList}>
+        <button className="btn" onClick={handleGetCollectedCardList}>
           Get Collected Cards (List)
         </button>
-        <button className={buttonStyling} onClick={handleUpdateCard}>
+        <button className="btn" onClick={handleUpdateCard}>
           Update Card
         </button>
-        <button className={buttonStyling} onClick={handleRemoveCard}>
+        <button className="btn" onClick={handleRemoveCard}>
           Remove Card
         </button>
-        <button className={buttonStyling} onClick={handleRemoveCardVersion}>
+        <button className="btn" onClick={handleRemoveCardVersion}>
           Remove Card Version
         </button>
       </div>
       <p>Counts:</p>
       <div className="flex flex-col max-w-xs">
-        <button className={buttonStyling} onClick={handleGetCollectionCount}>
+        <button className="btn" onClick={handleGetCollectionCount}>
           Get Collection Count
         </button>
-        <button className={buttonStyling} onClick={handleGetCardCount}>
+        <button className="btn" onClick={handleGetCardCount}>
           Get Card Count (all finishes)
         </button>
-        <button className={buttonStyling} onClick={handleGetCardCountFinish}>
+        <button className="btn" onClick={handleGetCardCountFinish}>
           Get Card Count for Finish
         </button>
-        <button
-          className={buttonStyling}
-          onClick={handleGetNumberOfDifferentVersions}
-        >
+        <button className="btn" onClick={handleGetNumberOfDifferentVersions}>
           Get Number of Different Versions
         </button>
       </div>
       <p>Scryfall queries:</p>
       <div className="flex flex-col max-w-xs">
-        <button className={buttonStyling} onClick={handleGetScryfallCard}>
+        <button className="btn" onClick={handleGetScryfallCard}>
           Get Scryfall Card
         </button>
-        <button className={buttonStyling} onClick={handleAdvancedSearch}>
+        <button className="btn" onClick={handleAdvancedSearch}>
           Scryfall Advanced Search
         </button>
-        <button className={buttonStyling} onClick={handleAdvancedSearchName}>
+        <button className="btn" onClick={handleAdvancedSearchName}>
           Scryfall Advanced Search By Name
         </button>
-        <button className={buttonStyling} onClick={handleAdvancedSearchArtist}>
+        <button className="btn" onClick={handleAdvancedSearchArtist}>
           Scryfall Advanced Search By Artist
         </button>
-        <button
-          className={buttonStyling}
-          onClick={handleAdvancedSearchCreatureType}
-        >
+        <button className="btn" onClick={handleAdvancedSearchCreatureType}>
           Scryfall Advanced Search By Creature Type
         </button>
-        <button className={buttonStyling} onClick={handleAdvancedSearchSetCode}>
+        <button className="btn" onClick={handleAdvancedSearchSetCode}>
           Scryfall Advanced Search By Set Code
         </button>
-        <button className={buttonStyling} onClick={handleGetOtherLanguages}>
+        <button className="btn" onClick={handleGetOtherLanguages}>
           Get other languages
         </button>
-        <button className={buttonStyling} onClick={handleSearchByCardname}>
+        <button className="btn" onClick={handleSearchByCardname}>
           Search by cardname
         </button>
-        <button className={buttonStyling} onClick={handleGetCardnameList}>
+        <button className="btn" onClick={handleGetCardnameList}>
           Get all cardnames
         </button>
-        <button className={buttonStyling} onClick={handleGetArtistList}>
+        <button className="btn" onClick={handleGetArtistList}>
           Get all artists
         </button>
-        <button className={buttonStyling} onClick={handleGetCreatureTypeList}>
+        <button className="btn" onClick={handleGetCreatureTypeList}>
           Get all creature types
         </button>
-        <button className={buttonStyling} onClick={handleGetSetList}>
+        <button className="btn" onClick={handleGetSetList}>
           Get all sets
         </button>
       </div>
       <p>Group cards:</p>
       <div className="flex flex-col max-w-xs">
-        <button className={buttonStyling} onClick={handleGroupCards}>
+        <button className="btn" onClick={handleGroupCards}>
           Group Cards
         </button>
       </div>
