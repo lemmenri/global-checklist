@@ -78,6 +78,8 @@ store data in redux
 
 // Tests
 add e2e tests for card page
+add component tests
+add unit tests
 
 // Other
 add screenshots and description to README file
