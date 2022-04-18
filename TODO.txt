@@ -43,12 +43,12 @@ add e2e tests for search page
 add e2e tests for home page
 create tailwind class for button styling
 add e2e tests for not found page
-
+setup cypress component tests
+add component tests to Condition and ExternalLink components
 
 // IN PROGRESS
 edit card
 remove old CollectionOld.js code and related code
-setup cypress component tests
 
 
 // TODO

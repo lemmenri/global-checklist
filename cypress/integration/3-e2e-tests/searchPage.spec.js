@@ -125,7 +125,7 @@ describe("Search page", () => {
       .and("have.class", "bg-collected");
   });
 
-  it("Show collected card in list view", () => {
+  it("Show collected card in image view", () => {
     removeCard("46652ae3-6572-4296-939b-0789923180d5");
     addCard({
       id: "46652ae3-6572-4296-939b-0789923180d5",
