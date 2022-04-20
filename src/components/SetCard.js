@@ -1,18 +1,16 @@
 import React from "react";
-import {
-  getCardCountSet,
-  getTotalCardCountSet,
-} from "../../scripts/CardCounts";
+import { getCardCountSet, getTotalCardCountSet } from "../scripts/CardCounts";
 
 export default function SetCard({ set }) {
   const uniqueCardsCollected = getCardCountSet(set.code);
   const totalCardsCollected = getTotalCardCountSet(set.code);
-  const percentageCompleted = Math.round(
-    (uniqueCardsCollected / set.card_count) * 100
-  );
+  const percentageCompleted =
+    set.card_count === 0
+      ? 0
+      : Math.round((uniqueCardsCollected / set.card_count) * 100);
 
   return (
-    <div id="setCard" className="overflow-hidden">
+    <div id="setCard" className="overflow-hidden p-1">
       <div
         id="setCard-title"
         className="flex bg-dark text-white p-2 rounded-t-lg items-center"

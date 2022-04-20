@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { getSet } from "../../scripts/ScryfallQueries";
 import Condition from "../Condition";
 import Language from "../Language";
-import SetCard from "./SetCard";
+import SetCard from "../SetCard";
 
 export default function DesignSystemPage() {
   const [exampleSetCardData, setExampleSetCardData] = useState(undefined);

@@ -8,6 +8,7 @@ import NotFoundPage from "../components/pages/NotFoundPage";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import ScrollToTop from "../components/ScrollToTop";
+import SetsPage from "../components/pages/SetsPage";
 
 const AppRouter = () => (
   <BrowserRouter>
@@ -17,6 +18,7 @@ const AppRouter = () => (
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/search" element={<SearchPage />} />
+        <Route path="/sets" element={<SetsPage />} />
         <Route path="/card/:id" element={<CardPage />} />
         <Route path="/design-system" element={<DesignSystemPage />} />
         <Route path="/test" element={<TestPage />} />

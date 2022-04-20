@@ -45,12 +45,12 @@ create tailwind class for button styling
 add e2e tests for not found page
 setup cypress component tests
 add component tests to Condition and ExternalLink components
+add setCard component
+remove old CollectionOld.js code and related code
 
 // IN PROGRESS
 edit card
-remove old CollectionOld.js code and related code
 add sets page
-add setCard component
 
 
 // TODO
@@ -81,7 +81,7 @@ store data in redux
 // Tests
 add e2e tests for card page
 add component tests
-add unit tests
+add unit tests for scripts
 
 // Other
 add screenshots and description to README file

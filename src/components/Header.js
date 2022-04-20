@@ -12,6 +12,9 @@ const Header = () => (
       <NavLink id="home" className={"text-light hover:underline"} to="/">
         Home
       </NavLink>
+      <NavLink id="sets" className={"text-light hover:underline"} to="/sets">
+        Sets
+      </NavLink>
       <NavLink
         id="search"
         className={"text-light hover:underline"}
