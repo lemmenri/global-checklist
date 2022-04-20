@@ -49,6 +49,8 @@ add component tests to Condition and ExternalLink components
 // IN PROGRESS
 edit card
 remove old CollectionOld.js code and related code
+add sets page
+add setCard component
 
 
 // TODO

@@ -1,6 +1,32 @@
 import React from "react";
 import Condition from "../Condition";
 import Language from "../Language";
+import SetCard from "./SetCard";
+
+const exampleSetCardData = {
+  object: "set",
+  id: "a4a0db50-8826-4e73-833c-3fd934375f96",
+  code: "aer",
+  mtgo_code: "aer",
+  arena_code: "aer",
+  tcgplayer_id: 1857,
+  name: "Aether Revolt",
+  uri: "https://api.scryfall.com/sets/a4a0db50-8826-4e73-833c-3fd934375f96",
+  scryfall_uri: "https://scryfall.com/sets/aer",
+  search_uri:
+    "https://api.scryfall.com/cards/search?order=set&q=e%3Aaer&unique=prints",
+  released_at: "2017-01-20",
+  set_type: "expansion",
+  card_count: 194,
+  printed_size: 184,
+  digital: false,
+  nonfoil_only: false,
+  foil_only: false,
+  block_code: "kld",
+  block: "Kaladesh",
+  icon_svg_uri:
+    "https://c2.scryfall.com/file/scryfall-symbols/sets/aer.svg?1650254400",
+};
 
 export default function DesignSystemPage() {
   return (
@@ -81,6 +107,10 @@ export default function DesignSystemPage() {
         <Condition condition={"PL"} />
         <Condition condition={"PO"} />
       </div>
+      <h2 className="text-2xl my-4">Molecules</h2>
+      <h2 className="text-2xl my-4">Organisms</h2>
+      <h3 className="text-xl my-4">Set Card</h3>
+      <SetCard set={exampleSetCardData} />
     </div>
   );
 }
