@@ -2,8 +2,10 @@ import React from "react";
 import {
   getCardCount,
   getCardCountFinish,
+  getCardCountSet,
   getCollectionCount,
   getNumberOfDifferentVersions,
+  getTotalCardCountSet,
 } from "../../scripts/CardCounts";
 import {
   addCard,
@@ -29,6 +31,7 @@ import {
   getCreatureTypeList,
   getOtherLanguages,
   getScryfallCard,
+  getSet,
   getSetList,
   searchByCardname,
 } from "../../scripts/ScryfallQueries";
@@ -166,6 +169,9 @@ export default function TestPage() {
       console.log(getNumberOfDifferentVersions(res.data))
     );
   };
+  const handleGetCardCountSet = () => console.log(getCardCountSet("cn2"));
+  const handleGetTotalCardCountSet = () =>
+    console.log(getTotalCardCountSet("cn2"));
 
   // ScryfallQueries
   const handleGetScryfallCard = () =>
@@ -219,6 +225,9 @@ export default function TestPage() {
   };
   const handleGetSetList = () => {
     getSetList().then((res) => console.log(res.data));
+  };
+  const handleGetSet = () => {
+    getSet("aer").then((res) => console.log(res));
   };
 
   // Group Cards
@@ -287,6 +296,12 @@ export default function TestPage() {
         <button className="btn" onClick={handleGetNumberOfDifferentVersions}>
           Get Number of Different Versions
         </button>
+        <button className="btn" onClick={handleGetCardCountSet}>
+          Get Number of Cards Collected from a Set
+        </button>
+        <button className="btn" onClick={handleGetTotalCardCountSet}>
+          Get Total Number of Cards Collected in a Set
+        </button>
       </div>
       <p>Scryfall queries:</p>
       <div className="flex flex-col max-w-xs">
@@ -325,6 +340,9 @@ export default function TestPage() {
         </button>
         <button className="btn" onClick={handleGetSetList}>
           Get all sets
+        </button>
+        <button className="btn" onClick={handleGetSet}>
+          Get set
         </button>
       </div>
       <p>Group cards:</p>

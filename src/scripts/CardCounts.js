@@ -49,3 +49,31 @@ export const getNumberOfDifferentVersions = (cards) => {
   });
   return count;
 };
+
+// Returns the number of different cards collected from a specified set
+export const getCardCountSet = (set) => {
+  const collection = getCollection();
+  if (!collection || collection.cards.length === 0) return 0;
+  const count = [];
+  collection.cards.forEach((card) => {
+    if (card.set === set && !count.find((nr) => nr === card.nr)) {
+      count.push(card.nr);
+    }
+  });
+  return count.length;
+};
+
+// Returns the total number of cards collected in a set
+export const getTotalCardCountSet = (set) => {
+  const collection = getCollection();
+  if (!collection || collection.cards.length === 0) return 0;
+  let count = 0;
+  collection.cards.forEach((card) => {
+    if (card.set === set) {
+      card.collected.forEach((collectedCard) => {
+        count += parseInt(collectedCard.quantity);
+      });
+    }
+  });
+  return count;
+};

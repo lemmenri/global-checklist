@@ -97,8 +97,14 @@ export const getCreatureTypeList = async () => {
   return await res.json();
 };
 
-// Returns a list of all set names
+// Returns a list of all sets with meta data about the set
 export const getSetList = async () => {
   const res = await fetch(`${baseUrl}sets`);
+  return await res.json();
+};
+
+// Returns specific data about a set
+export const getSet = async (set) => {
+  const res = await fetch(`${baseUrl}sets/${set}`);
   return await res.json();
 };

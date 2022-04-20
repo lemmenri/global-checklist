@@ -1,8 +1,12 @@
 import React from "react";
+import {
+  getCardCountSet,
+  getTotalCardCountSet,
+} from "../../scripts/CardCounts";
 
 export default function SetCard({ set }) {
-  const uniqueCardsCollected = 0;
-  const totalCardsCollected = 0;
+  const uniqueCardsCollected = getCardCountSet(set.code);
+  const totalCardsCollected = getTotalCardCountSet(set.code);
   const percentageCompleted = Math.round(
     (uniqueCardsCollected / set.card_count) * 100
   );
