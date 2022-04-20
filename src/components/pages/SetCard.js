@@ -1,15 +1,12 @@
 import React from "react";
 
 export default function SetCard({ set }) {
-  const uniqueCardsCollected = 97;
+  const uniqueCardsCollected = 0;
   const totalCardsCollected = 0;
   const percentageCompleted = Math.round(
     (uniqueCardsCollected / set.card_count) * 100
   );
 
-  console.log(uniqueCardsCollected);
-  console.log(set.card_count);
-  console.log(percentageCompleted);
   return (
     <div id="setCard" className="overflow-hidden">
       <div
@@ -40,7 +37,8 @@ export default function SetCard({ set }) {
             <p className="z-50 relative">{`${percentageCompleted}% - ${uniqueCardsCollected}/${set.card_count}`}</p>
             <div
               id="percentagebar-background"
-              className={`absolute h-full bottom-0 bg-collected w-[${percentageCompleted}%]`}
+              style={{ width: percentageCompleted + "%" }}
+              className={`absolute h-full bottom-0 bg-collected`}
             ></div>
           </div>
         </div>
