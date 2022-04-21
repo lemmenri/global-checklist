@@ -18,11 +18,15 @@ export default function SetCard({ set }) {
         <i
           id="setCard-icon"
           title={set.code}
-          className={"ss ss-" + set.code}
+          className={`ss ss-${
+            set.hasOwnProperty("parent_set_code")
+              ? set.parent_set_code
+              : set.code
+          }`}
         ></i>
-        <p id="setCard-name" className="pl-2">
+        <a id="setCard-name" className="pl-2 hover:underline">
           {set.name}
-        </p>
+        </a>
       </div>
       <div
         id="setCard-details"

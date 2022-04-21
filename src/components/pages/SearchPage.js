@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import SearchResults from "../SearchResults";
 import { Loading } from "../Loading";
 import { advancedSearch } from "../../scripts/ScryfallQueries";
@@ -9,21 +9,14 @@ import ArtistSearch from "../ArtistSearch";
 import CreatureTypeSearch from "../CreatureTypeSearch";
 import SetSearch from "../SetSearch";
 
-export default class SearchPage extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
-    this.handleLoadNextPage = this.handleLoadNextPage.bind(this);
-    this.state = {
-      search: "",
-      searchResults: undefined,
-      dataIsLoaded: undefined,
-      groupedCards: undefined,
-      nextPage: undefined,
-    };
-  }
+export default function SearchPage() {
+  const [search, setSearch] = useState("");
+  const [searchResults, setSearchResults] = useState(undefined);
+  const [dataIsLoaded, setDataIsLoaded] = useState(undefined);
+  const [groupedCards, setGroupedCards] = useState(undefined);
+  const [nextPage, setNextPage] = useState(undefined);
 
-  handleSearchSubmit(e) {
+  const handleSearchSubmit = (e) => {
     e.preventDefault();
     const searchParameters = {
       name: e.target.cardnameSearch.value,
@@ -31,102 +24,83 @@ export default class SearchPage extends React.Component {
       creatureType: e.target.creatureTypeSearch.value,
       setCode: e.target.setSearch.dataset.code,
     };
-    this.setState(() => ({
-      dataIsLoaded: false,
-      nextPage: undefined,
-    }));
-    this.setState({ search: e.target.cardnameSearch.value }, () => {
-      advancedSearch(searchParameters).then((json) => {
-        if (json.object === "error") {
-          this.setState(() => ({
-            searchResults: undefined,
-            dataIsLoaded: true,
-          }));
-          return;
-        }
-        this.setState(() => ({
-          searchResults: json,
-          groupedCards: groupCardsByLanguage(json.data),
-          dataIsLoaded: true,
-        }));
-        if (json.has_more) {
-          this.setState(() => ({
-            nextPage: json.next_page,
-          }));
-        }
-      });
-    });
-  }
 
-  handleLoadNextPage() {
-    fetch(this.state.nextPage)
+    setDataIsLoaded(false);
+    setNextPage(undefined);
+    setSearch(e.target.cardnameSearch.value);
+
+    advancedSearch(searchParameters).then((json) => {
+      if (json.object === "error") {
+        setSearchResults(undefined);
+        setDataIsLoaded(true);
+        return;
+      }
+      setSearchResults(json);
+      setGroupedCards(groupCardsByLanguage(json.data));
+      setDataIsLoaded(true);
+      if (json.has_more) {
+        setNextPage(json.next_page);
+      }
+    });
+  };
+
+  const handleLoadNextPage = () => {
+    fetch(nextPage)
       .then((res) => res.json())
       .then((json) => {
-        let newSearchResults = this.state.searchResults;
-        newSearchResults.data = this.state.searchResults.data.concat(json.data);
-        const newGroupedCards = groupCardsByLanguage(newSearchResults.data);
-        const nextPage = json.has_more ? json.next_page : undefined;
-        this.setState(() => ({
-          searchResults: newSearchResults,
-          groupedCards: newGroupedCards,
-          nextPage: nextPage,
-        }));
+        let newSearchResults = searchResults;
+        newSearchResults.data = searchResults.data.concat(json.data);
+        setSearchResults(newSearchResults);
+        setGroupedCards(groupCardsByLanguage(newSearchResults.data));
+        setNextPage(json.has_more ? json.next_page : undefined);
       });
-  }
+  };
 
-  render() {
-    return (
-      <div className="p-4 sm:p-8 flex-grow bg-light">
-        <div id="cardSearchContainer" className="my-2 print:hidden">
-          <form role="search" onSubmit={this.handleSearchSubmit}>
-            <div>
-              <CardnameSearch />
-              <ArtistSearch />
-              <CreatureTypeSearch />
-              <SetSearch />
-              <button id="searchButton" className="btn">
-                Search
-              </button>
-            </div>
-          </form>
-        </div>
-        {this.state.dataIsLoaded && this.state.searchResults && (
-          <>
-            <p id="seachResultsDescription">
-              {`Showing results for "${this.state.search}". Found ${
-                this.state.groupedCards?.length
-              } different card(s) with ${
-                this.state.searchResults?.data?.length
-              } different print(s) and ${getNumberOfDifferentVersions(
-                this.state.searchResults?.data
-              )} different version(s).`}
-              {this.state.nextPage &&
-                ` More printings are available (${this.state.searchResults.total_cards}).`}
-            </p>
-            <SearchResults
-              searchResults={this.state.searchResults.data}
-              groupedCards={this.state.groupedCards}
-            />
-          </>
-        )}
-        {this.state.dataIsLoaded &&
-          this.state.searchResults &&
-          this.state.nextPage && (
-            <button
-              id="loadMore"
-              onClick={this.handleLoadNextPage}
-              className="btn"
-            >
-              Load more...
+  return (
+    <div className="p-4 sm:p-8 flex-grow bg-light">
+      <div id="cardSearchContainer" className="my-2 print:hidden">
+        <form role="search" onSubmit={handleSearchSubmit}>
+          <div>
+            <CardnameSearch />
+            <ArtistSearch />
+            <CreatureTypeSearch />
+            <SetSearch />
+            <button id="searchButton" className="btn">
+              Search
             </button>
-          )}
-        {this.state.dataIsLoaded && !this.state.searchResults && (
-          <p name="noCardsFound">
-            Your query didn't match any cards. Adjust your search terms.
-          </p>
-        )}
-        {this.state.dataIsLoaded === false && <Loading />}
+          </div>
+        </form>
       </div>
-    );
-  }
+      {dataIsLoaded && searchResults && (
+        <>
+          <p id="seachResultsDescription">
+            {`Showing results for "${search}". Found ${
+              groupedCards?.length
+            } different card(s) with ${
+              searchResults?.data?.length
+            } different print(s) and ${getNumberOfDifferentVersions(
+              searchResults?.data
+            )} different version(s).`}
+            {nextPage &&
+              ` More printings are available (${searchResults.total_cards}).`}
+          </p>
+          <SearchResults
+            searchResults={searchResults.data}
+            groupedCards={groupedCards}
+          />
+        </>
+      )}
+      {dataIsLoaded && searchResults && nextPage && (
+        <button id="loadMore" onClick={handleLoadNextPage} className="btn">
+          Load more...
+        </button>
+      )}
+      {dataIsLoaded && !searchResults && (
+        <p name="noCardsFound">
+          Your query didn't match any cards. Adjust your search terms.
+        </p>
+      )}
+      {dataIsLoaded === false && <Loading />}
+    </div>
+  );
 }
