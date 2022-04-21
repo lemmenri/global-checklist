@@ -13,7 +13,7 @@ export default function SetCard({ set }) {
     <div id="setCard" className="overflow-hidden p-1">
       <div
         id="setCard-title"
-        className="flex bg-dark text-white p-2 rounded-t-lg items-center"
+        className="flex bg-dark text-white p-2 rounded-t-lg items-center print:text-dark print:border print:border-1 print:border-dark"
       >
         <i
           id="setCard-icon"
