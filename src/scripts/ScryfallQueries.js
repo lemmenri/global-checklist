@@ -26,6 +26,7 @@ export const getOtherLanguages = async (id) => {
             cardList.push({
               language: card.lang,
               id: card.id,
+              finishes: card.finishes,
             });
           });
         })

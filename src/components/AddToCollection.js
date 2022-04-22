@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { addCard } from "../scripts/CollectedCards";
 import { getOtherLanguages } from "../scripts/ScryfallQueries";
 import TextListBox from "./ListBox";
@@ -21,12 +21,32 @@ const conditions = [
 ];
 
 export default function AddToCollection({ card, languages }) {
-  const [finish, setFinish] = useState(finishes[0]);
+  const [validFinishes, setFinishes] = useState(finishes);
+  const [finish, setFinish] = useState(
+    finishes.find((element) => element.value === card.finishes[0])
+  );
   const [quantity, setQuantity] = useState(1);
   const [condition, setCondition] = useState(conditions[1]);
   const [language, setLanguage] = useState(
     languages.find((language) => card.lang === language.value)
   );
+
+  useEffect(() => {
+    filterFinishes(card.finishes);
+  }, []);
+
+  const filterFinishes = (availableFinishes) => {
+    const filteredFinishes = [];
+    availableFinishes.forEach((finish) => {
+      const i = finishes.findIndex((element) => element.value === finish);
+      filteredFinishes.push(finishes[i]);
+    });
+    setFinishes(filteredFinishes);
+
+    if (!filteredFinishes.find((element) => element.value === finish.value)) {
+      setFinish(filteredFinishes[0]);
+    }
+  };
 
   const handleAddToCollection = (e) => {
     getOtherLanguages(card.id).then((res) =>
@@ -43,6 +63,11 @@ export default function AddToCollection({ card, languages }) {
     );
   };
 
+  const handleSetLanguage = (e) => {
+    setLanguage(e);
+    filterFinishes(e.finishes);
+  };
+
   return (
     <div className="py-4 max-w-sm">
       <div
@@ -55,7 +80,7 @@ export default function AddToCollection({ card, languages }) {
         <div className="flex items-center">
           <TextListBox
             id="finish"
-            values={finishes}
+            values={validFinishes}
             label="Finish"
             onChange={setFinish}
           />
@@ -92,7 +117,7 @@ export default function AddToCollection({ card, languages }) {
             id="language"
             values={languages}
             label="Language"
-            onChange={setLanguage}
+            onChange={handleSetLanguage}
             defaultValue={languages.findIndex(
               (language) => card.lang === language.value
             )}

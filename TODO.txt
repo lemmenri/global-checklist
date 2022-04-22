@@ -51,6 +51,7 @@ add sets page
 implement search parameters
 search automatically if search parameters are provided (fixed automagically)
 link setname on cardpage to search by that set
+filter available finished when adding new card. Now all finishes are available even if the card doesn't have that finish
 
 // IN PROGRESS
 edit card
@@ -61,16 +62,18 @@ edit card
 add cardimage hover on different languages in the search results
 handle going back from card details to search results
 add toggle to only display cards in collection
-add sort options
+add sort options to searchpage
+add sort options to setpage
 add toggles for scryfall include_extras and include_variations
 add search by card type
 add search by art (https://scryfall.com/docs/tagger-tags)
 implement generic font styling
 add page titles
+add conformation message on collection changes
+add card scanner?
 
 // Bugs
 fix text "Showing results for..." when searching for other parameters than cardname
-filter available finished when adding new card. Now all finishes are available even if the card doesn't have that finish
 auto update collected list on cardpage when adding new card to collection
 fix icons for external links (and imported images in general)
 fix bug when printing search results images from page 3 onwards they layout shifts

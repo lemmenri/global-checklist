@@ -22,6 +22,7 @@ const convertLanguageData = (languages) => {
       name: language.language,
       value: language.language,
       type: "language",
+      finishes: language.finishes,
     })
   );
   return newList;

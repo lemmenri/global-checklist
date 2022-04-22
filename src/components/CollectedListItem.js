@@ -1,3 +1,4 @@
+import { Transition } from "@headlessui/react";
 import { PencilAltIcon } from "@heroicons/react/outline";
 import React, { useState } from "react";
 import { removeCardVersion } from "../scripts/CollectedCards";
@@ -11,7 +12,7 @@ export default function CollectedListItem({
   condition,
   language,
 }) {
-  const [edit, setEdit] = useState(false);
+  const [showEdit, setShowEdit] = useState(false);
 
   let finishSign = "";
   switch (finish) {
@@ -32,7 +33,7 @@ export default function CollectedListItem({
   }
 
   const handleToggleEdit = () => {
-    setEdit(!edit);
+    setShowEdit(!showEdit);
   };
 
   const handleRemoveFromCollection = () => {
@@ -79,33 +80,37 @@ export default function CollectedListItem({
           </button>
         </div>
       </div>
-      <div
-        className={`transition-all duration-200 ease-in-out border-primary ${
-          edit
-            ? "h-20 visible opacity-100 border border-t-0"
-            : "h-0 invisible opacity-0 border-none"
-        }`}
+      <Transition
+        show={showEdit}
+        enter="duration-500"
+        enterFrom="opacity-0 max-h-0"
+        enterTo="opacity-100 max-h-40"
+        leave="duration-500"
+        leaveFrom="opacity-100 max-h-40"
+        leaveTo="opacity-0 max-h-0"
       >
-        Edit
-        <div className="flex justify-center items-center w-full">
-          <div id="add" className="text-center px-2">
-            <button
-              onClick={handleRemoveFromCollection}
-              className="btn bg-light text-dark border border-1 border-dark"
-            >
-              Delete
-            </button>
-          </div>
-          <div id="add" className="text-center px-2">
-            <button
-              onClick={handleEditCard}
-              className="btn border border-1 border-primary"
-            >
-              Save
-            </button>
+        <div id="editContainer" className="border-primary border border-t-0">
+          Edit
+          <div className="flex justify-center items-center w-full">
+            <div id="add" className="text-center px-2">
+              <button
+                onClick={handleRemoveFromCollection}
+                className="btn bg-light text-dark border border-1 border-dark"
+              >
+                Delete
+              </button>
+            </div>
+            <div id="add" className="text-center px-2">
+              <button
+                onClick={handleEditCard}
+                className="btn border border-1 border-primary"
+              >
+                Save
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      </Transition>
     </>
   );
 }
