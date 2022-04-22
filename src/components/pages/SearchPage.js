@@ -31,7 +31,7 @@ export default function SearchPage() {
     if (hasSearchParams) {
       const form = document.getElementById("searchForm");
       console.log(form);
-      //form.requestSubmit();
+      form.requestSubmit();
     }
   }, []);
 

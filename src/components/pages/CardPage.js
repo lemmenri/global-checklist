@@ -1,4 +1,5 @@
 import { useParams, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { useState } from "react";
 import CardImage from "../CardImage";
 import { Loading } from "../Loading";
@@ -57,6 +58,14 @@ const CardPage = () => {
       .then(() => setIsOtherLanguagesLoaded(true));
   }
 
+  const navigate = useNavigate();
+  const goToSet = () => {
+    navigate({
+      pathname: "/search",
+      search: `?set=${card.set}`,
+    });
+  };
+
   return (
     <div className="p-4 sm:p-8 flex-grow bg-light">
       {isDataLoaded ? (
@@ -66,9 +75,12 @@ const CardPage = () => {
             <i
               id="card-set-icon"
               title={card.set_name}
-              className={"text-4xl ss ss-" + card.set}
+              className={"text-4xl pr-2 ss ss-" + card.set}
             ></i>
-            {`\xa0${card.set_name} - #${card.collector_number} - ${card.rarity}`}
+            <button onClick={goToSet} className="hover:underline" id="setName">
+              {card.set_name}
+            </button>
+            {` - #${card.collector_number} - ${card.rarity}`}
           </p>
           {isOtherLanguagesLoaded && (
             <div id="languages" className="flex space-x-2">

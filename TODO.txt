@@ -49,10 +49,11 @@ add setCard component
 remove old CollectionOld.js code and related code
 add sets page
 implement search parameters
+search automatically if search parameters are provided (fixed automagically)
+link setname on cardpage to search by that set
 
 // IN PROGRESS
 edit card
-search automatically if search parameters are provided
 
 
 // TODO
