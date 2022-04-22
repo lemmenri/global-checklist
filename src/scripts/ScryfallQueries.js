@@ -109,3 +109,16 @@ export const getSet = async (set) => {
   const res = await fetch(`${baseUrl}sets/${set}`);
   return await res.json();
 };
+
+// Returns a list of all possible set types
+export const getSetTypes = async () => {
+  const setTypes = [];
+  await getSetList().then((sets) => {
+    sets.data.forEach((set) => {
+      if (!setTypes.find((type) => type === set.set_type)) {
+        setTypes.push(set.set_type);
+      }
+    });
+  });
+  return setTypes.sort((a, b) => a.localeCompare(b));
+};

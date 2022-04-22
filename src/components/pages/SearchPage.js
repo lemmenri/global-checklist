@@ -32,7 +32,6 @@ export default function SearchPage() {
   useEffect(() => {
     if (hasSearchParams) {
       const form = document.getElementById("searchForm");
-      console.log(form);
       form.requestSubmit();
     }
   }, []);

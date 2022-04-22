@@ -54,6 +54,7 @@ link setname on cardpage to search by that set
 filter available finished when adding new card. Now all finishes are available even if the card doesn't have that finish
 add page titles
 add screenshots and description to README file
+add filter sets by type
 
 
 // IN PROGRESS

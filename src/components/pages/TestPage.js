@@ -33,6 +33,7 @@ import {
   getScryfallCard,
   getSet,
   getSetList,
+  getSetTypes,
   searchByCardname,
 } from "../../scripts/ScryfallQueries";
 
@@ -231,6 +232,9 @@ export default function TestPage() {
   const handleGetSet = () => {
     getSet("aer").then((res) => console.log(res));
   };
+  const handleGetSetTypes = () => {
+    getSetTypes().then((res) => console.log(res));
+  };
 
   // Group Cards
   const handleGroupCards = () => {
@@ -345,6 +349,9 @@ export default function TestPage() {
         </button>
         <button className="btn" onClick={handleGetSet}>
           Get set
+        </button>
+        <button className="btn" onClick={handleGetSetTypes}>
+          Get set types
         </button>
       </div>
       <p>Group cards:</p>

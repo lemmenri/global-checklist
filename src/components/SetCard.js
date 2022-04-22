@@ -53,7 +53,7 @@ export default function SetCard({ set }) {
           className="m-2 border border-1 border-dark"
         >
           <div id="percentagebar" className="relative w-full text-center">
-            <p className="z-50 relative">{`${percentageCompleted}% - ${uniqueCardsCollected}/${set.card_count}`}</p>
+            <p className="z-40 relative">{`${percentageCompleted}% - ${uniqueCardsCollected}/${set.card_count}`}</p>
             <div
               id="percentagebar-background"
               style={{ width: percentageCompleted + "%" }}
