@@ -57,6 +57,7 @@ add page titles
 
 // IN PROGRESS
 edit card
+add screenshots and description to README file
 
 
 // TODO
@@ -72,12 +73,13 @@ add search by art (https://scryfall.com/docs/tagger-tags)
 implement generic font styling
 add conformation message on collection changes
 add card scanner?
+add mtg-library icon to header and browser tab
 
 // Bugs
 fix text "Showing results for..." when searching for other parameters than cardname
 auto update collected list on cardpage when adding new card to collection
 fix icons for external links (and imported images in general)
-fix bug when printing search results images from page 3 onwards they layout shifts
+fix bug when printing search results images. From page 3 onwards the layout shifts
 fix search parameters when emptying the search fields. Now they are still taken into account when searching something again
 fix icons in search results for tokens. See if they can be the same as the parent set
 
@@ -91,6 +93,3 @@ store data in redux
 add e2e tests for card page
 add component tests
 add unit tests for scripts
-
-// Other
-add screenshots and description to README file

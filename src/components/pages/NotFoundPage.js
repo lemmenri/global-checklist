@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default function NotFoundPage() {
-  document.title = "MTG-Library - 404";
+  document.title = "MTG Library - 404";
 
   return (
     <div className="p-4 sm:p-8 flex-grow">

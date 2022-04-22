@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function HomePage() {
-  document.title = "MTG-Library";
+  document.title = "MTG Library";
   return (
     <div className="p-4 sm:p-8 flex-grow">
       <h1 className="text-xl my-4">Welcome to MTG Library!</h1>
