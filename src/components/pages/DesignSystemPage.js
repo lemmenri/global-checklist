@@ -5,6 +5,8 @@ import Language from "../Language";
 import SetCard from "../SetCard";
 
 export default function DesignSystemPage() {
+  document.title = "MTG-Library - Design System";
+
   const [exampleSetCardData, setExampleSetCardData] = useState(undefined);
 
   useEffect(() => {

@@ -37,6 +37,8 @@ import {
 } from "../../scripts/ScryfallQueries";
 
 export default function TestPage() {
+  document.title = "MTG-Library - Test";
+
   // Collection
   const handleCreateCollection = () => createCollection();
   const handleGetCollection = () => console.log(getCollection());

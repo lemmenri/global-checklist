@@ -4,6 +4,8 @@ import { Loading } from "../Loading";
 import SetCard from "../SetCard";
 
 export default function SetsPage() {
+  document.title = "MTG-Library - Sets";
+
   const [setList, setSetList] = useState(undefined);
 
   useEffect(() => {

@@ -39,6 +39,8 @@ const CardPage = () => {
   const [otherLanguages, setOtherLanguages] = useState({});
   const [isOtherLanguagesLoaded, setIsOtherLanguagesLoaded] = useState(null);
 
+  document.title = `MTG-Library - ${card.name}`;
+
   if (isCollectedLoaded === null) {
     setIsCollectedLoaded(false);
     getCollectedCardList(cardId.id)

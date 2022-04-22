@@ -11,6 +11,8 @@ import SetSearch from "../SetSearch";
 import { useSearchParams } from "react-router-dom";
 
 export default function SearchPage() {
+  document.title = "MTG-Library - Search";
+
   const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState(undefined);
   const [dataIsLoaded, setDataIsLoaded] = useState(undefined);
