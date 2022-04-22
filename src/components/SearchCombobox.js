@@ -4,8 +4,16 @@ import { Combobox } from "@headlessui/react";
 const maxDisplayedResults = 5;
 const noResultsMessage = "No results found.";
 
-export default function SearchCombobox({ itemList, id, placeholder, codeMap }) {
-  const [selectedItem, setSelectedItem] = useState("");
+export default function SearchCombobox({
+  itemList,
+  id,
+  placeholder,
+  codeMap,
+  defaultValue,
+}) {
+  const [selectedItem, setSelectedItem] = useState(
+    defaultValue ? defaultValue : ""
+  );
   const [code, setCode] = useState(undefined);
   const [query, setQuery] = useState("");
   const [showResults, setShowResults] = useState(true);

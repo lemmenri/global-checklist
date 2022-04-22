@@ -6,7 +6,7 @@ const placeholderText = "Search Sets...";
 const idText = "setSearch";
 const labelText = "Search by set:";
 
-export default function SetSearch() {
+export default function SetSearch({ defaultSetValue }) {
   const [setNames, setSetNames] = useState(undefined);
   const [setCodeMap, setSetCodeMap] = useState(undefined);
 
@@ -30,12 +30,19 @@ export default function SetSearch() {
     <>
       <label htmlFor={idText}>{labelText}</label>
       <br />
-      <SearchCombobox
-        itemList={setNames}
-        id={idText}
-        placeholder={placeholderText}
-        codeMap={setCodeMap}
-      />
+      {setCodeMap && (
+        <SearchCombobox
+          itemList={setNames}
+          id={idText}
+          placeholder={placeholderText}
+          codeMap={setCodeMap}
+          defaultValue={
+            defaultSetValue
+              ? setCodeMap.find((set) => set.code === defaultSetValue).name
+              : undefined
+          }
+        />
+      )}
     </>
   );
 }

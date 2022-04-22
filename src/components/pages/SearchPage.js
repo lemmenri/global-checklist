@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SearchResults from "../SearchResults";
 import { Loading } from "../Loading";
 import { advancedSearch } from "../../scripts/ScryfallQueries";
@@ -8,6 +8,7 @@ import CardnameSearch from "../CardnameSearch";
 import ArtistSearch from "../ArtistSearch";
 import CreatureTypeSearch from "../CreatureTypeSearch";
 import SetSearch from "../SetSearch";
+import { useSearchParams } from "react-router-dom";
 
 export default function SearchPage() {
   const [search, setSearch] = useState("");
@@ -15,6 +16,24 @@ export default function SearchPage() {
   const [dataIsLoaded, setDataIsLoaded] = useState(undefined);
   const [groupedCards, setGroupedCards] = useState(undefined);
   const [nextPage, setNextPage] = useState(undefined);
+  const [searchParams] = useSearchParams();
+
+  const hasSearchParams = () => {
+    return (
+      searchParams.get("name") ||
+      searchParams.get("artist") ||
+      searchParams.get("creatureType") ||
+      searchParams.get("set")
+    );
+  };
+
+  useEffect(() => {
+    if (hasSearchParams) {
+      const form = document.getElementById("searchForm");
+      console.log(form);
+      //form.requestSubmit();
+    }
+  }, []);
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
@@ -22,7 +41,9 @@ export default function SearchPage() {
       name: e.target.cardnameSearch.value,
       artist: e.target.artistSearch.value,
       creatureType: e.target.creatureTypeSearch.value,
-      setCode: e.target.setSearch.dataset.code,
+      setCode: searchParams.get("set")
+        ? searchParams.get("set")
+        : e.target.setSearch.dataset.code,
     };
 
     setDataIsLoaded(false);
@@ -59,12 +80,14 @@ export default function SearchPage() {
   return (
     <div className="p-4 sm:p-8 flex-grow bg-light">
       <div id="cardSearchContainer" className="my-2 print:hidden">
-        <form role="search" onSubmit={handleSearchSubmit}>
+        <form id="searchForm" role="search" onSubmit={handleSearchSubmit}>
           <div>
-            <CardnameSearch />
-            <ArtistSearch />
-            <CreatureTypeSearch />
-            <SetSearch />
+            <CardnameSearch defaultCardnameValue={searchParams.get("name")} />
+            <ArtistSearch defaultArtistValue={searchParams.get("artist")} />
+            <CreatureTypeSearch
+              defaultCreatureTypeValue={searchParams.get("creatureType")}
+            />
+            <SetSearch defaultSetValue={searchParams.get("set")} />
             <button id="searchButton" className="btn">
               Search
             </button>

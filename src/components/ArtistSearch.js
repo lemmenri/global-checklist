@@ -6,7 +6,7 @@ const placeholderText = "Search artists...";
 const idText = "artistSearch";
 const labelText = "Search by artist:";
 
-export default function ArtistSearch() {
+export default function ArtistSearch({ defaultArtistValue }) {
   const [artistNames, setArtistNames] = useState(undefined);
 
   useEffect(() => {
@@ -21,6 +21,7 @@ export default function ArtistSearch() {
         itemList={artistNames}
         id={idText}
         placeholder={placeholderText}
+        defaultValue={defaultArtistValue ? defaultArtistValue : undefined}
       />
     </>
   );

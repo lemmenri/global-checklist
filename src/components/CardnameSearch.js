@@ -6,7 +6,7 @@ const placeholderText = "Search cards...";
 const idText = "cardnameSearch";
 const labelText = "Search by card name:";
 
-export default function CardnameSearch() {
+export default function CardnameSearch({ defaultCardnameValue }) {
   const [cardNames, setCardNames] = useState(undefined);
 
   useEffect(() => {
@@ -21,6 +21,7 @@ export default function CardnameSearch() {
         itemList={cardNames}
         id={idText}
         placeholder={placeholderText}
+        defaultValue={defaultCardnameValue ? defaultCardnameValue : undefined}
       />
     </>
   );

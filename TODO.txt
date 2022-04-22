@@ -47,10 +47,12 @@ setup cypress component tests
 add component tests to Condition and ExternalLink components
 add setCard component
 remove old CollectionOld.js code and related code
+add sets page
+implement search parameters
 
 // IN PROGRESS
 edit card
-add sets page
+search automatically if search parameters are provided
 
 
 // TODO
@@ -71,6 +73,8 @@ filter available finished when adding new card. Now all finishes are available e
 auto update collected list on cardpage when adding new card to collection
 fix icons for external links (and imported images in general)
 fix bug when printing search results images from page 3 onwards they layout shifts
+fix search parameters when emptying the search fields. Now they are still taken into account when searching something again
+fix icons in search results for tokens. See if they can be the same as the parent set
 
 // Refactoring
 move finishes, conditions and languages to enum

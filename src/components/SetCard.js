@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router";
 import { getCardCountSet, getTotalCardCountSet } from "../scripts/CardCounts";
 
 export default function SetCard({ set }) {
@@ -8,6 +9,14 @@ export default function SetCard({ set }) {
     set.card_count === 0
       ? 0
       : Math.round((uniqueCardsCollected / set.card_count) * 100);
+
+  const navigate = useNavigate();
+  const goToSet = () => {
+    navigate({
+      pathname: "/search",
+      search: `?set=${set.code}`,
+    });
+  };
 
   return (
     <div id="setCard" className="overflow-hidden p-1">
@@ -24,9 +33,13 @@ export default function SetCard({ set }) {
               : set.code
           }`}
         ></i>
-        <a id="setCard-name" className="pl-2 hover:underline">
+        <button
+          id="setCard-name"
+          className="pl-2 hover:underline text-left"
+          onClick={goToSet}
+        >
           {set.name}
-        </a>
+        </button>
       </div>
       <div
         id="setCard-details"

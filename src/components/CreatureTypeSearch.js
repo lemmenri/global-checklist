@@ -6,7 +6,7 @@ const placeholderText = "Search creature type...";
 const idText = "creatureTypeSearch";
 const labelText = "Search by creature type:";
 
-export default function CreatureTypeSearch() {
+export default function CreatureTypeSearch({ defaultCreatureTypeValue }) {
   const [creatureTypes, setCreatureTypes] = useState(undefined);
 
   useEffect(() => {
@@ -21,6 +21,9 @@ export default function CreatureTypeSearch() {
         itemList={creatureTypes}
         id={idText}
         placeholder={placeholderText}
+        defaultValue={
+          defaultCreatureTypeValue ? defaultCreatureTypeValue : undefined
+        }
       />
     </>
   );
