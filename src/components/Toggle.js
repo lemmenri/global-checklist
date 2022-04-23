@@ -1,12 +1,12 @@
 import React from "react";
 import { Toggle } from "react-toggle-component";
 
-export default function SimpleToggle({ label, onToggle }) {
+export default function SimpleToggle({ name, label, onToggle }) {
   return (
     <>
-      <label htmlFor="toggle-list-view">{label}</label>
+      <label htmlFor={name}>{label}</label>
       <Toggle
-        name="toggle-list-view"
+        name={name}
         width="32px"
         height="16px"
         leftBackgroundColor="#06746B"

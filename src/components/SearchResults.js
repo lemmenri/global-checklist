@@ -1,46 +1,93 @@
-import React from "react";
+import React, { useState } from "react";
 import SearchResultListItem from "./SearchResultListItem";
 import SearchResultImageItem from "./SearchResultImageItem";
 import SimpleToggle from "./Toggle";
+import { getCollection } from "../scripts/Collection";
 
-export default class SearchResults extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      listView: true,
-    };
-  }
-  render() {
-    if (!this.props.searchResults) return <p>Loading...</p>;
-    return (
-      <div>
-        {this.props.searchResults.length > 0 && (
-          <div className="print:hidden">
+const filterByCollected = (list, isGrouped) => {
+  const collection = getCollection();
+  const filteredList = [];
+
+  isGrouped
+    ? list.forEach((item) => {
+        if (collection.cards.find((card) => item.id === card.id)) {
+          filteredList.push(item);
+        }
+      })
+    : list.forEach((group) => {
+        let groupHasItem = false;
+        group.forEach((item) => {
+          if (collection.cards.find((card) => item.id === card.id)) {
+            groupHasItem = true;
+          }
+        });
+        groupHasItem && filteredList.push(group);
+      });
+
+  return filteredList;
+};
+
+export default function SearchResults({ searchResults, groupedCards }) {
+  const [listView, setListView] = useState(true);
+  const [filterCollected, setFilterCollected] = useState(false);
+  const [filteredSearchResults] = useState(
+    filterByCollected(searchResults, true)
+  );
+  const [filteredGroupedCards] = useState(
+    filterByCollected(groupedCards, false)
+  );
+
+  return (
+    <div>
+      {searchResults.length > 0 && (
+        <div className="flex flex-col py-2 print:hidden">
+          <div className="flex max-w-xs justify-between">
             <SimpleToggle
+              name="toggle-list-view"
               label="Image view"
               onToggle={() => {
-                this.setState({ listView: !this.state.listView });
+                setListView(!listView);
               }}
             />
           </div>
-        )}
+          <div className="flex max-w-xs justify-between">
+            <SimpleToggle
+              name="toggle-filter-collected"
+              label="Only show collected"
+              onToggle={() => {
+                setFilterCollected(!filterCollected);
+              }}
+            />
+          </div>
+        </div>
+      )}
 
-        <div
-          className={
-            !this.state.listView
-              ? "grid gap-1 sm:gap-2 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 print:grid-cols-3"
-              : ""
-          }
-        >
-          {this.state.listView
-            ? this.props.groupedCards.map((group) => (
+      <div
+        className={
+          !listView
+            ? "grid gap-1 sm:gap-2 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 print:grid-cols-3"
+            : ""
+        }
+      >
+        {filterCollected
+          ? listView
+            ? filteredGroupedCards.map((group) => (
                 <SearchResultListItem key={group[0].id} group={group} />
               ))
-            : this.props.searchResults.map((card) => (
+            : filteredSearchResults.map((card) => (
                 <SearchResultImageItem key={card.id} card={card} />
-              ))}
-        </div>
+              ))
+          : listView
+          ? groupedCards.map((group) => (
+              <SearchResultListItem key={group[0].id} group={group} />
+            ))
+          : searchResults.map((card) => (
+              <SearchResultImageItem key={card.id} card={card} />
+            ))}
+        {filterCollected && filteredSearchResults.length === 0 && (
+          <p name="noCardsInCollection">No cards in collection</p>
+        )}
       </div>
-    );
-  }
+    </div>
+  );
 }
