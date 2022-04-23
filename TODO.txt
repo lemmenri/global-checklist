@@ -55,6 +55,7 @@ filter available finished when adding new card. Now all finishes are available e
 add page titles
 add screenshots and description to README file
 add filter sets by type
+add toggle to only display cards in collection
 
 
 // IN PROGRESS
@@ -65,7 +66,6 @@ edit card
 // Features
 add cardimage hover on different languages in the search results
 handle going back from card details to search results
-add toggle to only display cards in collection
 add sort options to searchpage
 add sort options to setpage
 add toggles for scryfall include_extras and include_variations
@@ -83,6 +83,7 @@ fix icons for external links (and imported images in general)
 fix bug when printing search results images. From page 3 onwards the layout shifts
 fix search parameters when emptying the search fields. Now they are still taken into account when searching something again
 fix icons in search results for tokens. See if they can be the same as the parent set
+fix filter getSetList call to exclude digital sets
 
 // Refactoring
 move finishes, conditions and languages to enum
