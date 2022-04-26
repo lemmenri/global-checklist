@@ -56,6 +56,7 @@ add page titles
 add screenshots and description to README file
 add filter sets by type
 add toggle to only display cards in collection
+fix dynamic page title on card page when opening card in new tab
 
 
 // IN PROGRESS

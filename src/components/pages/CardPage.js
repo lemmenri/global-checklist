@@ -39,8 +39,6 @@ const CardPage = () => {
   const [otherLanguages, setOtherLanguages] = useState({});
   const [isOtherLanguagesLoaded, setIsOtherLanguagesLoaded] = useState(null);
 
-  document.title = `MTG Library - ${card.name}`;
-
   if (isCollectedLoaded === null) {
     setIsCollectedLoaded(false);
     getCollectedCardList(cardId.id)
@@ -68,6 +66,8 @@ const CardPage = () => {
       search: `?set=${card.set}`,
     });
   };
+
+  document.title = `MTG Library - ${card ? card.name : ""}`;
 
   return (
     <div className="p-4 sm:p-8 flex-grow bg-light">
