@@ -5,7 +5,7 @@ const Header = () => (
     id="header"
     className="px-4 text-light bg-primary flex flex-wrap justify-between items-center print:hidden"
   >
-    <h1 id="title" className="text-3xl m-4">
+    <h1 id="title" className="display my-2 mx-4">
       MTG Library
     </h1>
     <div className="space-x-4 m-4">

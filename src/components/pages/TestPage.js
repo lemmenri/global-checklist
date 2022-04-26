@@ -23,6 +23,7 @@ import {
   getCollection,
   updateCollection,
 } from "../../scripts/Collection";
+import { exportCollection } from "../../scripts/ExportCollection";
 import { groupCardsByLanguage } from "../../scripts/GroupCards";
 import {
   advancedSearch,
@@ -243,9 +244,14 @@ export default function TestPage() {
       .then((res) => console.log(res));
   };
 
+  // Import / Export
+  const handleExportCollection = () => {
+    exportCollection();
+  };
+
   return (
     <div className="p-4 sm:p-8 flex-grow bg-light">
-      <h1 className="text-3xl my-4">Test Page</h1>
+      <h1 className="display">Test Page</h1>
       <p>Collection:</p>
       <div className="flex flex-col max-w-xs">
         <button className="btn" onClick={handleCreateCollection}>
@@ -358,6 +364,12 @@ export default function TestPage() {
       <div className="flex flex-col max-w-xs">
         <button className="btn" onClick={handleGroupCards}>
           Group Cards
+        </button>
+      </div>
+      <p>Import / export:</p>
+      <div className="flex flex-col max-w-xs">
+        <button className="btn" onClick={handleExportCollection}>
+          Export Collection
         </button>
       </div>
     </div>

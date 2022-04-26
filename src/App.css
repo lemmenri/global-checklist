@@ -15,4 +15,16 @@
   .btn {
     @apply bg-primary text-light my-2 px-8 rounded-lg hover:underline
   }
+
+  .display {
+    @apply text-3xl my-4
+  }
+
+  .h1 {
+    @apply text-2xl my-4
+  }
+
+  .h2 {
+    @apply text-xl my-4
+  }
 }

@@ -73,7 +73,7 @@ const CardPage = () => {
     <div className="p-4 sm:p-8 flex-grow bg-light">
       {isDataLoaded ? (
         <>
-          <h1 className="text-xl my-4">{card.name}</h1>
+          <h1 className="display">{card.name}</h1>
           <p id="card-collector-details" className="text-lg">
             <i
               id="card-set-icon"

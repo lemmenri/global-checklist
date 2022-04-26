@@ -17,11 +17,16 @@ export default function DesignSystemPage() {
 
   return (
     <div className="p-4 sm:p-8 flex-grow bg-light">
-      <h1 className="text-3xl my-4">Design System</h1>
-      <h2 className="text-2xl my-4">Atoms</h2>
-      <h3 className="text-xl my-4">Text</h3>
-      <p>Todo</p>
-      <h3 className="text-xl my-4">Colors</h3>
+      <h1 className="display">Design System</h1>
+      <h2 className="h1">Atoms</h2>
+      <h3 className="h2">Text</h3>
+      <p>Display:</p>
+      <p className="display mx-4">Welcome to MTG Library</p>
+      <p>H1:</p>
+      <p className="h1 mx-4">Welcome to MTG Library</p>
+      <p>H2:</p>
+      <p className="h2 mx-4">Welcome to MTG Library</p>
+      <h3 className="h2">Colors</h3>
       <p>Interface Colors</p>
       <div className="flex flex-wrap">
         <div className="m-2">
@@ -78,7 +83,7 @@ export default function DesignSystemPage() {
         </div>
       </div>
 
-      <h3 className="text-xl my-4">Labels</h3>
+      <h3 className="h2">Labels</h3>
       <p>Language</p>
       <div className="w-8">
         <Language language={"en"} />
@@ -93,9 +98,11 @@ export default function DesignSystemPage() {
         <Condition condition={"PL"} />
         <Condition condition={"PO"} />
       </div>
-      <h2 className="text-2xl my-4">Molecules</h2>
-      <h2 className="text-2xl my-4">Organisms</h2>
-      <h3 className="text-xl my-4">Set Card</h3>
+      <h2 className="h1">Molecules</h2>
+      <p>Buttons</p>
+      <button className="btn">Click me!</button>
+      <h2 className="h1">Organisms</h2>
+      <h3 className="h2">Set Card</h3>
       {exampleSetCardData && <SetCard set={exampleSetCardData} />}
     </div>
   );

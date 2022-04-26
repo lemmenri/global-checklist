@@ -80,6 +80,7 @@ export default function SearchPage() {
 
   return (
     <div className="p-4 sm:p-8 flex-grow bg-light">
+      <h1 className="display">Search</h1>
       <div id="cardSearchContainer" className="my-2 print:hidden">
         <form id="searchForm" role="search" onSubmit={handleSearchSubmit}>
           <div>

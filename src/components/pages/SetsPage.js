@@ -45,7 +45,7 @@ export default function SetsPage() {
 
   return (
     <div className="p-4 sm:p-8 flex-grow bg-light">
-      <h1>Sets</h1>
+      <h1 className="display">Sets</h1>
       <p>{`${totalCardCount} cards in collection`}</p>
       {setTypes && (
         <div className="flex items-center max-w-sm py-2">
