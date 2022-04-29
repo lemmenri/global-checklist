@@ -57,6 +57,9 @@ add screenshots and description to README file
 add filter sets by type
 add toggle to only display cards in collection
 fix dynamic page title on card page when opening card in new tab
+add export function
+replace underscores in set types dropdown
+fix icons for external links (and imported images in general)
 
 
 // IN PROGRESS
@@ -76,11 +79,11 @@ implement generic font styling
 add conformation message on collection changes
 add card scanner?
 add mtg-library icon to header and browser tab
+add import function
 
 // Bugs
 fix text "Showing results for..." when searching for other parameters than cardname
 auto update collected list on cardpage when adding new card to collection
-fix icons for external links (and imported images in general)
 fix bug when printing search results images. From page 3 onwards the layout shifts
 fix search parameters when emptying the search fields. Now they are still taken into account when searching something again
 fix icons in search results for tokens. See if they can be the same as the parent set

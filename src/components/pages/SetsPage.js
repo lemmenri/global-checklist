@@ -29,7 +29,7 @@ export default function SetsPage() {
     setTypes.forEach((type) => {
       convertedSetTypes.push({
         id: idCounter,
-        name: type,
+        name: type.replaceAll("_", " "),
         value: type,
       });
       idCounter++;
