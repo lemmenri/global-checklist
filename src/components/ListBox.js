@@ -60,7 +60,7 @@ export default function TextListBox({
                 <Listbox.Option
                   key={value.id}
                   className={({ active }) =>
-                    `select-none relative py-1 pl-8 pr-2 text-center ${
+                    `select-none relative py-1 pl-8 pr-2 ${
                       active ? "bg-dark text-light" : ""
                     }`
                   }

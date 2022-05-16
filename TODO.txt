@@ -60,6 +60,7 @@ fix dynamic page title on card page when opening card in new tab
 add export function
 replace underscores in set types dropdown
 fix icons for external links (and imported images in general)
+implement generic font styling
 
 
 // IN PROGRESS
@@ -75,7 +76,6 @@ add sort options to setpage
 add toggles for scryfall include_extras and include_variations
 add search by card type
 add search by art (https://scryfall.com/docs/tagger-tags)
-implement generic font styling
 add conformation message on collection changes
 add card scanner?
 add mtg-library icon to header and browser tab
