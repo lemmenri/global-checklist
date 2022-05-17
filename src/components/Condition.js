@@ -10,3 +10,7 @@ export default function Condition({ condition }) {
     </p>
   );
 }
+
+Condition.defaultProps = {
+  condition: "NM",
+};
