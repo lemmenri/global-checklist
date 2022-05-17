@@ -61,6 +61,7 @@ add export function
 replace underscores in set types dropdown
 fix icons for external links (and imported images in general)
 implement generic font styling
+install cypress-real-events to add support for hover state in component tests
 
 
 // IN PROGRESS

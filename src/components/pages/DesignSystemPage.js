@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getSet } from "../../scripts/ScryfallQueries";
 import Condition from "../Condition";
+import { ExternalLink } from "../ExternalLink";
 import Language from "../Language";
 import SetCard from "../SetCard";
 
@@ -99,8 +100,14 @@ export default function DesignSystemPage() {
         <Condition condition={"PO"} />
       </div>
       <h2 className="h1">Molecules</h2>
-      <p>Buttons</p>
+      <h3 className="h2">Buttons</h3>
       <button className="btn">Click me!</button>
+      <h3 className="h2">External Link</h3>
+      <ExternalLink
+        href="https://scryfall.com/card/sld/176/birds-of-paradise?utm_source=api"
+        externalParty="Scryfall"
+        imageLocation={"https://assets.scryfall.com/favicon.ico"}
+      />
       <h2 className="h1">Organisms</h2>
       <h3 className="h2">Set Card</h3>
       {exampleSetCardData && <SetCard set={exampleSetCardData} />}
