@@ -5,11 +5,13 @@ import { ExternalLink } from "../ExternalLink";
 import Language from "../Language";
 import { Loading } from "../Loading";
 import SetCard from "../SetCard";
+import SimpleToggle from "../Toggle";
 
 export default function DesignSystemPage() {
   document.title = "MTG Library - Design System";
 
   const [exampleSetCardData, setExampleSetCardData] = useState(undefined);
+  const [toggle, setToggle] = useState(true);
 
   useEffect(() => {
     getSet("aer").then((res) => {
@@ -103,6 +105,14 @@ export default function DesignSystemPage() {
       <h2 className="h1">Molecules</h2>
       <h3 className="h2">Buttons</h3>
       <button className="btn">Click me!</button>
+      <h3 className="h2">Buttons</h3>
+      <SimpleToggle
+        name={"toggle"}
+        label={"Toggle"}
+        onToggle={() => {
+          setToggle(!toggle);
+        }}
+      />
       <h3 className="h2">Loading</h3>
       <Loading />
       <h3 className="h2">External Link</h3>
