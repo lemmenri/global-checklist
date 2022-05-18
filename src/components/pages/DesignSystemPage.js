@@ -3,6 +3,7 @@ import { getSet } from "../../scripts/ScryfallQueries";
 import Condition from "../Condition";
 import { ExternalLink } from "../ExternalLink";
 import Language from "../Language";
+import { Loading } from "../Loading";
 import SetCard from "../SetCard";
 
 export default function DesignSystemPage() {
@@ -102,6 +103,8 @@ export default function DesignSystemPage() {
       <h2 className="h1">Molecules</h2>
       <h3 className="h2">Buttons</h3>
       <button className="btn">Click me!</button>
+      <h3 className="h2">Loading</h3>
+      <Loading />
       <h3 className="h2">External Link</h3>
       <ExternalLink
         href="https://scryfall.com/card/sld/176/birds-of-paradise?utm_source=api"
