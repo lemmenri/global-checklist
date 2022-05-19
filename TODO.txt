@@ -67,6 +67,7 @@ move static test data from DesignSystemPage to seperate file(s)
 
 // IN PROGRESS
 edit card
+add accordion component
 
 
 // TODO

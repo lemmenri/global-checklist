@@ -1,4 +1,5 @@
 import * as React from "react";
+import "../App.css";
 import "tailwindcss/tailwind.css";
 import { mount } from "@cypress/react";
 import Condition from "./Condition";

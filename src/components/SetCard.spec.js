@@ -1,5 +1,6 @@
 import * as React from "react";
 import "tailwindcss/tailwind.css";
+import "../App.css";
 import { mount } from "@cypress/react";
 import SetCard from "./SetCard";
 import "cypress-real-events/support";
