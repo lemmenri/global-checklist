@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { addCard } from "../scripts/CollectedCards";
-import { getOtherLanguages } from "../scripts/ScryfallQueries";
 import TextListBox from "./ListBox";
 
 const finishes = [
@@ -33,6 +32,7 @@ export default function AddToCollection({ card, languages }) {
 
   useEffect(() => {
     filterFinishes(card.finishes);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const filterFinishes = (availableFinishes) => {
@@ -49,18 +49,16 @@ export default function AddToCollection({ card, languages }) {
   };
 
   const handleAddToCollection = (e) => {
-    getOtherLanguages(card.id).then((res) =>
-      addCard({
-        id: res.find((card) => card.language === language.value).id,
-        name: card.name,
-        set: card.set,
-        nr: card.collector_number,
-        language: language.value,
-        finish: finish.value,
-        quantity: parseInt(quantity),
-        condition: condition.value,
-      })
-    );
+    addCard({
+      id: languages.find((card) => card.value === language.value).id,
+      name: card.name,
+      set: card.set,
+      nr: card.collector_number,
+      language: language.value,
+      finish: finish.value,
+      quantity: parseInt(quantity),
+      condition: condition.value,
+    });
   };
 
   const handleSetLanguage = (e) => {

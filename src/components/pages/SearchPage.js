@@ -34,6 +34,7 @@ export default function SearchPage() {
       const form = document.getElementById("searchForm");
       form.requestSubmit();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleSearchSubmit = (e) => {

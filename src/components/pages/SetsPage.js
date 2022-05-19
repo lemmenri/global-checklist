@@ -21,6 +21,7 @@ export default function SetsPage() {
         setFilteredSetList(res.data);
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const convertSetTypes = (setTypes) => {

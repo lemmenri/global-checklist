@@ -10,23 +10,10 @@ import { getCardImage } from "../../scripts/CardImage";
 import { getCollectedCardList } from "../../scripts/CollectedCards";
 import {
   getOtherLanguages,
+  convertLanguageData,
   getScryfallCard,
 } from "../../scripts/ScryfallQueries";
 import Language from "../Language";
-
-const convertLanguageData = (languages) => {
-  const newList = [];
-  languages.forEach((language) =>
-    newList.push({
-      id: language.id,
-      name: language.language,
-      value: language.language,
-      type: "language",
-      finishes: language.finishes,
-    })
-  );
-  return newList;
-};
 
 const CardPage = () => {
   const cardId = useParams();

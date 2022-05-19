@@ -62,6 +62,7 @@ replace underscores in set types dropdown
 fix icons for external links (and imported images in general)
 implement generic font styling
 install cypress-real-events to add support for hover state in component tests
+move static test data from DesignSystemPage to seperate file(s)
 
 
 // IN PROGRESS
@@ -100,3 +101,4 @@ store data in redux
 add e2e tests for card page
 add component tests
 add unit tests for scripts
+add tests for no nonfoil finish and no English language to addToCollection component tests

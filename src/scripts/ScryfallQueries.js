@@ -34,6 +34,22 @@ export const getOtherLanguages = async (id) => {
   return cardList;
 };
 
+// Takes the data returned from getOtherLanguages and convertes it to a
+// cleaned up list
+export const convertLanguageData = (languages) => {
+  const newList = [];
+  languages.forEach((language) =>
+    newList.push({
+      id: language.id,
+      name: language.language,
+      value: language.language,
+      type: "language",
+      finishes: language.finishes,
+    })
+  );
+  return newList;
+};
+
 // Returns a list of scryfall card objects matching the search string
 export const searchByCardname = async (searchString) => {
   const res = await fetch(

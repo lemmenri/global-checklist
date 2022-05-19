@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { getSet } from "../../scripts/ScryfallQueries";
+import { convertLanguageData, getSet } from "../../scripts/ScryfallQueries";
+import { defaultCardData } from "../../testdata/CardData";
+import { defaultOtherLanguagesList } from "../../testdata/OtherLanguagesList";
+import AddToCollection from "../AddToCollection";
 import Condition from "../Condition";
 import { ExternalLink } from "../ExternalLink";
 import Language from "../Language";
@@ -124,6 +127,11 @@ export default function DesignSystemPage() {
       <h2 className="h1">Organisms</h2>
       <h3 className="h2">Set Card</h3>
       {exampleSetCardData && <SetCard set={exampleSetCardData} />}
+      <h3 className="h2">Add To Collection</h3>
+      <AddToCollection
+        card={defaultCardData}
+        languages={convertLanguageData(defaultOtherLanguagesList)}
+      />
     </div>
   );
 }
