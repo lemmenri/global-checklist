@@ -240,7 +240,7 @@ export default function TestPage() {
 
   // Group Cards
   const handleGroupCards = () => {
-    searchByCardname("Birds of Paradise")
+    searchByCardname("Arid Mesa")
       .then((res) => groupCardsByLanguage(res.data))
       .then((res) => console.log(res));
   };

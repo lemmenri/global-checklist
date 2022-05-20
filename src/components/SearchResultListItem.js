@@ -5,9 +5,7 @@ import { getCardCountFinish } from "../scripts/CardCounts";
 import CardImage from "./CardImage";
 import Language from "./Language";
 
-export default function SearchResultListItem(props) {
-  const group = props.group;
-
+export default function SearchResultListItem({ group }) {
   const hasNonfoil = group.find((card) => card.finishes.includes("nonfoil"));
   const hasFoil = group.find((card) => card.finishes.includes("foil"));
   const hasEtched = group.find((card) => card.finishes.includes("etched"));

@@ -10,6 +10,8 @@ import Language from "../Language";
 import { Loading } from "../Loading";
 import SetCard from "../SetCard";
 import SimpleToggle from "../Toggle";
+import { groupedCardData } from "../../testdata/GroupedCardData";
+import SearchResultListItem from "../SearchResultListItem";
 
 export default function DesignSystemPage() {
   document.title = "MTG Library - Design System";
@@ -144,6 +146,9 @@ export default function DesignSystemPage() {
             card={defaultCardData}
             languages={convertLanguageData(defaultOtherLanguagesList)}
           />
+        </Accordion>
+        <Accordion title={<h3 className="h2">Search Result List Item</h3>}>
+          <SearchResultListItem group={groupedCardData[0]} />
         </Accordion>
       </Accordion>
     </div>
