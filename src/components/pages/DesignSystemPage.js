@@ -15,6 +15,8 @@ import SearchResultListItem from "../SearchResultListItem";
 import SearchCombobox from "../SearchCombobox";
 import { cardNames } from "../../testdata/CardnameData";
 import CardImage from "../CardImage";
+import Header from "../Header";
+import Footer from "../Footer";
 
 export default function DesignSystemPage() {
   document.title = "MTG Library - Design System";
@@ -155,6 +157,12 @@ export default function DesignSystemPage() {
       </Accordion>
 
       <Accordion title={<h2 className="h1">Organisms</h2>}>
+        <Accordion title={<h3 className="h2">Header</h3>}>
+          <Header />
+        </Accordion>
+        <Accordion title={<h3 className="h2">Footer</h3>}>
+          <Footer />
+        </Accordion>
         <Accordion title={<h3 className="h2">Set Card</h3>}>
           {exampleSetCardData && <SetCard set={exampleSetCardData} />}
         </Accordion>

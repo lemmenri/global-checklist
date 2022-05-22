@@ -8,7 +8,7 @@ const Header = () => (
     <h1 id="title" className="display my-2 mx-4">
       MTG Library
     </h1>
-    <div className="space-x-4 m-4">
+    <div id="navLinks" className="space-x-4 m-4">
       <NavLink id="home" className={"text-light hover:underline"} to="/">
         Home
       </NavLink>
