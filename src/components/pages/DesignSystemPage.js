@@ -12,6 +12,8 @@ import SetCard from "../SetCard";
 import SimpleToggle from "../Toggle";
 import { groupedCardData } from "../../testdata/GroupedCardData";
 import SearchResultListItem from "../SearchResultListItem";
+import SearchCombobox from "../SearchCombobox";
+import { cardNames } from "../../testdata/CardnameData";
 
 export default function DesignSystemPage() {
   document.title = "MTG Library - Design System";
@@ -123,6 +125,13 @@ export default function DesignSystemPage() {
             onToggle={() => {
               setToggle(!toggle);
             }}
+          />
+        </Accordion>
+        <Accordion title={<h3 className="h2">Search Combobox</h3>}>
+          <SearchCombobox
+            itemList={cardNames}
+            id="cardnameSearch"
+            placeholder="Search cards..."
           />
         </Accordion>
         <Accordion title={<h3 className="h2">Loading</h3>}>
