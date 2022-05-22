@@ -16,7 +16,7 @@ export const getOtherLanguages = async (id) => {
     .then((res) => (scryfallCardData = res))
     .then(
       () =>
-        (scryfallUrl = `${baseUrl}cards/search?q=set%3A${scryfallCardData.set}+cn%3A${scryfallCardData.collector_number}&unique=prints&include_multilingual=true`)
+        (scryfallUrl = `${baseUrl}cards/search?q=set%3A${scryfallCardData.set}+cn%3A%22${scryfallCardData.collector_number}%22&unique=prints&include_multilingual=true`)
     )
     .then(() =>
       fetch(scryfallUrl)

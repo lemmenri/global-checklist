@@ -64,6 +64,7 @@ implement generic font styling
 install cypress-real-events to add support for hover state in component tests
 move static test data from DesignSystemPage to seperate file(s)
 add accordion component
+fix loading problems with non-english cards (http://localhost:3000/card/ed2e3b59-ddbe-4e82-ad67-dd21302a31cb) -> was a scryfall bug with collector numbers 
 
 
 // IN PROGRESS
@@ -91,7 +92,6 @@ fix bug when printing search results images. From page 3 onwards the layout shif
 fix search parameters when emptying the search fields. Now they are still taken into account when searching something again
 fix icons in search results for tokens. See if they can be the same as the parent set
 fix filter getSetList call to exclude digital sets
-fix loading problems with non-english cards (http://localhost:3000/card/ed2e3b59-ddbe-4e82-ad67-dd21302a31cb)
 
 // Refactoring
 move finishes, conditions and languages to enum
