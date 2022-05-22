@@ -98,6 +98,7 @@ move finishes, conditions and languages to enum
 restructure components in atoms, molecules and organisms
 correctly implement button component
 store data in redux
+merge the 4 different search fields to a single component
 
 // Tests
 add e2e tests for card page

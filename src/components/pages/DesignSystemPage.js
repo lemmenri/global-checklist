@@ -14,6 +14,7 @@ import { groupedCardData } from "../../testdata/GroupedCardData";
 import SearchResultListItem from "../SearchResultListItem";
 import SearchCombobox from "../SearchCombobox";
 import { cardNames } from "../../testdata/CardnameData";
+import CardImage from "../CardImage";
 
 export default function DesignSystemPage() {
   document.title = "MTG Library - Design System";
@@ -111,6 +112,13 @@ export default function DesignSystemPage() {
             <Condition condition={"PL"} />
             <Condition condition={"PO"} />
           </div>
+        </Accordion>
+        <Accordion title={<h3 className="h2">Card Image</h3>}>
+          <CardImage
+            className="rounded-[9px] w-40 shadow-dark shadow-md"
+            src="https://c1.scryfall.com/file/scryfall-cards/normal/front/7/1/716c415e-5eb8-4644-ac64-5ba7c3f0ea65.jpg?1626103831"
+            alt="Arid Mesa-mh2"
+          />
         </Accordion>
       </Accordion>
 
