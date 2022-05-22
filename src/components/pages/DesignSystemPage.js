@@ -17,6 +17,11 @@ import { cardNames } from "../../testdata/CardnameData";
 import CardImage from "../CardImage";
 import Header from "../Header";
 import Footer from "../Footer";
+import NotFoundPage from "./NotFoundPage";
+import HomePage from "./HomePage";
+import SetsPage from "./SetsPage";
+import SearchPage from "./SearchPage";
+import ImportExportPage from "./ImportExportPage";
 
 export default function DesignSystemPage() {
   document.title = "MTG Library - Design System";
@@ -174,6 +179,34 @@ export default function DesignSystemPage() {
         </Accordion>
         <Accordion title={<h3 className="h2">Search Result List Item</h3>}>
           <SearchResultListItem group={groupedCardData[0]} />
+        </Accordion>
+      </Accordion>
+
+      <Accordion title={<h2 className="h1">Pages</h2>}>
+        <Accordion title={<h3 className="h2">Home Page</h3>}>
+          <div className="border border-dark">
+            <HomePage />
+          </div>
+        </Accordion>
+        <Accordion title={<h3 className="h2">Sets Page</h3>}>
+          <div className="border border-dark">
+            <SetsPage />
+          </div>
+        </Accordion>
+        <Accordion title={<h3 className="h2">Search Page</h3>}>
+          <div className="border border-dark">
+            <SearchPage />
+          </div>
+        </Accordion>
+        <Accordion title={<h3 className="h2">Import / Export Page</h3>}>
+          <div className="border border-dark">
+            <ImportExportPage />
+          </div>
+        </Accordion>
+        <Accordion title={<h3 className="h2">Not Found Page</h3>}>
+          <div className="border border-dark">
+            <NotFoundPage />
+          </div>
         </Accordion>
       </Accordion>
     </div>

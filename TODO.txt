@@ -69,6 +69,7 @@ fix loading problems with non-english cards (http://localhost:3000/card/ed2e3b59
 
 // IN PROGRESS
 edit card
+add components to design system page
 
 
 // TODO
@@ -84,6 +85,7 @@ add conformation message on collection changes
 add card scanner?
 add mtg-library icon to header and browser tab
 add import function
+add cardPage component to design system page if possible
 
 // Bugs
 fix text "Showing results for..." when searching for other parameters than cardname
