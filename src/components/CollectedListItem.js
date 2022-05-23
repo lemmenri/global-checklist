@@ -92,7 +92,7 @@ export default function CollectedListItem({
         <div id="editContainer" className="border-primary border border-t-0">
           Edit
           <div className="flex justify-center items-center w-full">
-            <div id="add" className="text-center px-2">
+            <div id="delete" className="text-center px-2">
               <button
                 onClick={handleRemoveFromCollection}
                 className="btn bg-light text-dark border border-1 border-dark"
@@ -100,7 +100,7 @@ export default function CollectedListItem({
                 Delete
               </button>
             </div>
-            <div id="add" className="text-center px-2">
+            <div id="save" className="text-center px-2">
               <button
                 onClick={handleEditCard}
                 className="btn border border-1 border-primary"
