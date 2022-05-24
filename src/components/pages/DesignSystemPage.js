@@ -25,6 +25,8 @@ import ImportExportPage from "./ImportExportPage";
 import CollectedListItem from "../CollectedListItem";
 import CollectedList from "../CollectedList";
 import { collectedCardData } from "../../testdata/CollectedCardsData";
+import TextListBox from "../ListBox";
+import { conditions } from "../../enums/conditions";
 
 export default function DesignSystemPage() {
   document.title = "MTG Library - Design System";
@@ -151,6 +153,17 @@ export default function DesignSystemPage() {
             id="cardnameSearch"
             placeholder="Search cards..."
           />
+        </Accordion>
+        <Accordion title={<h3 className="h2">Listbox</h3>}>
+          <div className="flex items-center">
+            <TextListBox
+              id="condition"
+              values={conditions}
+              label="Condition"
+              onChange={() => {}}
+              defaultValue={1}
+            />
+          </div>
         </Accordion>
         <Accordion title={<h3 className="h2">Loading</h3>}>
           <Loading />
