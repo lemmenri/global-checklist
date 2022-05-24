@@ -23,6 +23,8 @@ import SetsPage from "./SetsPage";
 import SearchPage from "./SearchPage";
 import ImportExportPage from "./ImportExportPage";
 import CollectedListItem from "../CollectedListItem";
+import CollectedList from "../CollectedList";
+import { collectedCardData } from "../../testdata/CollectedCardsData";
 
 export default function DesignSystemPage() {
   document.title = "MTG Library - Design System";
@@ -177,6 +179,9 @@ export default function DesignSystemPage() {
             card={defaultCardData}
             languages={convertLanguageData(defaultOtherLanguagesList)}
           />
+        </Accordion>
+        <Accordion title={<h3 className="h2">Collected List</h3>}>
+          <CollectedList collected={collectedCardData} />
         </Accordion>
         <Accordion title={<h3 className="h2">Collected List Item</h3>}>
           <CollectedListItem

@@ -3,9 +3,9 @@ import CollectedListItem from "./CollectedListItem";
 
 export default function CollectedList({ collected }) {
   return (
-    <div className="py-4 max-w-sm">
+    <div id="collected-list" className="py-4 max-w-sm">
       <div
-        id="collected list header"
+        id="collected-list-header"
         className="bg-primary text-white py-1 px-2"
       >
         Collected

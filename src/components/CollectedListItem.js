@@ -49,7 +49,10 @@ export default function CollectedListItem({
 
   return (
     <>
-      <div className="flex flex-wrap px-2 border border-t-0 border-primary justify-between items-center">
+      <div
+        id="collected-list-item"
+        className="flex flex-wrap px-2 border border-t-0 border-primary justify-between items-center"
+      >
         <div className="flex flex-wrap space-x-4 items-center">
           <div
             id="finish"
