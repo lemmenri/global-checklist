@@ -21,7 +21,9 @@ export default function CollectedList({ collected }) {
         />
       ))}
       {collected.length === 0 && (
-        <div className="py-1 px-2 border border-primary">No copies listed.</div>
+        <div id="no-copies-listed" className="py-1 px-2 border border-primary">
+          No copies listed.
+        </div>
       )}
     </div>
   );
