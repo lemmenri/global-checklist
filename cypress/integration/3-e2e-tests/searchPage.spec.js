@@ -52,6 +52,10 @@ describe("Search page", () => {
       "contain.text",
       'Showing results for "".'
     );
+    cy.get("#card-details > #card-collector-details").should(
+      "contain.text",
+      "Legions"
+    );
   });
 
   it("Search card by all search parameters", () => {

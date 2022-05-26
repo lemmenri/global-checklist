@@ -22,15 +22,15 @@ export default function SearchPage() {
 
   const hasSearchParams = () => {
     return (
-      searchParams.get("name") ||
-      searchParams.get("artist") ||
-      searchParams.get("creatureType") ||
-      searchParams.get("set")
+      searchParams.get("name") !== null ||
+      searchParams.get("artist") !== null ||
+      searchParams.get("creatureType") !== null ||
+      searchParams.get("set") !== null
     );
   };
 
   useEffect(() => {
-    if (hasSearchParams) {
+    if (hasSearchParams()) {
       const form = document.getElementById("searchForm");
       form.requestSubmit();
     }
@@ -43,9 +43,11 @@ export default function SearchPage() {
       name: e.target.cardnameSearch.value,
       artist: e.target.artistSearch.value,
       creatureType: e.target.creatureTypeSearch.value,
-      setCode: searchParams.get("set")
-        ? searchParams.get("set")
-        : e.target.setSearch.dataset.code,
+      setCode:
+        searchParams.get("set") !== undefined &&
+        searchParams.get("set") !== null
+          ? searchParams.get("set")
+          : e.target.setSearch.dataset.code,
     };
 
     setDataIsLoaded(false);

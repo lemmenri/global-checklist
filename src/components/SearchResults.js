@@ -5,6 +5,7 @@ import SimpleToggle from "./Toggle";
 import { getCollection } from "../scripts/Collection";
 
 const filterByCollected = (list, isGrouped) => {
+  if (getCollection() === null) return [];
   const collection = getCollection();
   const filteredList = [];
 
