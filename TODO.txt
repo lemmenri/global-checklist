@@ -86,6 +86,7 @@ add card scanner?
 add mtg-library icon to header and browser tab
 add import function
 add cardPage component to design system page if possible
+add icon to header and title
 
 // Bugs
 fix text "Showing results for..." when searching for other parameters than cardname
@@ -94,6 +95,7 @@ fix bug when printing search results images. From page 3 onwards the layout shif
 fix search parameters when emptying the search fields. Now they are still taken into account when searching something again
 fix icons in search results for tokens. See if they can be the same as the parent set
 fix filter getSetList call to exclude digital sets
+fix loading search and sets page when no cards in collection
 
 // Refactoring
 move finishes, conditions and languages to enum

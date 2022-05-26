@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { getSetList } from "../scripts/ScryfallQueries";
 import SearchCombobox from "./SearchCombobox";
 
-const placeholderText = "Search Sets...";
+const placeholderText = "Search sets...";
 const idText = "setSearch";
 const labelText = "Search by set:";
 

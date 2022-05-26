@@ -27,6 +27,10 @@ import CollectedList from "../CollectedList";
 import { collectedCardData } from "../../testdata/CollectedCardsData";
 import TextListBox from "../ListBox";
 import { conditions } from "../../enums/conditions";
+import ArtistSearch from "../ArtistSearch";
+import CardnameSearch from "../CardnameSearch";
+import CreatureTypeSearch from "../CreatureTypeSearch";
+import SetSearch from "../SetSearch";
 
 export default function DesignSystemPage() {
   document.title = "MTG Library - Design System";
@@ -147,12 +151,31 @@ export default function DesignSystemPage() {
             }}
           />
         </Accordion>
-        <Accordion title={<h3 className="h2">Search Combobox</h3>}>
-          <SearchCombobox
-            itemList={cardNames}
-            id="cardnameSearch"
-            placeholder="Search cards..."
-          />
+        <Accordion title={<h3 className="h2">Search Comboboxes</h3>}>
+          <p>Generic Combobox:</p>
+          <div className="mx-4">
+            <SearchCombobox
+              itemList={cardNames}
+              id="cardnameSearch"
+              placeholder="Search cards..."
+            />
+          </div>
+          <p>Cardname Search:</p>
+          <div className="mx-4">
+            <CardnameSearch />
+          </div>
+          <p>Artist Search:</p>
+          <div className="mx-4">
+            <ArtistSearch />
+          </div>
+          <p>Creature Type Search:</p>
+          <div className="mx-4">
+            <CreatureTypeSearch />
+          </div>
+          <p>Set Search:</p>
+          <div className="mx-4">
+            <SetSearch />
+          </div>
         </Accordion>
         <Accordion title={<h3 className="h2">Listbox</h3>}>
           <div className="flex items-center">

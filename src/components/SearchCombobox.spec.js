@@ -17,6 +17,12 @@ it("Search Combobox", () => {
       placeholder={placeholderText}
     />
   );
+  cy.get(`[name='${idText}']`).should(
+    "have.attr",
+    "placeholder",
+    "Search cards..."
+  );
+  cy.get("input").should("have.value", "");
   cy.get(`[name='${idText}']`).type("akiri");
   cy.get("ul").find("li").should("have.length", 2);
   cy.get("ul > li[name='Akiri, Line-Slinger']")
@@ -61,4 +67,16 @@ it("Search Combobox - no results", () => {
   );
   cy.get(`[name='${idText}']`).type("Ariba");
   cy.get("[name='noSearchResults']").should("have.text", "No results found.");
+});
+
+it("Search Combobox - default value", () => {
+  mount(
+    <SearchCombobox
+      itemList={cardNames}
+      id={idText}
+      placeholder={placeholderText}
+      defaultValue={"Arid Mesa"}
+    />
+  );
+  cy.get(`[name='${idText}']`).should("contain.value", "Arid Mesa");
 });
