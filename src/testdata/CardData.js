@@ -125,3 +125,252 @@ export const defaultCardData = {
       "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Birds+of+Paradise&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
   },
 };
+
+export const cardWithEtchedFoilFinish = {
+  object: "card",
+  id: "716c415e-5eb8-4644-ac64-5ba7c3f0ea65",
+  oracle_id: "c5acf2a5-40f4-433d-a74d-1cb56c521464",
+  multiverse_ids: [525617],
+  mtgo_id: 91145,
+  tcgplayer_id: 239180,
+  tcgplayer_etched_id: 239424,
+  cardmarket_id: 564652,
+  name: "Arid Mesa",
+  lang: "en",
+  released_at: "2021-06-18",
+  uri: "https://api.scryfall.com/cards/716c415e-5eb8-4644-ac64-5ba7c3f0ea65",
+  scryfall_uri: "https://scryfall.com/card/mh2/436/arid-mesa?utm_source=api",
+  layout: "normal",
+  highres_image: true,
+  image_status: "highres_scan",
+  image_uris: {
+    small:
+      "https://c1.scryfall.com/file/scryfall-cards/small/front/7/1/716c415e-5eb8-4644-ac64-5ba7c3f0ea65.jpg?1626103831",
+    normal:
+      "https://c1.scryfall.com/file/scryfall-cards/normal/front/7/1/716c415e-5eb8-4644-ac64-5ba7c3f0ea65.jpg?1626103831",
+    large:
+      "https://c1.scryfall.com/file/scryfall-cards/large/front/7/1/716c415e-5eb8-4644-ac64-5ba7c3f0ea65.jpg?1626103831",
+    png: "https://c1.scryfall.com/file/scryfall-cards/png/front/7/1/716c415e-5eb8-4644-ac64-5ba7c3f0ea65.png?1626103831",
+    art_crop:
+      "https://c1.scryfall.com/file/scryfall-cards/art_crop/front/7/1/716c415e-5eb8-4644-ac64-5ba7c3f0ea65.jpg?1626103831",
+    border_crop:
+      "https://c1.scryfall.com/file/scryfall-cards/border_crop/front/7/1/716c415e-5eb8-4644-ac64-5ba7c3f0ea65.jpg?1626103831",
+  },
+  mana_cost: "",
+  cmc: 0.0,
+  type_line: "Land",
+  oracle_text:
+    "{T}, Pay 1 life, Sacrifice Arid Mesa: Search your library for a Mountain or Plains card, put it onto the battlefield, then shuffle.",
+  colors: [],
+  color_identity: [],
+  keywords: [],
+  legalities: {
+    standard: "not_legal",
+    future: "not_legal",
+    historic: "not_legal",
+    gladiator: "not_legal",
+    pioneer: "not_legal",
+    explorer: "not_legal",
+    modern: "legal",
+    legacy: "legal",
+    pauper: "not_legal",
+    vintage: "legal",
+    penny: "not_legal",
+    commander: "legal",
+    brawl: "not_legal",
+    historicbrawl: "not_legal",
+    alchemy: "not_legal",
+    paupercommander: "not_legal",
+    duel: "legal",
+    oldschool: "not_legal",
+    premodern: "not_legal",
+  },
+  games: ["paper", "mtgo"],
+  reserved: false,
+  foil: true,
+  nonfoil: true,
+  finishes: ["nonfoil", "foil", "etched"],
+  oversized: false,
+  promo: false,
+  reprint: true,
+  variation: false,
+  set_id: "c1c7eb8c-f205-40ab-a609-767cb296544e",
+  set: "mh2",
+  set_name: "Modern Horizons 2",
+  set_type: "draft_innovation",
+  set_uri: "https://api.scryfall.com/sets/c1c7eb8c-f205-40ab-a609-767cb296544e",
+  set_search_uri:
+    "https://api.scryfall.com/cards/search?order=set&q=e%3Amh2&unique=prints",
+  scryfall_set_uri: "https://scryfall.com/sets/mh2?utm_source=api",
+  rulings_uri:
+    "https://api.scryfall.com/cards/716c415e-5eb8-4644-ac64-5ba7c3f0ea65/rulings",
+  prints_search_uri:
+    "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Ac5acf2a5-40f4-433d-a74d-1cb56c521464&unique=prints",
+  collector_number: "436",
+  digital: false,
+  rarity: "rare",
+  card_back_id: "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  artist: "Raymond Swanland",
+  artist_ids: ["e956bacc-077d-4c12-b6bc-ba798b718af9"],
+  illustration_id: "c27f39e0-315a-434b-8542-46791fbbd42a",
+  border_color: "black",
+  frame: "1997",
+  full_art: false,
+  textless: false,
+  booster: false,
+  story_spotlight: false,
+  promo_types: ["boosterfun"],
+  edhrec_rank: 61,
+  prices: {
+    usd: "24.75",
+    usd_foil: "28.84",
+    usd_etched: "23.49",
+    eur: "16.45",
+    eur_foil: "28.85",
+    tix: "2.86",
+  },
+  related_uris: {
+    gatherer:
+      "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=525617",
+    tcgplayer_infinite_articles:
+      "https://infinite.tcgplayer.com/search?contentMode=article&game=magic&partner=scryfall&q=Arid+Mesa&utm_campaign=affiliate&utm_medium=api&utm_source=scryfall",
+    tcgplayer_infinite_decks:
+      "https://infinite.tcgplayer.com/search?contentMode=deck&game=magic&partner=scryfall&q=Arid+Mesa&utm_campaign=affiliate&utm_medium=api&utm_source=scryfall",
+    edhrec: "https://edhrec.com/route/?cc=Arid+Mesa",
+  },
+  purchase_uris: {
+    tcgplayer:
+      "https://www.tcgplayer.com/product/239180?page=1&utm_campaign=affiliate&utm_medium=api&utm_source=scryfall",
+    cardmarket:
+      "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Arid+Mesa&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    cardhoarder:
+      "https://www.cardhoarder.com/cards/91145?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+  },
+};
+
+export const cardWithGlossyFinish = {
+  object: "card",
+  id: "2c23b39b-a4d6-4f10-8ced-fa4b1ed2cf74",
+  oracle_id: "581eedc4-efe4-4ae4-baf2-88071e7e6f6d",
+  multiverse_ids: [],
+  tcgplayer_id: 193825,
+  cardmarket_id: 380337,
+  name: "Nicol Bolas, Dragon-God",
+  lang: "en",
+  released_at: "2019-07-18",
+  uri: "https://api.scryfall.com/cards/2c23b39b-a4d6-4f10-8ced-fa4b1ed2cf74",
+  scryfall_uri:
+    "https://scryfall.com/card/ps19/207/nicol-bolas-dragon-god?utm_source=api",
+  layout: "normal",
+  highres_image: true,
+  image_status: "highres_scan",
+  image_uris: {
+    small:
+      "https://c1.scryfall.com/file/scryfall-cards/small/front/2/c/2c23b39b-a4d6-4f10-8ced-fa4b1ed2cf74.jpg?1630567736",
+    normal:
+      "https://c1.scryfall.com/file/scryfall-cards/normal/front/2/c/2c23b39b-a4d6-4f10-8ced-fa4b1ed2cf74.jpg?1630567736",
+    large:
+      "https://c1.scryfall.com/file/scryfall-cards/large/front/2/c/2c23b39b-a4d6-4f10-8ced-fa4b1ed2cf74.jpg?1630567736",
+    png: "https://c1.scryfall.com/file/scryfall-cards/png/front/2/c/2c23b39b-a4d6-4f10-8ced-fa4b1ed2cf74.png?1630567736",
+    art_crop:
+      "https://c1.scryfall.com/file/scryfall-cards/art_crop/front/2/c/2c23b39b-a4d6-4f10-8ced-fa4b1ed2cf74.jpg?1630567736",
+    border_crop:
+      "https://c1.scryfall.com/file/scryfall-cards/border_crop/front/2/c/2c23b39b-a4d6-4f10-8ced-fa4b1ed2cf74.jpg?1630567736",
+  },
+  mana_cost: "{U}{B}{B}{B}{R}",
+  cmc: 5.0,
+  type_line: "Legendary Planeswalker — Bolas",
+  oracle_text:
+    "Nicol Bolas, Dragon-God has all loyalty abilities of all other planeswalkers on the battlefield.\n+1: You draw a card. Each opponent exiles a card from their hand or a permanent they control.\n−3: Destroy target creature or planeswalker.\n−8: Each opponent who doesn't control a legendary creature or planeswalker loses the game.",
+  loyalty: "4",
+  colors: ["B", "R", "U"],
+  color_identity: ["B", "R", "U"],
+  keywords: [],
+  legalities: {
+    standard: "not_legal",
+    future: "not_legal",
+    historic: "legal",
+    gladiator: "legal",
+    pioneer: "legal",
+    explorer: "legal",
+    modern: "legal",
+    legacy: "legal",
+    pauper: "not_legal",
+    vintage: "legal",
+    penny: "not_legal",
+    commander: "legal",
+    brawl: "not_legal",
+    historicbrawl: "legal",
+    alchemy: "not_legal",
+    paupercommander: "not_legal",
+    duel: "legal",
+    oldschool: "not_legal",
+    premodern: "not_legal",
+  },
+  games: ["paper"],
+  reserved: false,
+  foil: false,
+  nonfoil: false,
+  finishes: ["glossy"],
+  oversized: false,
+  promo: true,
+  reprint: true,
+  variation: false,
+  set_id: "9e585a9c-2bba-4310-94a9-036329ee264c",
+  set: "ps19",
+  set_name: "San Diego Comic-Con 2019",
+  set_type: "promo",
+  set_uri: "https://api.scryfall.com/sets/9e585a9c-2bba-4310-94a9-036329ee264c",
+  set_search_uri:
+    "https://api.scryfall.com/cards/search?order=set&q=e%3Aps19&unique=prints",
+  scryfall_set_uri: "https://scryfall.com/sets/ps19?utm_source=api",
+  rulings_uri:
+    "https://api.scryfall.com/cards/2c23b39b-a4d6-4f10-8ced-fa4b1ed2cf74/rulings",
+  prints_search_uri:
+    "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A581eedc4-efe4-4ae4-baf2-88071e7e6f6d&unique=prints",
+  collector_number: "207",
+  digital: false,
+  rarity: "mythic",
+  card_back_id: "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+  artist: "Adam Paquette",
+  artist_ids: ["89023dad-e6c0-41e0-83fb-eb2bfbbdc3f2"],
+  illustration_id: "500441a5-6860-4c77-8c57-bd9c4acacfa4",
+  border_color: "black",
+  frame: "2015",
+  security_stamp: "oval",
+  full_art: false,
+  textless: false,
+  booster: false,
+  story_spotlight: false,
+  promo_types: ["convention"],
+  edhrec_rank: 2303,
+  preview: {
+    source: "Gizmodo",
+    source_uri:
+      "https://io9.gizmodo.com/magic-the-gatherings-comic-con-exclusive-brings-forth-1835871979",
+    previewed_at: "2019-06-26",
+  },
+  prices: {
+    usd: null,
+    usd_foil: null,
+    usd_etched: null,
+    eur: null,
+    eur_foil: null,
+    tix: null,
+  },
+  related_uris: {
+    tcgplayer_infinite_articles:
+      "https://infinite.tcgplayer.com/search?contentMode=article&game=magic&partner=scryfall&q=Nicol+Bolas%2C+Dragon-God&utm_campaign=affiliate&utm_medium=api&utm_source=scryfall",
+    tcgplayer_infinite_decks:
+      "https://infinite.tcgplayer.com/search?contentMode=deck&game=magic&partner=scryfall&q=Nicol+Bolas%2C+Dragon-God&utm_campaign=affiliate&utm_medium=api&utm_source=scryfall",
+    edhrec: "https://edhrec.com/route/?cc=Nicol+Bolas%2C+Dragon-God",
+  },
+  purchase_uris: {
+    tcgplayer:
+      "https://www.tcgplayer.com/product/193825?page=1&utm_campaign=affiliate&utm_medium=api&utm_source=scryfall",
+    cardmarket:
+      "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Nicol+Bolas%2C+Dragon-God&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    cardhoarder:
+      "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Nicol+Bolas%2C+Dragon-God&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+  },
+};

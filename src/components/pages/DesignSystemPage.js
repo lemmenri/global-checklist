@@ -31,6 +31,7 @@ import ArtistSearch from "../ArtistSearch";
 import CardnameSearch from "../CardnameSearch";
 import CreatureTypeSearch from "../CreatureTypeSearch";
 import SetSearch from "../SetSearch";
+import SearchResultImageItem from "../SearchResultImageItem";
 
 export default function DesignSystemPage() {
   document.title = "MTG Library - Design System";
@@ -230,6 +231,11 @@ export default function DesignSystemPage() {
         </Accordion>
         <Accordion title={<h3 className="h2">Search Result List Item</h3>}>
           <SearchResultListItem group={groupedCardData[0]} />
+        </Accordion>
+        <Accordion title={<h3 className="h2">Search Result Image Item</h3>}>
+          <div className="w-72">
+            <SearchResultImageItem card={defaultCardData} />
+          </div>
         </Accordion>
       </Accordion>
 
