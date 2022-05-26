@@ -41,7 +41,10 @@ export default function SearchResults({ searchResults, groupedCards }) {
     <div>
       {searchResults.length > 0 && (
         <div className="flex flex-col py-2 print:hidden">
-          <div className="flex max-w-xs justify-between">
+          <div
+            id="container-toggle-list-view"
+            className="flex max-w-xs justify-between"
+          >
             <SimpleToggle
               name="toggle-list-view"
               label="Image view"
@@ -50,7 +53,10 @@ export default function SearchResults({ searchResults, groupedCards }) {
               }}
             />
           </div>
-          <div className="flex max-w-xs justify-between">
+          <div
+            id="container-toggle-filter-collected"
+            className="flex max-w-xs justify-between"
+          >
             <SimpleToggle
               name="toggle-filter-collected"
               label="Only show collected"
@@ -63,6 +69,7 @@ export default function SearchResults({ searchResults, groupedCards }) {
       )}
 
       <div
+        id="search-results"
         className={
           !listView
             ? "grid gap-1 sm:gap-2 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 print:grid-cols-3"

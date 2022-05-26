@@ -65,11 +65,11 @@ install cypress-real-events to add support for hover state in component tests
 move static test data from DesignSystemPage to seperate file(s)
 add accordion component
 fix loading problems with non-english cards (http://localhost:3000/card/ed2e3b59-ddbe-4e82-ad67-dd21302a31cb) -> was a scryfall bug with collector numbers 
+add components to design system page
 
 
 // IN PROGRESS
 edit card
-add components to design system page
 
 
 // TODO
@@ -87,6 +87,7 @@ add mtg-library icon to header and browser tab
 add import function
 add cardPage component to design system page if possible
 add icon to header and title
+add no cards in collection state to SearchResults.spec.js tests
 
 // Bugs
 fix text "Showing results for..." when searching for other parameters than cardname

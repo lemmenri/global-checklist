@@ -10,6 +10,7 @@ import Language from "../Language";
 import { Loading } from "../Loading";
 import SetCard from "../SetCard";
 import SimpleToggle from "../Toggle";
+import { searchResultsData } from "../../testdata/SearchResultsData";
 import { groupedCardData } from "../../testdata/GroupedCardData";
 import SearchResultListItem from "../SearchResultListItem";
 import SearchCombobox from "../SearchCombobox";
@@ -32,6 +33,7 @@ import CardnameSearch from "../CardnameSearch";
 import CreatureTypeSearch from "../CreatureTypeSearch";
 import SetSearch from "../SetSearch";
 import SearchResultImageItem from "../SearchResultImageItem";
+import SearchResults from "../SearchResults";
 
 export default function DesignSystemPage() {
   document.title = "MTG Library - Design System";
@@ -199,6 +201,23 @@ export default function DesignSystemPage() {
             imageLocation={"https://assets.scryfall.com/favicon.ico"}
           />
         </Accordion>
+        <Accordion title={<h3 className="h2">Collected List Item</h3>}>
+          <CollectedListItem
+            id="716c415e-5eb8-4644-ac64-5ba7c3f0ea65"
+            finish="etched"
+            quantity={3}
+            condition="NM"
+            language="EN"
+          />
+        </Accordion>
+        <Accordion title={<h3 className="h2">Search Result List Item</h3>}>
+          <SearchResultListItem group={groupedCardData[0]} />
+        </Accordion>
+        <Accordion title={<h3 className="h2">Search Result Image Item</h3>}>
+          <div className="w-72">
+            <SearchResultImageItem card={defaultCardData} />
+          </div>
+        </Accordion>
       </Accordion>
 
       <Accordion title={<h2 className="h1">Organisms</h2>}>
@@ -220,22 +239,11 @@ export default function DesignSystemPage() {
         <Accordion title={<h3 className="h2">Collected List</h3>}>
           <CollectedList collected={collectedCardData} />
         </Accordion>
-        <Accordion title={<h3 className="h2">Collected List Item</h3>}>
-          <CollectedListItem
-            id="716c415e-5eb8-4644-ac64-5ba7c3f0ea65"
-            finish="etched"
-            quantity={3}
-            condition="NM"
-            language="EN"
+        <Accordion title={<h3 className="h2">Search Results</h3>}>
+          <SearchResults
+            searchResults={searchResultsData}
+            groupedCards={groupedCardData}
           />
-        </Accordion>
-        <Accordion title={<h3 className="h2">Search Result List Item</h3>}>
-          <SearchResultListItem group={groupedCardData[0]} />
-        </Accordion>
-        <Accordion title={<h3 className="h2">Search Result Image Item</h3>}>
-          <div className="w-72">
-            <SearchResultImageItem card={defaultCardData} />
-          </div>
         </Accordion>
       </Accordion>
 
