@@ -68,6 +68,7 @@ fix loading problems with non-english cards (http://localhost:3000/card/ed2e3b59
 add components to design system page
 add component tests
 fix loading search and sets page when no cards in collection
+add run script (cypress run) to package.json
 
 
 // IN PROGRESS
@@ -106,6 +107,9 @@ correctly implement button component
 store data in redux
 
 // Tests
+remove dependecies from scryfall in e2e tests 
+add github actions for cypress tests on push
+add page-objects to e2e tests
 add e2e tests for card page
 add e2e tests for sets page
 add unit tests for scripts

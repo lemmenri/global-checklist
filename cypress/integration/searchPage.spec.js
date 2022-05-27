@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-import { addCard, removeCard } from "../../../src/scripts/CollectedCards";
+import { addCard, removeCard } from "../../src/scripts/CollectedCards";
 
 describe("Search page", () => {
   beforeEach(() => {
