@@ -1,11 +1,10 @@
 import * as React from "react";
 import "../App.css";
 import "tailwindcss/tailwind.css";
-import { mount } from "@cypress/react";
 import Accordion from "./Accordion";
 
 it("Accordion", () => {
-  mount(<Accordion title={<p className="h2">Title</p>}>content</Accordion>);
+  cy.mount(<Accordion title={<p className="h2">Title</p>}>content</Accordion>);
 
   cy.get("#accordion-content").should("not.exist");
   cy.get("#accordion-title").click();
@@ -13,7 +12,7 @@ it("Accordion", () => {
 });
 
 it("Mount with content opened", () => {
-  mount(
+  cy.mount(
     <Accordion title={"Title"} opened={true}>
       content
     </Accordion>
@@ -25,7 +24,7 @@ it("Mount with content opened", () => {
 });
 
 it("Nested Accordions", () => {
-  mount(
+  cy.mount(
     <Accordion title={"Parent Accordion"}>
       <Accordion title={"Child Accordion 1"}>content</Accordion>
       <Accordion title={"Child Accordion 2"}>content</Accordion>

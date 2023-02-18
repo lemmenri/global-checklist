@@ -99,6 +99,8 @@ fix bug when printing search results images. From page 3 onwards the layout shif
 fix search parameters when emptying the search fields. Now they are still taken into account when searching something again
 fix icons in search results for tokens. See if they can be the same as the parent set
 fix filter getSetList call to exclude digital sets
+fix accordion bestuurbaar maken met toetsenbord
+fix react tooltip to hover over the text instead of being displayed below the element
 
 // Refactoring
 move finishes, conditions and languages to enum

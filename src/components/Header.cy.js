@@ -2,11 +2,10 @@ import * as React from "react";
 import "tailwindcss/tailwind.css";
 import "../App.css";
 import { BrowserRouter as Router } from "react-router-dom";
-import { mount } from "@cypress/react";
 import Header from "./Header";
 
 it("Header", () => {
-  mount(
+  cy.mount(
     <Router>
       <Header />
     </Router>

@@ -1,7 +1,6 @@
 import * as React from "react";
 import "tailwindcss/tailwind.css";
 import "../App.css";
-import { mount } from "@cypress/react";
 import SearchCombobox from "./SearchCombobox";
 import { cardNames } from "../testdata/CardnameData";
 import "cypress-real-events/support";
@@ -10,7 +9,7 @@ const placeholderText = "Search cards...";
 const idText = "cardnameSearch";
 
 it("Search Combobox", () => {
-  mount(
+  cy.mount(
     <SearchCombobox
       itemList={cardNames}
       id={idText}
@@ -34,7 +33,7 @@ it("Search Combobox", () => {
 });
 
 it("Search Combobox - one result", () => {
-  mount(
+  cy.mount(
     <SearchCombobox
       itemList={cardNames}
       id={idText}
@@ -46,7 +45,7 @@ it("Search Combobox - one result", () => {
 });
 
 it("Search Combobox - more than 5 results", () => {
-  mount(
+  cy.mount(
     <SearchCombobox
       itemList={cardNames}
       id={idText}
@@ -58,7 +57,7 @@ it("Search Combobox - more than 5 results", () => {
 });
 
 it("Search Combobox - no results", () => {
-  mount(
+  cy.mount(
     <SearchCombobox
       itemList={cardNames}
       id={idText}
@@ -70,7 +69,7 @@ it("Search Combobox - no results", () => {
 });
 
 it("Search Combobox - default value", () => {
-  mount(
+  cy.mount(
     <SearchCombobox
       itemList={cardNames}
       id={idText}

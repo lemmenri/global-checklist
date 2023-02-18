@@ -1,12 +1,11 @@
 import * as React from "react";
 import "tailwindcss/tailwind.css";
 import "../App.css";
-import { mount } from "@cypress/react";
 import { ExternalLink } from "./ExternalLink";
 import "cypress-real-events/support";
 
 it("External Link", () => {
-  mount(
+  cy.mount(
     <ExternalLink
       href="https://scryfall.com/card/sld/176/birds-of-paradise?utm_source=api"
       externalParty="Scryfall"

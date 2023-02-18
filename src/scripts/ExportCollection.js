@@ -2,10 +2,10 @@ import { getCollection } from "./Collection";
 
 export const exportCollection = () => {
   const collection = getCollection();
-  let csv = `"name", "set", "language", "condition", "finish", "quanity"\r\n`;
+  let csv = `name;set;nr;language;condition;finish;quanity;scryfall_id\r\n`;
   collection.cards.forEach((card) => {
     card.collected.forEach((entry) => {
-      csv += `"${card.name}", "${card.set}", "${card.language}", "${entry.condition}", "${entry.finish}", "${entry.quantity}"\r\n`;
+      csv += `"${card.name}";${card.set};${card.nr};${card.language};${entry.condition};${entry.finish};${entry.quantity};${card.id}\r\n`;
     });
   });
 

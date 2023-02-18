@@ -1,7 +1,6 @@
 import * as React from "react";
 import "tailwindcss/tailwind.css";
 import "../App.css";
-import { mount } from "@cypress/react";
 import SetCard from "./SetCard";
 import "cypress-real-events/support";
 import { BrowserRouter as Router } from "react-router-dom";
@@ -21,7 +20,7 @@ if (document.head) {
 }
 
 it("SetCard Empty", () => {
-  mount(
+  cy.mount(
     <Router>
       <SetCard set={exampleSetData} />
     </Router>
@@ -58,7 +57,7 @@ it("SetCard With Some Cards", () => {
     quantity: 3,
     condition: "MT",
   });
-  mount(
+  cy.mount(
     <Router>
       <SetCard set={exampleSetData} />
     </Router>
@@ -84,7 +83,7 @@ it("SetCard 100% Completed", () => {
     quantity: 1,
     condition: "EX",
   });
-  mount(
+  cy.mount(
     <Router>
       <SetCard set={exampleSmallSetData} />
     </Router>

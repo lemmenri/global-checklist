@@ -1,7 +1,6 @@
 import * as React from "react";
 import "tailwindcss/tailwind.css";
 import "../App.css";
-import { mount } from "@cypress/react";
 import CardImage from "./CardImage";
 
 const className = "rounded-[9px] w-40 shadow-dark shadow-md";
@@ -10,7 +9,7 @@ const src =
 const alt = "Arid Mesa-mh2";
 
 it("Card Image", () => {
-  mount(<CardImage className={className} src={src} alt={alt} />);
+  cy.mount(<CardImage className={className} src={src} alt={alt} />);
   cy.get("img")
     .should("have.attr", "alt", alt)
     .and(
@@ -21,7 +20,7 @@ it("Card Image", () => {
 });
 
 it("Card Image - Loading image", () => {
-  mount(<CardImage />);
+  cy.mount(<CardImage />);
   cy.get("#loading > svg").should("be.visible");
   cy.get("#loading > p").should("contain.text", "Loading...");
 });

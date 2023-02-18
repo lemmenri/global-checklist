@@ -1,7 +1,6 @@
 import * as React from "react";
 import "tailwindcss/tailwind.css";
 import "../App.css";
-import { mount } from "@cypress/react";
 import { BrowserRouter as Router } from "react-router-dom";
 import SearchResults from "./SearchResults";
 import { searchResultsData } from "../testdata/SearchResultsData";
@@ -20,7 +19,7 @@ it("Search Results", () => {
     condition: "MT",
   };
   addCard(card);
-  mount(
+  cy.mount(
     <Router>
       <SearchResults
         searchResults={searchResultsData}
@@ -31,10 +30,10 @@ it("Search Results", () => {
   cy.get("#search-results").children().should("have.length", 1);
   cy.get("#search-result-list-item").should("exist");
   cy.get("#search-result-image-item").should("not.exist");
-  cy.get("#container-toggle-list-view > span").click();
+  cy.get("#container-toggle-list-view > div").click();
   cy.get("#search-results").children().should("have.length", 19);
   cy.get("#search-result-list-item").should("not.exist");
   cy.get("#search-result-image-item").should("exist");
-  cy.get("#container-toggle-filter-collected > span").click();
+  cy.get("#container-toggle-filter-collected > div").click();
   cy.get("#search-results").children().should("have.length", 1);
 });

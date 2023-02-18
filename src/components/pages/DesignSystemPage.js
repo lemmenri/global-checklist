@@ -34,6 +34,7 @@ import CreatureTypeSearch from "../CreatureTypeSearch";
 import SetSearch from "../SetSearch";
 import SearchResultImageItem from "../SearchResultImageItem";
 import SearchResults from "../SearchResults";
+import { finishes } from "../../enums/finishes";
 
 export default function DesignSystemPage() {
   document.title = "MTG Library - Design System";
@@ -142,8 +143,16 @@ export default function DesignSystemPage() {
       </Accordion>
 
       <Accordion title={<h2 className="h1">Molecules</h2>}>
+        <Accordion title={<h3 className="h2">Accordion</h3>}>
+          <Accordion title={<h4>Accordion</h4>}>
+            <p>Text</p>
+          </Accordion>
+        </Accordion>
         <Accordion title={<h3 className="h2">Button</h3>}>
-          <button className="btn">Click me!</button>
+          <div className="flex flex-wrap space-x-2">
+            <button className="btn">Click me!</button>
+            <button className="btn bg-light text-dark border border-1 border-dark">Delete</button>
+          </div>
         </Accordion>
         <Accordion title={<h3 className="h2">Toggle</h3>}>
           <SimpleToggle
@@ -155,40 +164,63 @@ export default function DesignSystemPage() {
           />
         </Accordion>
         <Accordion title={<h3 className="h2">Search Comboboxes</h3>}>
-          <p>Generic Combobox:</p>
-          <div className="mx-4">
-            <SearchCombobox
-              itemList={cardNames}
-              id="cardnameSearch"
-              placeholder="Search cards..."
-            />
-          </div>
-          <p>Cardname Search:</p>
-          <div className="mx-4">
-            <CardnameSearch />
-          </div>
-          <p>Artist Search:</p>
-          <div className="mx-4">
-            <ArtistSearch />
-          </div>
-          <p>Creature Type Search:</p>
-          <div className="mx-4">
-            <CreatureTypeSearch />
-          </div>
-          <p>Set Search:</p>
-          <div className="mx-4">
-            <SetSearch />
+          <div className="space-y-4">
+            <div>
+              <p>Generic Combobox:</p>
+              <div className="mx-4">
+                <SearchCombobox
+                  itemList={cardNames}
+                  id="cardnameSearch"
+                  placeholder="Search cards..."
+                />
+              </div>
+            </div>
+            <div>
+              <p>Cardname Search:</p>
+              <div className="mx-4">
+                <CardnameSearch />
+              </div>
+            </div>
+            <div>
+              <p>Artist Search:</p>
+              <div className="mx-4">
+                <ArtistSearch />
+              </div>
+            </div>
+            <div>
+              <p>Creature Type Search:</p>
+              <div className="mx-4">
+                <CreatureTypeSearch />
+              </div>
+            </div>
+            <div>
+              <p>Set Search:</p>
+              <div className="mx-4">
+                <SetSearch />
+              </div>
+            </div>
           </div>
         </Accordion>
         <Accordion title={<h3 className="h2">Listbox</h3>}>
-          <div className="flex items-center">
-            <TextListBox
-              id="condition"
-              values={conditions}
-              label="Condition"
-              onChange={() => {}}
-              defaultValue={1}
-            />
+          <div className="space-y-4">
+            <div className="flex items-center">
+              <TextListBox
+                id="condition"
+                values={conditions}
+                label="Condition"
+                onChange={() => { }}
+                defaultValue={1}
+              />
+            </div>
+            <div className="flex items-center">
+              <TextListBox
+                id="finishes"
+                values={finishes}
+                label="Finish"
+                onChange={() => { }}
+                defaultValue={1}
+              />
+            </div>
           </div>
         </Accordion>
         <Accordion title={<h3 className="h2">Loading</h3>}>

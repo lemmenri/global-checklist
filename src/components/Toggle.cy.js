@@ -1,7 +1,6 @@
 import * as React from "react";
 import "tailwindcss/tailwind.css";
 import "../App.css";
-import { mount } from "@cypress/react";
 import SimpleToggle from "./Toggle";
 
 it("SimpleToggle", () => {
@@ -9,7 +8,7 @@ it("SimpleToggle", () => {
 
   const label = "Toggle";
 
-  mount(
+  cy.mount(
     <SimpleToggle
       name={"toggle"}
       label={label}
@@ -20,5 +19,5 @@ it("SimpleToggle", () => {
   );
 
   cy.get("label").should("have.text", label);
-  cy.get("span").click();
+  cy.get('.react-toggle-track').click();
 });

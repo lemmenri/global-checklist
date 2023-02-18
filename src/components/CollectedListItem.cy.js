@@ -1,7 +1,6 @@
 import * as React from "react";
 import "tailwindcss/tailwind.css";
 import "../App.css";
-import { mount } from "@cypress/react";
 import CollectedListItem from "./CollectedListItem";
 import "cypress-real-events/support";
 
@@ -14,7 +13,7 @@ const collectedCardData = {
 };
 
 it("Loading", () => {
-  mount(
+  cy.mount(
     <CollectedListItem
       id={collectedCardData.id}
       finish={collectedCardData.finish}

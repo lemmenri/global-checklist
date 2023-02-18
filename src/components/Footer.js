@@ -14,9 +14,9 @@ export default function Footer() {
         <br />
         Card images and card data by Scryfall
         <br />
-        Icons by Heroicons
-        <br />
         Prices by Cardmarket and TCGPlayer
+        <br />
+        Icons by Heroicons
         <br />
         <br />
         All other content © {new Date().getFullYear()} MTG-Library.

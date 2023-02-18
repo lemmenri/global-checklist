@@ -2,14 +2,13 @@
 import * as React from "react";
 import "tailwindcss/tailwind.css";
 import "../App.css";
-import { mount } from "@cypress/react";
 import AddToCollection from "./AddToCollection";
 import { convertLanguageData } from "../scripts/ScryfallQueries";
 import { defaultCardData } from "../testdata/CardData";
 import { defaultOtherLanguagesList } from "../testdata/OtherLanguagesList";
 
 it("Add to Collection", () => {
-  mount(
+  cy.mount(
     <AddToCollection
       card={defaultCardData}
       languages={convertLanguageData(defaultOtherLanguagesList)}
@@ -38,7 +37,7 @@ it("Add to Collection", () => {
 });
 
 it("Default Values", () => {
-  mount(
+  cy.mount(
     <AddToCollection
       card={defaultCardData}
       languages={convertLanguageData(defaultOtherLanguagesList)}

@@ -11,19 +11,19 @@ const filterByCollected = (list, isGrouped) => {
 
   isGrouped
     ? list.forEach((item) => {
-        if (collection.cards.find((card) => item.id === card.id)) {
-          filteredList.push(item);
-        }
-      })
+      if (collection.cards.find((card) => item.id === card.id)) {
+        filteredList.push(item);
+      }
+    })
     : list.forEach((group) => {
-        let groupHasItem = false;
-        group.forEach((item) => {
-          if (collection.cards.find((card) => item.id === card.id)) {
-            groupHasItem = true;
-          }
-        });
-        groupHasItem && filteredList.push(group);
+      let groupHasItem = false;
+      group.forEach((item) => {
+        if (collection.cards.find((card) => item.id === card.id)) {
+          groupHasItem = true;
+        }
       });
+      groupHasItem && filteredList.push(group);
+    });
 
   return filteredList;
 };
@@ -42,10 +42,7 @@ export default function SearchResults({ searchResults, groupedCards }) {
     <div>
       {searchResults.length > 0 && (
         <div className="flex flex-col py-2 print:hidden">
-          <div
-            id="container-toggle-list-view"
-            className="flex max-w-xs justify-between"
-          >
+          <div className="space-y-1">
             <SimpleToggle
               name="toggle-list-view"
               label="Image view"
@@ -53,11 +50,6 @@ export default function SearchResults({ searchResults, groupedCards }) {
                 setListView(!listView);
               }}
             />
-          </div>
-          <div
-            id="container-toggle-filter-collected"
-            className="flex max-w-xs justify-between"
-          >
             <SimpleToggle
               name="toggle-filter-collected"
               label="Only show collected"
@@ -80,16 +72,16 @@ export default function SearchResults({ searchResults, groupedCards }) {
         {filterCollected
           ? listView
             ? filteredGroupedCards.map((group) => (
-                <SearchResultListItem key={group[0].id} group={group} />
-              ))
-            : filteredSearchResults.map((card) => (
-                <SearchResultImageItem key={card.id} card={card} />
-              ))
-          : listView
-          ? groupedCards.map((group) => (
               <SearchResultListItem key={group[0].id} group={group} />
             ))
-          : searchResults.map((card) => (
+            : filteredSearchResults.map((card) => (
+              <SearchResultImageItem key={card.id} card={card} />
+            ))
+          : listView
+            ? groupedCards.map((group) => (
+              <SearchResultListItem key={group[0].id} group={group} />
+            ))
+            : searchResults.map((card) => (
               <SearchResultImageItem key={card.id} card={card} />
             ))}
         {filterCollected && filteredSearchResults.length === 0 && (

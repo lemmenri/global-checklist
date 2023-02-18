@@ -1,7 +1,6 @@
 import * as React from "react";
 import "../App.css";
 import "tailwindcss/tailwind.css";
-import { mount } from "@cypress/react";
 import SearchResultListItem from "./SearchResultListItem";
 import { BrowserRouter as Router } from "react-router-dom";
 import {
@@ -25,7 +24,7 @@ it("Search Result List Item", () => {
   };
   addCard(card);
 
-  mount(
+  cy.mount(
     <Router>
       <SearchResultListItem group={groupedCardData[0]} />
     </Router>
@@ -45,7 +44,7 @@ it("Search Result List Item", () => {
   cy.get("#prices").find("div#eur").should("exist");
   cy.get("#prices").find("div#usd").should("exist");
   cy.get("#card-details").realHover();
-  cy.get("[data-id='tooltip'] > div > img").should("exist");
+  cy.get(".react-tooltip > div > img").should("exist");
 });
 
 // etched foil
@@ -67,7 +66,7 @@ it("Etched foil", () => {
   };
   addCard(card);
 
-  mount(
+  cy.mount(
     <Router>
       <SearchResultListItem group={groupedCardDataEtchedFoil[0]} />
     </Router>
@@ -87,7 +86,7 @@ it("Etched foil", () => {
   cy.get("#prices").find("div#eur").should("exist");
   cy.get("#prices").find("div#usd").should("exist");
   cy.get("#card-details").realHover();
-  cy.get("[data-id='tooltip'] > div > img").should("exist");
+  cy.get(".react-tooltip > div > img").should("exist");
 });
 
 it("No English and no nonfoil", () => {
@@ -103,7 +102,7 @@ it("No English and no nonfoil", () => {
   };
   addCard(card);
 
-  mount(
+  cy.mount(
     <Router>
       <SearchResultListItem group={groupedCardDataNoFoil[0]} />
     </Router>
@@ -120,5 +119,5 @@ it("No English and no nonfoil", () => {
   cy.get("#prices").find("div#eur").should("exist");
   cy.get("#prices").find("div#usd").should("exist");
   cy.get("#card-details").realHover();
-  cy.get("[data-id='tooltip'] > div > img").should("exist");
+  cy.get(".react-tooltip > div > img").should("exist");
 });

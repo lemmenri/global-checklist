@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import ReactTooltip from "react-tooltip";
+import { Tooltip } from "react-tooltip";
 import { getCardImage } from "../scripts/CardImage";
 import { getCardCountFinish } from "../scripts/CardCounts";
 import CardImage from "./CardImage";
@@ -20,36 +20,22 @@ export default function SearchResultListItem({ group }) {
         state={group[0]}
       >
         <div
-          data-tip
-          data-for={group[0].id}
+          data-tooltip-id={group[0].id}
           id="card-details"
-          className="mx-1 w-1/3"
-        >
+          className={`mx-1 w-1/3 `}
+          >
           <p id="card-name" className="text-xl font-medium">
             <i
               id="card-set-icon"
               title={group[0].set_name}
               className={"text-xl ss ss-" + group[0].set}
-            ></i>
+              ></i>
             {` ${group[0].name}`}
           </p>
           <p id="card-collector-details" className="text-sm">
             {`${group[0].set_name} - #${group[0].collector_number} - ${group[0].rarity}`}
           </p>
         </div>
-        <ReactTooltip
-          id={group[0].id}
-          place="right"
-          effect="solid"
-          backgroundColor="transparent"
-        >
-          <CardImage
-            className="rounded-2xl w-52"
-            src={getCardImage(group[0])}
-            alt={`${group[0].name}-${group[0].set}`}
-          />
-        </ReactTooltip>
-
         <div
           id="collection-details"
           className="flex text-center text-sm grow print:text-xs"
@@ -128,6 +114,19 @@ export default function SearchResultListItem({ group }) {
           </div>
         </div>
       </Link>
+      <Tooltip
+        id={group[0].id}
+        // place="right"
+        delayHide={100}
+        delayShow={100}
+        // backgroundColor="transparent"
+      >
+        <CardImage
+          className="rounded-[9px] w-40 shadow-dark shadow-md"
+          src={getCardImage(group[0])}
+          alt={`${group[0].name}-${group[0].set}`}
+        />
+      </Tooltip>
     </div>
   );
 

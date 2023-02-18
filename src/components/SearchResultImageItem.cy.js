@@ -1,7 +1,6 @@
 import * as React from "react";
 import "tailwindcss/tailwind.css";
 import "../App.css";
-import { mount } from "@cypress/react";
 import { BrowserRouter as Router } from "react-router-dom";
 import SearchResultImageItem from "./SearchResultImageItem";
 import {
@@ -12,7 +11,7 @@ import {
 import { addCard } from "../scripts/CollectedCards";
 
 it("Search result image item", () => {
-  mount(
+  cy.mount(
     <Router>
       <div className="w-72">
         <SearchResultImageItem card={defaultCardData} />
@@ -36,7 +35,7 @@ it("Search result image item - in collection", () => {
     condition: "MT",
   };
   addCard(card);
-  mount(
+  cy.mount(
     <Router>
       <div className="w-72">
         <SearchResultImageItem card={defaultCardData} />
@@ -59,7 +58,7 @@ it("Search result image item - in collection", () => {
 });
 
 it("Search result image item - card with etched foil finish", () => {
-  mount(
+  cy.mount(
     <Router>
       <div className="w-72">
         <SearchResultImageItem card={cardWithEtchedFoilFinish} />
@@ -73,7 +72,7 @@ it("Search result image item - card with etched foil finish", () => {
 });
 
 it("Search result image item - card with glossy finish", () => {
-  mount(
+  cy.mount(
     <Router>
       <div className="w-72">
         <SearchResultImageItem card={cardWithGlossyFinish} />
