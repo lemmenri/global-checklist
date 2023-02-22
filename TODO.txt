@@ -69,6 +69,9 @@ add components to design system page
 add component tests
 fix loading search and sets page when no cards in collection
 add run script (cypress run) to package.json
+updated packages
+fix remove last version of card removes the whole card
+add filter for complete / partial / empty set
 
 
 // IN PROGRESS
@@ -88,6 +91,9 @@ add conformation message on collection changes
 add card scanner?
 add mtg-library icon to header and browser tab
 add import function
+    DONE - handle excel import
+    create add function without need for scryfall id
+    create queue to handle large number of add calls without DDOSing scryfall
 add cardPage component to design system page if possible
 add icon to header and title
 add no cards in collection state to SearchResults.spec.js tests
@@ -107,6 +113,7 @@ move finishes, conditions and languages to enum
 restructure components in atoms, molecules and organisms
 correctly implement button component
 store data in redux
+upgrade to typescript
 
 // Tests
 remove dependecies from scryfall in e2e tests 

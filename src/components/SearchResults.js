@@ -41,23 +41,21 @@ export default function SearchResults({ searchResults, groupedCards }) {
   return (
     <div>
       {searchResults.length > 0 && (
-        <div className="flex flex-col py-2 print:hidden">
-          <div className="space-y-1">
-            <SimpleToggle
-              name="toggle-list-view"
-              label="Image view"
-              onToggle={() => {
-                setListView(!listView);
-              }}
-            />
-            <SimpleToggle
-              name="toggle-filter-collected"
-              label="Only show collected"
-              onToggle={() => {
-                setFilterCollected(!filterCollected);
-              }}
-            />
-          </div>
+        <div className="flex flex-col py-2 space-y-1 print:hidden">
+          <SimpleToggle
+            name="toggle-list-view"
+            label="Image view"
+            onToggle={() => {
+              setListView(!listView);
+            }}
+          />
+          <SimpleToggle
+            name="toggle-filter-collected"
+            label="Only show collected"
+            onToggle={() => {
+              setFilterCollected(!filterCollected);
+            }}
+          />
         </div>
       )}
 

@@ -37,8 +37,7 @@ export default function CollectedListItem({
   };
 
   const handleRemoveFromCollection = () => {
-    console.log(id + finish + condition);
-    console.log(removeCardVersion(id, finish, condition));
+    removeCardVersion(id, finish, condition);
     handleToggleEdit();
   };
 

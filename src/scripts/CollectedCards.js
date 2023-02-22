@@ -143,5 +143,10 @@ export const removeCardVersion = (id, finish, condition) => {
   ].collected.filter(
     (version) => !(version.finish === finish && version.condition === condition)
   );
-  updateCollection(collection);
+  if (collection.cards[cardIndex].collected.length === 0) {
+    // if last entry of card is removed, remove the whole card
+    removeCard(id)
+  } else {
+    updateCollection(collection);
+  }
 };
