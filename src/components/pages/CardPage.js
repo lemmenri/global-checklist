@@ -79,58 +79,61 @@ const CardPage = () => {
               ))}
             </div>
           )}
-          <CardImage
-            className="rounded-[18px] w-96 shadow-dark shadow-md my-2"
-            src={getCardImage(card)}
-            alt={`${card.name}-${card.set}`}
-          />
+          <div id="card-content" className="flex flex-col md:flex-row space-x-0 md:space-x-4">
+            <CardImage
+              className="rounded-[18px] w-96 shadow-dark shadow-md my-2"
+              src={getCardImage(card)}
+              alt={`${card.name}-${card.set}`}
+            />
+            <div id="card-collection">
+              {isCollectedLoaded ? (
+                <CollectedList collected={collected} />
+              ) : (
+                <Loading />
+              )}
 
-          {isCollectedLoaded ? (
-            <CollectedList collected={collected} />
-          ) : (
-            <Loading />
-          )}
+              {isOtherLanguagesLoaded && (
+                <AddToCollection card={card} languages={otherLanguages} />
+              )}
 
-          {isOtherLanguagesLoaded && (
-            <AddToCollection card={card} languages={otherLanguages} />
-          )}
-
-          <div
-            id="external links"
-            className="w-full md:w-96 p-2 flex flex-col space-y-1"
-          >
-            {card.scryfall_uri && (
-              <ExternalLink
-                href={card.scryfall_uri}
-                externalParty="Scryfall"
-                imageLocation={"https://assets.scryfall.com/favicon.ico"}
-              />
-            )}
-            {card.purchase_uris.cardmarket && (
-              <ExternalLink
-                href={card.purchase_uris.cardmarket}
-                externalParty="Cardmarket"
-                imageLocation={
-                  "https://static.cardmarket.com/img/526dbb9ae52c5e62404fe903e9769807/static/misc/favicon-96x96.png"
-                }
-              />
-            )}
-            {card.purchase_uris.tcgplayer && (
-              <ExternalLink
-                href={card.purchase_uris.tcgplayer}
-                externalParty="TCGPlayer"
-                imageLocation={"https://www.tcgplayer.com/favicon.ico"}
-              />
-            )}
-            {card.related_uris.gatherer && (
-              <ExternalLink
-                href={card.related_uris.gatherer}
-                externalParty="Gatherer"
-                imageLocation={
-                  "https://gatherer.wizards.com/Images/favicon.ico"
-                }
-              />
-            )}
+              <div
+                id="external links"
+                className="w-full md:w-96 p-2 flex flex-col space-y-1 max-w-sm"
+              >
+                {card.scryfall_uri && (
+                  <ExternalLink
+                    href={card.scryfall_uri}
+                    externalParty="Scryfall"
+                    imageLocation={"https://assets.scryfall.com/favicon.ico"}
+                  />
+                )}
+                {card.purchase_uris.cardmarket && (
+                  <ExternalLink
+                    href={card.purchase_uris.cardmarket}
+                    externalParty="Cardmarket"
+                    imageLocation={
+                      "https://static.cardmarket.com/img/526dbb9ae52c5e62404fe903e9769807/static/misc/favicon-96x96.png"
+                    }
+                  />
+                )}
+                {card.purchase_uris.tcgplayer && (
+                  <ExternalLink
+                    href={card.purchase_uris.tcgplayer}
+                    externalParty="TCGPlayer"
+                    imageLocation={"https://www.tcgplayer.com/favicon.ico"}
+                  />
+                )}
+                {card.related_uris.gatherer && (
+                  <ExternalLink
+                    href={card.related_uris.gatherer}
+                    externalParty="Gatherer"
+                    imageLocation={
+                      "https://gatherer.wizards.com/Images/favicon.ico"
+                    }
+                  />
+                )}
+              </div>
+            </div>
           </div>
         </>
       ) : (

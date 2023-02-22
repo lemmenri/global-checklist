@@ -76,6 +76,7 @@ add filter for complete / partial / empty set
 
 // IN PROGRESS
 edit card
+move import collection to seperate script
 
 
 // TODO
