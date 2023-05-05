@@ -1,15 +1,16 @@
 import { Link } from "react-router-dom";
-import { Tooltip } from "react-tooltip";
 import { getCardImage } from "../scripts/CardImage";
 import { getCardCountFinish } from "../scripts/CardCounts";
 import CardImage from "./CardImage";
 import Language from "./Language";
+import { useState } from "react";
 
 export default function SearchResultListItem({ group }) {
   const hasNonfoil = group.find((card) => card.finishes.includes("nonfoil"));
   const hasFoil = group.find((card) => card.finishes.includes("foil"));
   const hasEtched = group.find((card) => card.finishes.includes("etched"));
   const hasGlossy = group.find((card) => card.finishes.includes("glossy"));
+  const [isShown, setIsShown] = useState(false)
 
   return (
     <div id="search-result-list-item" className="p-1 w-full break-inside-avoid">
@@ -20,16 +21,24 @@ export default function SearchResultListItem({ group }) {
         state={group[0]}
       >
         <div
-          data-tooltip-id={group[0].id}
           id="card-details"
-          className={`mx-1 w-1/3 `}
-          >
+          className={`mx-1 w-1/3`}
+          onMouseEnter={() => setIsShown(true)}
+          onMouseLeave={() => setIsShown(false)}
+        >
+          <dialog open={isShown} className="bg-transparent">
+            <CardImage
+              className="rounded-[9px] w-64 shadow-dark shadow-md"
+              src={getCardImage(group[0])}
+              alt={`${group[0].name}-${group[0].set}`}
+            />
+          </dialog>
           <p id="card-name" className="text-xl font-medium">
             <i
               id="card-set-icon"
               title={group[0].set_name}
               className={"text-xl ss ss-" + group[0].set}
-              ></i>
+            ></i>
             {` ${group[0].name}`}
           </p>
           <p id="card-collector-details" className="text-sm">
@@ -114,19 +123,6 @@ export default function SearchResultListItem({ group }) {
           </div>
         </div>
       </Link>
-      <Tooltip
-        id={group[0].id}
-        // place="right"
-        delayHide={100}
-        delayShow={100}
-        // backgroundColor="transparent"
-      >
-        <CardImage
-          className="rounded-[9px] w-40 shadow-dark shadow-md"
-          src={getCardImage(group[0])}
-          alt={`${group[0].name}-${group[0].set}`}
-        />
-      </Tooltip>
     </div>
   );
 
