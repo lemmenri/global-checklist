@@ -73,24 +73,25 @@ export const advancedSearch = async (searchParameters) => {
       : undefined;
   const creatureType =
     searchParameters.hasOwnProperty("creatureType") &&
-    searchParameters.creatureType !== ""
+      searchParameters.creatureType !== ""
       ? searchParameters.creatureType
       : undefined;
   const setCode =
     searchParameters.hasOwnProperty("setCode") &&
-    searchParameters.setCode !== ""
+      searchParameters.setCode !== ""
       ? searchParameters.setCode
       : undefined;
 
   const searchQuery = encodeURIComponent(
-    `${name ? `"${name}" ` : ""}${creatureType ? `type:${creatureType} ` : ""}${
-      setCode ? `set:${setCode} ` : ""
+    `${name ? `"${name}" ` : ""}${creatureType ? `type:${creatureType} ` : ""}${setCode ? `set:${setCode} ` : ""
     }${artist ? `artist:"${artist}" ` : ""}-is:digital`
   )
     .replaceAll("%20", "+")
     .replaceAll("%22", '"');
 
-  const uri = `${baseUrl}cards/search?order=released&q=${searchQuery}&unique=prints&include_multilingual=true&include_extras=true`;
+  const orderBy = setCode ? "set" : "released"
+
+  const uri = `${baseUrl}cards/search?order=released&q=${searchQuery}&unique=prints&include_multilingual=true&include_extras=true&order=${orderBy}&dir=dec`;
 
   const res = await fetch(uri);
   return await res.json();

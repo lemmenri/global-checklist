@@ -45,7 +45,7 @@ export default function SearchPage() {
       creatureType: e.target.creatureTypeSearch.value,
       setCode:
         searchParams.get("set") !== undefined &&
-        searchParams.get("set") !== null
+          searchParams.get("set") !== null
           ? searchParams.get("set")
           : e.target.setSearch.dataset.code,
     };
@@ -102,13 +102,11 @@ export default function SearchPage() {
       {dataIsLoaded && searchResults && (
         <>
           <p id="seachResultsDescription">
-            {`Showing results for "${search}". Found ${
-              groupedCards?.length
-            } different card(s) with ${
-              searchResults?.data?.length
-            } different print(s) and ${getNumberOfDifferentVersions(
-              searchResults?.data
-            )} different version(s).`}
+            {`Showing results for "${search}". Found ${groupedCards?.length
+              } different card(s) with ${searchResults?.data?.length
+              } different print(s) and ${getNumberOfDifferentVersions(
+                searchResults?.data
+              )} different version(s).`}
             {nextPage &&
               ` More printings are available (${searchResults.total_cards}).`}
           </p>

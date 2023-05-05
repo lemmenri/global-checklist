@@ -73,12 +73,12 @@ updated packages
 fix remove last version of card removes the whole card
 add filter for complete / partial / empty set
 fix react tooltip to hover over the text instead of being displayed below the element
+order set search results by collector number asc
 
 
 // IN PROGRESS
 edit card
 move import collection to seperate script
-
 
 // TODO
 // Features
