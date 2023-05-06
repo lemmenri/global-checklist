@@ -11,6 +11,7 @@ export default function CollectedListItem({
   quantity,
   condition,
   language,
+  handleDeleteCard
 }) {
   const [showEdit, setShowEdit] = useState(false);
 
@@ -39,6 +40,7 @@ export default function CollectedListItem({
   const handleRemoveFromCollection = () => {
     removeCardVersion(id, finish, condition);
     handleToggleEdit();
+    handleDeleteCard()
   };
 
   const handleEditCard = () => {

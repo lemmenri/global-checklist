@@ -26,11 +26,15 @@ const CardPage = () => {
   const [otherLanguages, setOtherLanguages] = useState({});
   const [isOtherLanguagesLoaded, setIsOtherLanguagesLoaded] = useState(null);
 
-  if (isCollectedLoaded === null) {
+  function updateCollectedCards() {
     setIsCollectedLoaded(false);
     getCollectedCardList(cardId.id)
       .then((res) => setCollected(res))
       .then(() => setIsCollectedLoaded(true));
+  }
+
+  if (isCollectedLoaded === null) {
+    updateCollectedCards()
   }
 
   if (card === null) {
@@ -87,13 +91,13 @@ const CardPage = () => {
             />
             <div id="card-collection">
               {isCollectedLoaded ? (
-                <CollectedList collected={collected} />
+                <CollectedList collected={collected} handleDeleteCard={updateCollectedCards} />
               ) : (
                 <Loading />
               )}
 
               {isOtherLanguagesLoaded && (
-                <AddToCollection card={card} languages={otherLanguages} />
+                <AddToCollection card={card} languages={otherLanguages} handleAddCard={updateCollectedCards} />
               )}
 
               <div

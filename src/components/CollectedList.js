@@ -1,7 +1,7 @@
 import React from "react";
 import CollectedListItem from "./CollectedListItem";
 
-export default function CollectedList({ collected }) {
+export default function CollectedList({ collected, handleDeleteCard }) {
   return (
     <div id="collected-list" className="py-4 max-w-sm">
       <div
@@ -18,6 +18,7 @@ export default function CollectedList({ collected }) {
           quantity={card.quantity}
           condition={card.condition}
           language={card.language}
+          handleDeleteCard={handleDeleteCard}
         />
       ))}
       {collected.length === 0 && (

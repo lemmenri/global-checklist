@@ -4,7 +4,7 @@ import TextListBox from "./ListBox";
 import { conditions } from "../enums/conditions";
 import { finishes } from "../enums/finishes";
 
-export default function AddToCollection({ card, languages }) {
+export default function AddToCollection({ card, languages, handleAddCard }) {
   const [validFinishes, setFinishes] = useState(finishes);
   const [finish, setFinish] = useState(
     finishes.find((element) => element.value === card.finishes[0])
@@ -44,6 +44,7 @@ export default function AddToCollection({ card, languages }) {
       quantity: parseInt(quantity),
       condition: condition.value,
     });
+    handleAddCard();
   };
 
   const handleSetLanguage = (e) => {

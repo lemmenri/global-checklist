@@ -75,6 +75,7 @@ add filter for complete / partial / empty set
 fix react tooltip to hover over the text instead of being displayed below the element
 order set search results by collector number asc
 fix text "Showing results for..." when searching for other parameters than cardname
+fix auto update collected list on cardpage when adding new card to or deleting card from collection
 
 
 // IN PROGRESS
@@ -102,7 +103,6 @@ add icon to header and title
 add no cards in collection state to SearchResults.spec.js tests
 
 // Bugs
-auto update collected list on cardpage when adding new card to collection
 fix bug when printing search results images. From page 3 onwards the layout shifts
 fix search parameters when emptying the search fields. Now they are still taken into account when searching something again
 fix icons in search results for tokens. See if they can be the same as the parent set
