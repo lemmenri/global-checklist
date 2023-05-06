@@ -52,7 +52,7 @@ export default function SearchPage() {
 
     setDataIsLoaded(false);
     setNextPage(undefined);
-    setSearch(e.target.cardnameSearch.value);
+    setSearch(`${searchParameters.name && searchParameters.name} ${searchParameters.artist && searchParameters.artist} ${searchParameters.creatureType && searchParameters.creatureType} ${searchParams.get("set") && searchParams.get("set")}`.trim());
 
     advancedSearch(searchParameters).then((json) => {
       if (json.object === "error") {
