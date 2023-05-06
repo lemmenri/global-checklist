@@ -20,6 +20,7 @@ it("Loading", () => {
       quantity={collectedCardData.quantity}
       condition={collectedCardData.condition}
       language={collectedCardData.language}
+      handleDeleteCard={() => { }}
     />
   );
   cy.get("#finish").should("have.text", "E");

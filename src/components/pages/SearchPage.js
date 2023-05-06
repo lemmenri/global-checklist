@@ -44,15 +44,14 @@ export default function SearchPage() {
       artist: e.target.artistSearch.value,
       creatureType: e.target.creatureTypeSearch.value,
       setCode:
-        searchParams.get("set") !== undefined &&
-          searchParams.get("set") !== null
-          ? searchParams.get("set")
-          : e.target.setSearch.dataset.code,
+        (searchParams.get("set") !== undefined && searchParams.get("set") !== null) ? searchParams.get("set") :
+          (e.target.setSearch && e.target.setSearch.dataset.code) ? e.target.setSearch.dataset.code :
+            "",
     };
 
     setDataIsLoaded(false);
     setNextPage(undefined);
-    setSearch(`${searchParameters.name && searchParameters.name} ${searchParameters.artist && searchParameters.artist} ${searchParameters.creatureType && searchParameters.creatureType} ${searchParams.get("set") && searchParams.get("set")}`.trim());
+    setSearch(`${searchParameters.name && searchParameters.name} ${searchParameters.artist && searchParameters.artist} ${searchParameters.creatureType && searchParameters.creatureType} ${searchParameters.setCode && searchParameters.setCode}`.trim());
 
     advancedSearch(searchParameters).then((json) => {
       if (json.object === "error") {

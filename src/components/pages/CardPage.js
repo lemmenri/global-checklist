@@ -57,6 +57,12 @@ const CardPage = () => {
       search: `?set=${card.set}`,
     });
   };
+  const goToCardname = () => {
+    navigate({
+      pathname: "/search",
+      search: `?name=${card.name}`,
+    });
+  };
 
   document.title = `MTG Library - ${card ? card.name : ""}`;
 
@@ -64,7 +70,9 @@ const CardPage = () => {
     <div className="p-4 sm:p-8 flex-grow bg-light">
       {isDataLoaded ? (
         <>
-          <h1 className="display">{card.name}</h1>
+          <button onClick={goToCardname} className="hover:underline" id="cardName">
+            <h1 className="display">{card.name}</h1>
+          </button>
           <p id="card-collector-details" className="text-lg">
             <i
               id="card-set-icon"

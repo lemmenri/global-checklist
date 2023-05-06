@@ -76,6 +76,7 @@ fix react tooltip to hover over the text instead of being displayed below the el
 order set search results by collector number asc
 fix text "Showing results for..." when searching for other parameters than cardname
 fix auto update collected list on cardpage when adding new card to or deleting card from collection
+make cardname clickable on card page
 
 
 // IN PROGRESS

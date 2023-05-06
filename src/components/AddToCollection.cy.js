@@ -12,6 +12,7 @@ it("Add to Collection", () => {
     <AddToCollection
       card={defaultCardData}
       languages={convertLanguageData(defaultOtherLanguagesList)}
+      handleAddCard={() => { }}
     />
   );
 

@@ -32,7 +32,7 @@ describe("Search page", () => {
     cy.get("#searchButton").click();
     cy.get("#seachResultsDescription").should(
       "contain.text",
-      'Showing results for "".'
+      'Showing results for "John Avon".'
     );
   });
 
@@ -41,7 +41,7 @@ describe("Search page", () => {
     cy.get("#searchButton").click();
     cy.get("#seachResultsDescription").should(
       "contain.text",
-      'Showing results for "".'
+      'Showing results for "Sliver".'
     );
   });
 
@@ -50,7 +50,7 @@ describe("Search page", () => {
     cy.get("#searchButton").click();
     cy.get("#seachResultsDescription").should(
       "contain.text",
-      'Showing results for "".'
+      'Showing results for "lgn".'
     );
     cy.get("#card-details > #card-collector-details").should(
       "contain.text",
@@ -67,7 +67,7 @@ describe("Search page", () => {
     cy.get("#searchButton").click();
     cy.get("#seachResultsDescription").should(
       "contain.text",
-      'Showing results for "Spell Queller".'
+      'Showing results for "Spell Queller Adam Paquette Spirit q06".'
     );
     cy.get("[id='search-result-list-item']").should("have.lengthOf", 1);
   });
@@ -76,7 +76,7 @@ describe("Search page", () => {
     cy.searchCard("Evolving Wilds", "Evolving Wilds", "cardnameSearch");
     cy.get("#searchButton").click();
     cy.get("#loadMore").click().should("not.exist");
-    cy.get("[id='search-result-list-item']").should("have.lengthOf", 49);
+    cy.get("[id='search-result-list-item']").should("have.lengthOf", 50);
   });
 
   it("Toggle image view", () => {
