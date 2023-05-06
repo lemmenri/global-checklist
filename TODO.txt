@@ -77,6 +77,7 @@ order set search results by collector number asc
 fix text "Showing results for..." when searching for other parameters than cardname
 fix auto update collected list on cardpage when adding new card to or deleting card from collection
 make cardname clickable on card page
+add no cards in collection state to SearchResults.spec.js tests
 
 
 // IN PROGRESS
@@ -85,7 +86,11 @@ move import collection to seperate script
 
 // TODO
 // Features
+add flags to language component
 add cardimage hover on different languages in the search results
+add cardimage hover on different languages on the card page
+make different languages clickable on the card page
+add different printings of a card on the card page
 handle going back from card details to search results
 add sort options to searchpage
 add sort options to setpage
@@ -98,24 +103,29 @@ add mtg-library icon to header and browser tab
 add import function
     DONE - handle excel import
     create add function without need for scryfall id
+        create script to make list of cards with name, set, language and scryfall id
+        when processing excel import, find scryfall id from above list
     create queue to handle large number of add calls without DDOSing scryfall
 add cardPage component to design system page if possible
 add icon to header and title
-add no cards in collection state to SearchResults.spec.js tests
 
 // Bugs
 fix bug when printing search results images. From page 3 onwards the layout shifts
 fix search parameters when emptying the search fields. Now they are still taken into account when searching something again
-fix icons in search results for tokens. See if they can be the same as the parent set
+fix icons in search results for tokens. See if they can be the same as the parent set -> the all sets call should have the proper link to the icon
 fix filter getSetList call to exclude digital sets
-fix accordion bestuurbaar maken met toetsenbord
+fix accesability by keyboard of the accordion component
+fix finish in add to collection component showing default nonfoil value even if only a foil version exists
+fix 'A component is changing from uncontrolled to controlled' error on search page
 
 // Refactoring
+replace seticons by scryfall icons
 move finishes, conditions and languages to enum
 restructure components in atoms, molecules and organisms
 correctly implement button component
 store data in redux
 upgrade to typescript
+upgrade to nextJS
 
 // Tests
 remove dependecies from scryfall in e2e tests 

@@ -83,7 +83,7 @@ export default function SearchResults({ searchResults, groupedCards }) {
               <SearchResultImageItem key={card.id} card={card} />
             ))}
         {filterCollected && filteredSearchResults.length === 0 && (
-          <p name="noCardsInCollection">No cards in collection</p>
+          <p id="noCardsInCollection">No cards in collection</p>
         )}
       </div>
     </div>

@@ -6,6 +6,7 @@ import SearchResults from "./SearchResults";
 import { searchResultsData } from "../testdata/SearchResultsData";
 import { groupedCardData } from "../testdata/GroupedCardData";
 import { addCard } from "../scripts/CollectedCards";
+import { deleteCollection } from "../scripts/Collection";
 
 it("Search Results", () => {
   const card = {
@@ -36,4 +37,23 @@ it("Search Results", () => {
   cy.get("#search-result-image-item").should("exist");
   cy.get("#container-toggle-filter-collected > div").click();
   cy.get("#search-results").children().should("have.length", 1);
+});
+
+it("No cards in collection", () => {
+  deleteCollection
+  cy.mount(
+    <Router>
+      <SearchResults
+        searchResults={searchResultsData}
+        groupedCards={groupedCardData}
+      />
+    </Router>
+  );
+  cy.get("#search-results").children().should("have.length", 1);
+  cy.get("#search-result-list-item").should("exist");
+  cy.get("#search-result-image-item").should("not.exist");
+  cy.get('#noCardsInCollection').should("not.exist");
+  cy.get("#container-toggle-filter-collected > div").click();
+  cy.get('#noCardsInCollection').should("contain.text", "No cards in collection")
+
 });
