@@ -90,6 +90,20 @@ export const getCardBySetNrLanguage = (set, nr, language) => {
   );
 };
 
+// Returns an list of Card objects for the provided name, set and number
+// Returns undefined if no collection or no cards incollection
+// Returns undefined if card is not found in collection
+export const getCardsByNameSetNr = (name, set, nr) => {
+  const collection = getCollection();
+  if (!collection || collection.cards.length === 0) return undefined;
+  return collection.cards.filter(
+    (card) =>
+      card.name === name &&
+      card.set === set &&
+      card.nr === nr
+  );
+}
+
 // List of all collected finishes / languages / conditions of provided card
 // Returns empty array if card is not in collection
 export const getCollectedCardList = async (id) => {

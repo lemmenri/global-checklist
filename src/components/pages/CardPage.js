@@ -29,12 +29,14 @@ const CardPage = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await getPrintings(card.prints_search_uri)
-      setPrintings(response)
+      if (card !== null) {
+        const response = await getPrintings(card.prints_search_uri)
+        setPrintings(response)
+      }
     }
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isDataLoaded, collected, cardId]);
+  }, [isDataLoaded, collected]);
 
   useEffect(() => {
     updateCollectedCards()
@@ -96,7 +98,7 @@ const CardPage = () => {
       {isDataLoaded ? (
         <>
           <button onClick={goToCardname} className="hover:underline" id="cardName">
-            <h1 className="display">{card.name}</h1>
+            <h1 className="display font-semibold mb-1">{card.name}</h1>
           </button>
           <p id="card-collector-details" className="text-lg">
             <i
@@ -110,7 +112,7 @@ const CardPage = () => {
             {` - #${card.collector_number} - ${card.rarity}`}
           </p>
           {isOtherLanguagesLoaded && (
-            <div id="languages" className="flex space-x-2">
+            <div id="languages" className="flex space-x-2 max-[475px]:overflow-auto">
               {otherLanguages.map((language) => (
                 <Language key={language.id} language={language.name} imageOnHover={language.image} />
               ))}

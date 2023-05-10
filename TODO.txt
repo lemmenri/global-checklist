@@ -97,7 +97,7 @@ add different printings of a card on the card page
         DONE - fix refresh on clicking on other prints
         DONE - fix add to collection updates the previous card when navigating through the prints component
         DONE - fix other languages when navigating through the prints component
-        fix counting foreign cards in collection in prints component
+        DONE - fix counting foreign cards in collection in prints component
     add component tests
     add e2e tests
     DONE - update language component on design system page
@@ -108,6 +108,7 @@ move import collection to seperate script
 
 // TODO
 // Features
+add set icon to prints component
 add flags to language component
 add cardimage hover on different languages in the search results
 make different languages clickable on the card page

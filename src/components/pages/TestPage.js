@@ -11,6 +11,7 @@ import {
   addCard,
   getCardById,
   getCardBySetNrLanguage,
+  getCardsByNameSetNr,
   getCollectedCardList,
   hasVersion,
   removeCard,
@@ -131,6 +132,9 @@ export default function TestPage() {
   };
   const handleGetCardBySetNrLanguage = () => {
     console.log(getCardBySetNrLanguage("cn2", "176", "EN"));
+  };
+  const handleGetCardsByNameSetNr = () => {
+    console.log(getCardsByNameSetNr("Birds of Paradise", "cn2", "176"));
   };
   const handleGetCollectedCardList = () => {
     getCollectedCardList("feefe9f0-24a6-461c-9ef1-86c5a6f33b83").then((res) =>
@@ -288,6 +292,9 @@ export default function TestPage() {
           </button>
           <button className="btn" onClick={handleGetCardBySetNrLanguage}>
             Get Card By Set, Nr and Language
+          </button>
+          <button className="btn" onClick={handleGetCardsByNameSetNr}>
+            Get Cards By Name, Set and Number
           </button>
           <button className="btn" onClick={handleGetCollectedCardList}>
             Get Collected Cards (List)

@@ -1,4 +1,4 @@
-import { getCardCountFinish } from "./CardCounts";
+import { getCardsByNameSetNr } from "./CollectedCards";
 
 const baseUrl = "https://api.scryfall.com/";
 
@@ -62,10 +62,21 @@ export const getPrintings = async (prints_search_uri) => {
     .then((json) => {
       json.data.forEach(card => {
         const collected = []
+        const inCollection = getCardsByNameSetNr(card.name, card.set, card.collector_number)
         card.finishes.forEach(finish => {
+          let cardCount = 0
+          if (inCollection && inCollection.length > 0) {
+            inCollection.forEach(lang => {
+              lang.collected.forEach(entry => {
+                if (entry.finish === finish) {
+                  cardCount += entry.quantity
+                }
+              })
+            })
+          }
           const obj = {
             finish: finish,
-            count: getCardCountFinish(card.id, finish)
+            count: cardCount
           }
           collected.push(obj)
         })

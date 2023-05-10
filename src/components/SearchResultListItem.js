@@ -26,7 +26,7 @@ export default function SearchResultListItem({ group }) {
           onMouseEnter={() => setIsShown(true)}
           onMouseLeave={() => setIsShown(false)}
         >
-          <dialog open={isShown} className="bg-transparent absolute z-10 inset-y-0 right-0 translate-x-40">
+          <dialog open={isShown} className="bg-transparent absolute z-10 inset-y-0 right-0 translate-x-40 w-64">
             <CardImage
               className="rounded-[9px] w-64 shadow-dark shadow-md"
               src={getCardImage(group[0])}
@@ -47,7 +47,7 @@ export default function SearchResultListItem({ group }) {
         </div>
         <div
           id="collection-details"
-          className="flex text-center text-sm grow print:text-xs"
+          className="flex text-center text-sm grow print:text-xs overflow-x-auto"
         >
           <div className="flex-col w-8 p-2 font-bold space-y-0.5">
             <p>&nbsp;</p>
