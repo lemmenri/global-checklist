@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router";
 import PrintsListItem from "./PrintsListItem";
 
-export default function Prints({ prints, cardname, setCardId }) {
+export default function Prints({ prints, cardname, setCardId, cardId }) {
     const navigate = useNavigate();
     const goToAllPrints = () => {
         navigate({
@@ -28,6 +28,7 @@ export default function Prints({ prints, cardname, setCardId }) {
                     id={print.id}
                     image={print.image}
                     setCardId={setCardId}
+                    bold={print.id === cardId}
                 />
             ))}
             {prints.length > 10 && (

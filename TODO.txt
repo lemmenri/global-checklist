@@ -86,6 +86,7 @@ DONE - add different printings of a card on the card page
         DONE - > 10 printings
         DONE - fix no foil or no nonfoil or etched
         DONE - show image on hover
+        DONE - make active print semibold
     DONE - create getPrints script
     DONE - add component to design system page
     DONE - add script to test page

@@ -135,7 +135,7 @@ const CardPage = () => {
                 <AddToCollection card={card} languages={otherLanguages} handleAddCard={updateCollectedCards} />
               )}
 
-              <Prints prints={printings} cardname={card.name} setCardId={setCardId} />
+              <Prints prints={printings} cardname={card.name} setCardId={setCardId} cardId={card.id} />
 
               <div
                 id="external links"

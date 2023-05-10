@@ -2,7 +2,7 @@ import { useNavigate } from "react-router";
 import CardImage from "./CardImage";
 import React, { useState } from "react";
 
-export default function PrintsListItem({ collected, setName, collector_number, id, image, setCardId }) {
+export default function PrintsListItem({ collected, setName, collector_number, id, image, setCardId, bold = false }) {
     const [isShown, setIsShown] = useState(false)
     const navigate = useNavigate();
     const goToPrinting = () => {
@@ -27,7 +27,7 @@ export default function PrintsListItem({ collected, setName, collector_number, i
                         alt={`cardimage-${setName.replaceAll(" ", "-")}`}
                     />
                 </dialog>
-                <button onClick={goToPrinting} className="text-left hover:underline" id="cardName">
+                <button onClick={goToPrinting} className={`text-left hover:underline ${bold && "font-semibold"}`} id="cardName">
                     {setName} - #{collector_number}
                 </button>
             </div>
