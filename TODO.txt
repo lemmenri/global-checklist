@@ -101,7 +101,7 @@ add different printings of a card on the card page
     add component tests
     add e2e tests
     DONE - update language component on design system page
-    update language component tests
+    DONE - update language component tests
 fix double scryfall api calls on initial card page load
 edit card
 move import collection to seperate script
