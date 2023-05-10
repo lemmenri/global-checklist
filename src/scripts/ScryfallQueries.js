@@ -1,3 +1,5 @@
+import { getCardCountFinish } from "./CardCounts";
+
 const baseUrl = "https://api.scryfall.com/";
 
 // Returns the raw scryfall data for the provided card id
@@ -27,6 +29,7 @@ export const getOtherLanguages = async (id) => {
               language: card.lang,
               id: card.id,
               finishes: card.finishes,
+              image: card.image_uris.normal,
             });
           });
         })
@@ -45,10 +48,40 @@ export const convertLanguageData = (languages) => {
       value: language.language,
       type: "language",
       finishes: language.finishes,
+      image: language.image,
     })
   );
   return newList;
 };
+
+// Get printings of card based on oracle id
+export const getPrintings = async (prints_search_uri) => {
+  const printings = []
+  await fetch(prints_search_uri.replace("&unique=prints", "+-is%3Adigital&unique=prints"))
+    .then((res) => res.json())
+    .then((json) => {
+      json.data.forEach(card => {
+        const collected = []
+        card.finishes.forEach(finish => {
+          const obj = {
+            finish: finish,
+            count: getCardCountFinish(card.id, finish)
+          }
+          collected.push(obj)
+        })
+
+        printings.push({
+          setName: card.set_name,
+          collector_number: card.collector_number,
+          id: card.id,
+          collected: collected,
+          image: card.image_uris.normal
+        })
+
+      })
+    })
+  return printings
+}
 
 // Returns a list of scryfall card objects matching the search string
 export const searchByCardname = async (searchString) => {

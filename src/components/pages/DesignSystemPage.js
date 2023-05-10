@@ -35,6 +35,9 @@ import SetSearch from "../SetSearch";
 import SearchResultImageItem from "../SearchResultImageItem";
 import SearchResults from "../SearchResults";
 import { finishes } from "../../enums/finishes";
+import PrintsListItem from "../PrintsListItem";
+import Prints from "../Prints";
+import { moreThenTenPrintings } from "../../testdata/PrintingData";
 
 export default function DesignSystemPage() {
   document.title = "MTG Library - Design System";
@@ -119,8 +122,12 @@ export default function DesignSystemPage() {
         </Accordion>
         <Accordion title={<h3 className="h2">Labels</h3>}>
           <p>Language</p>
-          <div className="w-8">
+          <div className="flex flex-wrap space-x-2">
             <Language language={"en"} />
+          </div>
+          <p>Language with cardimage on hover</p>
+          <div className="flex flex-wrap space-x-2">
+            <Language language={"zhs"} imageOnHover={"https://cards.scryfall.io/normal/front/6/a/6af5e30b-a23c-4b37-8702-fff80982c653.jpg?1562613047"} />
           </div>
           <p>Condition</p>
           <div className="flex flex-wrap space-x-2">
@@ -242,6 +249,32 @@ export default function DesignSystemPage() {
             language="EN"
           />
         </Accordion>
+        <Accordion title={<h3 className="h2">Prints List Item</h3>}>
+          <PrintsListItem
+            collected={[
+              {
+                finish: "foil",
+                count: 1,
+              },
+              {
+                finish: "nonfoil",
+                count: 0
+              },
+              {
+                finish: "glossy",
+                count: 1,
+              },
+              {
+                finish: "etched",
+                count: 0
+              },
+            ]}
+            collector_number={475}
+            image="https://cards.scryfall.io/normal/front/5/4/54ced5cf-b51a-4dab-97f7-50fb18e5c463.jpg?1631666677"
+            setName="Modern Horizons 2"
+            id="54ced5cf-b51a-4dab-97f7-50fb18e5c463"
+          />
+        </Accordion>
         <Accordion title={<h3 className="h2">Search Result List Item</h3>}>
           <SearchResultListItem group={groupedCardData[0]} />
         </Accordion>
@@ -269,7 +302,40 @@ export default function DesignSystemPage() {
           />
         </Accordion>
         <Accordion title={<h3 className="h2">Collected List</h3>}>
+          <CollectedList collected={[]} />
           <CollectedList collected={collectedCardData} />
+        </Accordion>
+        <Accordion title={<h3 className="h2">Prints</h3>}>
+          <Prints prints={[]} />
+          <Prints prints={[
+            {
+              collected: [
+                {
+                  finish: "foil",
+                  count: 1,
+                },
+                {
+                  finish: "nonfoil",
+                  count: 0
+                },
+              ],
+              setName: "Modern Horizons 2",
+              id: "54ced5cf-b51a-4dab-97f7-50fb18e5c463",
+              image: "https://cards.scryfall.io/normal/front/5/4/54ced5cf-b51a-4dab-97f7-50fb18e5c463.jpg?1631666677"
+            },
+            {
+              collected: [
+                {
+                  finish: "foil",
+                  count: 1,
+                }
+              ],
+              setName: "Zendikar Rising Expeditions",
+              id: "245e16ae-4514-42fa-b409-2c3ae084436c",
+              image: "https://cards.scryfall.io/normal/front/2/4/245e16ae-4514-42fa-b409-2c3ae084436c.jpg?1604195370"
+            }
+          ]} />
+          <Prints prints={moreThenTenPrintings} />
         </Accordion>
         <Accordion title={<h3 className="h2">Search Results</h3>}>
           <SearchResults

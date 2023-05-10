@@ -15,23 +15,11 @@ export default function CollectedListItem({
 }) {
   const [showEdit, setShowEdit] = useState(false);
 
-  let finishSign = "";
-  switch (finish) {
-    case "nonfoil":
-      finishSign = "•";
-      break;
-    case "foil":
-      finishSign = "✶";
-      break;
-    case "etched":
-      finishSign = "E";
-      break;
-    case "glossy":
-      finishSign = "G";
-      break;
-    default:
-      finishSign = "•";
-  }
+  let finishSign = "•";
+  if (finish === "foil") finishSign = "✶"
+  if (finish === "nonfoil") finishSign = "•"
+  if (finish === "etched") finishSign = "E"
+  if (finish === "glossy") finishSign = "G"
 
   const handleToggleEdit = () => {
     setShowEdit(!showEdit);

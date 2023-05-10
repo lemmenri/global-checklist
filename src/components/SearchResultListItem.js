@@ -22,11 +22,11 @@ export default function SearchResultListItem({ group }) {
       >
         <div
           id="card-details"
-          className={`mx-1 w-1/3`}
+          className={`mx-1 w-1/3 relative`}
           onMouseEnter={() => setIsShown(true)}
           onMouseLeave={() => setIsShown(false)}
         >
-          <dialog open={isShown} className="bg-transparent">
+          <dialog open={isShown} className="bg-transparent absolute z-10 inset-y-0 right-0 translate-x-40">
             <CardImage
               className="rounded-[9px] w-64 shadow-dark shadow-md"
               src={getCardImage(group[0])}

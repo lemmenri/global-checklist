@@ -1,6 +1,6 @@
 import { useParams, useLocation } from "react-router-dom";
 import { useNavigate } from "react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CardImage from "../CardImage";
 import { Loading } from "../Loading";
 import { ExternalLink } from "../ExternalLink";
@@ -12,19 +12,38 @@ import {
   getOtherLanguages,
   convertLanguageData,
   getScryfallCard,
+  getPrintings,
 } from "../../scripts/ScryfallQueries";
 import Language from "../Language";
+import Prints from "../Prints";
 
 const CardPage = () => {
-  const cardId = useParams();
+  const [cardId, setCardId] = useState(useParams());
   const [card, setCard] = useState(useLocation().state);
-  const [isDataLoaded, setIsDataLoaded] = useState(
-    card === null ? false : true
-  );
+  const [isDataLoaded, setIsDataLoaded] = useState(card === null ? false : true);
   const [collected, setCollected] = useState({});
   const [isCollectedLoaded, setIsCollectedLoaded] = useState(null);
-  const [otherLanguages, setOtherLanguages] = useState({});
+  const [otherLanguages, setOtherLanguages] = useState([]);
   const [isOtherLanguagesLoaded, setIsOtherLanguagesLoaded] = useState(null);
+  const [printings, setPrintings] = useState([])
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await getPrintings(card.prints_search_uri)
+      setPrintings(response)
+    }
+    fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isDataLoaded, collected, cardId]);
+
+  useEffect(() => {
+    updateCollectedCards()
+    setIsDataLoaded(false)
+    setCard(null)
+    setCardData()
+    setIsOtherLanguagesLoaded(null)
+    loadOtherLanguages()
+  }, [cardId])
 
   function updateCollectedCards() {
     setIsCollectedLoaded(false);
@@ -37,18 +56,24 @@ const CardPage = () => {
     updateCollectedCards()
   }
 
-  if (card === null) {
-    getScryfallCard(cardId.id)
-      .then((res) => setCard(res))
-      .then(() => setIsDataLoaded(true));
+  async function setCardData() {
+    if (card === null) {
+      getScryfallCard(cardId.id)
+        .then((res) => setCard(res))
+        .then(() => setIsDataLoaded(true));
+    }
   }
+  setCardData()
 
-  if (isOtherLanguagesLoaded === null) {
-    setIsOtherLanguagesLoaded(false);
-    getOtherLanguages(cardId.id)
-      .then((res) => setOtherLanguages(convertLanguageData(res)))
-      .then(() => setIsOtherLanguagesLoaded(true));
+  async function loadOtherLanguages() {
+    if (isOtherLanguagesLoaded === null) {
+      setIsOtherLanguagesLoaded(false);
+      getOtherLanguages(cardId.id)
+        .then((res) => setOtherLanguages(convertLanguageData(res)))
+        .then(() => setIsOtherLanguagesLoaded(true));
+    }
   }
+  loadOtherLanguages()
 
   const navigate = useNavigate();
   const goToSet = () => {
@@ -87,7 +112,7 @@ const CardPage = () => {
           {isOtherLanguagesLoaded && (
             <div id="languages" className="flex space-x-2">
               {otherLanguages.map((language) => (
-                <Language key={language.id} language={language.name} />
+                <Language key={language.id} language={language.name} imageOnHover={language.image} />
               ))}
             </div>
           )}
@@ -107,6 +132,8 @@ const CardPage = () => {
               {isOtherLanguagesLoaded && (
                 <AddToCollection card={card} languages={otherLanguages} handleAddCard={updateCollectedCards} />
               )}
+
+              <Prints prints={printings} cardname={card.name} setCardId={setCardId} />
 
               <div
                 id="external links"

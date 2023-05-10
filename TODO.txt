@@ -78,9 +78,31 @@ fix text "Showing results for..." when searching for other parameters than cardn
 fix auto update collected list on cardpage when adding new card to or deleting card from collection
 make cardname clickable on card page
 add no cards in collection state to SearchResults.spec.js tests
+add cardimage hover on different languages on the card page
 
 
 // IN PROGRESS
+add different printings of a card on the card page
+    DONE - create printings component
+        DONE - empty state
+        DONE - 1-10 printings
+        DONE - > 10 printings
+        DONE - fix no foil or no nonfoil or etched
+        DONE - show image on hover
+    DONE - create getPrints script
+    DONE - add component to design system page
+    DONE - add script to test page
+    DONE - add component to card page
+        DONE - fix autoupdate collected in prints section on adding cards
+        DONE - fix refresh on clicking on other prints
+        DONE - fix add to collection updates the previous card when navigating through the prints component
+        DONE - fix other languages when navigating through the prints component
+        fix counting foreign cards in collection in prints component
+    add component tests
+    add e2e tests
+    DONE - update language component on design system page
+    update language component tests
+fix double scryfall api calls on initial card page load
 edit card
 move import collection to seperate script
 
@@ -88,9 +110,7 @@ move import collection to seperate script
 // Features
 add flags to language component
 add cardimage hover on different languages in the search results
-add cardimage hover on different languages on the card page
 make different languages clickable on the card page
-add different printings of a card on the card page
 handle going back from card details to search results
 add sort options to searchpage
 add sort options to setpage
@@ -107,7 +127,6 @@ add import function
         when processing excel import, find scryfall id from above list
     create queue to handle large number of add calls without DDOSing scryfall
 add cardPage component to design system page if possible
-add icon to header and title
 
 // Bugs
 fix bug when printing search results images. From page 3 onwards the layout shifts
@@ -133,5 +152,6 @@ add github actions for cypress tests on push
 add page-objects to e2e tests
 add e2e tests for card page
 add e2e tests for sets page
+add e2e tests for test page (mostly to test intergration with scryfall)
 add unit tests for scripts
 add tests for no nonfoil finish and no English language to addToCollection component tests

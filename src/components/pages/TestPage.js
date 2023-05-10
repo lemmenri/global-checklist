@@ -31,6 +31,7 @@ import {
   getCardnameList,
   getCreatureTypeList,
   getOtherLanguages,
+  getPrintings,
   getScryfallCard,
   getSet,
   getSetList,
@@ -216,6 +217,11 @@ export default function TestPage() {
       console.log(res)
     );
   };
+  const handleGetPrintings = () => {
+    getPrintings("https://api.scryfall.com/cards/search?order=released&q=oracleid%3Ad3a0b660-358c-41bd-9cd2-41fbf3491b1a&unique=prints").then((res) =>
+      console.log(res)
+    );
+  };
   const handleSearchByCardname = () => {
     searchByCardname("Birds of Paradise").then((res) => console.log(res));
   };
@@ -341,6 +347,9 @@ export default function TestPage() {
           </button>
           <button className="btn" onClick={handleGetOtherLanguages}>
             Get other languages
+          </button>
+          <button className="btn" onClick={handleGetPrintings}>
+            Get printings
           </button>
           <button className="btn" onClick={handleSearchByCardname}>
             Search by cardname
