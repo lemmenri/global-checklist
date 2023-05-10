@@ -37,7 +37,7 @@ import SearchResults from "../SearchResults";
 import { finishes } from "../../enums/finishes";
 import PrintsListItem from "../PrintsListItem";
 import Prints from "../Prints";
-import { moreThenTenPrintings } from "../../testdata/PrintingData";
+import { moreThenTenPrintings, twoPrintings } from "../../testdata/PrintingData";
 
 export default function DesignSystemPage() {
   document.title = "MTG Library - Design System";
@@ -307,34 +307,7 @@ export default function DesignSystemPage() {
         </Accordion>
         <Accordion title={<h3 className="h2">Prints</h3>}>
           <Prints prints={[]} />
-          <Prints prints={[
-            {
-              collected: [
-                {
-                  finish: "foil",
-                  count: 1,
-                },
-                {
-                  finish: "nonfoil",
-                  count: 0
-                },
-              ],
-              setName: "Modern Horizons 2",
-              id: "54ced5cf-b51a-4dab-97f7-50fb18e5c463",
-              image: "https://cards.scryfall.io/normal/front/5/4/54ced5cf-b51a-4dab-97f7-50fb18e5c463.jpg?1631666677"
-            },
-            {
-              collected: [
-                {
-                  finish: "foil",
-                  count: 1,
-                }
-              ],
-              setName: "Zendikar Rising Expeditions",
-              id: "245e16ae-4514-42fa-b409-2c3ae084436c",
-              image: "https://cards.scryfall.io/normal/front/2/4/245e16ae-4514-42fa-b409-2c3ae084436c.jpg?1604195370"
-            }
-          ]} />
+          <Prints prints={twoPrintings} />
           <Prints prints={moreThenTenPrintings} />
         </Accordion>
         <Accordion title={<h3 className="h2">Search Results</h3>}>

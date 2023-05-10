@@ -50,7 +50,7 @@ function finishCollected(finish, count) {
     if (finish === "glossy") finishSign = "G"
     return (
         <div
-            id="regular"
+            id={`${finish}-collected`}
             className={`w-10 h-6 m-0.5 text-center ${count > 0 && "bg-collected"} rounded`}
         >
             {finishSign} {count}

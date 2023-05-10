@@ -1,3 +1,34 @@
+export const twoPrintings = [
+    {
+        collected: [
+            {
+                finish: "foil",
+                count: 1,
+            },
+            {
+                finish: "nonfoil",
+                count: 0
+            },
+        ],
+        collector_number: "475",
+        setName: "Modern Horizons 2",
+        id: "54ced5cf-b51a-4dab-97f7-50fb18e5c463",
+        image: "https://cards.scryfall.io/normal/front/5/4/54ced5cf-b51a-4dab-97f7-50fb18e5c463.jpg?1631666677"
+    },
+    {
+        collected: [
+            {
+                finish: "foil",
+                count: 1,
+            }
+        ],
+        collector_number: "476",
+        setName: "Zendikar Rising Expeditions",
+        id: "245e16ae-4514-42fa-b409-2c3ae084436c",
+        image: "https://cards.scryfall.io/normal/front/2/4/245e16ae-4514-42fa-b409-2c3ae084436c.jpg?1604195370"
+    }
+]
+
 export const moreThenTenPrintings = [
     {
         "setName": "Dominaria Remastered",
