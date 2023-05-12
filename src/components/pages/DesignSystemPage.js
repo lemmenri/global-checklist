@@ -38,6 +38,7 @@ import { finishes } from "../../enums/finishes";
 import PrintsListItem from "../PrintsListItem";
 import Prints from "../Prints";
 import { moreThenTenPrintings, twoPrintings } from "../../testdata/PrintingData";
+import CardnameSearchForm from "../CardnameSearchForm";
 
 export default function DesignSystemPage() {
   document.title = "MTG Library - Design System";
@@ -302,6 +303,9 @@ export default function DesignSystemPage() {
         </Accordion>
         <Accordion title={<h3 className="h2">Footer</h3>}>
           <Footer />
+        </Accordion>
+        <Accordion title={<h3 className="h2">Cardname Search Form</h3>}>
+          <CardnameSearchForm />
         </Accordion>
         <Accordion title={<h3 className="h2">Set Card</h3>}>
           {exampleSetCardData && <SetCard set={exampleSetCardData} />}

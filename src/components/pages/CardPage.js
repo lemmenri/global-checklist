@@ -16,6 +16,7 @@ import {
 } from "../../scripts/ScryfallQueries";
 import Language from "../Language";
 import Prints from "../Prints";
+import CardnameSearchForm from "../CardnameSearchForm";
 
 const CardPage = () => {
   const [cardId, setCardId] = useState(useParams());
@@ -97,9 +98,14 @@ const CardPage = () => {
     <div className="p-4 sm:p-8 flex-grow bg-light">
       {isDataLoaded ? (
         <>
-          <button onClick={goToCardname} className="hover:underline" id="cardName">
-            <h1 className="display font-semibold mb-1">{card.name}</h1>
-          </button>
+          <div className="flex flex-col-reverse sm:flex-row flex-wrap-reverse justify-between">
+            <button onClick={goToCardname} className="hover:underline" id="cardName">
+              <h1 className="display font-semibold mb-1 text-left">{card.name}</h1>
+            </button>
+            <div className="self-center">
+              <CardnameSearchForm />
+            </div>
+          </div>
           <p id="card-collector-details" className="text-lg">
             <i
               id="card-set-icon"

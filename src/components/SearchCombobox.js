@@ -45,7 +45,7 @@ export default function SearchCombobox({
           }
         }}
         as="div"
-        className={`rounded${withSearchButton ? "-l" : ""}-lg overflow-hidden border border-dark border-1 max-w-xs`}
+        className={`rounded-lg overflow-hidden border border-dark border-1 max-w-xs ${withSearchButton ? "rounded-r-none" : ""}`}
       >
         <div className="flex items-center ">
           <Combobox.Input
@@ -69,7 +69,7 @@ export default function SearchCombobox({
                 <Combobox.Option key={index} value={cardName} name={cardName}>
                   {({ active }) => (
                     <div
-                      className={`px-4 py-0.5 ${active ? "bg-dark text-light" : ""
+                      className={`px-4 py-2 sm:py-0.5 ${active ? "bg-dark text-light" : ""
                         } hover:cursor-pointer`}
                     >
                       {cardName}

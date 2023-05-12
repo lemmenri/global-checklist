@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getCollectionCount, getCardCountSet } from "../../scripts/CardCounts";
 import { getSetList, getSetTypes } from "../../scripts/ScryfallQueries";
+import CardnameSearchForm from "../CardnameSearchForm";
 import TextListBox from "../ListBox";
 import { Loading } from "../Loading";
 import SetCard from "../SetCard";
@@ -74,7 +75,12 @@ export default function SetsPage() {
 
   return (
     <div className="p-4 sm:p-8 flex-grow bg-light">
-      <h1 className="display">Sets</h1>
+      <div className="flex flex-col-reverse sm:flex-row flex-wrap-reverse justify-between">
+        <h1 className="display">Sets</h1>
+        <div className="self-center">
+          <CardnameSearchForm />
+        </div>
+      </div>
       <p>{`${totalCardCount} cards in collection`}</p>
       {setTypes && (
         <>

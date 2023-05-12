@@ -107,15 +107,15 @@ upgrade home page
     DONE - add links to other pages on home page
     DONE - upgrade e2e tests home page
     DONE - update component tests searchcombobox
+DONE - add simpleCardSearch component
+    DONE - create component
+    DONE - create component tests
+    DONE - add component to HomePage
+    DONE - add component to CardPage
+    DONE - add component to SetsPage
 
 
 // IN PROGRESS
-add simpleCardSearch component
-    create component
-    create component tests
-    add component to HomePage
-    update HomePage e2e test
-    add component to CardPage
 
 // TODO
 // Features
@@ -142,6 +142,7 @@ add import function
         when processing excel import, find scryfall id from above list
     create queue to handle large number of add calls without DDOSing scryfall
 add cardPage component to design system page if possible (use fixtures?)
+remove dropdowns for finish and language if only 1 value is available on cardpage
 
 // Bugs
 fix double scryfall api calls on initial card page load
