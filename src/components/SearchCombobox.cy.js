@@ -8,7 +8,7 @@ import "cypress-real-events/support";
 const placeholderText = "Search cards...";
 const idText = "cardnameSearch";
 
-it("Search Combobox", () => {
+it("displays the Search Combobox", () => {
   cy.mount(
     <SearchCombobox
       itemList={cardNames}
@@ -30,9 +30,11 @@ it("Search Combobox", () => {
   cy.get("ul > li[name='Akiri, Line-Slinger']").realClick();
   cy.get("input").should("have.value", "Akiri, Line-Slinger");
   cy.get("ul").should("not.exist");
+  cy.get('#searchButton')
+    .should('not.exist')
 });
 
-it("Search Combobox - one result", () => {
+it("displays one result correctly", () => {
   cy.mount(
     <SearchCombobox
       itemList={cardNames}
@@ -44,7 +46,7 @@ it("Search Combobox - one result", () => {
   cy.get("ul").find("li").should("have.length", 1);
 });
 
-it("Search Combobox - more than 5 results", () => {
+it("displays multiple search results correctly", () => {
   cy.mount(
     <SearchCombobox
       itemList={cardNames}
@@ -53,10 +55,14 @@ it("Search Combobox - more than 5 results", () => {
     />
   );
   cy.get(`[name='${idText}']`).type("Ari");
-  cy.get("ul").find("li").should("have.length", 5);
+  cy.get("ul").find("li").should("have.length", 15);
+  cy.get(':nth-child(12)')
+    .should('be.visible')
+  cy.get(':nth-child(13)')
+    .should('not.be.visible')
 });
 
-it("Search Combobox - no results", () => {
+it("displays message on no results", () => {
   cy.mount(
     <SearchCombobox
       itemList={cardNames}
@@ -68,7 +74,7 @@ it("Search Combobox - no results", () => {
   cy.get("[name='noSearchResults']").should("have.text", "No results found.");
 });
 
-it("Search Combobox - default value", () => {
+it("displays default value when provided", () => {
   cy.mount(
     <SearchCombobox
       itemList={cardNames}
@@ -78,4 +84,19 @@ it("Search Combobox - default value", () => {
     />
   );
   cy.get(`[name='${idText}']`).should("contain.value", "Arid Mesa");
+});
+
+it("displays searchcomponent with search button correctly", () => {
+  cy.mount(
+    <SearchCombobox
+      itemList={cardNames}
+      id={idText}
+      placeholder={placeholderText}
+      withSearchButton={true}
+    />
+  );
+  cy.get(`[name='${idText}']`).type("Arid");
+  cy.get("ul").find("li").should("have.length", 1);
+  cy.get('#searchButton')
+    .should('be.visible')
 });

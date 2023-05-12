@@ -183,6 +183,17 @@ export default function DesignSystemPage() {
               </div>
             </div>
             <div>
+              <p>Generic Combobox with Search Button:</p>
+              <div className="mx-4">
+                <SearchCombobox
+                  itemList={cardNames}
+                  id="cardnameSearch"
+                  placeholder="Search cards..."
+                  withSearchButton
+                />
+              </div>
+            </div>
+            <div>
               <p>Cardname Search:</p>
               <div className="mx-4">
                 <CardnameSearch />

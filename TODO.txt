@@ -99,12 +99,28 @@ DONE - add different printings of a card on the card page
     DONE - add component tests
     DONE - update language component on design system page
     DONE - update language component tests
+fix finish in add to collection component showing default nonfoil value even if only a foil version exists
+fix 'A component is changing from uncontrolled to controlled' error on search page
+fix combobox overflow issue where the options shown move the items on the page
+upgrade home page
+    DONE - add search for cards to home page
+    DONE - add links to other pages on home page
+    DONE - upgrade e2e tests home page
+    DONE - update component tests searchcombobox
 
 
 // IN PROGRESS
+add simpleCardSearch component
+    create component
+    create component tests
+    add component to HomePage
+    update HomePage e2e test
+    add component to CardPage
 
 // TODO
 // Features
+add backside of double sided cards on hover
+add option to flip to backside of double sided cards on image display
 add edit card options
 add set icon to prints component
 add flags to language component
@@ -125,7 +141,7 @@ add import function
         create script to make list of cards with name, set, language and scryfall id
         when processing excel import, find scryfall id from above list
     create queue to handle large number of add calls without DDOSing scryfall
-add cardPage component to design system page if possible
+add cardPage component to design system page if possible (use fixtures?)
 
 // Bugs
 fix double scryfall api calls on initial card page load
@@ -134,8 +150,7 @@ fix search parameters when emptying the search fields. Now they are still taken 
 fix icons in search results for tokens. See if they can be the same as the parent set -> the all sets call should have the proper link to the icon
 fix filter getSetList call to exclude digital sets
 fix accesability by keyboard of the accordion component
-fix finish in add to collection component showing default nonfoil value even if only a foil version exists
-fix 'A component is changing from uncontrolled to controlled' error on search page
+filter cardnames that start with "A-"
 
 // Refactoring
 move import collection to seperate script
@@ -146,13 +161,15 @@ correctly implement button component
 store data in redux
 upgrade to typescript
 upgrade to nextJS
+refactor filterDefaultFinishes and filterFinishes in AddToCollection
 
 // Tests
-remove dependecies from scryfall in e2e tests 
+remove dependecies from scryfall in e2e tests (use fixtures) 
 add github actions for cypress tests on push
 add page-objects to e2e tests
 add e2e tests for card page
 add e2e tests for sets page
+add e2e tests for import/export page
 add e2e tests for test page (mostly to test intergration with scryfall)
 add unit tests for scripts
 add tests for no nonfoil finish and no English language to addToCollection component tests

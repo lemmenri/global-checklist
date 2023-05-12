@@ -5,10 +5,24 @@ import { conditions } from "../enums/conditions";
 import { finishes } from "../enums/finishes";
 
 export default function AddToCollection({ card, languages, handleAddCard }) {
-  const [validFinishes, setFinishes] = useState(finishes);
   const [finish, setFinish] = useState(
     finishes.find((element) => element.value === card.finishes[0])
   );
+  const filterDefaultFinishes = (availableFinishes) => {
+    const filteredFinishes = [];
+    availableFinishes.forEach((finish) => {
+      const i = finishes.findIndex((element) => element.value === finish);
+      filteredFinishes.push(finishes[i]);
+    });
+
+    if (!filteredFinishes.find((element) => element.value === finish.value)) {
+      return filteredFinishes[0];
+    } else {
+      return filteredFinishes;
+    }
+  };
+
+  const [validFinishes, setFinishes] = useState(filterDefaultFinishes(card.finishes));
   const [quantity, setQuantity] = useState(1);
   const [condition, setCondition] = useState(conditions[1]);
   const [language, setLanguage] = useState(
@@ -26,10 +40,11 @@ export default function AddToCollection({ card, languages, handleAddCard }) {
       const i = finishes.findIndex((element) => element.value === finish);
       filteredFinishes.push(finishes[i]);
     });
-    setFinishes(filteredFinishes);
 
     if (!filteredFinishes.find((element) => element.value === finish.value)) {
       setFinish(filteredFinishes[0]);
+    } else {
+      setFinishes(filteredFinishes);
     }
   };
 

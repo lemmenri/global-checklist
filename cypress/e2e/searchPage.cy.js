@@ -9,7 +9,7 @@ describe("Search page", () => {
 
   it("Navigate to search page", () => {
     cy.visit("http://localhost:3000");
-    cy.get("h1").should("contain.text", "Welcome to MTG Library!");
+    cy.get("h1").should("contain.text", "Welcome to MTG Library");
     cy.get("#header").within(() => {
       cy.get("#search").click();
     });

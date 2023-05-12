@@ -1,3 +1,4 @@
+import { getCardImage } from "./CardImage";
 import { getCardsByNameSetNr } from "./CollectedCards";
 
 const baseUrl = "https://api.scryfall.com/";
@@ -29,7 +30,7 @@ export const getOtherLanguages = async (id) => {
               language: card.lang,
               id: card.id,
               finishes: card.finishes,
-              image: card.image_uris.normal,
+              image: getCardImage(card),
             });
           });
         })
@@ -86,7 +87,7 @@ export const getPrintings = async (prints_search_uri) => {
           collector_number: card.collector_number,
           id: card.id,
           collected: collected,
-          image: card.image_uris.normal
+          image: getCardImage(card)
         })
 
       })
