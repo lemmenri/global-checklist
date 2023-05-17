@@ -221,7 +221,8 @@ export default function DesignSystemPage() {
           </div>
         </Accordion>
         <Accordion title={<h3 className="h2">Listbox</h3>}>
-          <div className="space-y-4">
+          <p>Multiple values:</p>
+          <div className="space-y-4 mx-4">
             <div className="flex items-center">
               <TextListBox
                 id="condition"
@@ -238,6 +239,29 @@ export default function DesignSystemPage() {
                 label="Finish"
                 onChange={() => { }}
                 defaultValue={1}
+              />
+            </div>
+          </div>
+          <p>Single value (no dropdown):</p>
+          <div className="space-y-4 mx-4">
+            <div className="flex items-center">
+              <TextListBox
+                id="finish"
+                values={[
+                  { id: 3, name: "E", value: "etched" },
+                ]}
+                label="Finish"
+                onChange={() => { }}
+              />
+            </div>
+            <div className="flex items-center">
+              <TextListBox
+                id="language"
+                values={[
+                  { id: 1, name: "en", value: "English", type: "language" },
+                ]}
+                label="Language"
+                onChange={() => { }}
               />
             </div>
           </div>

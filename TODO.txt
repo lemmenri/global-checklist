@@ -113,9 +113,16 @@ DONE - add simpleCardSearch component
     DONE - add component to HomePage
     DONE - add component to CardPage
     DONE - add component to SetsPage
+fix filter getSetList call to exclude digital sets
+filter cardnames that start with "A-"
+DONE - remove dropdowns for finish and language if only 1 value is available on cardpage
+    DONE - update listbox component
+    DONE - update component tests for listbox component
+    DONE - update DesignSystemPage for listbox component
 
 
 // IN PROGRESS
+add price to card page
 
 // TODO
 // Features
@@ -142,16 +149,14 @@ add import function
         when processing excel import, find scryfall id from above list
     create queue to handle large number of add calls without DDOSing scryfall
 add cardPage component to design system page if possible (use fixtures?)
-remove dropdowns for finish and language if only 1 value is available on cardpage
+add sort to different conditions of collected copies on card page
 
 // Bugs
 fix double scryfall api calls on initial card page load
 fix bug when printing search results images. From page 3 onwards the layout shifts
 fix search parameters when emptying the search fields. Now they are still taken into account when searching something again
 fix icons in search results for tokens. See if they can be the same as the parent set -> the all sets call should have the proper link to the icon
-fix filter getSetList call to exclude digital sets
 fix accesability by keyboard of the accordion component
-filter cardnames that start with "A-"
 
 // Refactoring
 move import collection to seperate script
@@ -163,6 +168,7 @@ store data in redux
 upgrade to typescript
 upgrade to nextJS
 refactor filterDefaultFinishes and filterFinishes in AddToCollection
+remove glossy finish
 
 // Tests
 remove dependecies from scryfall in e2e tests (use fixtures) 

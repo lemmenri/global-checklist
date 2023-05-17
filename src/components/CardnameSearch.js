@@ -10,7 +10,7 @@ export default function CardnameSearch({ defaultCardnameValue }) {
   const [cardNames, setCardNames] = useState(undefined);
 
   useEffect(() => {
-    getCardnameList().then((json) => setCardNames(json.data));
+    getCardnameList().then((json) => setCardNames(json));
   }, []);
 
   return (

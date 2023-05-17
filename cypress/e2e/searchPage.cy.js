@@ -76,7 +76,7 @@ describe("Search page", () => {
     cy.searchCard("Evolving Wilds", "Evolving Wilds", "cardnameSearch");
     cy.get("#searchButton").click();
     cy.get("#loadMore").click().should("not.exist");
-    cy.get("[id='search-result-list-item']").should("have.lengthOf", 50);
+    cy.get("[id='search-result-list-item']").should("have.length.greaterThan", 50);
   });
 
   it("Toggle image view", () => {

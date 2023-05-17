@@ -14,7 +14,7 @@ export default function SetSearch({ defaultSetValue }) {
     getSetList().then((json) => {
       const names = [];
       const codeMap = [];
-      json.data.forEach((set) => {
+      json.forEach((set) => {
         names.push(set.name);
         codeMap.push({
           name: set.name,

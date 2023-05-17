@@ -239,7 +239,7 @@ export default function TestPage() {
     getCreatureTypeList().then((res) => console.log(res));
   };
   const handleGetSetList = () => {
-    getSetList().then((res) => console.log(res.data));
+    getSetList().then((res) => console.log(res));
   };
   const handleGetSet = () => {
     getSet("aer").then((res) => console.log(res));

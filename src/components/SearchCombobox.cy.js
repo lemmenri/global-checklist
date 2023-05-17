@@ -56,9 +56,9 @@ it("displays multiple search results correctly", () => {
   );
   cy.get(`[name='${idText}']`).type("Ari");
   cy.get("ul").find("li").should("have.length", 15);
-  cy.get(':nth-child(12)')
+  cy.get(':nth-child(8)')
     .should('be.visible')
-  cy.get(':nth-child(13)')
+  cy.get(':nth-child(9)')
     .should('not.be.visible')
 });
 

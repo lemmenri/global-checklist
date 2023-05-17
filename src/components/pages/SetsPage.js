@@ -19,8 +19,8 @@ export default function SetsPage() {
     getSetTypes().then((res) => setSetTypes(convertSetTypes(res)));
     if (setList === undefined) {
       getSetList().then((res) => {
-        setSetList(res.data);
-        setFilteredSetList(res.data);
+        setSetList(res);
+        setFilteredSetList(res);
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

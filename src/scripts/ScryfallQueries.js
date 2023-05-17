@@ -144,8 +144,10 @@ export const advancedSearch = async (searchParameters) => {
 
 // Returns a list of all card names
 export const getCardnameList = async () => {
-  const res = await fetch(`${baseUrl}catalog/card-names`);
-  return await res.json();
+  const res = await fetch(`${baseUrl}catalog/card-names`)
+    .then((res) => res.json())
+    .then((res) => res.data.filter(name => !name.startsWith('A-')))
+  return res;
 };
 
 // Returns a list of all artist names
@@ -162,8 +164,10 @@ export const getCreatureTypeList = async () => {
 
 // Returns a list of all sets with meta data about the set
 export const getSetList = async () => {
-  const res = await fetch(`${baseUrl}sets`);
-  return await res.json();
+  const sets = await fetch(`${baseUrl}sets`)
+    .then((res) => res.json())
+    .then((res) => res.data.filter(set => set.digital === false))
+  return sets;
 };
 
 // Returns specific data about a set
@@ -176,7 +180,7 @@ export const getSet = async (set) => {
 export const getSetTypes = async () => {
   const setTypes = [];
   await getSetList().then((sets) => {
-    sets.data.forEach((set) => {
+    sets.forEach((set) => {
       if (!setTypes.find((type) => type === set.set_type)) {
         setTypes.push(set.set_type);
       }

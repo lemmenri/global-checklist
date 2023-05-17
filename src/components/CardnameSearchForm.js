@@ -7,7 +7,7 @@ export default function CardnameSearchForm() {
     const [cardNames, setCardNames] = useState(undefined);
 
     useEffect(() => {
-        getCardnameList().then((json) => setCardNames(json.data));
+        getCardnameList().then((json) => setCardNames(json));
     }, []);
 
     const handleSearchSubmit = (e) => {

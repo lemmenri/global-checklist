@@ -19,6 +19,8 @@ import Prints from "../Prints";
 import CardnameSearchForm from "../CardnameSearchForm";
 
 const CardPage = () => {
+  const displayPrice = false; // featureflag
+
   const [cardId, setCardId] = useState(useParams());
   const [card, setCard] = useState(useLocation().state);
   const [isDataLoaded, setIsDataLoaded] = useState(card === null ? false : true);
@@ -27,6 +29,10 @@ const CardPage = () => {
   const [otherLanguages, setOtherLanguages] = useState([]);
   const [isOtherLanguagesLoaded, setIsOtherLanguagesLoaded] = useState(null);
   const [printings, setPrintings] = useState([])
+  const [hasNonfoil, setHasNonfoil] = useState(false);
+  const [hasFoil, setHasFoil] = useState(false);
+  const [hasEtched, setHasEtched] = useState(false);
+
 
   useEffect(() => {
     async function fetchData() {
@@ -44,6 +50,7 @@ const CardPage = () => {
     setIsDataLoaded(false)
     setCard(null)
     setCardData()
+    setHasFinishes()
     setIsOtherLanguagesLoaded(null)
     loadOtherLanguages()
   }, [cardId])
@@ -53,6 +60,12 @@ const CardPage = () => {
     getCollectedCardList(cardId.id)
       .then((res) => setCollected(res))
       .then(() => setIsCollectedLoaded(true));
+  }
+
+  function setHasFinishes() {
+    setHasNonfoil(card && card.finishes && card.finishes.includes("nonfoil"));
+    setHasFoil(card && card.finishes && card.finishes.includes("foil"));
+    setHasEtched(card && card.finishes && card.finishes.includes("etched"));
   }
 
   if (isCollectedLoaded === null) {
@@ -117,6 +130,32 @@ const CardPage = () => {
             </button>
             {` - #${card.collector_number} - ${card.rarity}`}
           </p>
+          {displayPrice && (<div id="prices" className="flex ml-4 grow justify-end">
+            <div
+              id="eur"
+              className="p-1 flex flex-col space-y-0.5 mx-1 w-20 print:w-12"
+            >
+              <p id="eur-label" className="font-medium px-1 my-0.5">
+                €
+              </p>
+              {hasNonfoil && printPrice(card.prices.eur, "price-eur")}
+              {hasFoil &&
+                printPrice(card.prices.eur_foil, "price-eur-foil")}
+            </div>
+            <div
+              id="usd"
+              className="p-1 flex flex-col space-y-0.5 mx-1 w-20 print:w-12"
+            >
+              <p id="usd-label" className="font-medium px-1 my-0.5">
+                $
+              </p>
+              {hasNonfoil && printPrice(card.prices.usd, "price-usd")}
+              {hasFoil &&
+                printPrice(card.prices.usd_foil, "price-usd-foil")}
+              {hasEtched &&
+                printPrice(card.prices.usd_etched, "price-usd-etched")}
+            </div>
+          </div>)}
           {isOtherLanguagesLoaded && (
             <div id="languages" className="flex space-x-2 max-[475px]:overflow-auto">
               {otherLanguages.map((language) => (
@@ -188,6 +227,10 @@ const CardPage = () => {
       )}
     </div>
   );
+
+  function printPrice(price, id) {
+    return <p id={id}>{price !== null ? price : "\xa0"}</p>;
+  }
 };
 
 export default CardPage;
