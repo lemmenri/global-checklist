@@ -24,6 +24,7 @@ export default function HomePage() {
         <button id="goToAdvancedSearchButton" className="btn bg-light text-dark border border-1 border-dark" onClick={() => goToPage("search")}>Advanced Search</button>
         <button id="goToSetsButton" className="btn bg-light text-dark border border-1 border-dark" onClick={() => goToPage("sets")}>Sets</button>
         <button id="goToImportExport" className="btn bg-light text-dark border border-1 border-dark" onClick={() => goToPage("import-export")}>Import/Export</button>
+        <button id="goToCollection" className="btn bg-light text-dark border border-1 border-dark" onClick={() => goToPage("collection")}>Collection</button>
       </div>
     </div>
   );

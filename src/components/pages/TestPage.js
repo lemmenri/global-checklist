@@ -22,6 +22,7 @@ import {
   createCollection,
   deleteCollection,
   getCollection,
+  getCollectionAsList,
   updateCollection,
 } from "../../scripts/Collection";
 import { exportCollection } from "../../scripts/ExportCollection";
@@ -47,6 +48,7 @@ export default function TestPage() {
   // Collection
   const handleCreateCollection = () => createCollection();
   const handleGetCollection = () => console.log(getCollection());
+  const handleGetCollectionAsList = () => console.log(getCollectionAsList());
   const handleUpdateCollection = () => {
     const newCollection = {
       user: "name",
@@ -270,6 +272,9 @@ export default function TestPage() {
           </button>
           <button className="btn" onClick={handleGetCollection}>
             Get Collection
+          </button>
+          <button className="btn" onClick={handleGetCollectionAsList}>
+            Get Collection As List
           </button>
           <button className="btn" onClick={handleUpdateCollection}>
             Update Collection

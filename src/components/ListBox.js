@@ -25,7 +25,7 @@ export default function TextListBox({
               <Language language={values[0].name} />
             )}
           {values[0] && !values[0].hasOwnProperty("type") && (
-            <p id="finish" className="rounded border-dark border border-1 px-2 my-0.5">{values[0].name}</p>
+            <p id="finish" className="rounded border-dark border border-1 px-2 py-0.5">{values[0].name}</p>
           )}
         </>
       )}
@@ -41,7 +41,7 @@ export default function TextListBox({
           id={`${id}-listbox`}
           className="rounded border-dark border border-1 focus-within:border-2"
         >
-          <Listbox.Button className="relative w-auto text-center pl-2 pr-6  cursor-default">
+          <Listbox.Button className="relative w-auto text-center pl-2 pr-6 cursor-default">
             <span className="block truncate">
               {selected &&
                 selected.hasOwnProperty("type") &&
@@ -67,13 +67,13 @@ export default function TextListBox({
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Listbox.Options className="absolute w-auto mt-1 overflow-auto text-base bg-light rounded-md max-h-60 border border-dark border-1 z-50">
+            <Listbox.Options className="absolute w-auto mt-1 overflow-auto text-base bg-light rounded-md max-h-90 border border-dark border-1 z-50">
               {selected &&
                 values.map((value) => (
                   <Listbox.Option
                     key={value.id}
                     className={({ active }) =>
-                      `select-none relative py-1 pl-8 pr-2 ${active ? "bg-dark text-light" : ""}`
+                      `select-none relative py-0 pl-8 pr-2 ${active ? "bg-dark text-light" : ""}`
                     }
                     value={value}
                   >

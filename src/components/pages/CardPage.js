@@ -19,7 +19,7 @@ import Prints from "../Prints";
 import CardnameSearchForm from "../CardnameSearchForm";
 
 const CardPage = () => {
-  const displayPrice = false; // featureflag
+  const displayPrice = true; // featureflag
 
   const [cardId, setCardId] = useState(useParams());
   const [card, setCard] = useState(useLocation().state);
@@ -39,6 +39,7 @@ const CardPage = () => {
       if (card !== null) {
         const response = await getPrintings(card.prints_search_uri)
         setPrintings(response)
+        setHasFinishes()
       }
     }
     fetchData();
@@ -130,32 +131,6 @@ const CardPage = () => {
             </button>
             {` - #${card.collector_number} - ${card.rarity}`}
           </p>
-          {displayPrice && (<div id="prices" className="flex ml-4 grow justify-end">
-            <div
-              id="eur"
-              className="p-1 flex flex-col space-y-0.5 mx-1 w-20 print:w-12"
-            >
-              <p id="eur-label" className="font-medium px-1 my-0.5">
-                €
-              </p>
-              {hasNonfoil && printPrice(card.prices.eur, "price-eur")}
-              {hasFoil &&
-                printPrice(card.prices.eur_foil, "price-eur-foil")}
-            </div>
-            <div
-              id="usd"
-              className="p-1 flex flex-col space-y-0.5 mx-1 w-20 print:w-12"
-            >
-              <p id="usd-label" className="font-medium px-1 my-0.5">
-                $
-              </p>
-              {hasNonfoil && printPrice(card.prices.usd, "price-usd")}
-              {hasFoil &&
-                printPrice(card.prices.usd_foil, "price-usd-foil")}
-              {hasEtched &&
-                printPrice(card.prices.usd_etched, "price-usd-etched")}
-            </div>
-          </div>)}
           {isOtherLanguagesLoaded && (
             <div id="languages" className="flex space-x-2 max-[475px]:overflow-auto">
               {otherLanguages.map((language) => (
@@ -164,11 +139,36 @@ const CardPage = () => {
             </div>
           )}
           <div id="card-content" className="flex flex-col md:flex-row space-x-0 md:space-x-4">
-            <CardImage
-              className="rounded-[18px] w-96 shadow-dark shadow-md my-2"
-              src={getCardImage(card)}
-              alt={`${card.name}-${card.set}`}
-            />
+            <div id="card-details-container" className="flex flex-col space-y-2">
+              <CardImage
+                className="rounded-[18px] w-96 shadow-dark shadow-md my-2"
+                src={getCardImage(card)}
+                alt={`${card.name}-${card.set}`}
+              />
+
+              {displayPrice && (
+                <div id="prices-container" className="flex flex-col border border-dark rounded-xl px-4 py-1">
+                  {hasNonfoil && (
+                    <div>
+                      {`Nonfoil:\xa0€\xa0${card.prices.eur ? card.prices.eur : " - "}, $\xa0${card.prices.usd ? card.prices.usd : " - "}`}
+                    </div>
+                  )}
+                  {/* {hasNonfoil && hasFoil && ` | `} */}
+                  {hasFoil && (
+                    <div>
+                      {`Foil:\xa0€\xa0${card.prices.eur_foil ? card.prices.eur_foil : " - "}, $\xa0${card.prices.usd_foil ? card.prices.usd_foil : " - "}`}
+                    </div>
+                  )}
+                  {/* {hasEtched && hasFoil && ` | `} */}
+                  {hasEtched && (
+                    <div>
+                      {`Etched foil:\xa0$\xa0${card.prices.usd_etched ? card.prices.usd_etched : " - "}`}
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+
             <div id="card-collection">
               {isCollectedLoaded ? (
                 <CollectedList collected={collected} handleDeleteCard={updateCollectedCards} />
@@ -227,10 +227,6 @@ const CardPage = () => {
       )}
     </div>
   );
-
-  function printPrice(price, id) {
-    return <p id={id}>{price !== null ? price : "\xa0"}</p>;
-  }
 };
 
 export default CardPage;

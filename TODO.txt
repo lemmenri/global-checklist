@@ -119,10 +119,25 @@ DONE - remove dropdowns for finish and language if only 1 value is available on 
     DONE - update listbox component
     DONE - update component tests for listbox component
     DONE - update DesignSystemPage for listbox component
-
+removed showing tokens and emblems in cardname search results
 
 // IN PROGRESS
 add price to card page
+    fix prices for foreign cards
+create collection page
+    DONE - create page
+    add no cards in collection state
+    create table component
+        DONE - add sort
+        DONE - add link to cardpage
+        fix sort by number (or partial number for collector number field)
+        fix chevron up and down icons
+        add component tests
+        add image on hover
+    DONE - create getCollectionAsList script
+    add collection page E2E tests
+    add collection page to DesignSystemPage
+    add table component to DesignSystemPage
 
 // TODO
 // Features
@@ -169,6 +184,7 @@ upgrade to typescript
 upgrade to nextJS
 refactor filterDefaultFinishes and filterFinishes in AddToCollection
 remove glossy finish
+move getFinishSign() to seperate script and re-use
 
 // Tests
 remove dependecies from scryfall in e2e tests (use fixtures) 

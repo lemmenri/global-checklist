@@ -98,7 +98,7 @@ export const getPrintings = async (prints_search_uri) => {
 // Returns a list of scryfall card objects matching the search string
 export const searchByCardname = async (searchString) => {
   const res = await fetch(
-    `${baseUrl}cards/search?order=released&q=%22${searchString.replaceAll(
+    `${baseUrl}cards/search?order=released&q%21%22${searchString.replaceAll(
       " ",
       "+"
     )}%22+include%3Aextras+-is%3Adigital+lang%3Aany&unique=prints`
@@ -128,7 +128,7 @@ export const advancedSearch = async (searchParameters) => {
       : undefined;
 
   const searchQuery = encodeURIComponent(
-    `${name ? `"${name}" ` : ""}${creatureType ? `type:${creatureType} ` : ""}${setCode ? `set:${setCode} ` : ""
+    `${name ? `!"${name}" ` : ""}${creatureType ? `type:${creatureType} ` : ""}${setCode ? `set:${setCode} ` : ""
     }${artist ? `artist:"${artist}" ` : ""}-is:digital`
   )
     .replaceAll("%20", "+")

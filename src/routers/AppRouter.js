@@ -9,6 +9,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import ScrollToTop from "../components/ScrollToTop";
 import SetsPage from "../components/pages/SetsPage";
+import CollectionPage from "../components/pages/CollectionPage";
 import ImportExportPage from "../components/pages/ImportExportPage";
 
 const AppRouter = () => (
@@ -20,6 +21,7 @@ const AppRouter = () => (
         <Route path="/" element={<HomePage />} />
         <Route path="/search" element={<SearchPage />} />
         <Route path="/sets" element={<SetsPage />} />
+        <Route path="/collection" element={<CollectionPage />} />
         <Route path="/card/:id" element={<CardPage />} />
         <Route path="/import-export" element={<ImportExportPage />} />
         <Route path="/design-system" element={<DesignSystemPage />} />

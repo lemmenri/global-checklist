@@ -6,7 +6,7 @@ const placeholderText = "Search cards...";
 const idText = "cardnameSearch";
 const labelText = "Search by card name:";
 
-export default function CardnameSearch({ defaultCardnameValue }) {
+export default function CardnameSearch({ defaultCardnameValue, label }) {
   const [cardNames, setCardNames] = useState(undefined);
 
   useEffect(() => {
@@ -15,7 +15,7 @@ export default function CardnameSearch({ defaultCardnameValue }) {
 
   return (
     <>
-      <label htmlFor={idText}>{labelText}</label>
+      <label htmlFor={idText}>{label ? label : labelText}</label>
       <br />
       <SearchCombobox
         itemList={cardNames}
