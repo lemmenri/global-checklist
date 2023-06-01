@@ -20,6 +20,18 @@ export default function SearchResultListItem({ group }) {
         to={`/card/${group[0].id}`}
         state={group[0]}
       >
+
+        <div
+          id="image-preview"
+          className="hidden lg:block"
+        >
+          <CardImage
+            className="rounded-[3px] w-16 shadow-dark shadow-sm"
+            src={getCardImage(group[0])}
+            alt={`${group[0].name}-${group[0].set}`}
+          />
+        </div>
+
         <div
           id="card-details"
           className={`mx-1 w-1/3 relative`}
