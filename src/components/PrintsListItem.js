@@ -20,9 +20,9 @@ export default function PrintsListItem({ collected, setName, collector_number, i
                 onMouseEnter={() => setIsShown(true)}
                 onMouseLeave={() => setIsShown(false)}
             >
-                <dialog open={isShown} className="bg-transparent absolute z-10 inset-y-0 right-0 translate-x-24 w-64">
+                <dialog open={isShown} className="bg-transparent absolute z-10 inset-y-0 right-0 translate-x-24 w-80">
                     <CardImage
-                        className="rounded-[9px] w-64 shadow-dark shadow-md"
+                        className="rounded-[18px] w-96 shadow-dark shadow-md"
                         src={image}
                         alt={`cardimage-${setName.replaceAll(" ", "-")}`}
                     />

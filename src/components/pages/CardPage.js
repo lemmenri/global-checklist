@@ -114,7 +114,7 @@ const CardPage = () => {
         <>
           <div className="flex flex-col-reverse sm:flex-row flex-wrap-reverse justify-between">
             <button onClick={goToCardname} className="hover:underline" id="cardName">
-              <h1 className="display font-semibold mb-1 text-left">{card.name}</h1>
+              <h1 className="display font-semibold mb-1 text-left">{`${card.name}${card.printed_name ? `  (${card.printed_name})` : ""}`}</h1>
             </button>
             <div className="self-center">
               <CardnameSearchForm />
@@ -134,7 +134,7 @@ const CardPage = () => {
           {isOtherLanguagesLoaded && (
             <div id="languages" className="flex space-x-2 max-[475px]:overflow-auto">
               {otherLanguages.map((language) => (
-                <Language key={language.id} language={language.name} imageOnHover={language.image} />
+                <Language key={language.id} language={language.name} imageOnHover={language.image} cardId={language.id} setCardId={setCardId} />
               ))}
             </div>
           )}

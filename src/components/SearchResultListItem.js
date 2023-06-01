@@ -14,49 +14,53 @@ export default function SearchResultListItem({ group }) {
 
   return (
     <div id="search-result-list-item" className="p-1 w-full break-inside-avoid">
-      <Link
-        id={`card ${group[0].id}`}
+      <div
         className="flex flex-row border border-dark p-2 w-full rounded-lg"
-        to={`/card/${group[0].id}`}
-        state={group[0]}
       >
-
-        <div
-          id="image-preview"
-          className="hidden lg:block"
+        <Link
+          id={`card ${group[0].id}`}
+          className="flex flex-row w-1/3"
+          to={`/card/${group[0].id}`}
+          state={group[0]}
         >
-          <CardImage
-            className="rounded-[3px] w-16 shadow-dark shadow-sm"
-            src={getCardImage(group[0])}
-            alt={`${group[0].name}-${group[0].set}`}
-          />
-        </div>
 
-        <div
-          id="card-details"
-          className={`mx-1 w-1/3 relative`}
-          onMouseEnter={() => setIsShown(true)}
-          onMouseLeave={() => setIsShown(false)}
-        >
-          <dialog open={isShown} className="bg-transparent absolute z-10 inset-y-0 right-0 translate-x-40 w-64">
+          <div
+            id="image-preview"
+            className="hidden lg:block"
+          >
             <CardImage
-              className="rounded-[9px] w-64 shadow-dark shadow-md"
+              className="rounded-[3px] w-16 shadow-dark shadow-sm"
               src={getCardImage(group[0])}
               alt={`${group[0].name}-${group[0].set}`}
             />
-          </dialog>
-          <p id="card-name" className="text-xl font-medium">
-            <i
-              id="card-set-icon"
-              title={group[0].set_name}
-              className={"text-xl ss ss-" + group[0].set}
-            ></i>
-            {` ${group[0].name}`}
-          </p>
-          <p id="card-collector-details" className="text-sm">
-            {`${group[0].set_name} - #${group[0].collector_number} - ${group[0].rarity}`}
-          </p>
-        </div>
+          </div>
+
+          <div
+            id="card-details"
+            className={`mx-1 relative`}
+            onMouseEnter={() => setIsShown(true)}
+            onMouseLeave={() => setIsShown(false)}
+          >
+            <dialog open={isShown} className="bg-transparent absolute z-10 inset-y-0 right-0 translate-x-40 w-80">
+              <CardImage
+                className="rounded-[18px] w-96 shadow-dark shadow-md"
+                src={getCardImage(group[0])}
+                alt={`${group[0].name}-${group[0].set}`}
+              />
+            </dialog>
+            <p id="card-name" className="text-xl font-medium">
+              <i
+                id="card-set-icon"
+                title={group[0].set_name}
+                className={"text-xl ss ss-" + group[0].set}
+              ></i>
+              {` ${group[0].name}`}
+            </p>
+            <p id="card-collector-details" className="text-sm">
+              {`${group[0].set_name} - #${group[0].collector_number} - ${group[0].rarity}`}
+            </p>
+          </div>
+        </Link>
         <div
           id="collection-details"
           className="flex text-center text-sm grow print:text-xs overflow-x-auto"
@@ -77,7 +81,7 @@ export default function SearchResultListItem({ group }) {
                   key={language.lang}
                   className="p-1 flex flex-col space-y-0.5"
                 >
-                  <Language language={language.lang} />
+                  <Language language={language.lang} cardId={language.id} />
                   {language.finishes.includes("nonfoil") &&
                     printQuantityCollected(
                       language.lang,
@@ -134,7 +138,7 @@ export default function SearchResultListItem({ group }) {
             </div>
           </div>
         </div>
-      </Link>
+      </div>
     </div>
   );
 

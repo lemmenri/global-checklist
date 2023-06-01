@@ -120,10 +120,13 @@ DONE - remove dropdowns for finish and language if only 1 value is available on 
     DONE - update component tests for listbox component
     DONE - update DesignSystemPage for listbox component
 removed showing tokens and emblems in cardname search results
+add price to card page
+increase size of popup images
+make different languages on cardpage clickable
+make different languages on searchresults clickable
+add foreign name to card page
 
 // IN PROGRESS
-add price to card page
-    fix prices for foreign cards
 create collection page
     DONE - create page
     add no cards in collection state
@@ -172,6 +175,7 @@ fix bug when printing search results images. From page 3 onwards the layout shif
 fix search parameters when emptying the search fields. Now they are still taken into account when searching something again
 fix icons in search results for tokens. See if they can be the same as the parent set -> the all sets call should have the proper link to the icon
 fix accesability by keyboard of the accordion component
+fix prices for foreign cards on card page
 
 // Refactoring
 move import collection to seperate script
