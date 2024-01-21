@@ -26,7 +26,9 @@ export default function CollectionPage() {
     })
 
     useEffect(() => {
-        setCardlist(filterCards(filters))
+        if (totalCardCount > 0) {
+            setCardlist(filterCards(filters))
+        }
     }, [filters])
 
     function filterCards(filters) {
@@ -52,17 +54,24 @@ export default function CollectionPage() {
             </div>
             <div className="space-y-2">
                 <p>{`${totalCardCount} card${totalCardCount !== 1 ? "s" : ""} in collection`}</p>
-                <form id="searchForm" role="search" onSubmit={handleSearchSubmit}>
-                    <CardnameSearch label={"Filter cardname"} />
-                </form>
+                {totalCardCount > 0 ? (
+                    <>
+                        <form id="searchForm" role="search" onSubmit={handleSearchSubmit}>
+                            <CardnameSearch label={"Filter cardname"} />
+                        </form>
 
-                {cardlist.length > 0 ? (
-                    <div className="overflow-x-auto">
-                        <Table headers={tableHeaders} data={cardlist} key={filters.name} />
-                    </div>
+                        {cardlist.length > 0 ? (
+                            <div className="overflow-x-auto">
+                                <Table headers={tableHeaders} data={cardlist} key={filters.name} />
+                            </div>
+                        ) : (
+                            <Loading />
+                        )}
+                    </>
                 ) : (
-                    <Loading />
-                )}
+                    <p>Search some cards or sets to get started.</p>
+                )
+                }
 
             </div>
         </div>

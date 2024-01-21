@@ -131,7 +131,7 @@ WON'T DO - add flags to language component
 // IN PROGRESS
 create collection page
     DONE - create page
-    add no cards in collection state
+    DONE - add no cards in collection state
     create table component
         DONE - add sort
         DONE - add link to cardpage
