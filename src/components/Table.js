@@ -64,7 +64,7 @@ export default function Table({ headers, data, key }) {
             <thead>
                 <tr>
                     {headers.map((column) => (
-                        <th id={column.id} key={column.id} className="border border-primary font-normal text-left pl-2">
+                        <th id={column.id} key={column.id} className="border border-primary font-normal text-left px-2">
                             <button onClick={() => sortColumn(column.id)} id={`sort-${column.label}`} className={`hover:underline`}>
                                 {column.label} {column.id === currentSortOrder.column && (currentSortOrder.order === "asc" ? "^" : "v")}
                             </button>

@@ -57,7 +57,9 @@ export default function CollectionPage() {
                 </form>
 
                 {cardlist.length > 0 ? (
-                    <Table headers={tableHeaders} data={cardlist} key={filters.name} />
+                    <div className="overflow-x-auto">
+                        <Table headers={tableHeaders} data={cardlist} key={filters.name} />
+                    </div>
                 ) : (
                     <Loading />
                 )}

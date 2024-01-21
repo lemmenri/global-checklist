@@ -156,6 +156,7 @@ add backside of double sided cards on hover
 add option to flip to backside of double sided cards on image display
 add edit card options
 add set icon to prints component
+add bold text to current selected foreign card in prints component
 add cardimage hover on different languages in the search results
 make different languages clickable on the card page
 handle going back from card details to search results
