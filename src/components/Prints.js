@@ -12,7 +12,7 @@ export default function Prints({ prints, cardname, setCardId, cardId }) {
     };
 
     return (
-        <div id="prints-list" className="py-4 max-w-sm">
+        <div id="prints-list" className="py-4">
             <div
                 id="prints-list-header"
                 className="bg-primary text-white py-1 px-2"

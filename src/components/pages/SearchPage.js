@@ -16,6 +16,7 @@ export default function SearchPage() {
   const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState(undefined);
   const [dataIsLoaded, setDataIsLoaded] = useState(undefined);
+  const [loadingMoreData, setLoadingMoreData] = useState(false);
   const [groupedCards, setGroupedCards] = useState(undefined);
   const [nextPage, setNextPage] = useState(undefined);
   const [searchParams] = useSearchParams();
@@ -69,6 +70,7 @@ export default function SearchPage() {
   };
 
   const handleLoadNextPage = () => {
+    setLoadingMoreData(true);
     fetch(nextPage)
       .then((res) => res.json())
       .then((json) => {
@@ -77,11 +79,12 @@ export default function SearchPage() {
         setSearchResults(newSearchResults);
         setGroupedCards(groupCardsByLanguage(newSearchResults.data));
         setNextPage(json.has_more ? json.next_page : undefined);
-      });
+      })
+      .then(() => setLoadingMoreData(false))
   };
 
   return (
-    <div className="p-4 sm:p-8 flex-grow bg-light">
+    <div role="main" className="p-4 sm:p-8 flex-grow bg-light">
       <h1 className="display">Search</h1>
       <div id="cardSearchContainer" className="my-2 print:hidden">
         <form id="searchForm" role="search" onSubmit={handleSearchSubmit}>
@@ -125,7 +128,7 @@ export default function SearchPage() {
           Your query didn't match any cards. Adjust your search terms.
         </p>
       )}
-      {dataIsLoaded === false && <Loading />}
+      {(dataIsLoaded === false || loadingMoreData) && <Loading />}
     </div>
   );
 }

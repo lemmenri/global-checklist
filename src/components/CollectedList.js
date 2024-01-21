@@ -3,7 +3,7 @@ import CollectedListItem from "./CollectedListItem";
 
 export default function CollectedList({ collected, handleDeleteCard }) {
   return (
-    <div id="collected-list" className="py-4 max-w-sm">
+    <div id="collected-list" className="py-4">
       <div
         id="collected-list-header"
         className="bg-primary text-white py-1 px-2"
@@ -23,7 +23,7 @@ export default function CollectedList({ collected, handleDeleteCard }) {
       ))}
       {collected.length === 0 && (
         <div id="no-copies-listed" className="py-1 px-2 border border-primary">
-          No copies listed.
+          No copies in collection.
         </div>
       )}
     </div>

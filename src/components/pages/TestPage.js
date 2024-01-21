@@ -263,7 +263,7 @@ export default function TestPage() {
   };
 
   return (
-    <div className="p-4 sm:p-8 flex-grow bg-light">
+    <div role="main" className="p-4 sm:p-8 flex-grow bg-light">
       <h1 className="display">Test Page</h1>
       <Accordion title="Collection:">
         <div className="flex flex-col max-w-xs">

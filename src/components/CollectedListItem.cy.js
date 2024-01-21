@@ -3,6 +3,7 @@ import "tailwindcss/tailwind.css";
 import "../App.css";
 import CollectedListItem from "./CollectedListItem";
 import "cypress-real-events/support";
+import { BrowserRouter as Router } from "react-router-dom";
 
 const collectedCardData = {
   id: "716c415e-5eb8-4644-ac64-5ba7c3f0ea65",
@@ -14,14 +15,16 @@ const collectedCardData = {
 
 it("Loading", () => {
   cy.mount(
-    <CollectedListItem
-      id={collectedCardData.id}
-      finish={collectedCardData.finish}
-      quantity={collectedCardData.quantity}
-      condition={collectedCardData.condition}
-      language={collectedCardData.language}
-      handleDeleteCard={() => { }}
-    />
+    <Router>
+      <CollectedListItem
+        id={collectedCardData.id}
+        finish={collectedCardData.finish}
+        quantity={collectedCardData.quantity}
+        condition={collectedCardData.condition}
+        language={collectedCardData.language}
+        handleDeleteCard={() => { }}
+      />
+    </Router>
   );
   cy.get("#finish").should("have.text", "E");
   cy.get("#quantity").should("have.text", "3x");

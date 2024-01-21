@@ -13,7 +13,7 @@ export default function SetsPage() {
     e.preventDefault();
     const file = e.target[0].files[0];
     const reader = new FileReader();
-   
+
     reader.addEventListener("load", () => {
       // Process uploaded file
       const cards = reader.result.split(/\r?\n/);
@@ -34,21 +34,21 @@ export default function SetsPage() {
         }
       });
     }, false);
-  
+
     if (file) {
       reader.readAsText(file);
     }
   }
 
   return (
-    <div className="p-4 sm:p-8 flex-grow bg-light">
+    <div role="main" className="p-4 sm:p-8 flex-grow bg-light">
       <h1 className="display">Import and Export</h1>
       <h2 className="h1">Import</h2>
       <p className="pb-4">Please note importing is still in experimental phase. To succesfully upload your collection use the export collection below to get a template and expand from there. The id in the last field is the scryfall id. No fields can be left blank at the moment.</p>
-      <form id="import" onSubmit={handleImport}>
-        <input type="file" id="csvFile" accept=".csv" />
-        <br />
-        <input className="btn" type="submit" value="Upload" />
+      <form id="import" onSubmit={handleImport} className="flex flex-col space-y-2">
+        <label htmlFor="csv-file" id="label-csv-file">Choose file: </label>
+        <input type="file" id="csv-file" accept=".csv" />
+        <input className="btn w-min" type="submit" value="Upload" />
       </form>
 
       <h2 className="h1">Export</h2>

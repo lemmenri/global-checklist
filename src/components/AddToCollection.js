@@ -68,7 +68,7 @@ export default function AddToCollection({ card, languages, handleAddCard }) {
   };
 
   return (
-    <div className="py-4 max-w-sm">
+    <div className="py-4">
       <div
         id="add to collection header"
         className="bg-primary text-white py-1 px-2"
@@ -85,12 +85,12 @@ export default function AddToCollection({ card, languages, handleAddCard }) {
           />
         </div>
         <div className="flex items-center">
-          <label id="quantity-label" className="w-1/2">
+          <label id="quantity-label" className="w-1/2" htmlFor="quantity-input">
             Quantity:
           </label>
           <input
             type="number"
-            id="quantity"
+            id="quantity-input"
             name="quantity"
             min="1"
             max="999"

@@ -19,7 +19,7 @@ export default function TextListBox({
     <>
       {values.length === 1 && (
         <>
-          <label className="w-1/2">{`${label}:`}</label>
+          <p className="w-1/2">{`${label}:`}</p>
           {values[0].hasOwnProperty("type") &&
             values[0].type === "language" && (
               <Language language={values[0].name} />
@@ -36,6 +36,7 @@ export default function TextListBox({
           setSelected(value);
         }}
       >
+        {/* Todo: add htmlFor to labels */}
         <Listbox.Label className="w-1/2">{`${label}:`}</Listbox.Label>
         <div
           id={`${id}-listbox`}

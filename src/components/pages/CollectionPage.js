@@ -43,7 +43,7 @@ export default function CollectionPage() {
     }
 
     return (
-        <div className="p-4 sm:p-8 flex-grow bg-light">
+        <div role="main" className="p-4 sm:p-8 flex-grow bg-light">
             <div className="flex flex-col-reverse sm:flex-row flex-wrap-reverse justify-between">
                 <h1 className="display">Collection</h1>
                 <div className="self-center">
@@ -51,7 +51,7 @@ export default function CollectionPage() {
                 </div>
             </div>
             <div className="space-y-2">
-                <p>{`${totalCardCount} cards in collection`}</p>
+                <p>{`${totalCardCount} card${totalCardCount !== 1 ? "s" : ""} in collection`}</p>
                 <form id="searchForm" role="search" onSubmit={handleSearchSubmit}>
                     <CardnameSearch label={"Filter cardname"} />
                 </form>

@@ -13,11 +13,12 @@ it("Header", () => {
   cy.get("header")
     .should("exist")
     .and("have.css", "background-color", "rgb(6, 116, 107)");
-  cy.get("#title").should("have.text", "MTG Library");
+  cy.get("#title").should("have.text", "MTG Library")
+  cy.get("#home").should("have.attr", "href", "/");
   cy.get("#navLinks").find("a").should("have.length", 3);
-  cy.get("#navLinks > #home")
-    .should("have.text", "Home")
-    .and("have.attr", "href", "/");
+  cy.get("#navLinks > #collection")
+    .should("have.text", "Collection")
+    .and("have.attr", "href", "/collection");
   cy.get("#navLinks > #sets")
     .should("have.text", "Sets")
     .and("have.attr", "href", "/sets");

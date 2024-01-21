@@ -6,14 +6,17 @@ import AddToCollection from "./AddToCollection";
 import { convertLanguageData } from "../scripts/ScryfallQueries";
 import { defaultCardData } from "../testdata/CardData";
 import { defaultOtherLanguagesList } from "../testdata/OtherLanguagesList";
+import { BrowserRouter as Router } from "react-router-dom";
 
 it("Add to Collection", () => {
   cy.mount(
-    <AddToCollection
-      card={defaultCardData}
-      languages={convertLanguageData(defaultOtherLanguagesList)}
-      handleAddCard={() => { }}
-    />
+    <Router>
+      <AddToCollection
+        card={defaultCardData}
+        languages={convertLanguageData(defaultOtherLanguagesList)}
+        handleAddCard={() => { }}
+      />
+    </Router>
   );
 
   cy.get("#finish-listbox").click();
@@ -39,10 +42,12 @@ it("Add to Collection", () => {
 
 it("Default Values", () => {
   cy.mount(
-    <AddToCollection
-      card={defaultCardData}
-      languages={convertLanguageData(defaultOtherLanguagesList)}
-    />
+    <Router>
+      <AddToCollection
+        card={defaultCardData}
+        languages={convertLanguageData(defaultOtherLanguagesList)}
+      />
+    </Router>
   );
 
   cy.get("#finish-listbox > button > span > p").should("contain.text", "•");

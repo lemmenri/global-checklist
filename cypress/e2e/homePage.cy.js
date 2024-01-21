@@ -23,7 +23,7 @@ describe("Homepage", () => {
     cy.get('#actions')
       .should("exist")
       .and("be.visible")
-      .children().should('have.length', 3)
+      .children().should('have.length', 4)
   });
 
   it("displays the search page with the selected card when searching a card", () => {
@@ -57,6 +57,18 @@ describe("Homepage", () => {
       expect(location.pathname).to.eq("/search");
     });
     cy.get("h1").should("contain.text", "Search");
+  });
+
+  it("displays the collection page when clicking Advanced Search", () => {
+    cy.get("h1").should("contain.text", "Welcome to MTG Library");
+    cy.location().should((location) => {
+      expect(location.pathname).to.eq("/");
+    });
+    cy.get('#goToCollection').click();
+    cy.location().should((location) => {
+      expect(location.pathname).to.eq("/collection");
+    });
+    cy.get("h1").should("contain.text", "Collection");
   });
 
   it("displays the sets page when clicking Sets", () => {

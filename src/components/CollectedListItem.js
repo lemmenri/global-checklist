@@ -67,6 +67,7 @@ export default function CollectedListItem({
           <button
             className="p-0.5 rounded hover:border-dark hover:border-2"
             onClick={handleToggleEdit}
+            aria-label="edit"
           >
             <PencilAltIcon className="h-5 w-5" />
           </button>

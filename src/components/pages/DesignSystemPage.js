@@ -8,8 +8,8 @@ import Condition from "../Condition";
 import { ExternalLink } from "../ExternalLink";
 import Language from "../Language";
 import { Loading } from "../Loading";
-import SetCard from "../SetCard";
-import SimpleToggle from "../Toggle";
+import SetCard, { SetCardExtended } from "../SetCard";
+import Toggle from "../Toggle";
 import { searchResultsData } from "../../testdata/SearchResultsData";
 import { groupedCardData } from "../../testdata/GroupedCardData";
 import SearchResultListItem from "../SearchResultListItem";
@@ -19,6 +19,7 @@ import CardImage from "../CardImage";
 import Header from "../Header";
 import Footer from "../Footer";
 import NotFoundPage from "./NotFoundPage";
+import CollectionPage from "./CollectionPage";
 import HomePage from "./HomePage";
 import SetsPage from "./SetsPage";
 import SearchPage from "./SearchPage";
@@ -39,6 +40,7 @@ import PrintsListItem from "../PrintsListItem";
 import Prints from "../Prints";
 import { moreThenTenPrintings, twoPrintings } from "../../testdata/PrintingData";
 import CardnameSearchForm from "../CardnameSearchForm";
+import { exampleExtendedSetCardData } from "../../testdata/SetCardData";
 
 export default function DesignSystemPage() {
   document.title = "MTG Library - Design System";
@@ -53,7 +55,7 @@ export default function DesignSystemPage() {
   }, []);
 
   return (
-    <div className="p-4 sm:p-8 flex-grow bg-light">
+    <div role="main" className="p-4 sm:p-8 flex-grow bg-light">
       <h1 className="display">Design System</h1>
       <Accordion title={<h2 className="h1">Atoms</h2>}>
         <Accordion title={<h3 className="h2">Text</h3>}>
@@ -63,20 +65,24 @@ export default function DesignSystemPage() {
           <p className="h1 mx-4">Welcome to MTG Library</p>
           <p>H2:</p>
           <p className="h2 mx-4">Welcome to MTG Library</p>
+          <p>Regular text:</p>
+          <p className="mx-4">Welcome to MTG Library</p>
+          <p>Text small:</p>
+          <p className="small mx-4">Welcome to MTG Library</p>
         </Accordion>
         <Accordion title={<h3 className="h2">Colors</h3>}>
           <p>Interface Colors</p>
           <div className="flex flex-wrap">
             <div className="m-2">
-              <p className="text-sm">Primary:</p>
+              <p className="small">Primary:</p>
               <div className="h-6 w-24 bg-primary border border-dark"></div>
             </div>
             <div className="m-2">
-              <p className="text-sm">Light:</p>
+              <p className="small">Light:</p>
               <div className="h-6 w-24 bg-light border border-dark"></div>
             </div>
             <div className="m-2">
-              <p className="text-sm">Dark:</p>
+              <p className="small">Dark:</p>
               <div className="h-6 w-24 bg-dark border border-light"></div>
             </div>
           </div>
@@ -84,31 +90,31 @@ export default function DesignSystemPage() {
           <p>Condition Colors</p>
           <div className="flex flex-wrap">
             <div className="m-2">
-              <p className="text-sm">Mint:</p>
+              <p className="small">Mint:</p>
               <div className="h-6 w-24 bg-MT border border-dark"></div>
             </div>
             <div className="m-2">
-              <p className="text-sm">Near Mint:</p>
+              <p className="small">Near Mint:</p>
               <div className="h-6 w-24 bg-NM border border-dark"></div>
             </div>
             <div className="m-2">
-              <p className="text-sm">Excelent:</p>
+              <p className="small">Excelent:</p>
               <div className="h-6 w-24 bg-EX border border-dark"></div>
             </div>
             <div className="m-2">
-              <p className="text-sm">Good:</p>
+              <p className="small">Good:</p>
               <div className="h-6 w-24 bg-GD border border-dark"></div>
             </div>
             <div className="m-2">
-              <p className="text-sm">Light Played:</p>
+              <p className="small">Light Played:</p>
               <div className="h-6 w-24 bg-LP border border-dark"></div>
             </div>
             <div className="m-2">
-              <p className="text-sm">Played:</p>
+              <p className="small">Played:</p>
               <div className="h-6 w-24 bg-PL border border-dark"></div>
             </div>
             <div className="m-2">
-              <p className="text-sm">Poor:</p>
+              <p className="small">Poor:</p>
               <div className="h-6 w-24 bg-PO border border-dark"></div>
             </div>
           </div>
@@ -116,7 +122,7 @@ export default function DesignSystemPage() {
           <p>Collection Colors</p>
           <div className="flex flex-wrap">
             <div className="m-2">
-              <p className="text-sm">Collected:</p>
+              <p className="small">Collected:</p>
               <div className="h-6 w-24 bg-collected border border-dark"></div>
             </div>
           </div>
@@ -125,6 +131,10 @@ export default function DesignSystemPage() {
           <p>Language</p>
           <div className="flex flex-wrap space-x-2">
             <Language language={"en"} />
+          </div>
+          <p>Not active language</p>
+          <div className="flex flex-wrap space-x-2">
+            <Language language={"en"} isActive={false} />
           </div>
           <p>Language with cardimage on hover</p>
           <div className="flex flex-wrap space-x-2">
@@ -163,7 +173,7 @@ export default function DesignSystemPage() {
           </div>
         </Accordion>
         <Accordion title={<h3 className="h2">Toggle</h3>}>
-          <SimpleToggle
+          <Toggle
             name={"toggle"}
             label={"Toggle"}
             onToggle={() => {
@@ -333,6 +343,7 @@ export default function DesignSystemPage() {
         </Accordion>
         <Accordion title={<h3 className="h2">Set Card</h3>}>
           {exampleSetCardData && <SetCard set={exampleSetCardData} />}
+          <SetCardExtended setData={exampleExtendedSetCardData} />
         </Accordion>
         <Accordion title={<h3 className="h2">Add To Collection</h3>}>
           <AddToCollection
@@ -361,6 +372,11 @@ export default function DesignSystemPage() {
         <Accordion title={<h3 className="h2">Home Page</h3>}>
           <div className="border border-dark">
             <HomePage />
+          </div>
+        </Accordion>
+        <Accordion title={<h3 className="h2">Collection Page</h3>}>
+          <div className="border border-dark">
+            <CollectionPage />
           </div>
         </Accordion>
         <Accordion title={<h3 className="h2">Sets Page</h3>}>

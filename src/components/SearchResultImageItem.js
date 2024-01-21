@@ -15,11 +15,10 @@ export default function SearchResultImageItem(props) {
     return hasFinish ? (
       <div
         id={finish}
-        className={`${
-          finishCount > 0
-            ? "bg-collected border-collected/25"
-            : "bg-light border-light/25"
-        } bg-opacity-40 backdrop-blur-sm mx-2 my-8 rounded w-1/2 shadow-dark shadow-md border border-opacity-30 print:shadow-none`}
+        className={`${finishCount > 0
+          ? "bg-collected border-collected/25"
+          : "bg-light border-light/25"
+          } bg-opacity-40 backdrop-blur-sm mx-2 my-8 rounded w-1/2 shadow-dark shadow-md border border-opacity-30 print:shadow-none`}
       >
         <p id={`${card.lang}-${finish}-collected`}>
           {`${label} ${finishCount}`}
@@ -35,7 +34,7 @@ export default function SearchResultImageItem(props) {
   return (
     <div
       id="search-result-image-item"
-      className="p-1 relative break-inside-avoid"
+      className="p-0.5 lg:p-1 relative break-inside-avoid"
     >
       <Link
         id={`card ${card.id}`}

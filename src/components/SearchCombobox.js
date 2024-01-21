@@ -54,7 +54,7 @@ export default function SearchCombobox({
               setQuery(event.target.value);
               setShowResults(true);
             }}
-            className="text-sm w-full bg-light border-0 ml-0. py-1 rounded-l-md focus:ring-0"
+            className="small w-full bg-light border-0 ml-0. py-1 rounded-l-md focus:ring-0"
             placeholder={placeholder}
             id={id}
             name={id}
@@ -63,7 +63,7 @@ export default function SearchCombobox({
           />
         </div>
         {filteredItems.length > 0 && showResults && (
-          <Combobox.Options static className="text-sm max-h-72 overflow-y-auto absolute bg-light z-10 border border-dark ml-0.5 rounded-lg focus:ring-0">
+          <Combobox.Options static className="small max-h-72 overflow-y-auto absolute bg-light z-10 border border-dark ml-0.5 rounded-lg focus:ring-0">
             {Object.values(filteredItems.slice(0, maxDisplayedResults)).map(
               (cardName, index) => (
                 <Combobox.Option key={index} value={cardName} name={cardName}>
@@ -81,14 +81,14 @@ export default function SearchCombobox({
           </Combobox.Options>
         )}
         {query && itemList && filteredItems.length === 0 && showResults && (
-          <p className="text-sm px-4 py-2" name="noSearchResults">
+          <p className="small px-4 py-2" name="noSearchResults">
             {noResultsMessage}
           </p>
         )}
-        {query && !itemList && <p className="text-sm px-4 py-2">Loading...</p>}
+        {query && !itemList && <p className="small px-4 py-2">Loading...</p>}
       </Combobox>
       {withSearchButton && (
-        <button id="searchButton" className="inset-y-0 right-0 flex items-center bg-dark text-light px-2 rounded-r-lg">
+        <button id="searchButton" aria-label="search" className="inset-y-0 right-0 flex items-center bg-dark text-light px-2 rounded-r-lg">
           <SearchIcon
             className="h-5 w-5 hover:border-b"
           />

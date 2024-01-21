@@ -31,11 +31,11 @@ it("Search Results", () => {
   cy.get("#search-results").children().should("have.length", 1);
   cy.get("#search-result-list-item").should("exist");
   cy.get("#search-result-image-item").should("not.exist");
-  cy.get("#toggle-container-toggle-list-view > div").click();
+  cy.get('#toggle-list-view').click();
   cy.get("#search-results").children().should("have.length", 19);
   cy.get("#search-result-list-item").should("not.exist");
   cy.get("#search-result-image-item").should("exist");
-  cy.get("#toggle-container-toggle-filter-collected > div").click();
+  cy.get('#toggle-filter-collected').click();
   cy.get("#search-results").children().should("have.length", 1);
 });
 
@@ -53,7 +53,7 @@ it("No cards in collection", () => {
   cy.get("#search-result-list-item").should("exist");
   cy.get("#search-result-image-item").should("not.exist");
   cy.get('#noCardsInCollection').should("not.exist");
-  cy.get("#toggle-container-toggle-filter-collected > div").click();
+  cy.get('#toggle-filter-collected').click();
   cy.get('#noCardsInCollection').should("contain.text", "No cards in collection")
 
 });

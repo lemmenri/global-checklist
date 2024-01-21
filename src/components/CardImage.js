@@ -4,7 +4,7 @@ import { Loading } from "./Loading";
 export default function CardImage({ className, src, alt }) {
   const [isLoaded, setIsLoaded] = useState(false);
   return (
-    <div>
+    <>
       {!isLoaded && (
         <div>
           <Loading />
@@ -17,6 +17,6 @@ export default function CardImage({ className, src, alt }) {
         name="cardImage"
         onLoad={() => setIsLoaded(true)}
       />
-    </div>
+    </>
   );
 }

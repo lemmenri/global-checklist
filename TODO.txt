@@ -125,6 +125,8 @@ increase size of popup images
 make different languages on cardpage clickable
 make different languages on searchresults clickable
 add foreign name to card page
+fix loading icon when loading more cards
+WON'T DO - add flags to language component
 
 // IN PROGRESS
 create collection page
@@ -139,16 +141,21 @@ create collection page
         add image on hover
     DONE - create getCollectionAsList script
     add collection page E2E tests
-    add collection page to DesignSystemPage
+    DONE - add collection page to DesignSystemPage
     add table component to DesignSystemPage
 
 // TODO
 // Features
+add proper database support
+create set page
+    create set page
+    add set page E2E tests
+    add set page to DesignSystemPage
+add extendeSetCard to sets page
 add backside of double sided cards on hover
 add option to flip to backside of double sided cards on image display
 add edit card options
 add set icon to prints component
-add flags to language component
 add cardimage hover on different languages in the search results
 make different languages clickable on the card page
 handle going back from card details to search results
@@ -163,11 +170,12 @@ add mtg-library icon to header and browser tab
 add import function
     DONE - handle excel import
     create add function without need for scryfall id
-        create script to make list of cards with name, set, language and scryfall id
+        DONE - create script to make list of cards with name, set, language and scryfall id, price, image_url
         when processing excel import, find scryfall id from above list
     create queue to handle large number of add calls without DDOSing scryfall
 add cardPage component to design system page if possible (use fixtures?)
 add sort to different conditions of collected copies on card page
+add script to calculate total value of collection
 
 // Bugs
 fix double scryfall api calls on initial card page load
@@ -176,6 +184,7 @@ fix search parameters when emptying the search fields. Now they are still taken 
 fix icons in search results for tokens. See if they can be the same as the parent set -> the all sets call should have the proper link to the icon
 fix accesability by keyboard of the accordion component
 fix prices for foreign cards on card page
+fix the 'only show collected' filter to include foil only cards to be shown
 
 // Refactoring
 move import collection to seperate script
@@ -191,6 +200,7 @@ remove glossy finish
 move getFinishSign() to seperate script and re-use
 
 // Tests
+add extendedSetCard component tests
 remove dependecies from scryfall in e2e tests (use fixtures) 
 add github actions for cypress tests on push
 add page-objects to e2e tests
@@ -200,3 +210,4 @@ add e2e tests for import/export page
 add e2e tests for test page (mostly to test intergration with scryfall)
 add unit tests for scripts
 add tests for no nonfoil finish and no English language to addToCollection component tests
+add api tests to scryfall calls to ensure they don't change anything

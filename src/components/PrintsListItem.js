@@ -51,7 +51,7 @@ function finishCollected(finish, count) {
     return (
         <div
             id={`${finish}-collected`}
-            className={`w-10 h-6 m-0.5 text-center ${count > 0 && "bg-collected"} rounded`}
+            className={`w-10 h-6 my-0.5 text-center ${count > 0 && "bg-collected"} rounded overflow-hidden`}
         >
             {finishSign} {count}
         </div>

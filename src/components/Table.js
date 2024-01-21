@@ -26,12 +26,13 @@ export default function Table({ headers, data, key }) {
 
     useEffect(() => {
         setSortedData(sortedData => (sortedData.sort(sortByColumn)))
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currentSortOrder])
 
     function sortByColumn(a, b) {
         const valueA = getNumberAtStart(a[currentSortOrder.column].toString())
         const valueB = getNumberAtStart(b[currentSortOrder.column].toString())
-        if (valueA != null && valueB != null) {
+        if (valueA !== null && valueB !== null) {
             return currentSortOrder.order === "asc" ? valueA - valueB : valueB - valueA
         }
         const nameA = a[currentSortOrder.column].toString().toLowerCase();
@@ -63,8 +64,8 @@ export default function Table({ headers, data, key }) {
             <thead>
                 <tr>
                     {headers.map((column) => (
-                        <th id={column.id} key={column.id} className="border border-primary">
-                            <button onClick={() => sortColumn(column.id)} id={`sort-${column.label}`}>
+                        <th id={column.id} key={column.id} className="border border-primary font-normal text-left pl-2">
+                            <button onClick={() => sortColumn(column.id)} id={`sort-${column.label}`} className={`hover:underline`}>
                                 {column.label} {column.id === currentSortOrder.column && (currentSortOrder.order === "asc" ? "^" : "v")}
                             </button>
                         </th>

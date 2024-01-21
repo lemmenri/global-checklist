@@ -4,6 +4,7 @@ import "../App.css";
 import TextListBox from "./ListBox";
 import { conditions } from "../enums/conditions";
 import "cypress-real-events/support";
+import { BrowserRouter as Router } from "react-router-dom";
 
 it("displays the selected value", () => {
   cy.mount(
@@ -71,16 +72,18 @@ it("displays no dropdown option when only 1 finish is provided", () => {
 
 it("displays no dropdown option when only 1 language is provided", () => {
   cy.mount(
-    <div className="flex items-center">
-      <TextListBox
-        id="language"
-        values={[
-          { id: 1, name: "en", value: "English", type: "language" },
-        ]}
-        label="Language"
-        onChange={() => { }}
-      />
-    </div>
+    <Router>
+      <div className="flex items-center">
+        <TextListBox
+          id="language"
+          values={[
+            { id: 1, name: "en", value: "English", type: "language" },
+          ]}
+          label="Language"
+          onChange={() => { }}
+        />
+      </div>
+    </Router>
   );
   cy.get("label")
     .should("have.text", "Language:");

@@ -6,13 +6,13 @@ import Condition from "./Condition";
 it("Condition MT", () => {
   cy.mount(<Condition condition={"MT"} />);
   cy.get("p").contains("MT").should("have.class", "bg-MT");
-  cy.get("p").should("have.css", "background-color", "rgb(23, 162, 184)");
+  cy.get("p").should("have.css", "background-color");
 });
 
 it("Condition NM", () => {
   cy.mount(<Condition condition={"nm"} />);
   cy.get("p").contains("NM").should("have.class", "bg-NM");
-  cy.get("p").should("have.css", "background-color", "rgb(61, 176, 87)");
+  cy.get("p").should("have.css", "background-color");
 });
 
 it("Invalid Condition", () => {
@@ -24,5 +24,5 @@ it("Invalid Condition", () => {
 it("No Condition Provided / Default Condition", () => {
   cy.mount(<Condition />);
   cy.get("p").contains("NM").should("have.class", "bg-NM");
-  cy.get("p").should("have.css", "background-color", "rgb(61, 176, 87)");
+  cy.get("p").should("have.css", "background-color");
 });

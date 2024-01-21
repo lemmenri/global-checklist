@@ -13,7 +13,7 @@ export default function HomePage() {
   };
 
   return (
-    <div className="flex flex-col p-4 sm:p-8 flex-grow bg-light w-full place-items-center space-y-12 my-6">
+    <div role="main" className="flex flex-col p-4 sm:p-8 flex-grow bg-light w-full place-items-center space-y-12 my-6">
       <h1 className="display font-semibold text-center">Welcome to MTG Library</h1>
       <p className="text-center">
         Keeping track of <span className="font-bold">all</span> your Magic: The

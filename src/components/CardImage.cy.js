@@ -10,6 +10,7 @@ const alt = "Arid Mesa-mh2";
 
 it("Card Image", () => {
   cy.mount(<CardImage className={className} src={src} alt={alt} />);
+  cy.get("#loading > svg").should("not.exist");
   cy.get("img")
     .should("have.attr", "alt", alt)
     .and(
