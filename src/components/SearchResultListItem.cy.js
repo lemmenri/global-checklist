@@ -44,7 +44,7 @@ it("Search Result List Item", () => {
   cy.get("#prices").find("div#eur").should("exist");
   cy.get("#prices").find("div#usd").should("exist");
   cy.get("#card-details").realHover();
-  cy.get("dialog > div > img").should("exist");
+  cy.get("dialog > img").should("exist");
 });
 
 // etched foil
@@ -86,7 +86,7 @@ it("Etched foil", () => {
   cy.get("#prices").find("div#eur").should("exist");
   cy.get("#prices").find("div#usd").should("exist");
   cy.get("#card-details").realHover();
-  cy.get("dialog > div > img").should("exist");
+  cy.get("dialog > img").should("exist");
 });
 
 it("No English and no nonfoil", () => {
@@ -119,5 +119,5 @@ it("No English and no nonfoil", () => {
   cy.get("#prices").find("div#eur").should("exist");
   cy.get("#prices").find("div#usd").should("exist");
   cy.get("#card-details").realHover();
-  cy.get("dialog > div > img").should("exist");
+  cy.get("dialog > img").should("exist");
 });

@@ -52,7 +52,7 @@ it("displays no dropdown option when only 1 finish is provided", () => {
   cy.mount(
     <div className="flex items-center">
       <TextListBox
-        id="finish"
+        id="finish-label"
         values={[
           { id: 3, name: "E", value: "etched" },
         ]}
@@ -61,7 +61,7 @@ it("displays no dropdown option when only 1 finish is provided", () => {
       />
     </div>
   );
-  cy.get("label")
+  cy.get("#finish-label")
     .should("have.text", "Finish:");
   cy.get('#finish')
     .should("have.text", "E");
@@ -85,7 +85,7 @@ it("displays no dropdown option when only 1 language is provided", () => {
       </div>
     </Router>
   );
-  cy.get("label")
+  cy.get("#language")
     .should("have.text", "Language:");
   cy.get('#language-label-en')
     .should("have.text", "EN");

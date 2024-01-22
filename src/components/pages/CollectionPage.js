@@ -29,6 +29,7 @@ export default function CollectionPage() {
         if (totalCardCount > 0) {
             setCardlist(filterCards(filters))
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [filters])
 
     function filterCards(filters) {

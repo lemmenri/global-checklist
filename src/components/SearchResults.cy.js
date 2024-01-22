@@ -40,7 +40,7 @@ it("Search Results", () => {
 });
 
 it("No cards in collection", () => {
-  deleteCollection
+  deleteCollection()
   cy.mount(
     <Router>
       <SearchResults

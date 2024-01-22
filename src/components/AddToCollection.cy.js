@@ -24,8 +24,8 @@ it("Add to Collection", () => {
   cy.get("#finish-listbox > ul").should("not.exist");
   cy.get("#finish-listbox > button > span > p").should("contain.text", "✶");
 
-  cy.get("#quantity").clear().type("3");
-  cy.get("#quantity").should("contain.value", "3");
+  cy.get("#quantity-input").clear().type("3");
+  cy.get("#quantity-input").should("contain.value", "3");
 
   cy.get("#condition-listbox").click();
   cy.get("#condition-listbox > ul > li > span > p").contains("GD").click();
@@ -51,7 +51,7 @@ it("Default Values", () => {
   );
 
   cy.get("#finish-listbox > button > span > p").should("contain.text", "•");
-  cy.get("#quantity").should("contain.value", "1");
+  cy.get("#quantity-input").should("contain.value", "1");
   cy.get("#condition-listbox > button > span > p").should("contain.text", "NM");
   cy.get("#language-listbox > button > span > p").should("contain.text", "EN");
 });

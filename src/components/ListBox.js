@@ -19,7 +19,7 @@ export default function TextListBox({
     <>
       {values.length === 1 && (
         <>
-          <p className="w-1/2">{`${label}:`}</p>
+          <p id={id} className="w-1/2">{`${label}:`}</p>
           {values[0].hasOwnProperty("type") &&
             values[0].type === "language" && (
               <Language language={values[0].name} />
