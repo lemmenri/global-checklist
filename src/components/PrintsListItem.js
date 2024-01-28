@@ -16,7 +16,7 @@ export default function PrintsListItem({ collected, setName, collector_number, i
         <div className="flex space-x-4 px-2 border border-t-0 border-primary justify-between relative">
             <div
                 id={`link-printing-${setName.replaceAll(" ", "-")}`}
-                className="max-w-[255px] flex flex-wrap"
+                className="flex flex-wrap"
                 onMouseEnter={() => setIsShown(true)}
                 onMouseLeave={() => setIsShown(false)}
             >

@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Footer() {
   return (
-    <footer role="contentinfo" className="p-4 text-light bg-primary print:hidden">
+    <footer role="contentinfo" id="footer" className="p-4 text-light bg-primary print:hidden">
       <p className="m-4 small">
         Portions of MTG-Library are unofficial Fan Content permitted under the
         Wizards of the Coast Fan Content Policy. The literal and graphical

@@ -54,7 +54,7 @@ export default function CollectionPage() {
                 </div>
             </div>
             <div className="space-y-2">
-                <p>{`${totalCardCount} card${totalCardCount !== 1 ? "s" : ""} in collection`}</p>
+                <p id="collectedCardCount">{`${totalCardCount} card${totalCardCount !== 1 ? "s" : ""} in collection`}</p>
                 {totalCardCount > 0 ? (
                     <>
                         <form id="searchForm" role="search" onSubmit={handleSearchSubmit}>
@@ -62,7 +62,7 @@ export default function CollectionPage() {
                         </form>
 
                         {cardlist.length > 0 ? (
-                            <div className="overflow-x-auto">
+                            <div id="collectionTable" className="overflow-x-auto">
                                 <Table headers={tableHeaders} data={cardlist} key={filters.name} />
                             </div>
                         ) : (
@@ -70,7 +70,7 @@ export default function CollectionPage() {
                         )}
                     </>
                 ) : (
-                    <p>Search some cards or sets to get started.</p>
+                    <p id="noCardsInCollectionText">Search some cards or sets to get started.</p>
                 )
                 }
 

@@ -105,10 +105,10 @@ export default function SearchPage() {
         <>
           <p id="seachResultsDescription">
             {`Showing results for "${search}". Found ${groupedCards?.length
-              } different card(s) with ${searchResults?.data?.length
-              } different print(s) and ${getNumberOfDifferentVersions(
+              } different card${groupedCards?.length !== 1 ? "s" : ""} with ${searchResults?.data?.length
+              } different print${searchResults?.data?.length !== 1 ? "s" : ""} and ${getNumberOfDifferentVersions(
                 searchResults?.data
-              )} different version(s).`}
+              )} different version${getNumberOfDifferentVersions(searchResults?.data) !== 1 ? "s" : ""}.`}
             {nextPage &&
               ` More printings are available (${searchResults.total_cards}).`}
           </p>

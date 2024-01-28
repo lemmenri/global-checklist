@@ -127,22 +127,20 @@ make different languages on searchresults clickable
 add foreign name to card page
 fix loading icon when loading more cards
 WON'T DO - add flags to language component
-
-// IN PROGRESS
-create collection page
+DONE - create collection page
     DONE - create page
     DONE - add no cards in collection state
-    create table component
+    DONE - create table component
         DONE - add sort
         DONE - add link to cardpage
-        fix sort by number (or partial number for collector number field)
-        fix chevron up and down icons
-        add component tests
-        add image on hover
+        DONE - fix chevron up and down icons
+        DONE - add component tests
     DONE - create getCollectionAsList script
-    add collection page E2E tests
+    DONE - add collection page E2E tests
     DONE - add collection page to DesignSystemPage
-    add table component to DesignSystemPage
+    DONE - add table component to DesignSystemPage
+
+// IN PROGRESS
 
 // TODO
 // Features
@@ -177,8 +175,10 @@ add import function
 add cardPage component to design system page if possible (use fixtures?)
 add sort to different conditions of collected copies on card page
 add script to calculate total value of collection
+add table image on hover
 
 // Bugs
+fix table sort by number (or partial number for collector number field)
 fix double scryfall api calls on initial card page load
 fix bug when printing search results images. From page 3 onwards the layout shifts
 fix search parameters when emptying the search fields. Now they are still taken into account when searching something again
@@ -188,6 +188,7 @@ fix prices for foreign cards on card page
 fix the 'only show collected' filter to include foil only cards to be shown
 
 // Refactoring
+store cardnames and other scryfall data in session storage
 move import collection to seperate script
 replace seticons by scryfall icons
 move finishes, conditions and languages to enum

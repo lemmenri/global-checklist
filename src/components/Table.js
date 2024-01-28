@@ -2,6 +2,7 @@ import { useNavigate } from "react-router";
 import React, { useState, useEffect } from "react";
 import Condition from "./Condition";
 import Language from "./Language";
+import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/solid";
 
 function getNumberAtStart(str) {
     if (startsWithNumber(str)) {
@@ -65,8 +66,15 @@ export default function Table({ headers, data, key }) {
                 <tr>
                     {headers.map((column) => (
                         <th id={column.id} key={column.id} className="border border-primary font-normal text-left px-2">
-                            <button onClick={() => sortColumn(column.id)} id={`sort-${column.label}`} className={`hover:underline`}>
-                                {column.label} {column.id === currentSortOrder.column && (currentSortOrder.order === "asc" ? "^" : "v")}
+                            <button onClick={() => sortColumn(column.id)} id={`sort-${column.label}`} className={`flex hover:underline`}>
+                                {column.label} {column.id === currentSortOrder.column && (
+                                    currentSortOrder.order === "asc"
+                                        ? (
+                                            <ChevronUpIcon className="w-6 h-6 pr-2" aria-hidden="true" />
+                                        ) : (
+                                            <ChevronDownIcon className="w-6 h-6 pr-2" aria-hidden="true" />
+                                        )
+                                )}
                             </button>
                         </th>
                     ))}

@@ -41,6 +41,8 @@ import Prints from "../Prints";
 import { moreThenTenPrintings, twoPrintings } from "../../testdata/PrintingData";
 import CardnameSearchForm from "../CardnameSearchForm";
 import { exampleExtendedSetCardData } from "../../testdata/SetCardData";
+import Table from "../Table";
+import { collectedCardsAsListData, collectedCardsAsListHeaderData } from "../../testdata/CollectedCardsAsListData";
 
 export default function DesignSystemPage() {
   document.title = "MTG Library - Design System";
@@ -328,6 +330,9 @@ export default function DesignSystemPage() {
           <div className="w-72">
             <SearchResultImageItem card={defaultCardData} />
           </div>
+        </Accordion>
+        <Accordion title={<h3 className="h2">Table</h3>}>
+          <Table headers={collectedCardsAsListHeaderData} data={collectedCardsAsListData} key={"table"} />
         </Accordion>
       </Accordion>
 
