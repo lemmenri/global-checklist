@@ -14,10 +14,6 @@ const collectedAllFinishes = [
         count: 0
     },
     {
-        finish: "glossy",
-        count: 1,
-    },
-    {
         finish: "etched",
         count: 0
     },
@@ -52,9 +48,6 @@ it("displays the correct name, number, and collected state", () => {
     cy.get('#etched-collected')
         .should('contain.text', '0')
         .and('not.have.class', 'bg-collected')
-    cy.get('#glossy-collected')
-        .should('contain.text', '1')
-        .and('have.class', 'bg-collected')
 });
 
 it("displays image on hover and hides image on mouseout", () => {
@@ -98,7 +91,5 @@ it("displays only the provided finish", () => {
     cy.get('#foil-collected')
         .should('not.exist')
     cy.get('#etched-collected')
-        .should('not.exist')
-    cy.get('#glossy-collected')
         .should('not.exist')
 });

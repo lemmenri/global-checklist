@@ -10,7 +10,7 @@ At the moment the project is still in early developement. See the TODO.txt file 
 
 ### Searching cards:
 
-Search for cardnames, artists, creature types and sets. You'll get an overview of all available printings, languages and finishes (nonfoil, foil, etched and glossy). Also prices are shown if available. Switch to image view to see the cards in all different languages as well.
+Search for cardnames, artists, creature types and sets. You'll get an overview of all available printings, languages and finishes (nonfoil, foil and etched). Also prices are shown if available. Switch to image view to see the cards in all different languages as well.
 
 ![search page](./screenshots/searchpage_list.png?raw=true)
 

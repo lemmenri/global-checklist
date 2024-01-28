@@ -9,6 +9,7 @@ export function ExternalLink({ href, externalParty, imageLocation }) {
       className="flex border border-dark rounded-xl px-4 py-1 hover:underline hover:cursor-pointer"
     >
       <img
+        // crossorigin="anonymous"
         className="object-contain w-4 h-4 mr-2 self-center"
         src={imageLocation}
         alt={`${externalParty} icon`}

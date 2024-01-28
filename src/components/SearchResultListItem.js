@@ -9,7 +9,6 @@ export default function SearchResultListItem({ group }) {
   const hasNonfoil = group.find((card) => card.finishes.includes("nonfoil"));
   const hasFoil = group.find((card) => card.finishes.includes("foil"));
   const hasEtched = group.find((card) => card.finishes.includes("etched"));
-  const hasGlossy = group.find((card) => card.finishes.includes("glossy"));
   const [isShown, setIsShown] = useState(false)
 
   return (
@@ -86,7 +85,6 @@ export default function SearchResultListItem({ group }) {
           {hasNonfoil && <p title="nonfoil">•</p>}
           {hasFoil && <p title="foil">✶</p>}
           {hasEtched && <p title="etched">E</p>}
-          {hasGlossy && <p title="glossy">G</p>}
         </div>
 
         <div id="printings" className="flex">
@@ -115,12 +113,6 @@ export default function SearchResultListItem({ group }) {
                     language.lang,
                     "etched",
                     getCardCountFinish(language.id, "etched")
-                  )}
-                {language.finishes.includes("glossy") &&
-                  printQuantityCollected(
-                    language.lang,
-                    "glossy",
-                    getCardCountFinish(language.id, "glossy")
                   )}
               </div>
             </div>

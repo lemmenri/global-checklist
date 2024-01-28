@@ -139,6 +139,8 @@ DONE - create collection page
     DONE - add collection page E2E tests
     DONE - add collection page to DesignSystemPage
     DONE - add table component to DesignSystemPage
+make different languages clickable on the card page
+remove glossy finish
 
 // IN PROGRESS
 
@@ -156,7 +158,6 @@ add edit card options
 add set icon to prints component
 add bold text to current selected foreign card in prints component
 add cardimage hover on different languages in the search results
-make different languages clickable on the card page
 handle going back from card details to search results
 add sort options to searchpage
 add sort options to setpage
@@ -178,6 +179,7 @@ add script to calculate total value of collection
 add table image on hover
 
 // Bugs
+fix cors errors on scryfall icon on card page
 fix table sort by number (or partial number for collector number field)
 fix double scryfall api calls on initial card page load
 fix bug when printing search results images. From page 3 onwards the layout shifts
@@ -188,6 +190,7 @@ fix prices for foreign cards on card page
 fix the 'only show collected' filter to include foil only cards to be shown
 
 // Refactoring
+move (get)finishSign to helper function
 store cardnames and other scryfall data in session storage
 move import collection to seperate script
 replace seticons by scryfall icons
@@ -198,7 +201,6 @@ store data in redux
 upgrade to typescript
 upgrade to nextJS
 refactor filterDefaultFinishes and filterFinishes in AddToCollection
-remove glossy finish
 move getFinishSign() to seperate script and re-use
 
 // Tests

@@ -19,7 +19,6 @@ export default function CollectedListItem({
   if (finish === "foil") finishSign = "✶"
   if (finish === "nonfoil") finishSign = "•"
   if (finish === "etched") finishSign = "E"
-  if (finish === "glossy") finishSign = "G"
 
   const handleToggleEdit = () => {
     setShowEdit(!showEdit);

@@ -5,7 +5,6 @@ import { BrowserRouter as Router } from "react-router-dom";
 import SearchResultImageItem from "./SearchResultImageItem";
 import {
   cardWithEtchedFoilFinish,
-  cardWithGlossyFinish,
   defaultCardData,
 } from "../testdata/CardData";
 import { addCard } from "../scripts/CollectedCards";
@@ -69,18 +68,4 @@ it("Search result image item - card with etched foil finish", () => {
   cy.get("#en-nonfoil-collected").should("contain.text", "• 0");
   cy.get("#en-foil-collected").should("contain.text", "✶ 0");
   cy.get("#en-etched-collected").should("contain.text", "E 0");
-});
-
-it("Search result image item - card with glossy finish", () => {
-  cy.mount(
-    <Router>
-      <div className="w-72">
-        <SearchResultImageItem card={cardWithGlossyFinish} />
-      </div>
-    </Router>
-  );
-  cy.get("img").should("exist").and("be.visible");
-  cy.get("#en-nonfoil-collected").should("not.exist");
-  cy.get("#en-foil-collected").should("not.exist");
-  cy.get("#en-glossy-collected").should("contain.text", "G 0");
 });

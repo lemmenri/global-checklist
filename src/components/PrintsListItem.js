@@ -36,7 +36,6 @@ export default function PrintsListItem({ collected, setName, collector_number, i
                 {collected.find(({ finish }) => finish === "nonfoil") && finishCollected("nonfoil", collected.find(({ finish }) => finish === "nonfoil").count)}
                 {collected.find(({ finish }) => finish === "foil") && finishCollected("foil", collected.find(({ finish }) => finish === "foil").count)}
                 {collected.find(({ finish }) => finish === "etched") && finishCollected("etched", collected.find(({ finish }) => finish === "etched").count)}
-                {collected.find(({ finish }) => finish === "glossy") && finishCollected("glossy", collected.find(({ finish }) => finish === "glossy").count)}
             </div>
         </div>
     );
@@ -47,7 +46,6 @@ function finishCollected(finish, count) {
     if (finish === "foil") finishSign = "✶"
     if (finish === "nonfoil") finishSign = "•"
     if (finish === "etched") finishSign = "E"
-    if (finish === "glossy") finishSign = "G"
     return (
         <div
             id={`${finish}-collected`}

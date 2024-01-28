@@ -117,7 +117,6 @@ export default function Table({ headers, data, key }) {
         if (finish === "foil") finishSign = "✶"
         if (finish === "nonfoil") finishSign = "•"
         if (finish === "etched") finishSign = "E"
-        if (finish === "glossy") finishSign = "G"
         return finishSign
     }
 }

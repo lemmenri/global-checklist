@@ -309,10 +309,6 @@ export default function DesignSystemPage() {
                 count: 0
               },
               {
-                finish: "glossy",
-                count: 1,
-              },
-              {
                 finish: "etched",
                 count: 0
               },

@@ -9,7 +9,6 @@ export default function SearchResultImageItem(props) {
   const hasNonfoil = card.finishes.includes("nonfoil");
   const hasFoil = card.finishes.includes("foil");
   const hasEtched = card.finishes.includes("etched");
-  const hasGlossy = card.finishes.includes("glossy");
 
   function showCount(finish, hasFinish, finishCount, label) {
     return hasFinish ? (
@@ -61,12 +60,7 @@ export default function SearchResultImageItem(props) {
             getCardCountFinish(card.id, "etched"),
             "E"
           )}
-          {showCount(
-            "glossy",
-            hasGlossy,
-            getCardCountFinish(card.id, "glossy"),
-            "G"
-          )}
+
         </div>
       </Link>
     </div>

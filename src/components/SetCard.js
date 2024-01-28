@@ -58,7 +58,6 @@ export function SetCardExtended({ setData }) {
                   {finish.finish === "nonfoil" && <p title="nonfoil">•</p>}
                   {finish.finish === "foil" && <p title="foil">✶</p>}
                   {finish.finish === "etched" && <p title="etched">E</p>}
-                  {finish.finish === "glossy" && <p title="glossy">G</p>}
                 </div>
                 <PercentageBar collectedCards={finish.collectedCards} totalCards={finish.totalCards} />
               </div>
