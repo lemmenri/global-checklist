@@ -43,7 +43,7 @@ export default function PrintsListItem({ collected, setName, collector_number, i
 
 function finishCollected(finish, count) {
     let finishSign
-    if (finish === "foil") finishSign = "✶"
+    if (finish === "foil") finishSign = "★"
     if (finish === "nonfoil") finishSign = "•"
     if (finish === "etched") finishSign = "E"
     return (

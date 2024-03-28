@@ -114,7 +114,7 @@ export default function Table({ headers, data, key }) {
 
     function getFinishSign(finish) {
         let finishSign = "•";
-        if (finish === "foil") finishSign = "✶"
+        if (finish === "foil") finishSign = "★"
         if (finish === "nonfoil") finishSign = "•"
         if (finish === "etched") finishSign = "E"
         return finishSign

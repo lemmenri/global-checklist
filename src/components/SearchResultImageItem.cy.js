@@ -19,7 +19,7 @@ it("Search result image item", () => {
   );
   cy.get("img").should("exist").and("be.visible");
   cy.get("#en-nonfoil-collected").should("contain.text", "• 0");
-  cy.get("#en-foil-collected").should("contain.text", "✶ 0");
+  cy.get("#en-foil-collected").should("contain.text", "★ 0");
 });
 
 it("Search result image item - in collection", () => {
@@ -48,7 +48,7 @@ it("Search result image item - in collection", () => {
     "background-color",
     "rgba(231, 234, 238, 0.4)"
   );
-  cy.get("#en-foil-collected").should("contain.text", "✶ 2");
+  cy.get("#en-foil-collected").should("contain.text", "★ 2");
   cy.get("#foil").should(
     "have.css",
     "background-color",
@@ -66,6 +66,6 @@ it("Search result image item - card with etched foil finish", () => {
   );
   cy.get("img").should("exist").and("be.visible");
   cy.get("#en-nonfoil-collected").should("contain.text", "• 0");
-  cy.get("#en-foil-collected").should("contain.text", "✶ 0");
+  cy.get("#en-foil-collected").should("contain.text", "★ 0");
   cy.get("#en-etched-collected").should("contain.text", "E 0");
 });

@@ -53,7 +53,7 @@ export default function SearchResultImageItem(props) {
             getCardCountFinish(card.id, "nonfoil"),
             "•"
           )}
-          {showCount("foil", hasFoil, getCardCountFinish(card.id, "foil"), "✶")}
+          {showCount("foil", hasFoil, getCardCountFinish(card.id, "foil"), "★")}
           {showCount(
             "etched",
             hasEtched,

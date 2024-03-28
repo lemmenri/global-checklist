@@ -16,7 +16,7 @@ export default function CollectedListItem({
   const [showEdit, setShowEdit] = useState(false);
 
   let finishSign = "•";
-  if (finish === "foil") finishSign = "✶"
+  if (finish === "foil") finishSign = "★"
   if (finish === "nonfoil") finishSign = "•"
   if (finish === "etched") finishSign = "E"
 

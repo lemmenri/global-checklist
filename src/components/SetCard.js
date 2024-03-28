@@ -56,7 +56,7 @@ export function SetCardExtended({ setData }) {
               <div id={`collected-${finish.finish}`} key={finish.finish} className="flex">
                 <div className="w-6 text-center self-center">
                   {finish.finish === "nonfoil" && <p title="nonfoil">•</p>}
-                  {finish.finish === "foil" && <p title="foil">✶</p>}
+                  {finish.finish === "foil" && <p title="foil">★</p>}
                   {finish.finish === "etched" && <p title="etched">E</p>}
                 </div>
                 <PercentageBar collectedCards={finish.collectedCards} totalCards={finish.totalCards} />

@@ -20,9 +20,9 @@ it("Add to Collection", () => {
   );
 
   cy.get("#finish-listbox").click();
-  cy.get("#finish-listbox > ul > li > span").contains("✶").click();
+  cy.get("#finish-listbox > ul > li > span").contains("★").click();
   cy.get("#finish-listbox > ul").should("not.exist");
-  cy.get("#finish-listbox > button > span > p").should("contain.text", "✶");
+  cy.get("#finish-listbox > button > span > p").should("contain.text", "★");
 
   cy.get("#quantity-input").clear().type("3");
   cy.get("#quantity-input").should("contain.value", "3");

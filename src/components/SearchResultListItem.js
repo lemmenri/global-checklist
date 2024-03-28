@@ -83,7 +83,7 @@ export default function SearchResultListItem({ group }) {
         <div className="flex-col w-8 p-2 font-bold space-y-0.5">
           <p>&nbsp;</p>
           {hasNonfoil && <p title="nonfoil">•</p>}
-          {hasFoil && <p title="foil">✶</p>}
+          {hasFoil && <p title="foil">★</p>}
           {hasEtched && <p title="etched">E</p>}
         </div>
 

@@ -212,7 +212,7 @@ const CardPage = () => {
             )}
             {hasFoil && (
               <div className="flex justify-between">
-                <div className="w-1/3">{`Price ✶`}</div>
+                <div className="w-1/3">{`Price ★`}</div>
                 <div className="w-1/3">{`€\xa0${card.prices.eur_foil ? card.prices.eur_foil : " - "}`}</div>
                 <div className="w-1/3">{`$\xa0${card.prices.usd_foil ? card.prices.usd_foil : " - "}`}</div>
               </div>
