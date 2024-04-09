@@ -6,16 +6,11 @@ export const getCardImage = (card) => {
       ? card.card_faces[0].image_uris.normal
       : "https://c2.scryfall.com/file/scryfall-errors/soon.jpg";
 
-  let backUri = undefined
   const hasBack = !card.hasOwnProperty("image_uris") && card.card_faces[1].hasOwnProperty("image_uris")
-
-  if (hasBack) {
-    backUri = card.card_faces[1].image_uris.normal
-  }
 
   const faces = {
     front: frontUri,
-    ...(hasBack) && { back: backUri }
+    ...(hasBack) && { back: card.card_faces[1].image_uris.normal }
   }
 
   return faces
