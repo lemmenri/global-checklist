@@ -13,7 +13,7 @@ const tableHeaders = [
     { label: "Fin.", id: "finish" },
     { label: "Lang.", id: "language" },
     { label: "Cond.", id: "condition" },
-    { label: "#", id: "quantity" },
+    { label: "Qnt.", id: "quantity" },
 ]
 
 export default function CollectionPage() {

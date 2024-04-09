@@ -30,7 +30,7 @@ export const getOtherLanguages = async (id) => {
               language: card.lang,
               id: card.id,
               finishes: card.finishes,
-              image: getCardImage(card),
+              image: getCardImage(card).front,
             });
           });
         })
@@ -87,7 +87,6 @@ export const getPrintings = async (prints_search_uri) => {
           collector_number: card.collector_number,
           id: card.id,
           collected: collected,
-          image: getCardImage(card)
         })
 
       })
@@ -141,6 +140,51 @@ export const advancedSearch = async (searchParameters) => {
   const res = await fetch(uri);
   return await res.json();
 };
+
+export const getCardsInSet = async (setCode) => {
+  const cardList = []
+  const uri = `${baseUrl}cards/search?include_extras=true&include_variations=true&order=set&q=e%3A${setCode}&unique=prints`
+  let res = await fetch(uri).then((res) => (res.json()));
+  cardList.push(...res.data)
+
+  while (res.has_more) {
+    res = await fetch(res.next_page).then((res) => (res.json()));
+    cardList.push(...res.data)
+  }
+
+  const printings = []
+  cardList.forEach(card => {
+    const collected = []
+    const inCollection = getCardsByNameSetNr(card.name, card.set, card.collector_number)
+    card.finishes.forEach(finish => {
+      let cardCount = 0
+      if (inCollection && inCollection.length > 0) {
+        inCollection.forEach(lang => {
+          lang.collected.forEach(entry => {
+            if (entry.finish === finish) {
+              cardCount += entry.quantity
+            }
+          })
+        })
+      }
+      const obj = {
+        finish: finish,
+        count: cardCount
+      }
+      collected.push(obj)
+    })
+
+    printings.push({
+      setName: card.name,
+      collector_number: card.collector_number,
+      id: card.id,
+      collected: collected,
+    })
+
+  })
+
+  return printings
+}
 
 // Returns a list of all card names
 export const getCardnameList = async () => {

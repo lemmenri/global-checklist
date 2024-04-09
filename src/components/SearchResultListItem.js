@@ -40,7 +40,7 @@ export default function SearchResultListItem({ group }) {
       >
         <CardImage
           className="rounded-[3px] w-16 shadow-dark shadow-sm"
-          src={getCardImage(group[0])}
+          src={getCardImage(group[0]).front}
           alt={`${group[0].name}-${group[0].set}`}
         />
       </div>
@@ -58,7 +58,7 @@ export default function SearchResultListItem({ group }) {
         <dialog open={isShown} className="bg-transparent absolute z-10 inset-y-0 right-0 translate-x-0 sm:translate-x-40 w-80">
           <CardImage
             className="rounded-[18px] w-96 shadow-dark shadow-md"
-            src={getCardImage(group[0])}
+            src={getCardImage(group[0]).front}
             alt={`${group[0].name}-${group[0].set}`}
           />
         </dialog>

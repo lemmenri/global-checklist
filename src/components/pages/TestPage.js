@@ -31,6 +31,7 @@ import {
   advancedSearch,
   getArtistList,
   getCardnameList,
+  getCardsInSet,
   getCreatureTypeList,
   getOtherLanguages,
   getPrintings,
@@ -218,6 +219,9 @@ export default function TestPage() {
       setCode: "sld",
     }).then((res) => console.log(res));
   };
+  const handleGetCardsInSet = () => {
+    getCardsInSet("plst").then((res) => console.log(res));
+  }
   const handleGetOtherLanguages = () => {
     getOtherLanguages("feefe9f0-24a6-461c-9ef1-86c5a6f33b83").then((res) =>
       console.log(res)
@@ -356,6 +360,9 @@ export default function TestPage() {
           </button>
           <button className="btn" onClick={handleAdvancedSearchSetCode}>
             Scryfall Advanced Search By Set Code
+          </button>
+          <button className="btn" onClick={handleGetCardsInSet}>
+            Get Cards in Set by Set Code
           </button>
           <button className="btn" onClick={handleGetOtherLanguages}>
             Get other languages
