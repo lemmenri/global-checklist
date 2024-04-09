@@ -13,10 +13,12 @@ import {
   convertLanguageData,
   getScryfallCard,
   getPrintings,
+  getCardsInSet,
 } from "../../scripts/ScryfallQueries";
 import Language from "../Language";
 import Prints from "../Prints";
 import CardnameSearchForm from "../CardnameSearchForm";
+import OtherCardsInSet from "../OtherCardsInSet";
 
 const CardPage = () => {
   const displayPrice = true; // featureflag
@@ -28,17 +30,17 @@ const CardPage = () => {
   const [isCollectedLoaded, setIsCollectedLoaded] = useState(null);
   const [otherLanguages, setOtherLanguages] = useState([]);
   const [isOtherLanguagesLoaded, setIsOtherLanguagesLoaded] = useState(null);
-  const [printings, setPrintings] = useState([])
+  const [printings, setPrintings] = useState([]);
+  const [otherCardsInSet, setOtherCardsInSet] = useState([]);
   const [hasNonfoil, setHasNonfoil] = useState(false);
   const [hasFoil, setHasFoil] = useState(false);
   const [hasEtched, setHasEtched] = useState(false);
 
-
   useEffect(() => {
     async function fetchData() {
       if (card !== null) {
-        const response = await getPrintings(card.prints_search_uri)
-        setPrintings(response)
+        setPrintings(await getPrintings(card.prints_search_uri))
+        setOtherCardsInSet(await getCardsInSet(card.set))
         setHasFinishes()
       }
     }
@@ -54,6 +56,8 @@ const CardPage = () => {
     setHasFinishes()
     setIsOtherLanguagesLoaded(null)
     loadOtherLanguages()
+    setPrintings([])
+    setOtherCardsInSet([])
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cardId])
 
@@ -168,7 +172,16 @@ const CardPage = () => {
               </div>
 
               <div className="flex flex-col flex-auto">
-                <Prints prints={printings} cardname={card.name} setCardId={setCardId} cardId={card.id} />
+                {(printings.length > 0) ? (
+                  <Prints prints={printings} setCardId={setCardId} cardId={card.id} />
+                ) : (
+                  <Loading />
+                )}
+                {(otherCardsInSet.length > 0) ? (
+                  <OtherCardsInSet otherCardsInSet={otherCardsInSet} setCardId={setCardId} cardId={card.id} setName={card.set_name} />
+                ) : (
+                  <Loading />
+                )}
 
                 <ExternalLinks />
               </div>
@@ -182,13 +195,31 @@ const CardPage = () => {
   );
 
   function Card() {
+    const [isDoubleSided, setIsDoubleSided] = useState(false)
+    const [showFace, setShowFace] = useState('front');
+    const [faces] = useState(getCardImage(card))
+
+    useEffect(() => {
+      if (faces.hasOwnProperty('back')) {
+        setIsDoubleSided(true)
+      }
+    }, [faces])
+
     return (
-      <div className="flex justify-center">
+      <div className="flex flex-col justify-center">
         <CardImage
           className="rounded-[18px] w-96 shadow-dark shadow-md my-2"
-          src={getCardImage(card)}
+          src={showFace === 'front' ? faces.front : faces.back}
           alt={`${card.name}-${card.set}`}
         />
+        {isDoubleSided &&
+          <button
+            className="btn bg-light text-dark border border-1 border-dark mx-24"
+            onClick={() => setShowFace(showFace === 'front' ? "back" : "front")}
+          >
+            Show {`${showFace === 'front' ? "back" : "front"}`}
+          </button>
+        }
       </div>
     )
   }

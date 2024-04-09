@@ -43,7 +43,7 @@ export default function SearchResultImageItem(props) {
       >
         <CardImage
           className="rounded-xl shadow-dark shadow-md print:shadow-none"
-          src={getCardImage(card)}
+          src={getCardImage(card).front}
           alt={`${card.name}-${card.set}`}
         />
         <div className="flex h-auto absolute inset-x-0 bottom-1 justify-around text-center">

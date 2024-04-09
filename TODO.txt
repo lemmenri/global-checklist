@@ -143,6 +143,23 @@ make different languages clickable on the card page
 remove glossy finish
 
 // IN PROGRESS
+fix broken component tests
+add tab component
+    create tab component
+    add tab component tests
+    add tab component to DesignSystemPage
+add otherCardsInSet component
+    DONE - create otherCardsInSet component
+    DONE - add otherCardsInSet to cardPage
+    add otherCardsInSet component tests
+    add otherCardsInSet to DesignSystemPage
+add option to flip to backside of double sided cards on image display
+    DONE - add support to fetch backside url of cardimages
+    DONE - add backside of cards to cardPage
+    add backside of cards to imageResults
+    add backside of cards tests
+    add support to mend cards?
+    add support to kamigawa flip cards?
 
 // TODO
 // Features
@@ -151,11 +168,10 @@ create set page
     create set page
     add set page E2E tests
     add set page to DesignSystemPage
-add extendeSetCard to sets page
-add backside of double sided cards on hover
-add option to flip to backside of double sided cards on image display
+add extendedSetCard to sets page
 add edit card options
 add set icon to prints component
+add set icon to header of otherCardsInSet component
 add bold text to current selected foreign card in prints component
 add cardimage hover on different languages in the search results
 handle going back from card details to search results
@@ -179,9 +195,9 @@ add script to calculate total value of collection
 add table image on hover
 
 // Bugs
+fix double scryfall api calls on initial card page load
 fix cors errors on scryfall icon on card page
 fix table sort by number (or partial number for collector number field)
-fix double scryfall api calls on initial card page load
 fix bug when printing search results images. From page 3 onwards the layout shifts
 fix search parameters when emptying the search fields. Now they are still taken into account when searching something again
 fix icons in search results for tokens. See if they can be the same as the parent set -> the all sets call should have the proper link to the icon
@@ -191,13 +207,13 @@ fix the 'only show collected' filter to include foil only cards to be shown
 
 // Refactoring
 move (get)finishSign to helper function
-store cardnames and other scryfall data in session storage
+store cardnames and other scryfall data in session storage (use next / react cache?)
 move import collection to seperate script
 replace seticons by scryfall icons
 move finishes, conditions and languages to enum
-restructure components in atoms, molecules and organisms
+sort components by page
 correctly implement button component
-store data in redux
+store data in useSession hook
 upgrade to typescript
 upgrade to nextJS
 refactor filterDefaultFinishes and filterFinishes in AddToCollection
