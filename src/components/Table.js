@@ -95,9 +95,13 @@ export default function Table({ headers, data, key }) {
                                             {row[column.id]}
                                         </button>
                                     ) : (column.id === "language" ? (
-                                        <Language language={row[column.id]} />
+                                        <div className="w-12">
+                                            <Language language={row[column.id]} />
+                                        </div>
                                     ) : (column.id === "condition" ? (
-                                        <Condition condition={row[column.id]} />
+                                        <div className="w-12">
+                                            <Condition condition={row[column.id]} />
+                                        </div>
                                     ) : (column.id === "finish" ? (
                                         getFinishSign(row[column.id])
                                     ) : (
