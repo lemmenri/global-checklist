@@ -29,19 +29,14 @@ const CardPage = () => {
   const [collected, setCollected] = useState({});
   const [isCollectedLoaded, setIsCollectedLoaded] = useState(null);
   const [otherLanguages, setOtherLanguages] = useState([]);
-  const [isOtherLanguagesLoaded, setIsOtherLanguagesLoaded] = useState(null);
   const [printings, setPrintings] = useState([]);
   const [otherCardsInSet, setOtherCardsInSet] = useState([]);
-  const [hasNonfoil, setHasNonfoil] = useState(false);
-  const [hasFoil, setHasFoil] = useState(false);
-  const [hasEtched, setHasEtched] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
       if (card !== null) {
         setPrintings(await getPrintings(card.prints_search_uri))
         setOtherCardsInSet(await getCardsInSet(card.set))
-        setHasFinishes()
       }
     }
     fetchData();
@@ -53,9 +48,8 @@ const CardPage = () => {
     setIsDataLoaded(false)
     setCard(null)
     setCardData()
-    setHasFinishes()
-    setIsOtherLanguagesLoaded(null)
-    loadOtherLanguages()
+    getOtherLanguages(cardId.id)
+      .then((res) => setOtherLanguages(convertLanguageData(res)))
     setPrintings([])
     setOtherCardsInSet([])
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -66,12 +60,6 @@ const CardPage = () => {
     getCollectedCardList(cardId.id)
       .then((res) => setCollected(res))
       .then(() => setIsCollectedLoaded(true));
-  }
-
-  function setHasFinishes() {
-    setHasNonfoil(card && card.finishes && card.finishes.includes("nonfoil"));
-    setHasFoil(card && card.finishes && card.finishes.includes("foil"));
-    setHasEtched(card && card.finishes && card.finishes.includes("etched"));
   }
 
   if (isCollectedLoaded === null) {
@@ -86,16 +74,6 @@ const CardPage = () => {
     }
   }
   setCardData()
-
-  async function loadOtherLanguages() {
-    if (isOtherLanguagesLoaded === null) {
-      setIsOtherLanguagesLoaded(false);
-      getOtherLanguages(cardId.id)
-        .then((res) => setOtherLanguages(convertLanguageData(res)))
-        .then(() => setIsOtherLanguagesLoaded(true));
-    }
-  }
-  loadOtherLanguages()
 
   const navigate = useNavigate();
   const goToSet = () => {
@@ -138,7 +116,7 @@ const CardPage = () => {
             </button>
             {` - #${card.collector_number} - ${card.rarity}`}
           </p>
-          {isOtherLanguagesLoaded && (
+          {otherLanguages.length > 0 && (
             <div id="languages" className="flex space-x-1 max-[475px]:overflow-auto">
               {otherLanguages.map((language) => (
                 <Language
@@ -159,14 +137,14 @@ const CardPage = () => {
             </div>
 
             <div className="flex flex-auto flex-col xl:flex-row gap-0 xl:gap-8">
-              <div className="flex flex-col flex-auto">
+              <div className="flex flex-col flex-auto min-w-fit">
                 {isCollectedLoaded ? (
                   <CollectedList collected={collected} handleDeleteCard={updateCollectedCards} />
                 ) : (
                   <Loading />
                 )}
 
-                {isOtherLanguagesLoaded && (
+                {otherLanguages.length > 0 && (
                   <AddToCollection card={card} languages={otherLanguages} handleAddCard={updateCollectedCards} />
                 )}
               </div>
@@ -195,15 +173,9 @@ const CardPage = () => {
   );
 
   function Card() {
-    const [isDoubleSided, setIsDoubleSided] = useState(false)
+    const [isDoubleSided] = useState(getCardImage(card).hasOwnProperty('back'))
     const [showFace, setShowFace] = useState('front');
     const [faces] = useState(getCardImage(card))
-
-    useEffect(() => {
-      if (faces.hasOwnProperty('back')) {
-        setIsDoubleSided(true)
-      }
-    }, [faces])
 
     return (
       <div className="flex flex-col justify-center">
@@ -214,7 +186,7 @@ const CardPage = () => {
         />
         {isDoubleSided &&
           <button
-            className="btn bg-light text-dark border border-1 border-dark mx-24"
+            className="btn bg-light text-dark border border-1 border-dark mx-8"
             onClick={() => setShowFace(showFace === 'front' ? "back" : "front")}
           >
             Show {`${showFace === 'front' ? "back" : "front"}`}
@@ -225,6 +197,13 @@ const CardPage = () => {
   }
 
   function Prices() {
+    const [cardHasFinish] = useState({
+      nonfoil: (card && card.finishes && card.finishes.includes("nonfoil")),
+      foil: (card && card.finishes && card.finishes.includes("foil")),
+      etched: (card && card.finishes && card.finishes.includes("etched"))
+    })
+
+
     return (
       displayPrice ? (
 
@@ -234,21 +213,21 @@ const CardPage = () => {
         >
           <div className="border border-dark rounded-xl px-4 py-1">
 
-            {hasNonfoil && (
+            {cardHasFinish.nonfoil && (
               <div className="flex justify-between">
                 <div className="w-1/3">{`Price •`}</div>
                 <div className="w-1/3">{`€\xa0${card.prices.eur ? card.prices.eur : " - "}`}</div>
                 <div className="w-1/3">{`$\xa0${card.prices.usd ? card.prices.usd : " - "}`}</div>
               </div>
             )}
-            {hasFoil && (
+            {cardHasFinish.foil && (
               <div className="flex justify-between">
                 <div className="w-1/3">{`Price ★`}</div>
                 <div className="w-1/3">{`€\xa0${card.prices.eur_foil ? card.prices.eur_foil : " - "}`}</div>
                 <div className="w-1/3">{`$\xa0${card.prices.usd_foil ? card.prices.usd_foil : " - "}`}</div>
               </div>
             )}
-            {hasEtched && (
+            {cardHasFinish.etched && (
               <div className="flex justify-between">
                 <div className="w-1/3">{`Price E`}</div>
                 <div className="w-1/3">{`$\xa0${card.prices.usd_etched ? card.prices.usd_etched : " - "}`}</div>
