@@ -21,8 +21,6 @@ import CardnameSearchForm from "../CardnameSearchForm";
 import OtherCardsInSet from "../OtherCardsInSet";
 
 const CardPage = () => {
-  const displayPrice = true; // featureflag
-
   const [cardId, setCardId] = useState(useParams());
   const [card, setCard] = useState(useLocation().state);
   const [isDataLoaded, setIsDataLoaded] = useState(card === null ? false : true);
@@ -205,37 +203,34 @@ const CardPage = () => {
 
 
     return (
-      displayPrice ? (
+      <div
+        id="prices-container"
+        className="flex flex-col px-2 py-4 "
+      >
+        <div className="border border-dark rounded-xl px-4 py-1">
 
-        <div
-          id="prices-container"
-          className="flex flex-col px-2 py-4 "
-        >
-          <div className="border border-dark rounded-xl px-4 py-1">
-
-            {cardHasFinish.nonfoil && (
-              <div className="flex justify-between">
-                <div className="w-1/3">{`Price •`}</div>
-                <div className="w-1/3">{`€\xa0${card.prices.eur ? card.prices.eur : " - "}`}</div>
-                <div className="w-1/3">{`$\xa0${card.prices.usd ? card.prices.usd : " - "}`}</div>
-              </div>
-            )}
-            {cardHasFinish.foil && (
-              <div className="flex justify-between">
-                <div className="w-1/3">{`Price ★`}</div>
-                <div className="w-1/3">{`€\xa0${card.prices.eur_foil ? card.prices.eur_foil : " - "}`}</div>
-                <div className="w-1/3">{`$\xa0${card.prices.usd_foil ? card.prices.usd_foil : " - "}`}</div>
-              </div>
-            )}
-            {cardHasFinish.etched && (
-              <div className="flex justify-between">
-                <div className="w-1/3">{`Price E`}</div>
-                <div className="w-1/3">{`$\xa0${card.prices.usd_etched ? card.prices.usd_etched : " - "}`}</div>
-              </div>
-            )}
-          </div>
+          {cardHasFinish.nonfoil && (
+            <div className="flex justify-between">
+              <div className="w-1/3">{`Price •`}</div>
+              <div className="w-1/3">{`€\xa0${card.prices.eur ? card.prices.eur : " - "}`}</div>
+              <div className="w-1/3">{`$\xa0${card.prices.usd ? card.prices.usd : " - "}`}</div>
+            </div>
+          )}
+          {cardHasFinish.foil && (
+            <div className="flex justify-between">
+              <div className="w-1/3">{`Price ★`}</div>
+              <div className="w-1/3">{`€\xa0${card.prices.eur_foil ? card.prices.eur_foil : " - "}`}</div>
+              <div className="w-1/3">{`$\xa0${card.prices.usd_foil ? card.prices.usd_foil : " - "}`}</div>
+            </div>
+          )}
+          {cardHasFinish.etched && (
+            <div className="flex justify-between">
+              <div className="w-1/3">{`Price E`}</div>
+              <div className="w-1/3">{`$\xa0${card.prices.usd_etched ? card.prices.usd_etched : " - "}`}</div>
+            </div>
+          )}
         </div>
-      ) : <></>
+      </div>
     )
   }
 
