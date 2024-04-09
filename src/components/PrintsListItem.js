@@ -1,9 +1,7 @@
 import { useNavigate } from "react-router";
-import CardImage from "./CardImage";
-import React, { useState } from "react";
+import React from "react";
 
-export default function PrintsListItem({ collected, setName, collector_number, id, image, setCardId, bold = false }) {
-    const [isShown, setIsShown] = useState(false)
+export default function PrintsListItem({ collected, setName, collector_number, id, setCardId, bold = false }) {
     const navigate = useNavigate();
     const goToPrinting = () => {
         setCardId({ id })
@@ -16,19 +14,11 @@ export default function PrintsListItem({ collected, setName, collector_number, i
         <div className="flex space-x-4 px-2 border border-t-0 border-primary justify-between relative">
             <div
                 id={`link-printing-${setName.replaceAll(" ", "-")}`}
-                className="flex flex-wrap"
-                onMouseEnter={() => setIsShown(true)}
-                onMouseLeave={() => setIsShown(false)}
+                className="flex flex-wrap overflow-visible"
             >
-                <dialog open={isShown} className="bg-transparent absolute z-10 inset-y-0 right-0 translate-x-24 w-80">
-                    <CardImage
-                        className="rounded-[18px] w-96 shadow-dark shadow-md"
-                        src={image}
-                        alt={`cardimage-${setName.replaceAll(" ", "-")}`}
-                    />
-                </dialog>
+
                 <button onClick={goToPrinting} className={`text-left hover:underline ${bold && "font-semibold"}`} id="cardName">
-                    {setName} - #{collector_number}
+                    #{collector_number} - {setName}
                 </button>
             </div>
             <div id="finishes"
