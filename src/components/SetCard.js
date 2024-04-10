@@ -130,7 +130,7 @@ export default function SetCard({ set }) {
         className="border border-1 border-dark p-2 rounded-b-lg"
       >
         <div id="setCard-text-collected">
-          {`${uniqueCardsCollected}/${set.card_count} (${totalCardsCollected} total cards collected)`}
+          {`${uniqueCardsCollected}/${set.card_count} (${totalCardsCollected} total card${totalCardsCollected === 1 ? "" : "s"} collected)`}
         </div>
         <div
           id="setCard-percentagebar-container"

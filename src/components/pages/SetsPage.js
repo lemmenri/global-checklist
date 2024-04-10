@@ -81,7 +81,7 @@ export default function SetsPage() {
           <CardnameSearchForm />
         </div>
       </div>
-      <p>{`${totalCardCount} cards in collection`}</p>
+      <p>{`${totalCardCount} card${totalCardCount === 1 ? "" : "s"} in collection`}</p>
       {setTypes && (
         <>
           <div className="flex items-center max-w-sm py-1">
